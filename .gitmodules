@@ -1,0 +1,4 @@
+[submodule "src/FelineFellas/Assets/Plugins/Entitas.Generic"]
+	path = src/FelineFellas/Assets/Plugins/Entitas.Generic
+	url = https://github.com/rapushka/Entitas.Generic.git
+	branch = unity-package
