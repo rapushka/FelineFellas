@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5927c0f9670d4861b49d0fa9a59d68af, type: 3}
   m_Name: Game Config
   m_EditorClassIdentifier: 
+  <Field>k__BackingField:
+    <FieldSize>k__BackingField:
+      <Width>k__BackingField: 8
+      <Height>k__BackingField: 3
+    <View>k__BackingField:
+      <ViewPrefab>k__BackingField: {fileID: 1912514074254275705, guid: 27a1e2121a26350c885d8da55bb60294, type: 3}
+      <Spacings>k__BackingField: {x: 1.5, y: 2.06}
