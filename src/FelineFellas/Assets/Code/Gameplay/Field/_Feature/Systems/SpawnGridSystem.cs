@@ -1,4 +1,5 @@
 using Entitas;
+using UnityEngine;
 
 namespace FelineFellas
 {
@@ -13,11 +14,15 @@ namespace FelineFellas
         public void Initialize()
         {
             var size = FieldConfig.FieldSize;
+            var spacings = FieldConfig.View.Spacings;
+            var halfSizes = new Vector2((size.Width - 1) / 2f, (size.Height - 1) / 2f);
 
             for (var column = 0; column < size.Width; column++)
             for (var row = 0; row < size.Height; row++)
             {
-                ViewFactory.CreateInWorld(FieldConfig.ViewPrefab, new(column, row));
+                var position = (new Vector2(column, row) - halfSizes) * spacings;
+
+                ViewFactory.CreateInWorld(FieldConfig.View.ViewPrefab, position);
             }
         }
     }
