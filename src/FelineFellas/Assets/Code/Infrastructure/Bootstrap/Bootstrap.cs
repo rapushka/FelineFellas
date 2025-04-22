@@ -11,5 +11,10 @@ namespace FelineFellas
             Game.Instance.RegisterServices(_gameConfig);
             Game.Instance.Run();
         }
+
+        private void Update()
+        {
+            Game.Instance.OnUpdate();
+        }
     }
 }

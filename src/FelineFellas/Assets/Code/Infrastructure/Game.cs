@@ -15,11 +15,17 @@ namespace FelineFellas
             // ReSharper disable once RedundantTypeArgumentsOfMethod – keep for consistency
             ServiceLocator.Register<IGameConfig>(gameConfig);
             ServiceLocator.Register<IGameStateMachine>(new GameStateMachine());
+            ServiceLocator.Register<IEcsRunner>(new EcsRunner());
         }
 
         public void Run()
         {
             StateMachine.ToState<BootstrapGameState>();
+        }
+
+        public void OnUpdate()
+        {
+            StateMachine.OnUpdate();
         }
     }
 }

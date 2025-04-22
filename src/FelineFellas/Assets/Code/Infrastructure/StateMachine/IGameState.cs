@@ -9,4 +9,9 @@ namespace FelineFellas
     {
         void OnExit();
     }
+
+    public interface IUpdatableState
+    {
+        void OnUpdate();
+    }
 }

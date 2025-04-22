@@ -1,12 +1,22 @@
-using UnityEngine;
-
 namespace FelineFellas
 {
-    public class GameplayGameState : IGameState
+    public class GameplayGameState : IGameState, IExitState, IUpdatableState
     {
+        private static IEcsRunner EcsRunner => ServiceLocator.Resolve<IEcsRunner>();
+
         public void OnEnter(GameStateMachine stateMachine)
         {
-            Debug.Log("you're in gameplay");
+            EcsRunner.StartGame();
+        }
+
+        public void OnUpdate()
+        {
+            EcsRunner.OnUpdate();
+        }
+
+        public void OnExit()
+        {
+            EcsRunner.EndGame();
         }
     }
 }
