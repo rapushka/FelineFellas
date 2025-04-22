@@ -1,5 +1,4 @@
 using Entitas;
-using UnityEngine;
 
 namespace FelineFellas
 {
@@ -7,10 +6,19 @@ namespace FelineFellas
     {
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
+        private static IViewFactory ViewFactory => ServiceLocator.Resolve<IViewFactory>();
+
+        private static FieldConfig FieldConfig => GameConfig.Field;
+
         public void Initialize()
         {
-            var size = GameConfig.Field.FieldSize;
-            Debug.Log($"TODO: spawn grid with sizes {size}");
+            var size = FieldConfig.FieldSize;
+
+            for (var column = 0; column < size.Width; column++)
+            for (var row = 0; row < size.Height; row++)
+            {
+                ViewFactory.CreateInWorld(FieldConfig.ViewPrefab, new(column, row));
+            }
         }
     }
 }
