@@ -19,6 +19,7 @@ namespace FelineFellas
 
             // Factories
             ServiceLocator.Register<IViewFactory>(new ViewFactory());
+            ServiceLocator.Register<IFieldFactory>(new FieldFactory());
         }
 
         public void Run()

@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
-        private static IViewFactory ViewFactory => ServiceLocator.Resolve<IViewFactory>();
+        private static IFieldFactory FieldFactory => ServiceLocator.Resolve<IFieldFactory>();
 
         private static FieldConfig FieldConfig => GameConfig.Field;
 
@@ -21,8 +21,7 @@ namespace FelineFellas
             for (var row = 0; row < size.Height; row++)
             {
                 var position = (new Vector2(column, row) - halfSizes) * spacings;
-
-                ViewFactory.CreateInWorld(FieldConfig.View.ViewPrefab, position);
+                FieldFactory.CreateCell(position);
             }
         }
     }

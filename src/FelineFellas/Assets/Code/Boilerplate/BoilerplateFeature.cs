@@ -9,6 +9,7 @@ namespace FelineFellas
             var contexts = Contexts.Instance;
 
             Add(new SelfEventSystem<GameScope, WorldPosition>(contexts));
+            Add(new SelfFlagEventSystem<GameScope, Hovered>(contexts));
         }
     }
 }
