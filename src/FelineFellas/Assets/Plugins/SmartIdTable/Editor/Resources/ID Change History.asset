@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b002dc601cb44c6ac9054911f8744d6, type: 3}
+  m_Name: ID Change History
+  m_EditorClassIdentifier: 
+  _commands:
+  - SceneGUID: 9fc0d4010bbf28b4594072e72b8655ab
+    CommandList:
+    - rid: 6343762589456007177
+    - rid: 3617096464362110976
+    - rid: 3617096464362110977
+    - rid: 3617096464362110978
+    - rid: 3617096464362110979
+    - rid: 3617096464362110980
+    - rid: 3617096464362110981
+    - rid: 3617096464362110982
+    - rid: 3617096464362110983
+  references:
+    version: 2
+    RefIds:
+    - rid: 3617096464362110976
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 836903297535539897
+        From: tab
+        To: items
+    - rid: 3617096464362110977
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 1710511003588865575
+        From: meh
+        To: items
+    - rid: 3617096464362110978
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 3041882628787295346
+        From: meh
+        To: items
+    - rid: 3617096464362110979
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 3461850619063001805
+        From: meh
+        To: items
+    - rid: 3617096464362110980
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 8428947557703885753
+        From: meh
+        To: items
+    - rid: 3617096464362110981
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 7547671886279944987
+        From: meh
+        To: items
+    - rid: 3617096464362110982
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 4982634934645257955
+        From: meh
+        To: items
+    - rid: 3617096464362110983
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 6647212486452385597
+        From: scene2
+        To: enemies
+    - rid: 6343762589456007177
+      type: {class: RenameIdCommand, ns: SmartIdTable.Commands, asm: SmartIdTable}
+      data:
+        PropertyPath: _id
+        TargetId: 4946333751248628745
+        From: scene1
+        To: enemies

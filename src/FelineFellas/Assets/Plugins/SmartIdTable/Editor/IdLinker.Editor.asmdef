@@ -1,0 +1,18 @@
+{
+    "name": "SmartIdTable.Editor",
+    "rootNamespace": "SmartIdTable.Editor",
+    "references": [
+        "SmartIdTable"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

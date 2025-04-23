@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 29fbe84c115d43d28c5067861064e872
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _visualTreeAsset: {fileID: 9197481963319205126, guid: 0d05d548f137cf64d98612fe3766cf3e,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294193
+  packageName: Smart ID Table - Lite
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/SmartIdTable/Editor/IdTableEditor.cs
+  uploadId: 690194

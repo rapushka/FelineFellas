@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3204abe090ced454f87f837032f1ec2a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294193
+  packageName: Smart ID Table - Lite
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/SmartIdTable/Editor/Resources/ID Change History.asset
+  uploadId: 690194

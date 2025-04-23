@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b38be6861bb3c9e4f8244bff7134841f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294193
+  packageName: Smart ID Table - Lite
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/SmartIdTable/Runtime/SerializedDictionary.cs
+  uploadId: 690194

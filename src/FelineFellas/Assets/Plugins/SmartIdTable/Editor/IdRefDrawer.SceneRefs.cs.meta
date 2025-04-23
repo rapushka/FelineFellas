@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: eecff6ef0d624f01a155ecbf1a9559de
+timeCreated: 1721557258
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294193
+  packageName: Smart ID Table - Lite
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/SmartIdTable/Editor/IdRefDrawer.SceneRefs.cs
+  uploadId: 690194
