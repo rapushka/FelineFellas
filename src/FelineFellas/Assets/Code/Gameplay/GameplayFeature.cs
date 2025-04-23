@@ -6,6 +6,7 @@ namespace FelineFellas
             : base(nameof(GameplayFeature))
         {
             Add(new GridFeature());
+            Add(new CardsFeature());
 
             Add(new BoilerplateFeature());
         }
