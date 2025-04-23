@@ -16,6 +16,8 @@ namespace FelineFellas
             ServiceLocator.Register<IGameConfig>(gameConfig);
             ServiceLocator.Register<IGameStateMachine>(new GameStateMachine());
             ServiceLocator.Register<IEcsRunner>(new EcsRunner());
+            ServiceLocator.Register<IInputService>(new InputService());
+            ServiceLocator.Register<ICamerasService>(new CamerasService(gameConfig.Cameras));
 
             // Factories
             ServiceLocator.Register<IViewFactory>(new ViewFactory());

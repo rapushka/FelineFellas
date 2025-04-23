@@ -1,0 +1,9 @@
+using UnityEngine;
+
+namespace FelineFellas
+{
+    public class CameraDirector : MonoBehaviour
+    {
+        [field: SerializeField] public Camera MainCamera { get; private set; }
+    }
+}

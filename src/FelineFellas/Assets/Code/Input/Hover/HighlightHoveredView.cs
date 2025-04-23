@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FelineFellas
 {
-    public class HoveredView : BaseListener<GameScope, Hovered>
+    public class HighlightHoveredView : BaseListener<GameScope, Hovered>
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Color _defaultColor = Color.white;

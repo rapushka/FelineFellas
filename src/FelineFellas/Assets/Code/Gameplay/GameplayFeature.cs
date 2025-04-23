@@ -5,6 +5,8 @@ namespace FelineFellas
         public GameplayFeature()
             : base(nameof(GameplayFeature))
         {
+            Add(new InputFeature());
+
             Add(new GridFeature());
             Add(new CardsFeature());
 
