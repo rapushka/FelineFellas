@@ -7,6 +7,9 @@ namespace FelineFellas
         {
             Add(new InitializeInputSystem());
             Add(new UpdateMousePositionSystem());
+
+            Add(new ResetHoveredSystem());
+            Add(new UpdateHoverSystem());
         }
     }
 }

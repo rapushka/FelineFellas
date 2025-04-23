@@ -20,7 +20,8 @@ namespace FelineFellas
         {
             var entity = ViewFactory.CreateInWorld(FieldConfig.View.ViewPrefab, position).Entity;
             return entity
-                    .Add<Hoverable>()
+                    .Add<Interactable>()
+                    .Add<Sorting, SortGroup>(SortGroup.Grid)
                 ;
         }
     }

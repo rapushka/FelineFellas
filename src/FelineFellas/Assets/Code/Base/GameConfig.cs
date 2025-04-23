@@ -7,7 +7,7 @@ namespace FelineFellas
         FieldConfig Field { get; }
         CardsConfig Cards { get; }
 
-        CameraDirector Cameras { get; }
+        CameraDirector CameraDirectorPrefab { get; }
     }
 
     [CreateAssetMenu(menuName = "375/FelineFellas/GameConfig", order = 100)]
@@ -16,6 +16,6 @@ namespace FelineFellas
         [field: SerializeField] public FieldConfig Field { get; private set; }
         [field: SerializeField] public CardsConfig Cards { get; private set; }
 
-        [field: SerializeField] public CameraDirector Cameras { get; private set; }
+        [field: SerializeField] public CameraDirector CameraDirectorPrefab { get; private set; }
     }
 }

@@ -28,3 +28,4 @@ MonoBehaviour:
     - Value: Card/DoNothing
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
+  <CameraDirectorPrefab>k__BackingField: {fileID: 4796567677478209745, guid: 2686f26e4e48040b69fa0242de03eda0, type: 3}

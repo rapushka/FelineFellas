@@ -17,7 +17,10 @@ namespace FelineFellas
 
         public Entity<GameScope> Create(CardIDRef cardID)
         {
-            return ViewFactory.CreateInWorld(Config.View.ViewPrefab, new()).Entity;
+            return ViewFactory.CreateInWorld(Config.View.ViewPrefab, new()).Entity
+                    .Add<Interactable>()
+                    .Add<Sorting, SortGroup>(SortGroup.CardInHand)
+                ;
         }
     }
 }
