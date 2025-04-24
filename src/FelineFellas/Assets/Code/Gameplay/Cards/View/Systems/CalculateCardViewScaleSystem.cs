@@ -27,8 +27,15 @@ namespace FelineFellas
                     continue;
                 }
 
+                if (card.Is<WillBeUsed>())
+                {
+                    card.Set<TargetScale, float>(DefaultScale);
+                    continue;
+                }
+
                 var totalScale = ViewConfig.CardInHandScaleUp
                     * (card.Is<Hovered>() ? ViewConfig.HoveredCardScaleUp : DefaultScale);
+
                 card.Set<TargetScale, float>(totalScale);
             }
         }
