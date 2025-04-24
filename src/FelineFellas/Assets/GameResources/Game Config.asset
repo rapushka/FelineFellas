@@ -26,6 +26,14 @@ MonoBehaviour:
     - Value: Card/DoNothing
     - Value: Card/DoNothing
     - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    <HandSize>k__BackingField: 5
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
       <DeckSpawnPosition>k__BackingField: {x: -10, y: -3.65}

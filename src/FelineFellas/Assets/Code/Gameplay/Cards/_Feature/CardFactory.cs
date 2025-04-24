@@ -4,7 +4,7 @@ namespace FelineFellas
 {
     public interface ICardFactory : IService
     {
-        Entity<GameScope> Create(CardIDRef cardID);
+        Entity<GameScope> CreateInDeck(CardIDRef cardID);
     }
 
     public class CardFactory : ICardFactory
@@ -15,11 +15,13 @@ namespace FelineFellas
 
         private static CardsConfig Config => GameConfig.Cards;
 
-        public Entity<GameScope> Create(CardIDRef cardID)
+        public Entity<GameScope> CreateInDeck(CardIDRef cardID)
         {
             return ViewFactory.CreateInWorld(Config.View.ViewPrefab, Config.View.DeckSpawnPosition).Entity
+                    .Add<Card>()
                     .Add<Interactable>()
                     .Add<Sorting, SortGroup>(SortGroup.CardInHand)
+                    .Add<InDeck>()
                 ;
         }
     }

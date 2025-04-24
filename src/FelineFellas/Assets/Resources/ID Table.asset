@@ -36,3 +36,31 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[2].Value
+    - _objectPath: 6c9988b944afe60f38f3ee8f69737233||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[3].Value
+    - _objectPath: 6c9988b944afe60f38f3ee8f69737233||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[4].Value
+    - _objectPath: 6c9988b944afe60f38f3ee8f69737233||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[5].Value
+    - _objectPath: 6c9988b944afe60f38f3ee8f69737233||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[7].Value
+    - _objectPath: 6c9988b944afe60f38f3ee8f69737233||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[6].Value
+    - _objectPath: 6c9988b944afe60f38f3ee8f69737233||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[9].Value
+    - _objectPath: 6c9988b944afe60f38f3ee8f69737233||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Cards>k__BackingField.<StartPlayerDeck>k__BackingField.Array.data[8].Value

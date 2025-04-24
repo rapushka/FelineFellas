@@ -6,6 +6,7 @@ namespace FelineFellas
             : base(nameof(CardsFeature))
         {
             Add(new SpawnDeckSystem());
+            Add(new DrawCardsOnStartSystem());
         }
     }
 }

@@ -11,9 +11,7 @@ namespace FelineFellas
         public void Initialize()
         {
             foreach (var cardID in GameConfig.Cards.StartPlayerDeck)
-            {
-                CardFactory.Create(cardID);
-            }
+                CardFactory.CreateInDeck(cardID);
         }
     }
 }

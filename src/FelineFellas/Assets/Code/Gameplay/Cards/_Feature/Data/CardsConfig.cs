@@ -10,6 +10,7 @@ namespace FelineFellas
         [SerializeField] private CardConfig[] _configs;
 
         [field: SerializeField] public CardIDRef[] StartPlayerDeck { get; private set; }
+        [field: SerializeField] public int         HandSize        { get; private set; }
 
         [field: SerializeField] public ViewConfig View { get; private set; }
 
