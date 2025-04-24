@@ -18,7 +18,8 @@ namespace FelineFellas
         [Serializable]
         public class ViewConfig
         {
-            [field: SerializeField] public GameEntityBehaviour ViewPrefab { get; private set; }
+            [field: SerializeField] public GameEntityBehaviour ViewPrefab        { get; private set; }
+            [field: SerializeField] public Vector2             DeckSpawnPosition { get; private set; }
         }
     }
 }
