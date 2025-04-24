@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 6ecbd1f9116a4649b23a07e8f37d03e9
+timeCreated: 1720798282
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294193
+  packageName: Smart ID Table - Lite
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/SmartIdTable/Editor/IdRefContext.cs
+  uploadId: 690194

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ac9245a1e9ea6b5499399bccfc24b244
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294193
+  packageName: Smart ID Table - Lite
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/SmartIdTable/Editor/IdLinker.Editor.asmdef
+  uploadId: 690194

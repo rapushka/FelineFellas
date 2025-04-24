@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 94c47b0156e06ad4ba157ac4ff3bb9e2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294193
+  packageName: Smart ID Table - Lite
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/SmartIdTable/Editor/Postprocessors/IdRefPostprocessor.cs
+  uploadId: 690194

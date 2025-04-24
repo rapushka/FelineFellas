@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Plugins/IdLinker/Editor/Resources/IdTableEditor.uss?fileID=7433441132597879392&amp;guid=dec4885fc3f5f854388f3ae08abeaa42&amp;type=3#IdTableEditor" />
+    <ui:VisualElement name="block__list" class="block">
+        <ui:VisualElement name="header" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="ID List" display-tooltip-when-elided="true" />
+            <ui:Button text="+" parse-escape-sequences="true" display-tooltip-when-elided="true" name="btn__add" tooltip="Add new empty ID" />
+        </ui:VisualElement>
+        <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" mode="Vertical" class="unity-collection-view--with-border">
+            <ui:Label text="List is Empty" display-tooltip-when-elided="true" name="id-linker-scroll-empty-label" class="id-linker__label-empty" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

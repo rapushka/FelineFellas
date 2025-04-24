@@ -19,3 +19,27 @@ MonoBehaviour:
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 1912514074254275705, guid: 27a1e2121a26350c885d8da55bb60294, type: 3}
       <Spacings>k__BackingField: {x: 1.5, y: 2.06}
+  <Cards>k__BackingField:
+    _configs:
+    - {fileID: 11400000, guid: 3e068aace28f218aa947e2c57c71d623, type: 2}
+    <StartPlayerDeck>k__BackingField:
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    - Value: Card/DoNothing
+    <HandSize>k__BackingField: 5
+    <View>k__BackingField:
+      <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
+      <DeckSpawnPosition>k__BackingField: {x: -10, y: -3.65}
+      <CardAnimationsSpeed>k__BackingField: 20
+      <MaxCardAngle>k__BackingField: 45
+      <VerticalOffset>k__BackingField: -3.75
+      <HandRadius>k__BackingField: 16.2
+      <HandCenter>k__BackingField: {x: 0, y: -4.57}
+  <CameraDirectorPrefab>k__BackingField: {fileID: 4796567677478209745, guid: 2686f26e4e48040b69fa0242de03eda0, type: 3}

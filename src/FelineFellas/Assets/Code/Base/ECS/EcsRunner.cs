@@ -20,6 +20,7 @@ namespace FelineFellas
         public void Initialize()
         {
             Contexts.Instance.InitializeScope<GameScope>();
+            Contexts.Instance.InitializeScope<InputScope>();
 
             _feature = new();
         }
