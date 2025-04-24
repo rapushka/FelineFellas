@@ -25,6 +25,7 @@ namespace FelineFellas
                     .Add<AnimationsSpeed, float>(Config.View.CardAnimationsSpeed)
                     .Add<Rotation, float>(0f)
                     .Add<Scale, float>(1f)
+                    .Add<Draggable>()
                 ;
         }
     }

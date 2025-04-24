@@ -11,6 +11,7 @@ namespace FelineFellas
                 .With<Card>()
                 .And<InHandIndex>()
                 .And<WorldPosition>()
+                .Without<Dragging>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();

@@ -3,6 +3,10 @@ namespace FelineFellas
     public sealed class DragAndDropFeature : Feature
     {
         public DragAndDropFeature()
-            : base(nameof(DragAndDropFeature)) { }
+            : base(nameof(DragAndDropFeature))
+        {
+            Add(new StartDraggingSystem());
+            Add(new DragEntitySystem());
+        }
     }
 }
