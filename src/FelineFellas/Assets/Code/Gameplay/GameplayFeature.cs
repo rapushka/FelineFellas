@@ -11,6 +11,7 @@ namespace FelineFellas
             Add(new CardsFeature());
 
             Add(new MoveToPositionSystem());
+            Add(new RotateToTargetSystem());
 
             Add(new ResetSortingOrderSystem());
             Add(new UpdateSortingOrderForCardsInHandSystem());

@@ -41,10 +41,8 @@ namespace FelineFellas
 
                 targetPosition += handCenter;
 
-                // var rotation = Quaternion.Euler(0, currentAngle, 0);
-
-                card.Set<MoveToPosition, Vector2>(targetPosition);
-                // TODO: rotation
+                card.Set<TargetPosition, Vector2>(targetPosition);
+                card.Set<TargetRotation, float>(currentAngle);
             }
         }
     }

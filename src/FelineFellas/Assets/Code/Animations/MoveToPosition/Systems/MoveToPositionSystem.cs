@@ -9,7 +9,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _entities
             = GroupBuilder<GameScope>
-                .With<MoveToPosition>()
+                .With<TargetPosition>()
                 .And<WorldPosition>()
                 .And<MovementSpeed>()
                 .Build();
@@ -22,7 +22,7 @@ namespace FelineFellas
         {
             foreach (var entity in _entities.GetEntities(_buffer))
             {
-                var target = entity.Get<MoveToPosition>().Value;
+                var target = entity.Get<TargetPosition>().Value;
                 var position = entity.Get<WorldPosition>().Value;
                 var speed = entity.Get<MovementSpeed>().Value;
 
@@ -35,7 +35,7 @@ namespace FelineFellas
                 {
                     entity
                         .Set<WorldPosition, Vector2>(target)
-                        .Remove<MoveToPosition>();
+                        .Remove<TargetPosition>();
                     continue;
                 }
 
