@@ -6,6 +6,7 @@ namespace FelineFellas
             : base(nameof(GameplayFeature))
         {
             Add(new InputFeature());
+            Add(new DragAndDropFeature());
 
             Add(new GridFeature());
             Add(new CardsFeature());
