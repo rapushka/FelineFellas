@@ -2,5 +2,5 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class InHand : FlagComponent, IInScope<GameScope> { }
+    public sealed class InHandIndex : ValueComponent<int>, IInScope<GameScope> { }
 }

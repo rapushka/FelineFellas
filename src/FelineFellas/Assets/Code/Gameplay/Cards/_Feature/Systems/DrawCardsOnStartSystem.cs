@@ -20,7 +20,7 @@ namespace FelineFellas
                 var card = _cardsInDeck.First();
                 card
                     .Is<InDeck>(false)
-                    .Is<InHand>(true)
+                    .Add<InHandIndex, int>(i)
                     ;
             }
         }

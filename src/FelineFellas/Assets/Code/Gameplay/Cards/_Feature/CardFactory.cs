@@ -22,6 +22,7 @@ namespace FelineFellas
                     .Add<Interactable>()
                     .Add<Sorting, SortGroup>(SortGroup.CardInHand)
                     .Add<InDeck>()
+                    .Add<MovementSpeed, float>(Config.View.CardAnimationsSpeed)
                 ;
         }
     }

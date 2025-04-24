@@ -10,6 +10,8 @@ namespace FelineFellas
             Add(new GridFeature());
             Add(new CardsFeature());
 
+            Add(new MoveToPositionSystem());
+
             Add(new BoilerplateFeature());
         }
     }
