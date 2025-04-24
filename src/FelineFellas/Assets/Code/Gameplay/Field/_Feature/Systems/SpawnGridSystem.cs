@@ -13,6 +13,8 @@ namespace FelineFellas
 
         public void Initialize()
         {
+            var center = new Vector2(0f, 1f);
+
             var size = FieldConfig.FieldSize;
             var spacings = FieldConfig.View.Spacings;
             var halfSizes = new Vector2((size.Width - 1) / 2f, (size.Height - 1) / 2f);
@@ -21,7 +23,7 @@ namespace FelineFellas
             for (var row = 0; row < size.Height; row++)
             {
                 var position = (new Vector2(column, row) - halfSizes) * spacings;
-                FieldFactory.CreateCell(position);
+                FieldFactory.CreateCell(center + position);
             }
         }
     }
