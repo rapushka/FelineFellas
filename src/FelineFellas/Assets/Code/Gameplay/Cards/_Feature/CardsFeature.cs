@@ -9,6 +9,9 @@ namespace FelineFellas
             Add(new DrawCardsOnStartSystem());
 
             Add(new UseGlobalCardSystem());
+            Add(new UseDroppedCardsIfCanSystem());
+
+            Add(new MoveDiscardedCardsToDiscardPileSystem());
 
             // View
             Add(new ArrangeCardsInHandSystem());
