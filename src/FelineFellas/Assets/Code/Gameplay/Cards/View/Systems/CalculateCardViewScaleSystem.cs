@@ -5,10 +5,16 @@ namespace FelineFellas
 {
     public sealed class CalculateCardViewScaleSystem : IExecuteSystem
     {
+        private const float DefaultScale = 1f;
+
         private readonly IGroup<Entity<GameScope>> _cards
             = GroupBuilder<GameScope>
                 .With<Card>()
                 .Build();
+
+        private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
+
+        private static CardsConfig.ViewConfig ViewConfig => GameConfig.Cards.View;
 
         public void Execute()
         {
@@ -17,11 +23,12 @@ namespace FelineFellas
                 var isInHand = card.Has<InHandIndex>();
                 if (!isInHand)
                 {
-                    card.Set<TargetScale, float>(1f);
+                    card.Set<TargetScale, float>(DefaultScale);
                     continue;
                 }
 
-                var totalScale = 2f * (card.Is<Hovered>() ? 2f : 1f);
+                var totalScale = ViewConfig.CardInHandScaleUp
+                    * (card.Is<Hovered>() ? ViewConfig.HoveredCardScaleUp : DefaultScale);
                 card.Set<TargetScale, float>(totalScale);
             }
         }

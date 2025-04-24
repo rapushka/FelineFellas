@@ -22,8 +22,11 @@ namespace FelineFellas
             [field: SerializeField] public GameEntityBehaviour ViewPrefab          { get; private set; }
             [field: SerializeField] public Vector2             DeckSpawnPosition   { get; private set; }
             [field: SerializeField] public float               CardAnimationsSpeed { get; private set; } = 10f;
+            [field: SerializeField] public float               HoveredCardScaleUp  { get; private set; } = 1.5f;
 
             [field: Header("Hand")]
+            [field: SerializeField] public float CardInHandScaleUp { get; private set; } = 1.5f;
+
             [field: SerializeField] public float MaxCardAngle { get; private set; } = 15f;
 
             [field: SerializeField] public float VerticalOffset { get; private set; } = 0.5f;
