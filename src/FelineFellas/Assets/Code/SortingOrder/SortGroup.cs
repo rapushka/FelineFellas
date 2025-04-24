@@ -8,6 +8,6 @@ namespace FelineFellas
 
         CardOnField = 2,
         CardInHand = 3,
-        DraggingCard = 4,
+        DraggingCard = 100,
     }
 }

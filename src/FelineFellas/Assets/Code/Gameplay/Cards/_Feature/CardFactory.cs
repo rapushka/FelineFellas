@@ -20,7 +20,7 @@ namespace FelineFellas
             return ViewFactory.CreateInWorld(Config.View.ViewPrefab, Config.View.DeckSpawnPosition).Entity
                     .Add<Card>()
                     .Add<Interactable>()
-                    .Add<Sorting, SortGroup>(SortGroup.CardInHand)
+                    .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
                     .Add<InDeck>()
                     .Add<MovementSpeed, float>(Config.View.CardAnimationsSpeed)
                 ;

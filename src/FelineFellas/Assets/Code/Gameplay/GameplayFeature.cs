@@ -12,6 +12,9 @@ namespace FelineFellas
 
             Add(new MoveToPositionSystem());
 
+            Add(new ResetSortingOrderSystem());
+            Add(new UpdateSortingOrderForCardsInHandSystem());
+
             Add(new BoilerplateFeature());
         }
     }

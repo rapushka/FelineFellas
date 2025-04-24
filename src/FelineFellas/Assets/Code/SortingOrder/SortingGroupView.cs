@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace FelineFellas
 {
-    public class SortingGroupView : BaseListener<GameScope, Sorting>
+    public class SortingGroupView : BaseListener<GameScope, SpriteSortingIndex>
     {
         [SerializeField] private UnityEngine.Rendering.SortingGroup _sortingGroup;
 
-        public override void OnValueChanged(Entity<GameScope> entity, Sorting component)
-            => _sortingGroup.sortingOrder = (int)component.Value;
+        public override void OnValueChanged(Entity<GameScope> entity, SpriteSortingIndex component)
+            => _sortingGroup.sortingOrder = component.Value;
     }
 }
