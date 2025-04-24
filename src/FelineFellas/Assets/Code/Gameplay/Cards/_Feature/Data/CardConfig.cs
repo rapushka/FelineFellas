@@ -6,5 +6,7 @@ namespace FelineFellas
     public class CardConfig : ScriptableObject
     {
         [field: SerializeField] public CardIDRef ID { get; private set; }
+
+        [field: SerializeField] public bool IsGlobalCard { get; private set; }
     }
 }

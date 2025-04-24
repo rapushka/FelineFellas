@@ -5,6 +5,7 @@ namespace FelineFellas
         public GridFeature()
             : base(nameof(GridFeature))
         {
+            Add(new SpawnFieldSystem());
             Add(new SpawnGridSystem());
         }
     }

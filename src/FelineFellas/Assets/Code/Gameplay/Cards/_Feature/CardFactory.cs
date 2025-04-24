@@ -13,19 +13,22 @@ namespace FelineFellas
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
-        private static CardsConfig Config => GameConfig.Cards;
+        private static CardsConfig CardsConfig => GameConfig.Cards;
 
         public Entity<GameScope> CreateInDeck(CardIDRef cardID)
         {
-            return ViewFactory.CreateInWorld(Config.View.ViewPrefab, Config.View.DeckSpawnPosition).Entity
-                    .Add<Card>()
+            var config = CardsConfig.GetConfig(cardID);
+
+            return ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, CardsConfig.View.DeckSpawnPosition).Entity
+                    .Add<Card, CardIDRef>(config.ID)
                     .Add<Interactable>()
                     .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
                     .Add<InDeck>()
-                    .Add<AnimationsSpeed, float>(Config.View.CardAnimationsSpeed)
+                    .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)
                     .Add<Rotation, float>(0f)
                     .Add<Scale, float>(1f)
                     .Add<Draggable>()
+                    .Is<GlobalCard>(config.IsGlobalCard)
                 ;
         }
     }
