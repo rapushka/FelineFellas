@@ -22,6 +22,7 @@ namespace FelineFellas
                 card
                     .Is<WillBeUsed>(false)
                     .Remove<InHandIndex>()
+                    .Is<Used>(true)
                     .Is<SendToDiscard>(true)
                     .Is<Interactable>(false)
                     ;
