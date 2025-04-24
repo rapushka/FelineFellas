@@ -42,7 +42,7 @@ namespace FelineFellas
                 targetPosition += handCenter;
 
                 card.Set<TargetPosition, Vector2>(targetPosition);
-                card.Set<TargetRotation, float>(currentAngle);
+                card.Set<TargetRotation, float>(-currentAngle);
             }
         }
     }

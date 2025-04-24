@@ -38,9 +38,8 @@ MonoBehaviour:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
       <DeckSpawnPosition>k__BackingField: {x: -10, y: -3.65}
       <CardAnimationsSpeed>k__BackingField: 20
-      <MaxCardAngle>k__BackingField: 32.3
-      <CardSpacing>k__BackingField: 10
-      <VerticalOffset>k__BackingField: -3
-      <HandRadius>k__BackingField: 9.59
-      <HandCenter>k__BackingField: {x: 0, y: -4.59}
+      <MaxCardAngle>k__BackingField: 45
+      <VerticalOffset>k__BackingField: -3.75
+      <HandRadius>k__BackingField: 16.2
+      <HandCenter>k__BackingField: {x: 0, y: -4.57}
   <CameraDirectorPrefab>k__BackingField: {fileID: 4796567677478209745, guid: 2686f26e4e48040b69fa0242de03eda0, type: 3}
