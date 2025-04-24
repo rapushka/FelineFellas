@@ -8,7 +8,9 @@ namespace FelineFellas
             Add(new SpawnDeckSystem());
             Add(new DrawCardsOnStartSystem());
 
+            // View
             Add(new ArrangeCardsInHandSystem());
+            Add(new CalculateCardViewScaleSystem());
         }
     }
 }
