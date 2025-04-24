@@ -5,6 +5,8 @@ namespace FelineFellas
 {
     public interface IFieldFactory : IService
     {
+        Entity<GameScope> CreateField(Vector2 position);
+
         Entity<GameScope> CreateCell(Vector2 position);
     }
 
@@ -16,10 +18,21 @@ namespace FelineFellas
 
         private static FieldConfig FieldConfig => GameConfig.Field;
 
+        public Entity<GameScope> CreateField(Vector2 position)
+        {
+            var entity = ViewFactory.CreateInWorld(FieldConfig.View.FieldPrefab, position).Entity;
+            // TODO: dynamically calculate collider size.. someday..
+
+            return entity
+                    .Add<Field>()
+                ;
+        }
+
         public Entity<GameScope> CreateCell(Vector2 position)
         {
-            var entity = ViewFactory.CreateInWorld(FieldConfig.View.ViewPrefab, position).Entity;
+            var entity = ViewFactory.CreateInWorld(FieldConfig.View.CellPrefab, position).Entity;
             return entity
+                    .Add<Cell>()
                     .Add<Interactable>()
                     .Add<SpriteSortingGroup, SortGroup>(SortGroup.Grid)
                 ;

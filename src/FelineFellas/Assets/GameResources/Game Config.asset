@@ -17,7 +17,9 @@ MonoBehaviour:
       <Width>k__BackingField: 8
       <Height>k__BackingField: 3
     <View>k__BackingField:
-      <ViewPrefab>k__BackingField: {fileID: 1912514074254275705, guid: 27a1e2121a26350c885d8da55bb60294, type: 3}
+      <FieldPrefab>k__BackingField: {fileID: 9218016523593889491, guid: ab82c67ad48c107e0b755d2961ba708e, type: 3}
+      <CellPrefab>k__BackingField: {fileID: 1912514074254275705, guid: 27a1e2121a26350c885d8da55bb60294, type: 3}
+      <FieldCenter>k__BackingField: {x: 0, y: 1}
       <Spacings>k__BackingField: {x: 1.5, y: 2.06}
   <Cards>k__BackingField:
     _configs:
@@ -36,8 +38,11 @@ MonoBehaviour:
     <HandSize>k__BackingField: 5
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
-      <DeckSpawnPosition>k__BackingField: {x: -10, y: -3.65}
-      <CardAnimationsSpeed>k__BackingField: 20
+      <DeckSpawnPosition>k__BackingField: {x: -12, y: -3.65}
+      <DiscardPilePosition>k__BackingField: {x: 12, y: -3.65}
+      <CardAnimationsSpeed>k__BackingField: 30
+      <HoveredCardScaleUp>k__BackingField: 1.5
+      <CardInHandScaleUp>k__BackingField: 1.5
       <MaxCardAngle>k__BackingField: 45
       <VerticalOffset>k__BackingField: -3.75
       <HandRadius>k__BackingField: 16.2

@@ -12,6 +12,7 @@ namespace FelineFellas
             Add(new SelfFlagEventSystem<GameScope, Hovered>(contexts));
             Add(new SelfEventSystem<GameScope, SpriteSortingIndex>(contexts));
             Add(new SelfEventSystem<GameScope, Rotation>(contexts));
+            Add(new SelfEventSystem<GameScope, Scale>(contexts));
         }
     }
 }

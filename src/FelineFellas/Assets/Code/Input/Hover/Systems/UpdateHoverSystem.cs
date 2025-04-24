@@ -15,7 +15,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<Interactable>()
                 .And<Collider>()
-                .And<SpriteSortingGroup>()
+                .And<SpriteSortingIndex>()
                 .Build();
 
         public void Execute()
@@ -35,8 +35,8 @@ namespace FelineFellas
 
                     if (topmostTarget is not null)
                     {
-                        var targetSorting = target.Get<SpriteSortingGroup>().Value;
-                        var topmostSorting = topmostTarget.Get<SpriteSortingGroup>().Value;
+                        var targetSorting = target.Get<SpriteSortingIndex>().Value;
+                        var topmostSorting = topmostTarget.Get<SpriteSortingIndex>().Value;
 
                         if (targetSorting <= topmostSorting)
                             continue;

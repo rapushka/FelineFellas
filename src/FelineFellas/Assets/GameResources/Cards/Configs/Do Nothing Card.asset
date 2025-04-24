@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField:
     Value: Card/DoNothing
+  <IsGlobalCard>k__BackingField: 1

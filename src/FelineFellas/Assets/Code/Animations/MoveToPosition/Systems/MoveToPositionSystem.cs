@@ -11,7 +11,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<TargetPosition>()
                 .And<WorldPosition>()
-                .And<MovementSpeed>()
+                .And<AnimationsSpeed>()
                 .Build();
 
         private static ITimeService TimeService => ServiceLocator.Resolve<ITimeService>();
@@ -24,7 +24,7 @@ namespace FelineFellas
             {
                 var target = entity.Get<TargetPosition>().Value;
                 var position = entity.Get<WorldPosition>().Value;
-                var speed = entity.Get<MovementSpeed>().Value;
+                var speed = entity.Get<AnimationsSpeed>().Value;
 
                 var scaledSpeed = speed * TimeService.AnimationDelta;
                 var direction = (target - position).normalized;

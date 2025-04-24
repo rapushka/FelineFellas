@@ -6,5 +6,11 @@ namespace FelineFellas
         {
             public const string Cards = "Card/";
         }
+
+        public static class Input
+        {
+            public const float HoldDurationForClick = 0.3f;
+            public const float MaxDistanceToConsiderClick = 10f;
+        }
     }
 }

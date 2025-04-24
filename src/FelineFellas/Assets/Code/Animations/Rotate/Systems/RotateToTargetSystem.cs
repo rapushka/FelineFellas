@@ -11,7 +11,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<TargetRotation>()
                 .And<Rotation>()
-                .And<RotationSpeed>()
+                .And<AnimationsSpeed>()
                 .Build();
 
         private static ITimeService TimeService => ServiceLocator.Resolve<ITimeService>();
@@ -24,7 +24,7 @@ namespace FelineFellas
             {
                 var targetRotation = entity.Get<TargetRotation>().Value;
                 var currentRotation = entity.Get<Rotation>().Value;
-                var rotationSpeed = entity.Get<RotationSpeed>().Value;
+                var rotationSpeed = entity.Get<AnimationsSpeed>().Value;
 
                 var direction = targetRotation - currentRotation;
 
