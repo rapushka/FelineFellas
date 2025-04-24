@@ -20,6 +20,7 @@ namespace FelineFellas
 
                 input
                     .Is<CursorJustDown>(lmb is ButtonState.JustDown)
+                    .Is<CursorJustUp>(lmb is ButtonState.JustUp)
                     .Is<CursorJustClicked>(lmb is ButtonState.Clicked)
                     .Is<CursorHolding>(lmb is ButtonState.Down)
                     ;

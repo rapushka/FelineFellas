@@ -7,6 +7,9 @@ namespace FelineFellas
         {
             Add(new StartDraggingSystem());
             Add(new DragEntitySystem());
+            Add(new DropEntitiesSystem());
+
+            Add(new CleanupDroppedSystem());
         }
     }
 }

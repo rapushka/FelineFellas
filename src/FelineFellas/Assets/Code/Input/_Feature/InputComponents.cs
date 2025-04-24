@@ -9,6 +9,9 @@ namespace FelineFellas
 
     public sealed class CursorJustDown : FlagComponent, IInScope<InputScope> { }
 
+    public sealed class CursorJustUp : FlagComponent, IInScope<InputScope> { }
+
     public sealed class CursorJustClicked : FlagComponent, IInScope<InputScope> { }
+
     public sealed class CursorHolding : FlagComponent, IInScope<InputScope> { }
 }
