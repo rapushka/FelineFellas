@@ -20,8 +20,19 @@ namespace FelineFellas
 
         public void Execute()
         {
-            var totalAngle = (_cardsInHand.count * 3f).Clamp(max: ViewConfig.MaxCardAngle);
-            var angleStep = totalAngle / (_cardsInHand.count - 1);
+            var cardCount = _cardsInHand.count;
+
+            if (cardCount == 1)
+            {
+                var singleCard = _cardsInHand.GetSingleEntity();
+
+                singleCard.Set<TargetPosition, Vector2>(ViewConfig.HandCenter);
+                singleCard.Set<TargetRotation, float>(0);
+                return;
+            }
+
+            var totalAngle = (cardCount * 3f).Clamp(max: ViewConfig.MaxCardAngle);
+            var angleStep = totalAngle / (cardCount - 1);
             var startAngle = -totalAngle / 2f;
 
             var handCenter = ViewConfig.HandCenter;
