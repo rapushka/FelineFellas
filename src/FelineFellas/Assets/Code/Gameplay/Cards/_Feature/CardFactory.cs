@@ -29,7 +29,8 @@ namespace FelineFellas
                     .Add<Rotation, float>(0f)
                     .Add<Scale, float>(1f)
                     .Add<Draggable>()
-                    .Is<GlobalCard>(config.IsGlobalCard)
+                    .Is<GlobalCard>(config.Usage is CardConfig.UsageType.Global)
+                    .Is<UnitCard>(config.Usage is CardConfig.UsageType.Unit)
                     .Add<CardTitle, string>(config.Title)
                     .Add<CardIcon, Sprite>(config.Icon)
                 ;
