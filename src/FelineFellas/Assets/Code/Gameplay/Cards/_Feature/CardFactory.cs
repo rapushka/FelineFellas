@@ -1,4 +1,5 @@
 using Entitas.Generic;
+using UnityEngine;
 
 namespace FelineFellas
 {
@@ -29,6 +30,8 @@ namespace FelineFellas
                     .Add<Scale, float>(1f)
                     .Add<Draggable>()
                     .Is<GlobalCard>(config.IsGlobalCard)
+                    .Add<CardTitle, string>(config.Title)
+                    .Add<CardIcon, Sprite>(config.Icon)
                 ;
         }
     }

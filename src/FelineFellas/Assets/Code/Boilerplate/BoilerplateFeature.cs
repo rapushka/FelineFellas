@@ -13,6 +13,8 @@ namespace FelineFellas
             Add(new SelfEventSystem<GameScope, SpriteSortingIndex>(contexts));
             Add(new SelfEventSystem<GameScope, Rotation>(contexts));
             Add(new SelfEventSystem<GameScope, Scale>(contexts));
+            Add(new SelfEventSystem<GameScope, CardTitle>(contexts));
+            Add(new SelfEventSystem<GameScope, CardIcon>(contexts));
         }
     }
 }
