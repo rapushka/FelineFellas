@@ -37,7 +37,12 @@ namespace FelineFellas
                 var cursorOnCell = cellCollider.OverlapPoint(cursorPosition);
 
                 if (cursorOnCell)
-                    card.Is<WillBeUsed>(true);
+                {
+                    card
+                        .Is<WillBeUsed>(true)
+                        .Add<TargetCell, EntityID>(cell.ID())
+                        ;
+                }
             }
         }
     }

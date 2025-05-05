@@ -22,6 +22,8 @@ namespace FelineFellas
             Contexts.Instance.InitializeScope<GameScope>();
             Contexts.Instance.InitializeScope<InputScope>();
 
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<ID, EntityID>().Initialize();
+
             _feature = new();
         }
 

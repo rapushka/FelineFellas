@@ -15,7 +15,12 @@ namespace FelineFellas
         public void Execute()
         {
             foreach (var card in _draggedCard)
-                card.Is<WillBeUsed>(false);
+            {
+                card
+                    .Is<WillBeUsed>(false)
+                    .RemoveSafely<TargetCell>()
+                    ;
+            }
         }
     }
 }
