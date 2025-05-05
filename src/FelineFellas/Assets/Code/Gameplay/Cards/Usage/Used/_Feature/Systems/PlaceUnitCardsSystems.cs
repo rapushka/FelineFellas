@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
+using UnityEngine;
 
 namespace FelineFellas
 {
-    public sealed class UseDroppedCardsIfCanSystem : IExecuteSystem
+    public sealed class PlaceUnitCardsSystems : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _droppedCards
             = GroupBuilder<GameScope>
                 .With<Card>()
                 .And<WillBeUsed>()
+                .And<UnitCard>()
+                .And<TargetCell>()
                 .And<Dropped>()
                 .Build();
 
@@ -19,12 +22,18 @@ namespace FelineFellas
         {
             foreach (var card in _droppedCards.GetEntities(_buffer))
             {
+                var cell = card.Get<TargetCell>().Value.GetEntity();
+
                 card
                     .Is<WillBeUsed>(false)
                     .Remove<InHandIndex>()
                     .Is<Used>(true)
-                    .Is<SendToDiscard>(true)
                     .Is<Interactable>(false)
+                    ;
+
+                card
+                    .Set<TargetRotation, float>(0f)
+                    .Set<TargetPosition, Vector2>(cell.Get<WorldPosition, Vector2>())
                     ;
             }
         }

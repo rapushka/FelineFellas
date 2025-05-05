@@ -8,8 +8,12 @@ namespace FelineFellas
             Add(new SpawnDeckSystem());
             Add(new DrawCardsOnStartSystem());
 
+            Add(new ResetCardWillBeUsed());
             Add(new UseGlobalCardSystem());
-            Add(new UseDroppedCardsIfCanSystem());
+            Add(new UseUnitCardSystem());
+
+            Add(new UseDroppedOneShotCardsIfCanSystem());
+            Add(new PlaceUnitCardsSystems());
 
             Add(new MoveDiscardedCardsToDiscardPileSystem());
             Add(new RecalculateCardsIndexesInHandSystem());

@@ -24,17 +24,14 @@ MonoBehaviour:
   <Cards>k__BackingField:
     _configs:
     - {fileID: 11400000, guid: 3e068aace28f218aa947e2c57c71d623, type: 2}
-    <StartPlayerDeck>k__BackingField:
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
-    - Value: Card/DoNothing
+    - {fileID: 11400000, guid: 543075c8e4bae27078329748bcc8fd03, type: 2}
+    <PlayerDeckOnStart>k__BackingField:
+    - <CardID>k__BackingField:
+        Value: Card/Unit/Crook
+      <Count>k__BackingField: 3
+    - <CardID>k__BackingField:
+        Value: Card/GlobalAction/DoNothing
+      <Count>k__BackingField: 3
     <HandSize>k__BackingField: 5
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}

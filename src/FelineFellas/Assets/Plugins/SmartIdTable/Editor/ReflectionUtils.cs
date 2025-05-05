@@ -25,7 +25,11 @@ namespace SmartIdTable.Editor
 				string propertyName = splitPath[i];
 				if (propertyName == "Array")
 				{
-					var list = (IList)current;
+					var list = current as IList;
+
+					if (list is null)
+						continue;
+
 					string idxProperty = splitPath[++i];
 					string match = Regex.Match(idxProperty, @"data\[(\d+)\]").Groups[1].Value;
 					int idx = int.Parse(match);
@@ -35,7 +39,11 @@ namespace SmartIdTable.Editor
 				else
 				{
 					FieldInfo field = current.GetType().GetField(propertyName, flags);
-					current = field!.GetValue(current);
+
+					if (field is null)
+						continue;
+
+					current = field.GetValue(current);
 				}
 			}
 

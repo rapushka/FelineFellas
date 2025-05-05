@@ -83,6 +83,10 @@ namespace SmartIdTable.Editor.Postprocessors
 						continue;
 					
 					var fieldInfo = ReflectionUtils.AssetRefToFieldInfo(assetRef, out object fieldHolder);
+
+					if (fieldInfo is null)
+						continue;
+
 					var idRefAttribute = fieldInfo.GetCustomAttribute<IdRefAttribute>();
 					string currentValue = (string)fieldInfo.GetValue(fieldHolder);
 
