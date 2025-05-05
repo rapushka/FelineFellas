@@ -8,6 +8,8 @@ namespace FelineFellas
 
         private static ITimeService TimeService => ServiceLocator.Resolve<ITimeService>();
 
+        private static IIdentifiesService IdService => ServiceLocator.Resolve<IIdentifiesService>();
+
         public void OnEnter(GameStateMachine stateMachine)
         {
             EcsRunner.StartGame();
@@ -24,6 +26,7 @@ namespace FelineFellas
         public void OnExit()
         {
             EcsRunner.EndGame();
+            IdService.Reset();
         }
     }
 }

@@ -34,6 +34,7 @@ namespace FelineFellas
             return entity
                     .Add<Cell>()
                     .Add<Interactable>()
+                    .Add<Empty>()
                     .Add<SpriteSortingGroup, SortGroup>(SortGroup.Grid)
                 ;
         }
