@@ -27,15 +27,17 @@ namespace FelineFellas
 
         public void Execute()
         {
-            foreach (var field in _cells)
+            foreach (var cell in _cells)
             foreach (var input in _inputs)
             foreach (var card in _draggedCard)
             {
                 var cursorPosition = input.Get<WorldPosition>().Value;
-                var fieldCollider = field.Get<Collider>().Value;
+                var cellCollider = cell.Get<Collider>().Value;
 
-                var cursorOnField = fieldCollider.OverlapPoint(cursorPosition);
-                card.Is<WillBeUsed>(cursorOnField);
+                var cursorOnCell = cellCollider.OverlapPoint(cursorPosition);
+
+                if (cursorOnCell)
+                    card.Is<WillBeUsed>(true);
             }
         }
     }
