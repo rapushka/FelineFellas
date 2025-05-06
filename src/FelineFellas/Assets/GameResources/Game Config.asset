@@ -46,4 +46,5 @@ MonoBehaviour:
       <HandCenter>k__BackingField: {x: 0, y: -4.57}
   <UI>k__BackingField:
     <CanvasPrefab>k__BackingField: {fileID: 4674889592659861668, guid: b392e8d46911971e8b8f217b59a6b3d9, type: 3}
+    <HUDPrefab>k__BackingField: {fileID: 2759347256078972060, guid: 74597063aea7e8a50a7019c2462432a2, type: 3}
   <CameraDirectorPrefab>k__BackingField: {fileID: 4796567677478209745, guid: 2686f26e4e48040b69fa0242de03eda0, type: 3}

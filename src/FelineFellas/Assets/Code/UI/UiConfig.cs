@@ -7,5 +7,7 @@ namespace FelineFellas
     public class UiConfig
     {
         [field: SerializeField] public Canvas CanvasPrefab { get; private set; }
+
+        [field: SerializeField] public GameplayHUD HUDPrefab { get; private set; }
     }
 }
