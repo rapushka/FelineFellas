@@ -19,15 +19,7 @@ namespace FelineFellas
         public void Execute()
         {
             foreach (var card in _droppedCards.GetEntities(_buffer))
-            {
-                card
-                    .Is<WillBeUsed>(false)
-                    .Remove<InHandIndex>()
-                    .Is<Used>(true)
-                    .Is<SendToDiscard>(true)
-                    .Is<Interactable>(false)
-                    ;
-            }
+                CardUtils.MarkUsedAndDiscard(card);
         }
     }
 }
