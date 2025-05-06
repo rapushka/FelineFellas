@@ -7,6 +7,8 @@ namespace FelineFellas
         FieldConfig Field { get; }
         CardsConfig Cards { get; }
 
+        UiConfig UI { get; }
+
         CameraDirector CameraDirectorPrefab { get; }
     }
 
@@ -18,6 +20,9 @@ namespace FelineFellas
 
         [field: NaughtyAttributes.BoxGroup(nameof(Cards))]
         [field: SerializeField] public CardsConfig Cards { get; private set; }
+
+        [field: NaughtyAttributes.BoxGroup(nameof(UI))]
+        [field: SerializeField] public UiConfig UI { get; private set; }
 
         [field: NaughtyAttributes.BoxGroup("Camera")]
         [field: SerializeField] public CameraDirector CameraDirectorPrefab { get; private set; }
