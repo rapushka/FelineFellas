@@ -18,6 +18,7 @@ namespace FelineFellas
             Add(new UpdateSortingOrderForCardsInHandSystem());
 
             Add(new BoilerplateFeature());
+            Add(new DestroyEntitiesSystem());
         }
     }
 }

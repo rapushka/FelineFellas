@@ -19,7 +19,9 @@ namespace FelineFellas
 
         private void EndTurn()
         {
-            Debug.Log("TODO: end turn");
+            CreateEntity.OneFrame()
+                .Add<EndTurnEvent>()
+                ;
         }
     }
 }
