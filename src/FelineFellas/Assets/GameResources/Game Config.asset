@@ -31,7 +31,7 @@ MonoBehaviour:
       <Count>k__BackingField: 3
     - <CardID>k__BackingField:
         Value: Card/GlobalAction/DoNothing
-      <Count>k__BackingField: 3
+      <Count>k__BackingField: 7
     <HandSize>k__BackingField: 5
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
@@ -44,6 +44,9 @@ MonoBehaviour:
       <VerticalOffset>k__BackingField: -3.75
       <HandRadius>k__BackingField: 16.2
       <HandCenter>k__BackingField: {x: 0, y: -4.57}
+  <Turns>k__BackingField:
+    <View>k__BackingField:
+      <EnemyTurnDuration>k__BackingField: 1
   <UI>k__BackingField:
     <CanvasPrefab>k__BackingField: {fileID: 4674889592659861668, guid: b392e8d46911971e8b8f217b59a6b3d9, type: 3}
     <HUDPrefab>k__BackingField: {fileID: 2759347256078972060, guid: 74597063aea7e8a50a7019c2462432a2, type: 3}

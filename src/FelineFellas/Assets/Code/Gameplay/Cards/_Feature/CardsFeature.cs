@@ -8,8 +8,12 @@ namespace FelineFellas
             Add(new SpawnDeckSystem());
             Add(new StartWithPlayerTurnSystem());
 
+            Add(new TickEnemyTurnSystem());
+
             Add(new DrawCardsOnTurnStartSystem());
             Add(new DiscardAllCardsOnTurnEndedSystem());
+
+            Add(new OnPlayerTurnEndedStartEnemyTurnSystem());
 
             Add(new ResetCardWillBeUsed());
             Add(new UseGlobalCardSystem());
