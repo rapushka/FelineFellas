@@ -20,6 +20,7 @@ namespace FelineFellas
             ServiceLocator.Register<ICamerasService>(new CamerasService(gameConfig.CameraDirectorPrefab));
             ServiceLocator.Register<ITimeService>(new TimeService());
             ServiceLocator.Register<IIdentifiesService>(new SimplestIdentifiesService());
+            ServiceLocator.Register<IUIService>(new UIService());
 
             // Factories
             ServiceLocator.Register<IViewFactory>(new ViewFactory());

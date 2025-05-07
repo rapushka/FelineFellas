@@ -4,6 +4,8 @@ namespace FelineFellas
 {
     public interface ICamerasService : IService
     {
+        Camera UICamera { get; }
+
         void Initialize();
 
         Vector2 ScreenToWorld(Vector2 screenPosition);
@@ -18,6 +20,8 @@ namespace FelineFellas
         {
             _cameraDirectorPrefab = cameraDirectorPrefab;
         }
+
+        public Camera UICamera => _cameraDirector.UICamera;
 
         private Camera MainCamera => _cameraDirector.MainCamera;
 

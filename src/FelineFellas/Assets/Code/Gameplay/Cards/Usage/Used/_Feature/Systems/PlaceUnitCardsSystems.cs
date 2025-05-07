@@ -24,16 +24,14 @@ namespace FelineFellas
             {
                 var cell = card.Get<TargetCell>().Value.GetEntity();
 
-                card
-                    .Is<WillBeUsed>(false)
-                    .Remove<InHandIndex>()
-                    .Is<Used>(true)
-                    .Is<Interactable>(false)
-                    ;
-
-                card
+                CardUtils.MarkUsed(card)
                     .Set<TargetRotation, float>(0f)
                     .Set<TargetPosition, Vector2>(cell.Get<WorldPosition, Vector2>())
+                    ;
+
+                cell
+                    .Is<Empty>(false)
+                    .Set<PlacedUnit, EntityID>(card.ID())
                     ;
             }
         }

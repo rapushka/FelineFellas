@@ -6,7 +6,14 @@ namespace FelineFellas
             : base(nameof(CardsFeature))
         {
             Add(new SpawnDeckSystem());
-            Add(new DrawCardsOnStartSystem());
+            Add(new StartWithPlayerTurnSystem());
+
+            Add(new TickEnemyTurnSystem());
+
+            Add(new DrawCardsOnTurnStartSystem());
+            Add(new DiscardAllCardsOnTurnEndedSystem());
+
+            Add(new OnPlayerTurnEndedStartEnemyTurnSystem());
 
             Add(new ResetCardWillBeUsed());
             Add(new UseGlobalCardSystem());
