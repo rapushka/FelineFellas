@@ -7,8 +7,6 @@ namespace FelineFellas
         private static PrimaryEntityIndex<GameScope, ID, EntityID> Index
             => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<ID, EntityID>();
 
-        public static EntityID ID(this Entity<GameScope> @this) => @this.Get<ID>().Value;
-
         public static Entity<GameScope> GetEntity(this EntityID @this) => Index.GetEntity(@this);
 
         public static bool TryGetEntity(this EntityID @this, out Entity<GameScope> entity)

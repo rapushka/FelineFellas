@@ -3,17 +3,16 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class DrawCardsFromDeckSystem : IExecuteSystem
+    public sealed class UpdateDeckNeedsShuffleAfterDrawSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
                 .With<DrawCardsEvent>()
                 .Build();
 
-        private readonly IGroup<Entity<GameScope>> _cardsInDeck
+        private readonly IGroup<Entity<GameScope>> _decks
             = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<CardInDeck>()
+                .With<Deck>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
@@ -23,17 +22,10 @@ namespace FelineFellas
         public void Execute()
         {
             foreach (var _ in _events)
+            foreach (var deck in _decks)
             {
-                for (var i = 0; i < HandSize; i++)
-                {
-                    if (!_cardsInDeck.TryGetFirst(out var card))
-                        break;
-
-                    card
-                        .Remove<CardInDeck>()
-                        .Add<InHandIndex, int>(i)
-                        ;
-                }
+                var cardsLeftInDeck = DeckUtils.GetAllCardsInDeck(deck.ID()).Count;
+                deck.Is<NeedsShuffle>(cardsLeftInDeck < HandSize);
             }
         }
     }

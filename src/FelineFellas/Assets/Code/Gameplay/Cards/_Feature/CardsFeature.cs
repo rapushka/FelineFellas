@@ -5,16 +5,24 @@ namespace FelineFellas
         public CardsFeature()
             : base(nameof(CardsFeature))
         {
-            Add(new SpawnDeckSystem());
+            Add(new SpawnDeckWithCardsSystem());
             Add(new StartWithPlayerTurnSystem());
 
             Add(new TickEnemyTurnSystem());
 
-            // on turn started
-            Add(new SendDrawCardsRequestOnTurnStartSystem());
-            Add(new DrawCardsFromDeckSystem());
+            // # on turn started
+            Add(new SendDrawCardsIfDeckDoesNotNeedShuffleSystem());
 
-            // on turn ended
+            // shuffle cards
+            Add(new StartDeckShufflingTimerSystem());
+            Add(new ShuffleDeckSystem());
+            Add(new TickDeckShufflingTimerSystem());
+            Add(new DrawCardsIfDeckShuffleEndedSystem());
+
+            Add(new DrawCardsFromDeckSystem());
+            Add(new UpdateDeckNeedsShuffleAfterDrawSystem());
+
+            // # on turn ended
             Add(new DiscardAllCardsOnTurnEndedSystem());
 
             Add(new OnPlayerTurnEndedStartEnemyTurnSystem());
