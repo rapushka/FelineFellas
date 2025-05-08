@@ -23,7 +23,10 @@ namespace FelineFellas
                 if (timeLeft > 0f)
                     continue;
 
-                deck.Remove<ShufflingDeckTimer>();
+                deck
+                    .Remove<ShufflingDeckTimer>()
+                    .Is<NeedsShuffle>(false)
+                    ;
 
                 CreateEntity.OneFrame()
                     .Add<DrawCardsEvent>()

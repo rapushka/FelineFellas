@@ -23,13 +23,14 @@ namespace FelineFellas
                 .And<InDiscard>()
                 .Build();
 
-        private readonly List<Entity<GameScope>> _buffer = new(4);
+        private readonly List<Entity<GameScope>> _decksBuffer = new(4);
+        private readonly List<Entity<GameScope>> _cardsBuffer = new(64);
 
         public void Execute()
         {
             foreach (var _ in _events)
-            foreach (var deck in _decks.GetEntities(_buffer))
-            foreach (var card in _discardedCards)
+            foreach (var deck in _decks.GetEntities(_decksBuffer))
+            foreach (var card in _discardedCards.GetEntities(_cardsBuffer))
             {
                 CardUtils.AddToDeck(card, deck);
                 deck.Is<NeedsShuffle>(false);

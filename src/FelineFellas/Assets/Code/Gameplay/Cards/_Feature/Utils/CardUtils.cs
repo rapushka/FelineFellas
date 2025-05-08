@@ -12,7 +12,13 @@ namespace FelineFellas
                 .Set<TargetScale, float>(1f)
                 .Is<Draggable>(true)    // TODO: interactable only after target position is reached?
                 .Is<Interactable>(true) // TODO: interactable only after target position is reached?
-                .Set<TargetPosition, Vector2>(deck.WorldPosition());
+                .Set<TargetPosition, Vector2>(deck.WorldPosition())
+
+                // cleanups
+                .Is<SendToDiscard>(false)
+                .Is<InDiscard>(false)
+                .Is<Used>(false)
+                .RemoveSafely<InHandIndex>();
 
         public static Entity<GameScope> MarkUsedAndDiscard(Entity<GameScope> card)
             => MarkUsed(card)
