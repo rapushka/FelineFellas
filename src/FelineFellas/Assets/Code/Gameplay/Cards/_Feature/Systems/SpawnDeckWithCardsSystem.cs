@@ -2,7 +2,7 @@ using Entitas;
 
 namespace FelineFellas
 {
-    public sealed class SpawnDeckSystem : IInitializeSystem
+    public sealed class SpawnDeckWithCardsSystem : IInitializeSystem
     {
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
@@ -10,10 +10,12 @@ namespace FelineFellas
 
         public void Initialize()
         {
+            var deck = CardFactory.CreateDeck();
+
             foreach (var (cardID, count) in GameConfig.Cards.PlayerDeckOnStart)
             {
                 for (var i = 0; i < count; i++)
-                    CardFactory.CreateInDeck(cardID);
+                    CardFactory.CreateCardInDeck(cardID, deck);
             }
         }
     }

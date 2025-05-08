@@ -35,10 +35,11 @@ MonoBehaviour:
     <HandSize>k__BackingField: 5
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
-      <DeckSpawnPosition>k__BackingField: {x: -12, y: -3.65}
-      <DiscardPilePosition>k__BackingField: {x: 12, y: -3.65}
+      <DiscardPilePosition>k__BackingField: {x: 8.5, y: -5}
       <CardAnimationsSpeed>k__BackingField: 30
       <HoveredCardScaleUp>k__BackingField: 1.5
+      <DeckSpawnPosition>k__BackingField: {x: -8.5, y: -5}
+      <DeckShuffleDuration>k__BackingField: 1
       <CardInHandScaleUp>k__BackingField: 1.5
       <MaxCardAngle>k__BackingField: 45
       <VerticalOffset>k__BackingField: -3.75

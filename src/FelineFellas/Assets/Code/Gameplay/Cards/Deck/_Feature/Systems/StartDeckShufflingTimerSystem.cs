@@ -1,35 +1,33 @@
+using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class DrawCardsOnTurnStartSystem : IExecuteSystem
+    public sealed class StartDeckShufflingTimerSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
                 .With<StartTurnEvent>()
                 .Build();
 
-        private readonly IGroup<Entity<GameScope>> _cardsInDeck
+        private readonly IGroup<Entity<GameScope>> _decks
             = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<InDeck>()
+                .With<Deck>()
+                .And<NeedsShuffle>()
+                .Without<ShufflingDeckTimer>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
+        private readonly List<Entity<GameScope>> _buffer = new(4);
+
         public void Execute()
         {
             foreach (var _ in _events)
+            foreach (var deck in _decks.GetEntities(_buffer))
             {
-                for (var i = 0; i < GameConfig.Cards.HandSize; i++)
-                {
-                    var card = _cardsInDeck.First();
-                    card
-                        .Is<InDeck>(false)
-                        .Add<InHandIndex, int>(i)
-                        ;
-                }
+                deck.Add<ShufflingDeckTimer, float>(GameConfig.Cards.View.DeckShuffleDuration);
             }
         }
     }
