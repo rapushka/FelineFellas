@@ -10,7 +10,11 @@ namespace FelineFellas
 
             Add(new TickEnemyTurnSystem());
 
-            Add(new DrawCardsOnTurnStartSystem());
+            // on turn started
+            Add(new SendDrawCardsRequestOnTurnStartSystem());
+            Add(new DrawCardsFromDeckSystem());
+
+            // on turn ended
             Add(new DiscardAllCardsOnTurnEndedSystem());
 
             Add(new OnPlayerTurnEndedStartEnemyTurnSystem());

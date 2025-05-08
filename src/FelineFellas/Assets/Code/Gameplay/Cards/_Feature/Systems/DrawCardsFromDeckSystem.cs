@@ -3,11 +3,11 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class DrawCardsOnTurnStartSystem : IExecuteSystem
+    public sealed class DrawCardsFromDeckSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<StartTurnEvent>()
+                .With<DrawCardsEvent>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _cardsInDeck
