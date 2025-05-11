@@ -2,6 +2,8 @@ namespace FelineFellas
 {
     public sealed class CardsFeature : Feature
     {
+        private static IGameMode GameMode => ServiceLocator.Resolve<IGameModeService>().CurrentGameMode;
+
         public CardsFeature()
             : base(nameof(CardsFeature))
         {
@@ -14,7 +16,10 @@ namespace FelineFellas
             Add(new CardsDrawFeature());
 
             // # on turn ended
-            Add(new DiscardAllCardsOnTurnEndedSystem());
+            if (GameMode.DiscardHandOnEndTurn)
+            {
+                Add(new DiscardAllCardsOnTurnEndedSystem());
+            }
 
             Add(new OnPlayerTurnEndedStartEnemyTurnSystem());
 
