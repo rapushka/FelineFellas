@@ -17,3 +17,6 @@ MonoBehaviour:
   <Usage>k__BackingField: 3
   <Title>k__BackingField: Move 1 Up
   <Icon>k__BackingField: {fileID: 21300000, guid: 90335e5423c010749a50f906b965fa54, type: 3}
+  <ActionCardConfig>k__BackingField:
+    <ActionType>k__BackingField: 1
+    <Value>k__BackingField: 1

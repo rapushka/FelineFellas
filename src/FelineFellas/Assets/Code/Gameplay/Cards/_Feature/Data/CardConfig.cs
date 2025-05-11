@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Naughty = NaughtyAttributes;
 
 namespace FelineFellas
 {
@@ -9,20 +10,26 @@ namespace FelineFellas
         [field: SerializeField] public CardIDRef ID    { get; private set; }
         [field: SerializeField] public UsageType Usage { get; private set; }
 
-        [field: NaughtyAttributes.BoxGroup("View")]
+        [field: Naughty.BoxGroup("View")]
         [field: SerializeField] public string Title { get; private set; }
 
-        [field: NaughtyAttributes.BoxGroup("View")]
+        [field: Naughty.BoxGroup("View")]
         [field: SerializeField] public Sprite Icon { get; private set; }
 
+        [field: Naughty.BoxGroup(nameof(ActionCardConfig))]
+        [field: Naughty.ShowIf(nameof(Usage), UsageType.Action)]
+        [field: Naughty.HorizontalLine(color: Naughty.EColor.Yellow)]
+        [field: SerializeField] public ActionCardConfig ActionCardConfig { get; private set; }
+
+        // Manually Color Coded For Editor
         [Serializable]
         [JetBrains.Annotations.UsedImplicitly]
         public enum UsageType
         {
             Unknown = 0,
-            Global = 1,
-            Unit = 2,
-            Action = 3,
+            Global = 1, // Green
+            Unit = 2,   // Blue
+            Action = 3, // Yellow
         }
     }
 }
