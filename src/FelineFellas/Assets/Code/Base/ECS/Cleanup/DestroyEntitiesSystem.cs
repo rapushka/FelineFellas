@@ -16,7 +16,15 @@ namespace FelineFellas
         public void Cleanup()
         {
             foreach (var entity in _entities.GetEntities(_buffer))
+            {
+                if (entity.TryGet<View, GameEntityBehaviour>(out var view))
+                {
+                    view.Unregister();
+                    view.DestroyObject();
+                }
+
                 entity.Destroy();
+            }
         }
     }
 }

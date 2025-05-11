@@ -32,6 +32,7 @@ namespace FelineFellas
 
         public void StartGame()
         {
+            _feature.ActivateReactiveSystems();
             _feature.Initialize();
         }
 
@@ -52,6 +53,13 @@ namespace FelineFellas
             _feature.TearDown();
         }
 
-        private void DisposeEntities() { }
+        private void DisposeEntities()
+        {
+            foreach (var entity in Contexts.Instance.Get<GameScope>().GetEntities())
+                entity.Add<Destroy>();
+
+            foreach (var entity in Contexts.Instance.Get<InputScope>().GetEntities())
+                entity.Destroy();
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace FelineFellas
         IPagesService Pages { get; }
 
         void StartGame();
+        void EndGame();
 
         void EndTurn();
     }
@@ -20,6 +21,11 @@ namespace FelineFellas
         public void StartGame()
         {
             GameStateMachine.ToState<GameplayGameState>();
+        }
+
+        public void EndGame()
+        {
+            GameStateMachine.ToState<MainMenuGameState>();
         }
 
         public void EndTurn()
