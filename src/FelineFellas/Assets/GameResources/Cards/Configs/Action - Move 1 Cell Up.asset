@@ -20,3 +20,5 @@ MonoBehaviour:
   <ActionCardConfig>k__BackingField:
     <ActionType>k__BackingField: 1
     <Value>k__BackingField: 1
+    <TargetSelection>k__BackingField: 1
+    <Direction>k__BackingField: 1

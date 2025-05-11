@@ -44,7 +44,31 @@ namespace FelineFellas
                 .Add<CardTitle, string>(config.Title)
                 .Add<CardIcon, Sprite>(config.Icon);
 
+            if (isAction)
+                SetupActionCard(card, config);
+
             return CardUtils.AddToDeck(card, deck);
+        }
+
+        private void SetupActionCard(Entity<GameScope> card, CardConfig config)
+        {
+            var actionCardConfig = config.ActionCardConfig;
+            var actionValue = actionCardConfig.Value;
+
+            var isMove = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Move;
+
+            var selectTargetAsDirection = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.Direction;
+
+            card
+                .Add<ActionValue, float>(actionValue)
+                .Is<ActionMove>(isMove)
+                ;
+
+            if (selectTargetAsDirection)
+            {
+                var direction = actionCardConfig.Direction.ToCoordinates();
+                card.Add<TargetSelectNeighbor, Coordinates>(direction.Multiply((int)actionValue));
+            }
         }
     }
 }
