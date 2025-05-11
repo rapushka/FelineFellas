@@ -7,6 +7,7 @@
 - "move unit 1 cell up" card implemented [#15](https://github.com/rapushka/FelineFellas/issues/15)
 - main menu [#18](https://github.com/rapushka/FelineFellas/issues/18)
 - restartability [#18](https://github.com/rapushka/FelineFellas/issues/18)
+- Game Modes [#21](https://github.com/rapushka/FelineFellas/issues/21)
 
 # v0.0.1
 - this repository created
