@@ -5,6 +5,8 @@
 - shuffle cards only after all cards from deck drawn [#19](https://github.com/rapushka/FelineFellas/issues/19)
 - action cards implemented [#15](https://github.com/rapushka/FelineFellas/issues/15)
 - "move unit 1 cell up" card implemented [#15](https://github.com/rapushka/FelineFellas/issues/15)
+- main menu [#18](https://github.com/rapushka/FelineFellas/issues/18)
+- restartability [#18](https://github.com/rapushka/FelineFellas/issues/18)
 
 # v0.0.1
 - this repository created
