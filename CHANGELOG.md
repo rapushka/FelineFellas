@@ -8,6 +8,7 @@
 - main menu [#18](https://github.com/rapushka/FelineFellas/issues/18)
 - restartability [#18](https://github.com/rapushka/FelineFellas/issues/18)
 - Game Modes [#21](https://github.com/rapushka/FelineFellas/issues/21)
+- Spawn Leader [#13](https://github.com/rapushka/FelineFellas/issues/13)
 
 # v0.0.1
 - this repository created
