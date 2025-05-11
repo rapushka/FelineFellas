@@ -12,5 +12,5 @@ namespace FelineFellas
 
     public sealed class WillBeUsed : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class TargetCell : ValueComponent<EntityID>, IInScope<GameScope> { }
+    public sealed class UseTarget : ValueComponent<EntityID>, IInScope<GameScope> { }
 }

@@ -12,7 +12,7 @@ namespace FelineFellas
                 .With<Card>()
                 .And<WillBeUsed>()
                 .And<UnitCard>()
-                .And<TargetCell>()
+                .And<UseTarget>()
                 .And<Dropped>()
                 .Build();
 
@@ -22,11 +22,12 @@ namespace FelineFellas
         {
             foreach (var card in _droppedCards.GetEntities(_buffer))
             {
-                var cell = card.Get<TargetCell>().Value.GetEntity();
+                var cell = card.Get<UseTarget>().Value.GetEntity();
 
                 CardUtils.MarkUsed(card)
                     .Set<TargetRotation, float>(0f)
                     .Set<TargetPosition, Vector2>(cell.Get<WorldPosition, Vector2>())
+                    .Set<OnField, Coordinates>(cell.Get<CellCoordinates>().Value)
                     ;
 
                 cell

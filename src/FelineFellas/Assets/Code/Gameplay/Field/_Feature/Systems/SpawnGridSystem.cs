@@ -32,7 +32,7 @@ namespace FelineFellas
                 for (var row = 0; row < size.Height; row++)
                 {
                     var position = (new Vector2(column, row) - halfSizes) * spacings;
-                    FieldFactory.CreateCell(center + position);
+                    FieldFactory.CreateCell(center + position, new(row, column));
                 }
             }
         }

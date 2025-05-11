@@ -3,13 +3,14 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class UseUnitCardSystem : IExecuteSystem
+    public sealed class CheckActionCardUseSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _cells
+        private readonly IGroup<Entity<GameScope>> _units
             = GroupBuilder<GameScope>
-                .With<Cell>()
+                .With<Card>()
+                .And<UnitCard>()
+                .And<OnField>()
                 .And<Collider>()
-                .And<Empty>()
                 .Build();
 
         private readonly IGroup<Entity<InputScope>> _inputs
@@ -21,26 +22,26 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<UnitCard>()
+                .And<ActionCard>()
                 .And<Dragging>()
                 .Build();
 
         public void Execute()
         {
-            foreach (var cell in _cells)
+            foreach (var unit in _units)
             foreach (var input in _inputs)
             foreach (var card in _draggedCard)
             {
                 var cursorPosition = input.Get<WorldPosition>().Value;
-                var cellCollider = cell.Get<Collider>().Value;
+                var unitCollider = unit.Get<Collider>().Value;
 
-                var cursorOnCell = cellCollider.OverlapPoint(cursorPosition);
+                var cursorOnCell = unitCollider.OverlapPoint(cursorPosition);
 
                 if (cursorOnCell)
                 {
                     card
                         .Is<WillBeUsed>(true)
-                        .Add<TargetCell, EntityID>(cell.ID())
+                        .Add<UseTarget, EntityID>(unit.ID())
                         ;
                 }
             }

@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         Entity<GameScope> CreateField(Vector2 position);
 
-        Entity<GameScope> CreateCell(Vector2 position);
+        Entity<GameScope> CreateCell(Vector2 position, Coordinates coordinates);
     }
 
     public class FieldFactory : IFieldFactory
@@ -28,7 +28,7 @@ namespace FelineFellas
                 ;
         }
 
-        public Entity<GameScope> CreateCell(Vector2 position)
+        public Entity<GameScope> CreateCell(Vector2 position, Coordinates coordinates)
         {
             var entity = ViewFactory.CreateInWorld(FieldConfig.View.CellPrefab, position).Entity;
             return entity
@@ -36,6 +36,7 @@ namespace FelineFellas
                     .Add<Interactable>()
                     .Add<Empty>()
                     .Add<SpriteSortingGroup, SortGroup>(SortGroup.Grid)
+                    .Add<CellCoordinates, Coordinates>(coordinates)
                 ;
         }
     }

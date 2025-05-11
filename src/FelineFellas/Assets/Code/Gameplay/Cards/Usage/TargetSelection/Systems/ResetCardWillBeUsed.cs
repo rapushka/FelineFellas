@@ -8,7 +8,6 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<UnitCard>()
                 .And<Dragging>()
                 .Build();
 
@@ -18,7 +17,7 @@ namespace FelineFellas
             {
                 card
                     .Is<WillBeUsed>(false)
-                    .RemoveSafely<TargetCell>()
+                    .RemoveSafely<UseTarget>()
                     ;
             }
         }
