@@ -8,6 +8,7 @@ namespace FelineFellas
         Entity<GameScope> CreateDeck();
 
         Entity<GameScope> CreateCardInDeck(CardIDRef cardID, Entity<GameScope> deck);
+        Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates);
     }
 
     public class CardFactory : ICardFactory
@@ -18,6 +19,9 @@ namespace FelineFellas
 
         private static CardsConfig CardsConfig => GameConfig.Cards;
 
+        private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
+            => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
+
         public Entity<GameScope> CreateDeck()
             => CreateEntity.Empty()
                 .Add<Deck>()
@@ -25,13 +29,25 @@ namespace FelineFellas
 
         public Entity<GameScope> CreateCardInDeck(CardIDRef cardID, Entity<GameScope> deck)
         {
+            return Create(cardID, deck.WorldPosition())
+                .Chain(c => CardUtils.AddToDeck(c, deck));
+        }
+
+        public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates)
+        {
+            var cell = CellIndex.GetEntity(coordinates);
+            return Create(cardID, cell.WorldPosition());
+        }
+
+        private Entity<GameScope> Create(CardIDRef cardID, Vector2 position)
+        {
             var config = CardsConfig.GetConfig(cardID);
 
             var isGlobal = config.Usage is CardConfig.UsageType.Global;
             var isUnit = config.Usage is CardConfig.UsageType.Unit;
             var isAction = config.Usage is CardConfig.UsageType.Action;
 
-            var card = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, deck.WorldPosition()).Entity
+            var card = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, position).Entity
                 .Add<Card, CardIDRef>(config.ID)
                 .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
                 .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)
@@ -47,7 +63,7 @@ namespace FelineFellas
             if (isAction)
                 SetupActionCard(card, config);
 
-            return CardUtils.AddToDeck(card, deck);
+            return card;
         }
 
         private void SetupActionCard(Entity<GameScope> card, CardConfig config)

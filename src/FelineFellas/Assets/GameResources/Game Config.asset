@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Field>k__BackingField:
     <FieldSize>k__BackingField:
-      <Width>k__BackingField: 8
+      <Width>k__BackingField: 7
       <Height>k__BackingField: 3
     <View>k__BackingField:
       <FieldPrefab>k__BackingField: {fileID: 9218016523593889491, guid: ab82c67ad48c107e0b755d2961ba708e, type: 3}
@@ -38,6 +38,8 @@ MonoBehaviour:
         Value: Card/GlobalAction/DoNothing
       <Count>k__BackingField: 3
     <HandSize>k__BackingField: 5
+    <LeaderCardID>k__BackingField:
+      Value: Card/Unit/Rose
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
       <DiscardPilePosition>k__BackingField: {x: 8.5, y: -5}
