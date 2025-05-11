@@ -29,6 +29,7 @@ namespace FelineFellas
 
             var isGlobal = config.Usage is CardConfig.UsageType.Global;
             var isUnit = config.Usage is CardConfig.UsageType.Unit;
+            var isAction = config.Usage is CardConfig.UsageType.Action;
 
             var card = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, deck.WorldPosition()).Entity
                 .Add<Card, CardIDRef>(config.ID)
@@ -38,7 +39,8 @@ namespace FelineFellas
                 .Add<Scale, float>(1f)
                 .Is<GlobalCard>(isGlobal)
                 .Is<UnitCard>(isUnit)
-                .Is<OneShotCard>(isGlobal)
+                .Is<ActionCard>(isAction)
+                .Is<OneShotCard>(isGlobal || isAction)
                 .Add<CardTitle, string>(config.Title)
                 .Add<CardIcon, Sprite>(config.Icon);
 

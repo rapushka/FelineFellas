@@ -22,6 +22,7 @@ namespace FelineFellas
             Unknown = 0,
             Global = 1,
             Unit = 2,
+            Action = 3,
         }
     }
 }
