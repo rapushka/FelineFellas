@@ -11,7 +11,9 @@ namespace FelineFellas
 
         [field: SerializeField] public CardEntry[] PlayerDeckOnStart { get; private set; }
         [field: SerializeField] public int         HandSize          { get; private set; }
-        [field: SerializeField] public CardIDRef   LeaderCardID      { get; private set; }
+
+        [field: SerializeField] public CardIDRef   LeaderCardID          { get; private set; }
+        [field: SerializeField] public Coordinates LeaderCardCoordinates { get; private set; } = new(0, 3);
 
         [field: SerializeField] public ViewConfig View { get; private set; }
 

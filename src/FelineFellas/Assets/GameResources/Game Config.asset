@@ -40,6 +40,9 @@ MonoBehaviour:
     <HandSize>k__BackingField: 5
     <LeaderCardID>k__BackingField:
       Value: Card/Unit/Rose
+    <LeaderCardCoordinates>k__BackingField:
+      _row: 0
+      _column: 3
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
       <DiscardPilePosition>k__BackingField: {x: 8.5, y: -5}

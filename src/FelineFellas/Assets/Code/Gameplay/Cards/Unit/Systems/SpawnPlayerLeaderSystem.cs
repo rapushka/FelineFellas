@@ -10,7 +10,7 @@ namespace FelineFellas
 
         public void Initialize()
         {
-            CardFactory.CreateCardOnCoordinates(GameConfig.Cards.LeaderCardID, new(0, 3))
+            CardFactory.CreateCardOnCoordinates(GameConfig.Cards.LeaderCardID, GameConfig.Cards.LeaderCardCoordinates)
                 .Add<Leader>()
                 ;
         }

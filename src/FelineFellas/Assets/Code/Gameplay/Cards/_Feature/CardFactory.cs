@@ -30,13 +30,15 @@ namespace FelineFellas
         public Entity<GameScope> CreateCardInDeck(CardIDRef cardID, Entity<GameScope> deck)
         {
             return Create(cardID, deck.WorldPosition())
-                .Chain(c => CardUtils.AddToDeck(c, deck));
+                .Chain(card => CardUtils.AddToDeck(card, deck));
         }
 
         public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates)
         {
             var cell = CellIndex.GetEntity(coordinates);
-            return Create(cardID, cell.WorldPosition());
+
+            return Create(cardID, cell.WorldPosition())
+                .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates));
         }
 
         private Entity<GameScope> Create(CardIDRef cardID, Vector2 position)
