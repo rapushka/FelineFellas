@@ -29,6 +29,7 @@ namespace FelineFellas
 
             var isGlobal = config.Usage is CardConfig.UsageType.Global;
             var isUnit = config.Usage is CardConfig.UsageType.Unit;
+            var isAction = config.Usage is CardConfig.UsageType.Action;
 
             var card = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, deck.WorldPosition()).Entity
                 .Add<Card, CardIDRef>(config.ID)
@@ -38,11 +39,36 @@ namespace FelineFellas
                 .Add<Scale, float>(1f)
                 .Is<GlobalCard>(isGlobal)
                 .Is<UnitCard>(isUnit)
-                .Is<OneShotCard>(isGlobal)
+                .Is<ActionCard>(isAction)
+                .Is<OneShotCard>(isGlobal || isAction)
                 .Add<CardTitle, string>(config.Title)
                 .Add<CardIcon, Sprite>(config.Icon);
 
+            if (isAction)
+                SetupActionCard(card, config);
+
             return CardUtils.AddToDeck(card, deck);
+        }
+
+        private void SetupActionCard(Entity<GameScope> card, CardConfig config)
+        {
+            var actionCardConfig = config.ActionCardConfig;
+            var actionValue = actionCardConfig.Value;
+
+            var isMove = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Move;
+
+            var selectTargetAsDirection = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.Direction;
+
+            card
+                .Add<ActionValue, float>(actionValue)
+                .Is<AbilityMove>(isMove)
+                ;
+
+            if (selectTargetAsDirection)
+            {
+                var direction = actionCardConfig.Direction.ToCoordinates();
+                card.Add<TargetSelectNeighbor, Coordinates>(direction.Multiply((int)actionValue));
+            }
         }
     }
 }

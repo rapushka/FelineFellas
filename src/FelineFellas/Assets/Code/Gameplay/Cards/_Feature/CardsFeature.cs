@@ -11,19 +11,7 @@ namespace FelineFellas
             Add(new TickEnemyTurnSystem());
 
             // # on turn started
-            Add(new StartDrawingCardsIfNeedsOnTurnStartedSystem());
-            Add(new StopDrawingCardsIfNoCardsInDiscardSystem());
-            Add(new UpdateDeckNeedsShuffleSystem());
-            Add(new SendDrawCardsOnTurnStartSystem());
-
-            // shuffle cards
-            Add(new StartDeckShufflingTimerSystem());
-            Add(new ShuffleDeckSystem());
-            Add(new TickDeckShufflingTimerSystem());
-            Add(new SendDrawCardsOnDeckShuffleEndedSystem());
-
-            Add(new DrawCardsFromDeckSystem());
-            Add(new FinishDrawingCardsSystem());
+            Add(new CardsDrawFeature());
 
             // # on turn ended
             Add(new DiscardAllCardsOnTurnEndedSystem());
@@ -31,10 +19,12 @@ namespace FelineFellas
             Add(new OnPlayerTurnEndedStartEnemyTurnSystem());
 
             Add(new ResetCardWillBeUsed());
-            Add(new UseGlobalCardSystem());
-            Add(new UseUnitCardSystem());
+            Add(new CheckGlobalCardUseSystem());
+            Add(new CheckUnitCardUseSystem());
+            Add(new CheckActionCardUseSystem());
 
             Add(new UseDroppedOneShotCardsIfCanSystem());
+            Add(new UseCardAbilitiesFeature());
             Add(new PlaceUnitCardsSystems());
 
             Add(new MoveDiscardedCardsToDiscardPileSystem());

@@ -9,5 +9,8 @@ namespace FelineFellas
 
         public static Vector2 WorldPosition(this Entity<GameScope> @this)
             => @this.Get<WorldPosition>().Value;
+
+        public static Vector2 WorldPosition(this Entity<InputScope> @this)
+            => @this.Get<WorldPosition>().Value;
     }
 }
