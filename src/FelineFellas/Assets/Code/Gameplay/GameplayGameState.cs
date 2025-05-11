@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace FelineFellas
 {
     public class GameplayGameState : IGameState, IExitState, IUpdatableState
@@ -12,15 +10,11 @@ namespace FelineFellas
 
         private static IIdentifiesService IdService => ServiceLocator.Resolve<IIdentifiesService>();
 
-        private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
-
-        private static IUIService UIService => ServiceLocator.Resolve<IUIService>();
-
-        private GameplayHUD _hud;
+        private static IUiMediator UiMediator => ServiceLocator.Resolve<IUiMediator>();
 
         public void OnEnter(GameStateMachine stateMachine)
         {
-            _hud = Object.Instantiate(GameConfig.UI.HUDPrefab, UIService.CanvasRoot);
+            UiMediator.Pages.OpenGameplay();
 
             EcsRunner.StartGame();
         }
@@ -38,7 +32,7 @@ namespace FelineFellas
             EcsRunner.EndGame();
             IdService.Reset();
 
-            _hud.DestroyObject();
+            UiMediator.Pages.HideAll();
         }
     }
 }
