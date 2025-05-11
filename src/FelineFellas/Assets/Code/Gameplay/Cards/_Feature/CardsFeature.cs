@@ -11,16 +11,19 @@ namespace FelineFellas
             Add(new TickEnemyTurnSystem());
 
             // # on turn started
-            Add(new SendDrawCardsIfDeckDoesNotNeedShuffleSystem());
+            Add(new StartDrawingCardsIfNeedsOnTurnStartedSystem());
+            Add(new StopDrawingCardsIfNoCardsInDiscardSystem());
+            Add(new UpdateDeckNeedsShuffleSystem());
+            Add(new SendDrawCardsOnTurnStartSystem());
 
             // shuffle cards
             Add(new StartDeckShufflingTimerSystem());
             Add(new ShuffleDeckSystem());
             Add(new TickDeckShufflingTimerSystem());
-            Add(new DrawCardsIfDeckShuffleEndedSystem());
+            Add(new SendDrawCardsOnDeckShuffleEndedSystem());
 
             Add(new DrawCardsFromDeckSystem());
-            Add(new UpdateDeckNeedsShuffleAfterDrawSystem());
+            Add(new FinishDrawingCardsSystem());
 
             // # on turn ended
             Add(new DiscardAllCardsOnTurnEndedSystem());

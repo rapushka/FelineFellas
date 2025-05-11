@@ -6,14 +6,10 @@ namespace FelineFellas
 {
     public sealed class ShuffleDeckSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _events
-            = GroupBuilder<GameScope>
-                .With<StartTurnEvent>()
-                .Build();
-
         private readonly IGroup<Entity<GameScope>> _decks
             = GroupBuilder<GameScope>
                 .With<Deck>()
+                .And<DrawingCards>()
                 .And<NeedsShuffle>()
                 .Build();
 
@@ -28,7 +24,6 @@ namespace FelineFellas
 
         public void Execute()
         {
-            foreach (var _ in _events)
             foreach (var deck in _decks.GetEntities(_decksBuffer))
             foreach (var card in _discardedCards.GetEntities(_cardsBuffer))
             {

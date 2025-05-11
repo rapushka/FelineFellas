@@ -16,6 +16,12 @@ namespace FelineFellas
                 .And<CardInDeck>()
                 .Build();
 
+        private readonly IGroup<Entity<GameScope>> _cardsInHand
+            = GroupBuilder<GameScope>
+                .With<Card>()
+                .And<InHandIndex>()
+                .Build();
+
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
         private static int HandSize => GameConfig.Cards.HandSize;
@@ -24,14 +30,16 @@ namespace FelineFellas
         {
             foreach (var _ in _events)
             {
-                for (var i = 0; i < HandSize; i++)
+                while (_cardsInHand.count < HandSize)
                 {
-                    if (!_cardsInDeck.TryGetFirst(out var card))
+                    var isCardDrawn = _cardsInDeck.TryGetFirst(out var card);
+
+                    if (!isCardDrawn)
                         break;
 
                     card
                         .Remove<CardInDeck>()
-                        .Add<InHandIndex, int>(i)
+                        .Add<InHandIndex, int>(_cardsInHand.count)
                         ;
                 }
             }
