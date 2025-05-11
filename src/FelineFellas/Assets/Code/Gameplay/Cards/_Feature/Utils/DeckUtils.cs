@@ -10,5 +10,14 @@ namespace FelineFellas
 
         public static HashSet<Entity<GameScope>> GetAllCardsInDeck(EntityID deckID)
             => Index.GetEntities(deckID);
+
+        public static void StopDrawingCards(Entity<GameScope> deck)
+        {
+            deck
+                .RemoveSafely<DrawingCards>()
+                .RemoveSafely<NeedsShuffle>()
+                .RemoveSafely<ShufflingDeckTimer>()
+                ;
+        }
     }
 }

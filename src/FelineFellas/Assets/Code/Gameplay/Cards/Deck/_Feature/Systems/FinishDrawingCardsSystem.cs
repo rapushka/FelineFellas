@@ -4,17 +4,25 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class StartDeckShufflingTimerSystem : IExecuteSystem
+    public sealed class FinishDrawingCardsSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _decks
             = GroupBuilder<GameScope>
                 .With<Deck>()
                 .And<DrawingCards>()
-                .And<NeedsShuffle>()
-                .Without<ShufflingDeckTimer>()
+                .Build();
+
+        private readonly IGroup<Entity<GameScope>> _cardsInHand
+            = GroupBuilder<GameScope>
+                .With<Card>()
+                .And<InHandIndex>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
+
+        private static int HandSize => GameConfig.Cards.HandSize;
+
+        private bool HandIsFull => _cardsInHand.count >= HandSize;
 
         private readonly List<Entity<GameScope>> _buffer = new(4);
 
@@ -22,7 +30,8 @@ namespace FelineFellas
         {
             foreach (var deck in _decks.GetEntities(_buffer))
             {
-                deck.Add<ShufflingDeckTimer, float>(GameConfig.Cards.View.DeckShuffleDuration);
+                if (HandIsFull)
+                    DeckUtils.StopDrawingCards(deck);
             }
         }
     }

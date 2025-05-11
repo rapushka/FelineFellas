@@ -4,11 +4,12 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class DrawCardsIfDeckShuffleEndedSystem : IExecuteSystem
+    public sealed class SendDrawCardsOnDeckShuffleEndedSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _decks
             = GroupBuilder<GameScope>
                 .With<Deck>()
+                .And<DrawingCards>()
                 .And<ShufflingDeckTimer>()
                 .Build();
 
