@@ -21,6 +21,8 @@ namespace FelineFellas
             ServiceLocator.Register<ITimeService>(new TimeService());
             ServiceLocator.Register<IIdentifiesService>(new SimplestIdentifiesService());
             ServiceLocator.Register<IUIService>(new UIService());
+            ServiceLocator.Register<IUiMediator>(new UiMediator());
+            ServiceLocator.Register<IPagesService>(new PagesService());
 
             // Factories
             ServiceLocator.Register<IViewFactory>(new ViewFactory());
