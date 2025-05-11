@@ -57,3 +57,7 @@ MonoBehaviour:
     <MainMenuPrefab>k__BackingField: {fileID: 4050470983777623250, guid: 69b909d3adf98d91db5976751b61b0a5, type: 3}
     <HUDPrefab>k__BackingField: {fileID: 2759347256078972060, guid: 74597063aea7e8a50a7019c2462432a2, type: 3}
   <CameraDirectorPrefab>k__BackingField: {fileID: 4796567677478209745, guid: 2686f26e4e48040b69fa0242de03eda0, type: 3}
+  <GameModes>k__BackingField:
+    <GameModes>k__BackingField:
+    - {fileID: 11400000, guid: 6b6169bc73bf76902898f824ab1597c8, type: 2}
+    - {fileID: 11400000, guid: cc4dad563ad8fba85b740c7f29666d75, type: 2}

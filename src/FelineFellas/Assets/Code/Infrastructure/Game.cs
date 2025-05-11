@@ -23,6 +23,7 @@ namespace FelineFellas
             ServiceLocator.Register<IUIService>(new UIService());
             ServiceLocator.Register<IUiMediator>(new UiMediator());
             ServiceLocator.Register<IPagesService>(new PagesService());
+            ServiceLocator.Register<IGameModeService>(new GameModeService());
 
             // Factories
             ServiceLocator.Register<IViewFactory>(new ViewFactory());

@@ -12,6 +12,8 @@ namespace FelineFellas
         TurnsConfig Turns { get; }
 
         CameraDirector CameraDirectorPrefab { get; }
+
+        GameModesConfig GameModes { get; }
     }
 
     [CreateAssetMenu(menuName = "375/FelineFellas/GameConfig", order = 100)]
@@ -31,5 +33,8 @@ namespace FelineFellas
 
         [field: NaughtyAttributes.BoxGroup("Camera")]
         [field: SerializeField] public CameraDirector CameraDirectorPrefab { get; private set; }
+
+        [field: NaughtyAttributes.BoxGroup(nameof(GameModes))]
+        [field: SerializeField] public GameModesConfig GameModes { get; private set; }
     }
 }
