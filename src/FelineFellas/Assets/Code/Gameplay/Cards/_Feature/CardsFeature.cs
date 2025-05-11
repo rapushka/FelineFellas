@@ -8,6 +8,7 @@ namespace FelineFellas
             : base(nameof(CardsFeature))
         {
             Add(new SpawnDeckWithCardsSystem());
+            Add(new SpawnPlayerLeaderSystem());
             Add(new StartWithPlayerTurnSystem());
 
             Add(new TickEnemyTurnSystem());
