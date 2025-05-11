@@ -2,6 +2,7 @@
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
 - End Turn button [#11](https://github.com/rapushka/FelineFellas/pull/12)
 - shuffle cards back from discards to deck [#14](https://github.com/rapushka/FelineFellas/pull/20)
+- shuffle cards only after all cards from deck drawn [#19](https://github.com/rapushka/FelineFellas/issues/19)
 
 # v0.0.1
 - this repository created
