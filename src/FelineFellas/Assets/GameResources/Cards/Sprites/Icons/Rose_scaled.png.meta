@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 510307f7cffcee642a6e1e57a9299c67
+guid: a557eafe7d4f4356388dbbf9f5cfa3d7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2963582243178322059
-    second: Crook_scaled_0
+      213: -6595231244823024621
+    second: Rose_scaled_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crook_scaled_0
+      name: Rose_scaled_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 256
-        height: 256
+        width: 251
+        height: 253
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b889c433952c02920800000000000000
-      internalID: 2963582243178322059
+      spriteID: 31c24c830280974a0800000000000000
+      internalID: -6595231244823024621
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Crook_scaled_0: 2963582243178322059
+      Rose_scaled_0: -6595231244823024621
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

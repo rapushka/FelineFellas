@@ -26,6 +26,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3e068aace28f218aa947e2c57c71d623, type: 2}
     - {fileID: 11400000, guid: 543075c8e4bae27078329748bcc8fd03, type: 2}
     - {fileID: 11400000, guid: cc8ec082bc2a90b1cb8dd0956db27dc8, type: 2}
+    - {fileID: 11400000, guid: a968bcd4a29e482d581a6e308a6e38b5, type: 2}
     <PlayerDeckOnStart>k__BackingField:
     - <CardID>k__BackingField:
         Value: Card/Unit/Crook
