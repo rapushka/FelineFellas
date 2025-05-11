@@ -1,10 +1,16 @@
+using UnityEngine;
+
 namespace FelineFellas
 {
     public sealed class GameplayFeature : Feature
     {
+        private static IGameModeService GameModeService => ServiceLocator.Resolve<IGameModeService>();
+
         public GameplayFeature()
             : base(nameof(GameplayFeature))
         {
+            Debug.Log(GameModeService.CurrentGameMode);
+
             Add(new InputFeature());
 
             Add(new GridFeature());

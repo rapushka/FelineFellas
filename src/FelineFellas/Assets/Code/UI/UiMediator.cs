@@ -4,7 +4,7 @@ namespace FelineFellas
     {
         IPagesService Pages { get; }
 
-        void StartGame();
+        void StartGame(IGameMode gameMode);
         void EndGame();
 
         void EndTurn();
@@ -14,12 +14,15 @@ namespace FelineFellas
     {
         private static IPagesService PagesService => ServiceLocator.Resolve<IPagesService>();
 
+        private static IGameModeService  GameModeService  => ServiceLocator.Resolve<IGameModeService>();
         private static IGameStateMachine GameStateMachine => ServiceLocator.Resolve<IGameStateMachine>();
 
         public IPagesService Pages => PagesService;
 
-        public void StartGame()
+        public void StartGame(IGameMode gameMode)
         {
+            GameModeService.SetGameMode(gameMode);
+
             GameStateMachine.ToState<GameplayGameState>();
         }
 

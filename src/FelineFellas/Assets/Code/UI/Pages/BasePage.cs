@@ -4,9 +4,9 @@ namespace FelineFellas
 {
     public abstract class BasePage : MonoBehaviour
     {
-        private void OnEnable() => Initialize();
+        private void Awake() => Initialize();
 
-        private void OnDisable() => Dispose();
+        private void OnDestroy() => Dispose();
 
         public void Show() => gameObject.SetActive(true);
 

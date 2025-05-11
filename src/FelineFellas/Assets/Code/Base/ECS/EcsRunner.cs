@@ -26,24 +26,29 @@ namespace FelineFellas
             Contexts.Instance.Get<GameScope>().GetIndex<CardInDeck, EntityID>().Initialize();
             Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>().Initialize();
             Contexts.Instance.Get<GameScope>().GetPrimaryIndex<OnField, Coordinates>().Initialize();
-
-            _feature = new();
         }
 
         public void StartGame()
         {
+            _feature = new();
             _feature.ActivateReactiveSystems();
             _feature.Initialize();
         }
 
         public void OnUpdate()
         {
+            if (_feature is null)
+                return;
+
             _feature.Execute();
             _feature.Cleanup();
         }
 
         public void EndGame()
         {
+            if (_feature is null)
+                return;
+
             _feature.DeactivateReactiveSystems();
             _feature.ClearReactiveSystems();
 
@@ -51,6 +56,14 @@ namespace FelineFellas
 
             _feature.Cleanup();
             _feature.TearDown();
+
+            _feature.Remove(_feature);
+
+#if (!ENTITAS_DISABLE_VISUAL_DEBUGGING && UNITY_EDITOR)
+            _feature.gameObject.DestroyObject();
+#endif
+
+            _feature = null;
         }
 
         private void DisposeEntities()
