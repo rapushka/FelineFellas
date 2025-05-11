@@ -5,6 +5,9 @@ namespace FelineFellas
 {
     public static class CardUtils
     {
+        private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
+            => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
+
         public static Entity<GameScope> AddToDeck(Entity<GameScope> card, Entity<GameScope> deck)
             => card
                 .Set<CardInDeck, EntityID>(deck.ID())
@@ -37,5 +40,38 @@ namespace FelineFellas
                 .Is<WillBeUsed>(false)
                 .Remove<InHandIndex>()
                 .Is<Interactable>(false);
+
+        public static Entity<GameScope> PlaceCardOnGrid(Entity<GameScope> card, Coordinates coordinates)
+        {
+            var cell = CellIndex.GetEntity(coordinates);
+
+            card
+                .Chain(RemoveCardFromPlacedCell)
+                .Set<TargetRotation, float>(0f)
+                .Set<TargetPosition, Vector2>(cell.WorldPosition())
+                .Set<OnField, Coordinates>(cell.Get<CellCoordinates>().Value)
+                ;
+
+            cell
+                .Is<Empty>(false)
+                .Set<PlacedCard, EntityID>(card.ID())
+                ;
+
+            return card;
+        }
+
+        private static Entity<GameScope> RemoveCardFromPlacedCell(Entity<GameScope> card)
+        {
+            if (!card.TryGet<OnField, Coordinates>(out var coordinates))
+                return card;
+
+            var cell = CellIndex.GetEntity(coordinates);
+            cell
+                .Remove<PlacedCard>()
+                .Is<Empty>(true)
+                ;
+
+            return card;
+        }
     }
 }

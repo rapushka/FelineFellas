@@ -21,10 +21,16 @@ namespace FelineFellas
         public Entity<GameScope> CreateField(Vector2 position)
         {
             var entity = ViewFactory.CreateInWorld(FieldConfig.View.FieldPrefab, position).Entity;
-            // TODO: dynamically calculate collider size.. someday..
+
+            var sizes = FieldConfig.FieldSize;
+            var borders = new Borders(
+                min: new(0, 0),
+                max: new(sizes.Height - 1, sizes.Width - 1)
+            );
 
             return entity
                     .Add<Field>()
+                    .Add<FieldBorders, Borders>(borders)
                 ;
         }
 

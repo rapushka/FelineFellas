@@ -24,6 +24,7 @@ namespace FelineFellas
             Add(new CheckActionCardUseSystem());
 
             Add(new UseDroppedOneShotCardsIfCanSystem());
+            Add(new UseCardAbilitiesFeature());
             Add(new PlaceUnitCardsSystems());
 
             Add(new MoveDiscardedCardsToDiscardPileSystem());

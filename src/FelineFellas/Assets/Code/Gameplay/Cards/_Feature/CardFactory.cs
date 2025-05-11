@@ -61,7 +61,7 @@ namespace FelineFellas
 
             card
                 .Add<ActionValue, float>(actionValue)
-                .Is<ActionMove>(isMove)
+                .Is<AbilityMove>(isMove)
                 ;
 
             if (selectTargetAsDirection)

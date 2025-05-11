@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
-using UnityEngine;
 
 namespace FelineFellas
 {
@@ -23,16 +22,10 @@ namespace FelineFellas
             foreach (var card in _droppedCards.GetEntities(_buffer))
             {
                 var cell = card.Get<UseTarget>().Value.GetEntity();
+                var coordinates = cell.Get<CellCoordinates>().Value;
 
-                CardUtils.MarkUsed(card)
-                    .Set<TargetRotation, float>(0f)
-                    .Set<TargetPosition, Vector2>(cell.Get<WorldPosition, Vector2>())
-                    .Set<OnField, Coordinates>(cell.Get<CellCoordinates>().Value)
-                    ;
-
-                cell
-                    .Is<Empty>(false)
-                    .Set<PlacedUnit, EntityID>(card.ID())
+                CardUtils.PlaceCardOnGrid(card, coordinates)
+                    .Chain(CardUtils.MarkUsed)
                     ;
             }
         }

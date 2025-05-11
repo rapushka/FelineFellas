@@ -4,6 +4,9 @@ namespace FelineFellas
 {
     public static class MathExtensions
     {
+        public static int Clamp(this int @this, int? min = null, int? max = null)
+            => Mathf.Clamp(@this, min ?? @this, max ?? @this);
+
         public static float Clamp(this float @this, float? min = null, float? max = null)
             => Mathf.Clamp(@this, min ?? @this, max ?? @this);
 
