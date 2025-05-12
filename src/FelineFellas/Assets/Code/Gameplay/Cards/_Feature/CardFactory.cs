@@ -65,7 +65,20 @@ namespace FelineFellas
             if (isAction)
                 SetupActionCard(card, config);
 
+            if (isUnit)
+                SetupUnitCard(card, config);
+
             return card;
+        }
+
+        private void SetupUnitCard(Entity<GameScope> card, CardConfig config)
+        {
+            var unitConfig = config.UnitCardConfig;
+
+            card
+                .Add<MaxHealth, float>(unitConfig.MaxHealth)
+                .Add<Health, float>(unitConfig.MaxHealth)
+                ;
         }
 
         private void SetupActionCard(Entity<GameScope> card, CardConfig config)
