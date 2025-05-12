@@ -20,6 +20,7 @@ MonoBehaviour:
   - Card/GlobalAction/DoNothing
   - Card/Unit
   - Card/Unit/Crook
+  - Card/Unit/Rat
   - Card/Unit/Rose
   _idDefinitions:
   - _id: Card
@@ -112,6 +113,12 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<PlayerDeckOnStart>k__BackingField.Array.data[0].<CardID>k__BackingField.Value
+  - _id: Card/Unit/Rat
+    _assetRefs:
+    - _objectPath: 05bfccb3d63743a9bb4a2d3027b8ee35||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <ID>k__BackingField.Value
   - _id: Card/Unit/Rose
     _assetRefs:
     - _objectPath: a968bcd4a29e482d581a6e308a6e38b5||11400000
