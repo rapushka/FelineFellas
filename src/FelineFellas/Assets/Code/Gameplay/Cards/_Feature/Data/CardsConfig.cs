@@ -9,11 +9,20 @@ namespace FelineFellas
     {
         [SerializeField] private CardConfig[] _configs;
 
+        [field: Header("Hand")]
         [field: SerializeField] public CardEntry[] PlayerDeckOnStart { get; private set; }
-        [field: SerializeField] public int         HandSize          { get; private set; }
 
-        [field: SerializeField] public CardIDRef   LeaderCardID          { get; private set; }
+        [field: SerializeField] public int HandSize { get; private set; }
+
+        [field: Header("Leader")]
+        [field: SerializeField] public CardIDRef LeaderCardID { get; private set; }
+
         [field: SerializeField] public Coordinates LeaderCardCoordinates { get; private set; } = new(0, 3);
+
+        [field: Header("TMP Enemies")]
+        [field: SerializeField] public CardIDRef EnemyCardID { get; private set; }
+
+        [field: SerializeField] public Coordinates[] EnemySpawnCoordinates { get; private set; }
 
         [field: SerializeField] public ViewConfig View { get; private set; }
 

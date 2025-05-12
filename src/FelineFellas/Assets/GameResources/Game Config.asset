@@ -23,10 +23,11 @@ MonoBehaviour:
       <Spacings>k__BackingField: {x: 1.5, y: 2.06}
   <Cards>k__BackingField:
     _configs:
+    - {fileID: 11400000, guid: cc8ec082bc2a90b1cb8dd0956db27dc8, type: 2}
     - {fileID: 11400000, guid: 3e068aace28f218aa947e2c57c71d623, type: 2}
     - {fileID: 11400000, guid: 543075c8e4bae27078329748bcc8fd03, type: 2}
-    - {fileID: 11400000, guid: cc8ec082bc2a90b1cb8dd0956db27dc8, type: 2}
     - {fileID: 11400000, guid: a968bcd4a29e482d581a6e308a6e38b5, type: 2}
+    - {fileID: 11400000, guid: 05bfccb3d63743a9bb4a2d3027b8ee35, type: 2}
     <PlayerDeckOnStart>k__BackingField:
     - <CardID>k__BackingField:
         Value: Card/Unit/Crook
@@ -43,6 +44,13 @@ MonoBehaviour:
     <LeaderCardCoordinates>k__BackingField:
       _row: 0
       _column: 3
+    <EnemyCardID>k__BackingField:
+      Value: Card/Unit/Rat
+    <EnemySpawnCoordinates>k__BackingField:
+    - _row: 2
+      _column: 2
+    - _row: 2
+      _column: 4
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
       <DiscardPilePosition>k__BackingField: {x: 8.5, y: -5}
