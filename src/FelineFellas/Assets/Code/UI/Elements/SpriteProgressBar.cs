@@ -7,7 +7,7 @@ namespace FelineFellas
         [SerializeField] private Transform _background;
         [SerializeField] private Transform _fill;
 
-        public void DoNormalizedValue(float value)
+        public void SetValue(float value)
         {
             var bgScale = _background.localScale;
             var scale = _fill.localScale;

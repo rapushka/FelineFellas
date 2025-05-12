@@ -15,7 +15,8 @@ namespace FelineFellas
             foreach (var (cardID, count) in GameConfig.Cards.PlayerDeckOnStart)
             {
                 for (var i = 0; i < count; i++)
-                    CardFactory.CreateCardInDeck(cardID, deck);
+                    CardFactory.CreateCardInDeck(cardID, deck)
+                        .Add<Ally>();
             }
         }
     }

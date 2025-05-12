@@ -12,6 +12,8 @@ namespace FelineFellas
 
         [field: SerializeField] public TargetSelectionType TargetSelection { get; private set; }
 
+        [field: SerializeField] public bool OnlyForAllies { get; private set; }
+
         [field: Naughty.ShowIf(nameof(TargetSelection), TargetSelectionType.Direction)]
         [field: Naughty.AllowNesting]
         [field: SerializeField] public Direction Direction { get; private set; }

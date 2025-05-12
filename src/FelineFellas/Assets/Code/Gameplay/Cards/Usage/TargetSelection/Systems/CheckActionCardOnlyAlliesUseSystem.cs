@@ -3,14 +3,14 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class CheckActionCardUseSystem : IExecuteSystem
+    public sealed class CheckActionCardOnlyAlliesUseSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
                 .With<Card>()
                 .And<ActionCard>()
                 .And<Dragging>()
-                .Without<OnlyForAllies>()
+                .And<OnlyForAllies>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _units
@@ -19,6 +19,7 @@ namespace FelineFellas
                 .And<UnitCard>()
                 .And<OnField>()
                 .And<Collider>()
+                .And<Ally>()
                 .Build();
 
         private readonly IGroup<Entity<InputScope>> _inputs

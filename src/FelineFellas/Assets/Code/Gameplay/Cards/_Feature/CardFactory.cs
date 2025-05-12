@@ -93,6 +93,7 @@ namespace FelineFellas
             card
                 .Add<ActionValue, float>(actionValue)
                 .Is<AbilityMove>(isMove)
+                .Is<OnlyForAllies>(actionCardConfig.OnlyForAllies)
                 ;
 
             if (selectTargetAsDirection)

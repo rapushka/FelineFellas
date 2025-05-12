@@ -4,7 +4,11 @@ namespace FelineFellas
 {
     public sealed class UnitCard : FlagComponent, IInScope<GameScope> { }
 
+    public sealed class Ally : FlagComponent, IInScope<GameScope> { }
+
     public sealed class Leader : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class Enemy : FlagComponent, IInScope<GameScope> { }
 
     public sealed class MaxHealth : ValueComponent<float>, IInScope<GameScope>, IEvent<Self> { }
 

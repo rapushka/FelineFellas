@@ -9,6 +9,7 @@ namespace FelineFellas
         {
             Add(new SpawnDeckWithCardsSystem());
             Add(new SpawnPlayerLeaderSystem());
+            Add(new SpawnEnemyUnitsSystem());
             Add(new StartWithPlayerTurnSystem());
 
             Add(new TickEnemyTurnSystem());
@@ -28,6 +29,7 @@ namespace FelineFellas
             Add(new CheckGlobalCardUseSystem());
             Add(new CheckUnitCardUseSystem());
             Add(new CheckActionCardUseSystem());
+            Add(new CheckActionCardOnlyAlliesUseSystem());
 
             Add(new UseDroppedOneShotCardsIfCanSystem());
             Add(new UseCardAbilitiesFeature());

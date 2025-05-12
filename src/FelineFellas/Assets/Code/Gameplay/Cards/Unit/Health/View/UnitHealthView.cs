@@ -42,7 +42,7 @@ namespace FelineFellas
             var currentHP = entity.Get<Health>().Value;
             var maxHP = entity.Get<MaxHealth>().Value;
 
-            _progressBar.DoNormalizedValue(currentHP / maxHP);
+            _progressBar.SetValue(currentHP / maxHP);
 
             if (_text != null)
                 _text.text = $"{currentHP}/{maxHP}";
