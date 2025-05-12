@@ -1,3 +1,6 @@
+# v0.0.3
+- add health for unit cards [#26](https://github.com/rapushka/FelineFellas/issues/26)
+
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
 - End Turn button [#11](https://github.com/rapushka/FelineFellas/pull/12)
