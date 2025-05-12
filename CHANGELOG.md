@@ -1,5 +1,6 @@
 # v0.0.3
 - add health for unit cards [#26](https://github.com/rapushka/FelineFellas/issues/26)
+- spawn enemy units [#16](https://github.com/rapushka/FelineFellas/issues/16)
 
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
