@@ -16,10 +16,15 @@ namespace FelineFellas
         [field: Naughty.BoxGroup("View")]
         [field: SerializeField] public Sprite Icon { get; private set; }
 
-        [field: Naughty.BoxGroup(nameof(ActionCardConfig))]
+        [field: Naughty.BoxGroup("Action")]
         [field: Naughty.ShowIf(nameof(Usage), UsageType.Action)]
         [field: Naughty.HorizontalLine(color: Naughty.EColor.Yellow)]
         [field: SerializeField] public ActionCardConfig ActionCardConfig { get; private set; }
+
+        [field: Naughty.BoxGroup("Unit")]
+        [field: Naughty.ShowIf(nameof(Usage), UsageType.Unit)]
+        [field: Naughty.HorizontalLine(color: Naughty.EColor.Blue)]
+        [field: SerializeField] public UnitCardConfig UnitCardConfig { get; private set; }
 
         // Manually Color Coded For Editor
         [Serializable]
