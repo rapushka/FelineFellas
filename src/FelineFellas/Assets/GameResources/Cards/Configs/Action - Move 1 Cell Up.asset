@@ -21,7 +21,8 @@ MonoBehaviour:
     <ActionType>k__BackingField: 1
     <Value>k__BackingField: 1
     <TargetSelection>k__BackingField: 1
-    <OnlyForAllies>k__BackingField: 1
+    <AllowedTargets>k__BackingField: 3
     <Direction>k__BackingField: 1
   <UnitCardConfig>k__BackingField:
     <MaxHealth>k__BackingField: 0
+    <Strength>k__BackingField: 0

@@ -12,5 +12,9 @@ namespace FelineFellas
 
     public sealed class ActionValue : ValueComponent<float>, IInScope<GameScope> { }
 
-    public sealed class OnlyForAllies : FlagComponent, IInScope<GameScope> { }
+    public sealed class CanUseOnFella : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class CanUseOnLeader : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class CanUseOnEnemy : FlagComponent, IInScope<GameScope> { }
 }

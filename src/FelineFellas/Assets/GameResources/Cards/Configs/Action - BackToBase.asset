@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e948e920248f4470880945a5c98cf39a, type: 3}
-  m_Name: Action - Attack Closest Opponent
+  m_Name: Action - BackToBase
   m_EditorClassIdentifier: 
   <ID>k__BackingField:
-    Value: Card/Action/AttackClosestOpponent
+    Value: Card/Action/BackToBase
   <Usage>k__BackingField: 3
-  <Title>k__BackingField: Attack Closest Opponent
-  <Icon>k__BackingField: {fileID: 21300000, guid: 26c69ebfc75254d2d85011964359be73, type: 3}
+  <Title>k__BackingField: Back to the Base
+  <Icon>k__BackingField: {fileID: 21300000, guid: a01087ce1455c7e4c8f2410c26afcfd2, type: 3}
   <ActionCardConfig>k__BackingField:
-    <ActionType>k__BackingField: 2
+    <ActionType>k__BackingField: 3
     <Value>k__BackingField: 1
-    <TargetSelection>k__BackingField: 2
-    <AllowedTargets>k__BackingField: 3
+    <TargetSelection>k__BackingField: 0
+    <AllowedTargets>k__BackingField: 1
     <Direction>k__BackingField: 1
   <UnitCardConfig>k__BackingField:
     <MaxHealth>k__BackingField: 0

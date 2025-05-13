@@ -11,7 +11,7 @@ namespace FelineFellas
         public void Initialize()
         {
             CardFactory.CreateCardOnCoordinates(GameConfig.Cards.LeaderCardID, GameConfig.Cards.LeaderCardCoordinates)
-                .Add<Ally>()
+                .Add<Fella>()
                 .Add<Leader>()
                 ;
         }

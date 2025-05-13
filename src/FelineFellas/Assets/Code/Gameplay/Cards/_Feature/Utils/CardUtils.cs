@@ -38,7 +38,7 @@ namespace FelineFellas
         public static Entity<GameScope> RemoveFromHand(Entity<GameScope> card)
             => card
                 .Is<WillBeUsed>(false)
-                .Remove<InHandIndex>()
+                .RemoveSafely<InHandIndex>()
                 .Is<Interactable>(false);
 
         public static Entity<GameScope> PlaceCardOnGrid(Entity<GameScope> card, Coordinates coordinates)

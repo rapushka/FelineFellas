@@ -94,15 +94,23 @@ namespace FelineFellas
 
             var isMove = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Move;
             var isAttack = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Attack;
+            var isSendToDiscard = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.SendToDiscard;
 
             var selectTargetAsDirection = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.Direction;
             var targetClosestOpponent = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.ClosestOpponent;
+
+            var canUseOnFella = actionCardConfig.AllowedTargets.HasFlag(ActionCardConfig.AllowedTargetType.Fella);
+            var canUseOnLead = actionCardConfig.AllowedTargets.HasFlag(ActionCardConfig.AllowedTargetType.Lead);
+            var canUseOnEnemy = actionCardConfig.AllowedTargets.HasFlag(ActionCardConfig.AllowedTargetType.Enemy);
 
             card
                 .Add<ActionValue, float>(actionValue)
                 .Is<AbilityMove>(isMove)
                 .Is<AbilityAttack>(isAttack)
-                .Is<OnlyForAllies>(actionCardConfig.OnlyForAllies)
+                .Is<AbilitySendToDiscard>(isSendToDiscard)
+                .Is<CanUseOnFella>(canUseOnFella)
+                .Is<CanUseOnLeader>(canUseOnLead)
+                .Is<CanUseOnEnemy>(canUseOnEnemy)
                 .Is<TargetSelectClosestOpponent>(targetClosestOpponent)
                 ;
 
