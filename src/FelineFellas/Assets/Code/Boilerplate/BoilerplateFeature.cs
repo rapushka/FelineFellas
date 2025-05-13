@@ -17,6 +17,7 @@ namespace FelineFellas
             Add(new SelfEventSystem<GameScope, CardIcon>(contexts));
             Add(new SelfEventSystem<GameScope, MaxHealth>(contexts));
             Add(new SelfEventSystem<GameScope, Health>(contexts));
+            Add(new SelfEventSystem<GameScope, Strength>(contexts));
         }
     }
 }

@@ -17,10 +17,14 @@ namespace FelineFellas
         {
             foreach (var card in _cards)
             {
-                // var attacker = card.Get<UseTarget>().Value.GetEntity();
+                var multiplier = card.Get<ActionValue>().Value;
+
+                var attacker = card.Get<UseTarget>().Value.GetEntity();
                 var target = card.Get<SelectedTarget>().Value.GetEntity();
 
-                target.Decrement<Health>(1);
+                var strength = attacker.Get<Strength>().Value;
+
+                target.Decrement<Health>((int)(strength * multiplier));
             }
         }
     }

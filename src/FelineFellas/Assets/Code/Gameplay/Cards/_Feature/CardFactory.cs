@@ -49,7 +49,9 @@ namespace FelineFellas
             var isUnit = config.Usage is CardConfig.UsageType.Unit;
             var isAction = config.Usage is CardConfig.UsageType.Action;
 
-            var card = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, position).Entity
+            var view = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, position);
+
+            var card = view.Entity
                 .Add<Card, CardIDRef>(config.ID)
                 .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
                 .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)
@@ -68,6 +70,9 @@ namespace FelineFellas
             if (isUnit)
                 SetupUnitCard(card, config);
 
+            var viewMediator = view.GetComponent<CardViewMediator>();
+            viewMediator.Initialize(card);
+
             return card;
         }
 
@@ -76,8 +81,9 @@ namespace FelineFellas
             var unitConfig = config.UnitCardConfig;
 
             card
-                .Add<MaxHealth, float>(unitConfig.MaxHealth)
-                .Add<Health, float>(unitConfig.MaxHealth)
+                .Add<MaxHealth, int>((int)unitConfig.MaxHealth)
+                .Add<Health, int>((int)unitConfig.MaxHealth)
+                .Add<Strength, int>((int)unitConfig.Strength)
                 ;
         }
 
