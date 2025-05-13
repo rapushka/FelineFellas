@@ -76,8 +76,9 @@ namespace FelineFellas
             var unitConfig = config.UnitCardConfig;
 
             card
-                .Add<MaxHealth, float>(unitConfig.MaxHealth)
-                .Add<Health, float>(unitConfig.MaxHealth)
+                .Add<MaxHealth, int>((int)unitConfig.MaxHealth)
+                .Add<Health, int>((int)unitConfig.MaxHealth)
+                .Add<Strength, int>((int)unitConfig.Strength)
                 ;
         }
 

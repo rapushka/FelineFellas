@@ -7,5 +7,6 @@ namespace FelineFellas
     public class UnitCardConfig
     {
         [field: SerializeField] public float MaxHealth { get; private set; }
+        [field: SerializeField] public float Strength    { get; private set; }
     }
 }

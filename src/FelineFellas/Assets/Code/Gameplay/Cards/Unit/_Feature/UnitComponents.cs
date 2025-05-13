@@ -10,7 +10,9 @@ namespace FelineFellas
 
     public sealed class Enemy : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class MaxHealth : ValueComponent<float>, IInScope<GameScope>, IEvent<Self> { }
+    public sealed class MaxHealth : ValueComponent<int>, IInScope<GameScope>, IEvent<Self> { }
 
-    public sealed class Health : ValueComponent<float>, IInScope<GameScope>, IEvent<Self> { }
+    public sealed class Health : ValueComponent<int>, IInScope<GameScope>, IEvent<Self> { }
+
+    public sealed class Strength : ValueComponent<int>, IInScope<GameScope>, IEvent<Self> { }
 }
