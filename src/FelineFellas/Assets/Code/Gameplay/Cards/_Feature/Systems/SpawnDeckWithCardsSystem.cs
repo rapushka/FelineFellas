@@ -16,7 +16,7 @@ namespace FelineFellas
             {
                 for (var i = 0; i < count; i++)
                     CardFactory.CreateCardInDeck(cardID, deck)
-                        .Add<Ally>();
+                        .Add<Fella>();
             }
         }
     }

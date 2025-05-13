@@ -9,6 +9,7 @@ namespace FelineFellas
 
             Add(new UseAttackAbilitySystem());
             Add(new UseDirectionalMoveUnitAbilitySystem());
+            Add(new UseSendToDiscardAbilitySystem());
         }
     }
 }

@@ -10,7 +10,6 @@ namespace FelineFellas
                 .With<Card>()
                 .And<ActionCard>()
                 .And<Dragging>()
-                .Without<OnlyForAllies>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _units
@@ -38,13 +37,26 @@ namespace FelineFellas
 
                 var cursorOnCell = unitCollider.OverlapPoint(cursorPosition);
 
-                if (cursorOnCell)
-                {
-                    card
-                        .Is<WillBeUsed>(true)
-                        .Add<UseTarget, EntityID>(unit.ID())
-                        ;
-                }
+                if (!cursorOnCell)
+                    continue;
+
+                var canUseOnEnemy = card.Is<CanUseOnEnemy>();
+                var canUseOnFella = card.Is<CanUseOnFella>();
+                var canUseOnLead = card.Is<CanUseOnLeader>();
+
+                if (unit.Is<Leader>() && !canUseOnLead)
+                    continue;
+
+                if (unit.Is<Fella>() && !canUseOnFella)
+                    continue;
+
+                if (unit.Is<Enemy>() && !canUseOnEnemy)
+                    continue;
+
+                card
+                    .Is<WillBeUsed>(true)
+                    .Add<UseTarget, EntityID>(unit.ID())
+                    ;
             }
         }
     }

@@ -35,7 +35,7 @@ namespace FelineFellas
 
                 foreach (var unit in _units)
                 {
-                    var onSameSide = targetUnit.Is<Ally>() == unit.Is<Ally>();
+                    var onSameSide = targetUnit.Is<Fella>() == unit.Is<Fella>();
                     if (onSameSide)
                         continue;
 
