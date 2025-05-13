@@ -3,6 +3,7 @@
 - spawn enemy units [#16](https://github.com/rapushka/FelineFellas/issues/16)
 - added cards:
   - attack nearest opponent [#32](https://github.com/rapushka/FelineFellas/issues/32)
+  - back to the base [#27](https://github.com/rapushka/FelineFellas/issues/27)
 - add strength stat for units [#28](https://github.com/rapushka/FelineFellas/issues/28)
 
 # v0.0.2
