@@ -24,6 +24,7 @@ MonoBehaviour:
   <Cards>k__BackingField:
     _configs:
     - {fileID: 11400000, guid: cc8ec082bc2a90b1cb8dd0956db27dc8, type: 2}
+    - {fileID: 11400000, guid: 46b7ed398741f07d9b73986fc4683e27, type: 2}
     - {fileID: 11400000, guid: 3e068aace28f218aa947e2c57c71d623, type: 2}
     - {fileID: 11400000, guid: 543075c8e4bae27078329748bcc8fd03, type: 2}
     - {fileID: 11400000, guid: a968bcd4a29e482d581a6e308a6e38b5, type: 2}
@@ -33,11 +34,14 @@ MonoBehaviour:
         Value: Card/Unit/Crook
       <Count>k__BackingField: 3
     - <CardID>k__BackingField:
-        Value: Card/Action/MoveUp
+        Value: Card/Action/AttackClosestOpponent
       <Count>k__BackingField: 5
     - <CardID>k__BackingField:
+        Value: Card/Action/MoveUp
+      <Count>k__BackingField: 2
+    - <CardID>k__BackingField:
         Value: Card/GlobalAction/DoNothing
-      <Count>k__BackingField: 3
+      <Count>k__BackingField: 1
     <HandSize>k__BackingField: 5
     <LeaderCardID>k__BackingField:
       Value: Card/Unit/Rose

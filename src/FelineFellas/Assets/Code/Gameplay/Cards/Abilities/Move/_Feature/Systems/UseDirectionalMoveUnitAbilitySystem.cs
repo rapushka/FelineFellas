@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FelineFellas
 {
-    public sealed class UseMoveUnitAbilitySystem : IExecuteSystem
+    public sealed class UseDirectionalMoveUnitAbilitySystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _cards
             = GroupBuilder<GameScope>
@@ -12,6 +12,7 @@ namespace FelineFellas
                 .And<Used>()
                 .And<AbilityMove>()
                 .And<UseTarget>()
+                .And<TargetSelectNeighbor>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _fields

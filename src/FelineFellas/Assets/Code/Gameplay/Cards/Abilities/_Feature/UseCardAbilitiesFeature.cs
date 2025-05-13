@@ -5,7 +5,10 @@ namespace FelineFellas
         public UseCardAbilitiesFeature()
             : base(nameof(UseCardAbilitiesFeature))
         {
-            Add(new UseMoveUnitAbilitySystem());
+            Add(new RequestClosestOpponentSystem());
+
+            Add(new UseAttackAbilitySystem());
+            Add(new UseDirectionalMoveUnitAbilitySystem());
         }
     }
 }
