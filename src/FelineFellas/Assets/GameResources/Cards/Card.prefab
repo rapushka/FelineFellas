@@ -668,7 +668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c17be3980d4181a7978458e4759fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _root: {fileID: 3584967121870786833}
   _progressBar: {fileID: 4602599470847087679}
   _text: {fileID: 8291246382083377104}
 --- !u!1 &3698171087102917606
@@ -795,6 +794,7 @@ GameObject:
   - component: {fileID: 2577633426674866705}
   - component: {fileID: 6813221536842602400}
   - component: {fileID: 5936763082473077366}
+  - component: {fileID: 931976925044437580}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -882,6 +882,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 5011361985449312593}
+--- !u!114 &931976925044437580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018187112030981868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78ac7eecd5942b5b6b46ab92f3c7627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitView: {fileID: 4407143967405026689}
 --- !u!1 &6770488673937499968
 GameObject:
   m_ObjectHideFlags: 0

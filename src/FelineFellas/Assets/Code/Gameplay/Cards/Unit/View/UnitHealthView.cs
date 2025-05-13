@@ -9,7 +9,6 @@ namespace FelineFellas
           IRegistrableListener<GameScope, Health>,
           IRegistrableListener<GameScope, MaxHealth>
     {
-        [SerializeField] private GameObject _root;
         [SerializeField] private SpriteProgressBar _progressBar;
         [SerializeField] private TMP_Text _text;
 
@@ -23,8 +22,6 @@ namespace FelineFellas
             _entity.AddListener<Health>(this);
             _entity.AddListener<MaxHealth>(this);
 
-            _root.SetActive(false);
-
             if (_entity.Has<Health>() && _entity.Has<MaxHealth>())
                 UpdateValue(_entity);
         }
@@ -36,8 +33,6 @@ namespace FelineFellas
         {
             if (_entity != entity)
                 return;
-
-            _root.SetActive(true);
 
             var currentHP = entity.Get<Health>().Value;
             var maxHP = entity.Get<MaxHealth>().Value;
