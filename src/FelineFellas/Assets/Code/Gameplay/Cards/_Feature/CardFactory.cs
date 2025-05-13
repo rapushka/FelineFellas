@@ -87,13 +87,17 @@ namespace FelineFellas
             var actionValue = actionCardConfig.Value;
 
             var isMove = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Move;
+            var isAttack = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Attack;
 
             var selectTargetAsDirection = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.Direction;
+            var targetClosestOpponent = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.ClosestOpponent;
 
             card
                 .Add<ActionValue, float>(actionValue)
                 .Is<AbilityMove>(isMove)
+                .Is<AbilityAttack>(isAttack)
                 .Is<OnlyForAllies>(actionCardConfig.OnlyForAllies)
+                .Is<TargetSelectClosestOpponent>(targetClosestOpponent)
                 ;
 
             if (selectTargetAsDirection)

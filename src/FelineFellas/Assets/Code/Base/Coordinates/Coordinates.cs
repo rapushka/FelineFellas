@@ -27,6 +27,14 @@ namespace FelineFellas
         public Coordinates Multiply(int value)
             => new(_row * value, _column * value);
 
+        public float DistanceTo(Coordinates other)
+        {
+            float num1 = _row - other._row;
+            float num2 = _column - other._column;
+
+            return (float)Math.Sqrt((double)num1 * num1 + (double)num2 * num2);
+        }
+
         public override string ToString() => $"[{Row}; {Column}]";
     }
 }

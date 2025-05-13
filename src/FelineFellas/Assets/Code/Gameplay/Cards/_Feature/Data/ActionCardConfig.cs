@@ -24,6 +24,7 @@ namespace FelineFellas
         {
             Unknown = 0,
             Move = 1,
+            Attack = 2,
         }
 
         [Serializable]
@@ -32,6 +33,7 @@ namespace FelineFellas
         {
             Unknown = 0,
             Direction = 1,
+            ClosestOpponent = 2,
         }
     }
 }
