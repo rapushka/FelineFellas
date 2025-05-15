@@ -4,6 +4,8 @@ namespace FelineFellas
 {
     public interface IPagesService : IService
     {
+        TPage GetCurrent<TPage>() where TPage : BasePage;
+
         void OpenMainMenu();
         void OpenGameplay();
 
@@ -14,6 +16,8 @@ namespace FelineFellas
     {
         private MainMenuPage _mainMenu;
         private GameplayHUD _gameplayHud;
+
+        private BasePage _currentPage;
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
@@ -27,22 +31,28 @@ namespace FelineFellas
             HideAll();
         }
 
+        public TPage GetCurrent<TPage>() where TPage : BasePage => (TPage)_currentPage;
+
         public void OpenMainMenu()
         {
             HideAll();
             _mainMenu.Show();
+            _currentPage = _mainMenu;
         }
 
         public void OpenGameplay()
         {
             HideAll();
             _gameplayHud.Show();
+            _currentPage = _gameplayHud;
         }
 
         public void HideAll()
         {
             _gameplayHud.Hide();
             _mainMenu.Hide();
+
+            _currentPage = null;
         }
     }
 }

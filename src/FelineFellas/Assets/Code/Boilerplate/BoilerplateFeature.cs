@@ -18,6 +18,8 @@ namespace FelineFellas
             Add(new SelfEventSystem<GameScope, MaxHealth>(contexts));
             Add(new SelfEventSystem<GameScope, Health>(contexts));
             Add(new SelfEventSystem<GameScope, Strength>(contexts));
+            Add(new SelfEventSystem<GameScope, Price>(contexts));
+            Add(new SelfEventSystem<GameScope, Money>(contexts));
         }
     }
 }
