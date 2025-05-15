@@ -19,9 +19,13 @@ namespace FelineFellas
         {
             foreach (var cursor in _cursors)
             {
-                var mouseWorldPosition = CamerasService.ScreenToWorld(InputService.MouseScreenPosition);
+                var mouseScreenPosition = InputService.MouseScreenPosition;
+                var mouseWorldPosition = CamerasService.ScreenToWorld(mouseScreenPosition);
 
-                cursor.Set<WorldPosition, Vector2>(mouseWorldPosition);
+                cursor
+                    .Set<ScreenPosition, Vector2>(mouseScreenPosition)
+                    .Set<WorldPosition, Vector2>(mouseWorldPosition)
+                    ;
             }
         }
     }

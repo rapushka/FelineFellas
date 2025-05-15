@@ -3,12 +3,11 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class RecalculateCardsIndexesInHandSystem : IExecuteSystem
+    public sealed class RecalculateCardsIndexesInHandOnRequestSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _usedCard
+        private readonly IGroup<Entity<GameScope>> _requests
             = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<Used>()
+                .With<RecalculateInHandIndexes>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _leftCards
@@ -21,10 +20,12 @@ namespace FelineFellas
         {
             var counter = 0;
 
-            foreach (var _ in _usedCard)
+            foreach (var request in _requests)
             foreach (var card in _leftCards)
             {
                 card.Set<InHandIndex, int>(counter++);
+
+                request.Is<Destroy>(true);
             }
         }
     }

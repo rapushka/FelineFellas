@@ -35,7 +35,8 @@ namespace FelineFellas
             Add(new PlaceUnitCardsSystems());
 
             Add(new MoveDiscardedCardsToDiscardPileSystem());
-            Add(new RecalculateCardsIndexesInHandSystem());
+            Add(new SendRecalculateIndexesRequestOnCardUsedSystem());
+            Add(new RecalculateCardsIndexesInHandOnRequestSystem());
 
             Add(new DestroyDeadEntitiesSystem()); // This order to make dead entity exist 1 frame longer to handle its death if needed
             Add(new MarkUnitsWithZeroHpDeadSystem());

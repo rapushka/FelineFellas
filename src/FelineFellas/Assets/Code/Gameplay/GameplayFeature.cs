@@ -10,6 +10,7 @@ namespace FelineFellas
             Add(new SidesFeature());
             Add(new GridFeature());
             Add(new CardsFeature());
+            Add(new ShopFeature());
 
             Add(new MoveToPositionSystem());
             Add(new RotateToTargetSystem());

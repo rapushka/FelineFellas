@@ -27,7 +27,7 @@ namespace FelineFellas
                     continue;
                 }
 
-                if (card.Is<WillBeUsed>())
+                if (card.Is<WillBeUsed>() || card.Is<WillBeSold>())
                 {
                     card.Set<TargetScale, float>(DefaultScale);
                     continue;

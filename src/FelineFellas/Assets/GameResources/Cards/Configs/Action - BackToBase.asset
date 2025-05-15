@@ -15,6 +15,7 @@ MonoBehaviour:
   <ID>k__BackingField:
     Value: Card/Action/BackToBase
   <Usage>k__BackingField: 3
+  <Price>k__BackingField: 3
   <Title>k__BackingField: Back to the Base
   <Icon>k__BackingField: {fileID: 21300000, guid: a01087ce1455c7e4c8f2410c26afcfd2, type: 3}
   <ActionCardConfig>k__BackingField:

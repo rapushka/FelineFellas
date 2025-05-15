@@ -15,6 +15,7 @@ MonoBehaviour:
   <ID>k__BackingField:
     Value: Card/Action/AttackClosestOpponent
   <Usage>k__BackingField: 3
+  <Price>k__BackingField: 5
   <Title>k__BackingField: Attack Closest Opponent
   <Icon>k__BackingField: {fileID: 21300000, guid: 26c69ebfc75254d2d85011964359be73, type: 3}
   <ActionCardConfig>k__BackingField:
