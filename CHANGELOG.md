@@ -5,6 +5,7 @@
   - attack nearest opponent [#32](https://github.com/rapushka/FelineFellas/issues/32)
   - back to the base [#27](https://github.com/rapushka/FelineFellas/issues/27)
 - add strength stat for units [#28](https://github.com/rapushka/FelineFellas/issues/28)
+- destroy dead units [#38](https://github.com/rapushka/FelineFellas/issues/38)
 
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
