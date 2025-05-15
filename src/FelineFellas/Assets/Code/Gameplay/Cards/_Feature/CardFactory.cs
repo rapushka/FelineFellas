@@ -52,17 +52,19 @@ namespace FelineFellas
             var view = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, position);
 
             var card = view.Entity
-                .Add<Card, CardIDRef>(config.ID)
-                .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
-                .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)
-                .Add<Rotation, float>(0f)
-                .Add<Scale, float>(1f)
-                .Is<GlobalCard>(isGlobal)
-                .Is<UnitCard>(isUnit)
-                .Is<ActionCard>(isAction)
-                .Is<OneShotCard>(isGlobal || isAction)
-                .Add<CardTitle, string>(config.Title)
-                .Add<CardIcon, Sprite>(config.Icon);
+                    .Add<Card, CardIDRef>(config.ID)
+                    .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
+                    .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)
+                    .Add<Rotation, float>(0f)
+                    .Add<Scale, float>(1f)
+                    .Is<GlobalCard>(isGlobal)
+                    .Is<UnitCard>(isUnit)
+                    .Is<ActionCard>(isAction)
+                    .Is<OneShotCard>(isGlobal || isAction)
+                    .Add<CardTitle, string>(config.Title)
+                    .Add<CardIcon, Sprite>(config.Icon)
+                    .Add<Price, int>(config.Price)
+                ;
 
             if (isAction)
                 SetupActionCard(card, config);

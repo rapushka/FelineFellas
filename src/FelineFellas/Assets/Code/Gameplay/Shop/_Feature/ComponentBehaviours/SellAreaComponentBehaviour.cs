@@ -3,5 +3,5 @@ using UnityEngine;
 
 namespace FelineFellas
 {
-    public class SellAreaComponentBehaviour : ComponentBehaviour<GameScope, SellArea, Collider2D> { }
+    public class SellAreaComponentBehaviour : ComponentBehaviour<GameScope, SellAreaCollider, Collider2D> { }
 }

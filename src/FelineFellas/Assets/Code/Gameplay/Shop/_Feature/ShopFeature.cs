@@ -6,6 +6,9 @@ namespace FelineFellas
             : base(nameof(ShopFeature))
         {
             Add(new CreateShopViewSystem());
+
+            Add(new CheckSellDraggingCardSystem());
+            Add(new SellDroppedCardOnSellAreaSystem());
         }
     }
 }
