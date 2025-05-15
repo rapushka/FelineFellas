@@ -10,7 +10,7 @@ namespace FelineFellas
         {
             CreateEntity.Empty()
                 .Add<Player>()
-                .Add<Money, int>(GameConfig.MoneyConfig.MoneyOnStart)
+                .Add<Money, int>(GameConfig.Money.MoneyOnStart)
                 ;
         }
     }
