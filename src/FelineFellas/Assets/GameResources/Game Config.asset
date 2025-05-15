@@ -83,3 +83,5 @@ MonoBehaviour:
     <GameModes>k__BackingField:
     - {fileID: 11400000, guid: 6b6169bc73bf76902898f824ab1597c8, type: 2}
     - {fileID: 11400000, guid: cc4dad563ad8fba85b740c7f29666d75, type: 2}
+  <MoneyConfig>k__BackingField:
+    <MoneyOnStart>k__BackingField: 10

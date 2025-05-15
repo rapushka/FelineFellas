@@ -7,6 +7,7 @@ namespace FelineFellas
         {
             Add(new InputFeature());
 
+            Add(new SidesFeature());
             Add(new GridFeature());
             Add(new CardsFeature());
 

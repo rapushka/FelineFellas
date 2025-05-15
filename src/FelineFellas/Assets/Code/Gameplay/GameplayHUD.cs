@@ -7,8 +7,11 @@ namespace FelineFellas
     {
         [SerializeField] private Button _endTurnButton;
         [SerializeField] private Button _pauseButton;
+        [SerializeField] private MoneyView _moneyView;
 
         private static IUiMediator UiMediator => ServiceLocator.Resolve<IUiMediator>();
+
+        public MoneyView MoneyView => _moneyView;
 
         protected override void Initialize()
         {
