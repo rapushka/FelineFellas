@@ -8,7 +8,10 @@ namespace FelineFellas
             Add(new CreateShopViewSystem());
 
             Add(new CheckSellDraggingCardSystem());
-            Add(new SellDroppedCardOnSellAreaSystem());
+
+            Add(new GainMoneyForSoldCardSystem());
+            Add(new DestroySoldCardSystem());
+            Add(new SendRecalculateIndexesOnCardSoldSystem());
         }
     }
 }

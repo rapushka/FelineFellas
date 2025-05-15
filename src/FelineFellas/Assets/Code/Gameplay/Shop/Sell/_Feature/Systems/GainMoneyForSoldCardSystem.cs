@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class SellDroppedCardOnSellAreaSystem : IExecuteSystem
+    public sealed class GainMoneyForSoldCardSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _droppedCards
             = GroupBuilder<GameScope>
@@ -13,19 +12,14 @@ namespace FelineFellas
                 .And<Dropped>()
                 .Build();
 
-        private readonly List<Entity<GameScope>> _buffer = new(8);
-
         private static Entity<GameScope> Player => Contexts.Instance.Get<GameScope>().Unique.GetEntity<Player>();
 
         public void Execute()
         {
-            foreach (var card in _droppedCards.GetEntities(_buffer))
+            foreach (var card in _droppedCards)
             {
                 var fullPrice = card.Get<Price>().Value;
-
                 Player.Increment<Money>(ShopUtils.PriceToSell(fullPrice));
-
-                card.Add<Destroy>();
             }
         }
     }
