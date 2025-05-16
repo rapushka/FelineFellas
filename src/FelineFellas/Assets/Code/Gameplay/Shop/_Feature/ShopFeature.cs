@@ -15,9 +15,15 @@ namespace FelineFellas
             Add(new SetCanNotBuyIfNoCardSystem());
             Add(new UpdateCanBuyInteractableSystem());
 
+            Add(new TryBuyCardInShopSystem());
+            Add(new DecrementPlayerMoneyOnCardBoughtSystem());
+            Add(new AddBoughtCardToDiscardSystem());
+
             Add(new GainMoneyForSoldCardSystem());
             Add(new DestroySoldCardSystem());
             Add(new SendRecalculateIndexesOnCardSoldSystem());
+
+            Add(new CleanupSlotBuySystem());
         }
     }
 }

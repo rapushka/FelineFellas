@@ -4,12 +4,13 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class SetCanNotBuyIfNoCardSystem : IExecuteSystem
+    public sealed class AddBoughtCardToDiscardSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _slots
             = GroupBuilder<GameScope>
                 .With<ShopSlot>()
-                .And<Empty>()
+                .And<PlacedCard>()
+                .And<Buy>()
                 .Build();
 
         private readonly List<Entity<GameScope>> _buffer = new(16);
@@ -17,7 +18,10 @@ namespace FelineFellas
         public void Execute()
         {
             foreach (var slot in _slots.GetEntities(_buffer))
-                slot.Is<CanBuy>(false);
+            {
+                var card = slot.Get<PlacedCard>().Value.GetEntity();
+                CardUtils.Discard(card);
+            }
         }
     }
 }
