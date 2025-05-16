@@ -29,6 +29,7 @@ namespace FelineFellas
             );
 
             return entity
+                    .Add<Name, string>("field")
                     .Add<Field>()
                     .Add<FieldBorders, Borders>(borders)
                 ;
@@ -38,6 +39,7 @@ namespace FelineFellas
         {
             var entity = ViewFactory.CreateInWorld(FieldConfig.View.CellPrefab, position).Entity;
             return entity
+                    .Add<Name, string>("cell")
                     .Add<Cell>()
                     .Add<Interactable>()
                     .Add<Empty>()
