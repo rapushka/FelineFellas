@@ -4,6 +4,9 @@ namespace FelineFellas
     {
         void ToState<TState>() where TState : IGameState, new();
 
+        void PendState<TState>() where TState : IGameState, new();
+        void CheckPendingState();
+
         void OnUpdate();
     }
 
@@ -12,19 +15,37 @@ namespace FelineFellas
         private readonly TypeDictionary<IGameState> _statesMap = new();
 
         private IGameState _currentState;
+        private IGameState _pendingState;
 
         public void ToState<TState>()
             where TState : IGameState, new()
         {
-            (_currentState as IExitState)?.OnExit();
+            ToState(Get<TState>());
+        }
 
-            _currentState = Get<TState>();
-            _currentState.OnEnter(this);
+        public void PendState<TState>() where TState : IGameState, new()
+            => _pendingState = Get<TState>();
+
+        public void CheckPendingState()
+        {
+            if (_pendingState is null)
+                return;
+
+            ToState(_pendingState);
+            _pendingState = null;
         }
 
         public void OnUpdate()
         {
             (_currentState as IUpdatableState)?.OnUpdate();
+        }
+
+        private void ToState(IGameState nextState)
+        {
+            (_currentState as IExitState)?.OnExit();
+
+            _currentState = nextState;
+            _currentState.OnEnter(this);
         }
 
         private TState Get<TState>()
