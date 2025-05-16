@@ -8,4 +8,10 @@ namespace FelineFellas
     public sealed class SellAreaCollider : ValueComponent<Collider2D>, IInScope<GameScope> { }
 
     public sealed class ShopSlot : ValueComponent<EntityID>, IInScope<GameScope> { }
+
+    public sealed class BuyButton : ValueComponent<Collider2D>, IInScope<GameScope> { }
+
+    public sealed class CanBuy : ValueComponent<bool>, IInScope<GameScope> { }
+
+    public sealed class CardInShop : FlagComponent, IInScope<GameScope> { }
 }

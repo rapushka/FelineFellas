@@ -1,16 +1,30 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
+// ReSharper disable PossibleMultipleEnumeration  - go fuck yourself
 
 namespace FelineFellas
 {
     public interface IRandomService : IService
     {
-        IWeighted PickRandom(IWeighted[] collection);
+        T PickRandom<T>(IEnumerable<T> collection);
+
+        IWeighted PickRandom(IEnumerable<IWeighted> collection);
     }
 
     public class RandomService : IRandomService
     {
-        public IWeighted PickRandom(IWeighted[] collection)
+        public T PickRandom<T>(IEnumerable<T> collection)
+        {
+            var total = collection.Count();
+            var index = Random.Range(0, total);
+
+            return collection.ElementAtOrDefault(index)
+                ?? throw new("Index out of bounds");
+        }
+
+        public IWeighted PickRandom(IEnumerable<IWeighted> collection)
         {
             var totalWeight = collection.Sum(x => x.Weight);
             var randomValue = Random.value * totalWeight;

@@ -9,6 +9,12 @@ namespace FelineFellas
 
             Add(new CheckSellDraggingCardSystem());
 
+            Add(new FillEmptyShopSlotsSystem());
+
+            Add(new UpdateCanBuyPlacedCardSystem());
+            Add(new SetCanNotBuyIfNoCardSystem());
+            Add(new UpdateCanBuyInteractableSystem());
+
             Add(new GainMoneyForSoldCardSystem());
             Add(new DestroySoldCardSystem());
             Add(new SendRecalculateIndexesOnCardSoldSystem());

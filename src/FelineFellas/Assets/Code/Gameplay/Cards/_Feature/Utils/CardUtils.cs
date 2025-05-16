@@ -8,6 +8,10 @@ namespace FelineFellas
         private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
             => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
 
+        private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
+
+        private static MoneyConfig.ShopViewConfig ShopViewConfig => GameConfig.Money.ShopView;
+
         public static Entity<GameScope> AddToDeck(Entity<GameScope> card, Entity<GameScope> deck)
             => card
                 .Set<CardInDeck, EntityID>(deck.ID())
@@ -40,6 +44,23 @@ namespace FelineFellas
                 .Is<WillBeUsed>(false)
                 .RemoveSafely<InHandIndex>()
                 .Is<Interactable>(false);
+
+        public static Entity<GameScope> PlaceCardInShop(Entity<GameScope> card, Entity<GameScope> slot)
+        {
+            card
+                .Chain(RemoveCardFromPlacedCell)
+                .Set<Rotation, float>(ShopViewConfig.SlotRotation)
+                .Set<TargetPosition, Vector2>(slot.WorldPosition())
+                .Is<CardInShop>(true)
+                ;
+
+            slot
+                .Is<Empty>(false)
+                .Set<PlacedCard, EntityID>(card.ID())
+                ;
+
+            return card;
+        }
 
         public static Entity<GameScope> PlaceCardOnGrid(Entity<GameScope> card, Coordinates coordinates)
         {

@@ -9,6 +9,8 @@ namespace FelineFellas
 
         Entity<GameScope> CreateCardInDeck(CardIDRef cardID, Entity<GameScope> deck);
         Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates);
+
+        Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot);
     }
 
     public class CardFactory : ICardFactory
@@ -40,6 +42,10 @@ namespace FelineFellas
             return Create(cardID, cell.WorldPosition())
                 .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates));
         }
+
+        public Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot)
+            => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
+                .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot));
 
         private Entity<GameScope> Create(CardIDRef cardID, Vector2 position)
         {

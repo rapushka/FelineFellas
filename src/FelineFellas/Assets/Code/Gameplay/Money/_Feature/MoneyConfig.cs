@@ -36,6 +36,7 @@ namespace FelineFellas
 
             [field: SerializeField] public GameEntityBehaviour ShopSlotPrefab { get; private set; }
             [field: SerializeField] public float               SlotsSpacing   { get; private set; }
+            [field: SerializeField] public float               SlotRotation   { get; private set; } = -90f;
         }
     }
 }
