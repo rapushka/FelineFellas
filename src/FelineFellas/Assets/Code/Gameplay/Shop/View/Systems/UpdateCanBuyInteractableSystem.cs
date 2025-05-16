@@ -8,14 +8,13 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _slots
             = GroupBuilder<GameScope>
                 .With<ShopSlot>()
-                .And<CanBuy>()
                 .Build();
 
         public void Execute()
         {
             foreach (var slot in _slots)
             {
-                slot.Is<Interactable>(slot.Get<CanBuy>().Value);
+                slot.Is<Interactable>(slot.Is<CanBuy>());
             }
         }
     }

@@ -11,7 +11,9 @@ namespace FelineFellas
 
     public sealed class BuyButton : ValueComponent<Collider2D>, IInScope<GameScope> { }
 
-    public sealed class CanBuy : ValueComponent<bool>, IInScope<GameScope> { }
+    public sealed class CanBuy : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class Buy : FlagComponent, IInScope<GameScope> { }
 
     public sealed class CardInShop : FlagComponent, IInScope<GameScope> { }
 }

@@ -1,15 +1,15 @@
-using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class UpdateCanBuyPlacedCardSystem : IExecuteSystem
+    public sealed class DecrementPlayerMoneyOnCardBoughtSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _slots
             = GroupBuilder<GameScope>
                 .With<ShopSlot>()
                 .And<PlacedCard>()
+                .And<Buy>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _players
@@ -18,19 +18,15 @@ namespace FelineFellas
                 .And<Money>()
                 .Build();
 
-        private readonly List<Entity<GameScope>> _buffer = new(16);
-
         public void Execute()
         {
+            foreach (var slot in _slots)
             foreach (var player in _players)
-            foreach (var slot in _slots.GetEntities(_buffer))
             {
-                var playerMoney = player.Get<Money>().Value;
+                var card = slot.Get<PlacedCard>().Value.GetEntity();
+                var cardPrice = card.Get<Price>().Value;
 
-                var placedCard = slot.Get<PlacedCard>().Value.GetEntity();
-                var cardPrice = placedCard.Get<Price>().Value;
-
-                slot.Is<CanBuy>(playerMoney >= cardPrice);
+                player.Decrement<Money>(cardPrice);
             }
         }
     }
