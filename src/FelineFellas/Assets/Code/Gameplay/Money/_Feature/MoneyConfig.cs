@@ -9,6 +9,8 @@ namespace FelineFellas
         [field: SerializeField] public int MoneyOnStart { get; private set; }
 
         [field: Header("Shop")]
+        [field: SerializeField] public int ItemSlotsInShop { get; private set; }
+
         [field: SerializeField] public ShopViewConfig ShopView { get; private set; }
 
         [Serializable]
