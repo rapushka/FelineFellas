@@ -12,8 +12,8 @@ namespace FelineFellas
         public override void OnValueChanged(Entity<GameScope> entity, Interactable component)
         {
             _spriteRenderer.color = entity.Is<Interactable>()
-                ? _disabledColor
-                : _defaultColor;
+                ? _defaultColor
+                : _disabledColor;
         }
     }
 }
