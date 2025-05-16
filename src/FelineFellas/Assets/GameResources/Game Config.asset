@@ -93,3 +93,5 @@ MonoBehaviour:
     <ShopView>k__BackingField:
       <ShopSpawnPosition>k__BackingField: {x: 7.46, y: 0}
       <ShopPrefab>k__BackingField: {fileID: -2475622657787762968, guid: 72a1557f769faac23bf49723385b7770, type: 3}
+      <ShopSlotPrefab>k__BackingField: {fileID: 4580263941864156537, guid: aa3410c4299f04dc8a76ce1d33a63d6a, type: 3}
+      <SlotsSpacing>k__BackingField: 1.25

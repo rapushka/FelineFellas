@@ -33,6 +33,9 @@ namespace FelineFellas
             [field: SerializeField] public Vector2 ShopSpawnPosition { get; private set; } = new(7.46f, 0f);
 
             [field: SerializeField] public GameEntityBehaviour ShopPrefab { get; private set; }
+
+            [field: SerializeField] public GameEntityBehaviour ShopSlotPrefab { get; private set; }
+            [field: SerializeField] public float               SlotsSpacing   { get; private set; }
         }
     }
 }
