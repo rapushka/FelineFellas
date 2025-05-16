@@ -12,6 +12,8 @@ namespace FelineFellas
 
         private static MoneyConfig.ShopViewConfig ShopViewConfig => GameConfig.Money.ShopView;
 
+        private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
+
         public static Entity<GameScope> AddToDeck(Entity<GameScope> card, Entity<GameScope> deck)
             => card
                 .Set<CardInDeck, EntityID>(deck.ID())
@@ -37,7 +39,9 @@ namespace FelineFellas
 
         public static Entity<GameScope> Discard(Entity<GameScope> card)
             => RemoveFromHand(card)
-                .Is<SendToDiscard>(true);
+                .Chain(RemoveFromShop)
+                .Is<SendToDiscard>(true)
+                .Set<TargetRotation, float>(RandomService.Range(-2f, 2f));
 
         public static Entity<GameScope> RemoveFromHand(Entity<GameScope> card)
             => card
@@ -51,7 +55,7 @@ namespace FelineFellas
                 .Chain(RemoveCardFromPlacedCell)
                 .Set<Rotation, float>(ShopViewConfig.SlotRotation)
                 .Set<TargetPosition, Vector2>(slot.WorldPosition())
-                .Is<CardInShop>(true)
+                .Add<CardInShopSlot, EntityID>(slot.ID())
                 ;
 
             slot
@@ -88,6 +92,19 @@ namespace FelineFellas
 
             var cell = CellIndex.GetEntity(coordinates);
             cell
+                .Remove<PlacedCard>()
+                .Is<Empty>(true)
+                ;
+
+            return card;
+        }
+
+        private static Entity<GameScope> RemoveFromShop(Entity<GameScope> card)
+        {
+            if (!card.TryGet<CardInShopSlot, EntityID>(out var slotID))
+                return card;
+
+            slotID.GetEntity()
                 .Remove<PlacedCard>()
                 .Is<Empty>(true)
                 ;

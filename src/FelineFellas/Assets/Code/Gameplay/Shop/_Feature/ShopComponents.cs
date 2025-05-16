@@ -15,5 +15,6 @@ namespace FelineFellas
 
     public sealed class Buy : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class CardInShop : FlagComponent, IInScope<GameScope> { }
+    // Card -> Slot
+    public sealed class CardInShopSlot : ValueComponent<EntityID>, IInScope<GameScope> { }
 }

@@ -17,6 +17,7 @@ namespace FelineFellas
 
             Add(new TryBuyCardInShopSystem());
             Add(new DecrementPlayerMoneyOnCardBoughtSystem());
+            Add(new AddBoughtCardToDiscardSystem());
 
             Add(new GainMoneyForSoldCardSystem());
             Add(new DestroySoldCardSystem());
