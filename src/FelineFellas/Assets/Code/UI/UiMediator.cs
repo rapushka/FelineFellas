@@ -5,7 +5,8 @@ namespace FelineFellas
         IPagesService Pages { get; }
 
         void StartGame(IGameMode gameMode);
-        void EndGame();
+        void GameOver();
+        void ToMainMenu();
 
         void EndTurn();
     }
@@ -22,11 +23,20 @@ namespace FelineFellas
         public void StartGame(IGameMode gameMode)
         {
             GameModeService.SetGameMode(gameMode);
-
             GameStateMachine.ToState<GameplayGameState>();
         }
 
         public void EndGame()
+        {
+            GameStateMachine.ToState<MainMenuGameState>();
+        }
+
+        public void GameOver()
+        {
+
+        }
+
+        public void ToMainMenu()
         {
             GameStateMachine.ToState<MainMenuGameState>();
         }

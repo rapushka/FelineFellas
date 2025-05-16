@@ -40,6 +40,7 @@ namespace FelineFellas
 
             Add(new DestroyDeadEntitiesSystem()); // This order to make dead entity exist 1 frame longer to handle its death if needed
             Add(new MarkUnitsWithZeroHpDeadSystem());
+            Add(new GameOverIfLeaderDiedSystem());
 
             // View
             Add(new ArrangeCardsInHandSystem());

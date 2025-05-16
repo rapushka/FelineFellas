@@ -32,7 +32,7 @@ namespace FelineFellas
 
         private void BackToMainMenu()
         {
-            UiMediator.EndGame();
+            UiMediator.ToMainMenu();
         }
     }
 }

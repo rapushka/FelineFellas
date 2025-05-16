@@ -12,6 +12,8 @@ namespace FelineFellas
 
         private static IUiMediator UiMediator => ServiceLocator.Resolve<IUiMediator>();
 
+        private static IGameStateMachine GameStateMachine => ServiceLocator.Resolve<IGameStateMachine>();
+
         public void OnEnter(GameStateMachine stateMachine)
         {
             UiMediator.Pages.OpenGameplay();
@@ -23,8 +25,10 @@ namespace FelineFellas
         {
             var deltaTime = TimeService.RealDelta;
 
-            EcsRunner.OnUpdate();
             InputService.OnUpdate(deltaTime);
+            EcsRunner.OnUpdate();
+
+            GameStateMachine.CheckPendingState();
         }
 
         public void OnExit()
