@@ -7,7 +7,10 @@
 - add strength stat for units [#28](https://github.com/rapushka/FelineFellas/issues/28)
 - destroy dead units [#38](https://github.com/rapushka/FelineFellas/issues/38)
 - added Money counter [#42](https://github.com/rapushka/FelineFellas/issues/42)
-- sell cards to gain money [#45](https://github.com/rapushka/FelineFellas/issues/45)
+- shop:
+  - spawn shop [#43](https://github.com/rapushka/FelineFellas/issues/43)
+  - spawn random cards in shop [#43](https://github.com/rapushka/FelineFellas/issues/43)
+  - sell cards to gain money [#45](https://github.com/rapushka/FelineFellas/issues/45)
 
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
