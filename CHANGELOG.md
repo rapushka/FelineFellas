@@ -10,6 +10,7 @@
 - shop:
   - spawn shop [#43](https://github.com/rapushka/FelineFellas/issues/43)
   - spawn random cards in shop [#43](https://github.com/rapushka/FelineFellas/issues/43)
+  - buy cards from shop [#44](https://github.com/rapushka/FelineFellas/issues/44)
   - sell cards to gain money [#45](https://github.com/rapushka/FelineFellas/issues/45)
 
 # v0.0.2
