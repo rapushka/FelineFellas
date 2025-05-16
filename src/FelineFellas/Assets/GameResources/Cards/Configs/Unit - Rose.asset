@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField:
     Value: Card/Unit/Rose
-  <Rarity>k__BackingField: 1
+  <Rarity>k__BackingField: -1
   <Usage>k__BackingField: 2
   <Price>k__BackingField: 0
   <Title>k__BackingField: Rose
