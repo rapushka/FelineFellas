@@ -9,9 +9,23 @@ namespace FelineFellas
         [field: SerializeField] public int MoneyOnStart { get; private set; }
 
         [field: Header("Shop")]
-        [field: SerializeField] public int ItemSlotsInShop { get; private set; }
+        [field: SerializeField] public ShopConfig Shop { get; private set; }
 
         [field: SerializeField] public ShopViewConfig ShopView { get; private set; }
+
+        [Serializable]
+        public class ShopConfig
+        {
+            [field: SerializeField] public int           ItemSlotsInShop { get; private set; }
+            [field: SerializeField] public RarityEntry[] RarityWeights   { get; private set; }
+
+            [Serializable]
+            public class RarityEntry : IWeighted
+            {
+                [field: SerializeField] public Rarity Rarity { get; private set; }
+                [field: SerializeField] public float  Weight { get; private set; }
+            }
+        }
 
         [Serializable]
         public class ShopViewConfig

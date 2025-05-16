@@ -9,7 +9,7 @@ namespace FelineFellas
     {
         [field: SerializeField] public CardIDRef ID     { get; private set; }
         [field: SerializeField] public Rarity    Rarity { get; private set; }
-        
+
         [field: SerializeField] public UsageType Usage { get; private set; }
 
         [field: SerializeField] public int Price { get; private set; }
