@@ -15,8 +15,7 @@ namespace FelineFellas
         public static bool operator !=(EntityID lhs, EntityID rhs) => !(lhs == rhs);
 
         public override string ToString()
-            // => this.TryGetEntity(out var entity) ? $"{ID} {entity.GetName()}" : "DESTROYED"; // TODO:
-            => this.TryGetEntity(out var _) ? $"{ID} entity" : "DESTROYED";
+            => this.TryGetEntity(out var entity) ? $"{ID} {entity.GetName()}" : "DESTROYED";
 
 #region Boilerplate
         public override bool Equals(object obj) => obj is EntityID other && Equals(other);

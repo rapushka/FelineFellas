@@ -26,6 +26,7 @@ namespace FelineFellas
 
         public Entity<GameScope> CreateDeck()
             => CreateEntity.Empty()
+                .Add<Name, string>("deck")
                 .Add<Deck>()
                 .Add<WorldPosition, Vector2>(CardsConfig.View.DeckSpawnPosition);
 
@@ -58,6 +59,7 @@ namespace FelineFellas
             var view = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, position);
 
             var card = view.Entity
+                    .Add<Name, string>("card")
                     .Add<Card, CardIDRef>(config.ID)
                     .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
                     .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)

@@ -9,6 +9,7 @@ namespace FelineFellas
         public void Initialize()
         {
             CreateEntity.Empty()
+                .Add<Name, string>("player")
                 .Add<Player>()
                 .Add<Money, int>(GameConfig.Money.MoneyOnStart)
                 ;
