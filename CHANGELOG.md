@@ -13,6 +13,7 @@
   - buy cards from shop [#44](https://github.com/rapushka/FelineFellas/issues/44)
   - sell cards to gain money [#45](https://github.com/rapushka/FelineFellas/issues/45)
 - game over screen after Leader dies [#46](https://github.com/rapushka/FelineFellas/issues/46)
+- add entity debugger [#52](https://github.com/rapushka/FelineFellas/issues/52)
 
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
