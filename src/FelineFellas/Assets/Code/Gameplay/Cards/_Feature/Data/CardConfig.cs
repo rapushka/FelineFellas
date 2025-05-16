@@ -7,7 +7,9 @@ namespace FelineFellas
     [CreateAssetMenu(menuName = "375/FelineFellas/Card", order = 100)]
     public class CardConfig : ScriptableObject
     {
-        [field: SerializeField] public CardIDRef ID    { get; private set; }
+        [field: SerializeField] public CardIDRef ID     { get; private set; }
+        [field: SerializeField] public Rarity    Rarity { get; private set; }
+
         [field: SerializeField] public UsageType Usage { get; private set; }
 
         [field: SerializeField] public int Price { get; private set; }

@@ -13,6 +13,7 @@ namespace FelineFellas
     public sealed class CellCoordinates : PrimaryIndexComponent<Coordinates>, IInScope<GameScope> { }
 
     // Cell -> Card
+    // ShopSlot -> Card
     public sealed class PlacedCard : ValueComponent<EntityID>, IInScope<GameScope> { }
 
     public sealed class OnField : PrimaryIndexComponent<Coordinates>, IInScope<GameScope> { }

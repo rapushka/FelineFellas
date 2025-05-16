@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -27,6 +28,8 @@ namespace FelineFellas
         [field: SerializeField] public ViewConfig View { get; private set; }
 
         public CardConfig GetConfig(CardIDRef id) => _configs.Single(c => c.ID == id);
+
+        public IEnumerable<CardConfig> GetCardsOfRarity(Rarity rarity) => _configs.Where(c => c.Rarity == rarity);
 
         [Serializable]
         public class CardEntry

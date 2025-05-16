@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField:
     Value: Card/Action/AttackClosestOpponent
+  <Rarity>k__BackingField: 1
   <Usage>k__BackingField: 3
   <Price>k__BackingField: 5
   <Title>k__BackingField: Attack Closest Opponent

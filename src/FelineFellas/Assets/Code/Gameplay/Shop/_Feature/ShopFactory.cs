@@ -1,4 +1,5 @@
 using Entitas.Generic;
+using UnityEngine;
 
 namespace FelineFellas
 {
@@ -13,15 +14,33 @@ namespace FelineFellas
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
-        private static MoneyConfig.ShopViewConfig Config => GameConfig.Money.ShopView;
+        private static MoneyConfig.ShopConfig     Config     => GameConfig.Money.Shop;
+        private static MoneyConfig.ShopViewConfig ViewConfig => GameConfig.Money.ShopView;
 
         public Entity<GameScope> Create()
         {
-            var shop = ViewFactory.CreateInWorld(Config.ShopPrefab, Config.ShopSpawnPosition).Entity
+            var shop = ViewFactory.CreateInWorld(ViewConfig.ShopPrefab, ViewConfig.ShopSpawnPosition).Entity
                     .Add<Shop>()
                 ;
 
+            var shopPosition = shop.WorldPosition();
+            var totalSlots = Config.ItemSlotsInShop;
+            var spacing = ViewConfig.SlotsSpacing;
+            var startY = -((totalSlots - 1) * spacing) / 2f;
+
+            for (var i = 0; i < totalSlots; i++)
+            {
+                var y = startY + i * spacing;
+                CreateSlot(new Vector2(0, y) + shopPosition)
+                    .Add<ShopSlot, EntityID>(shop.ID());
+            }
+
             return shop;
         }
+
+        private Entity<GameScope> CreateSlot(Vector2 position)
+            => ViewFactory.CreateInWorld(ViewConfig.ShopSlotPrefab, position).Entity
+                .Add<Empty>()
+                .Add<CanBuy, bool>(false);
     }
 }

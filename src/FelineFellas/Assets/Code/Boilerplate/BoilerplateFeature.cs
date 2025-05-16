@@ -20,6 +20,7 @@ namespace FelineFellas
             Add(new SelfEventSystem<GameScope, Strength>(contexts));
             Add(new SelfEventSystem<GameScope, Price>(contexts));
             Add(new SelfEventSystem<GameScope, Money>(contexts));
+            Add(new SelfFlagEventSystem<GameScope, Interactable>(contexts));
         }
     }
 }
