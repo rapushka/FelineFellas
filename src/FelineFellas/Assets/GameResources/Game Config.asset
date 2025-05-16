@@ -78,6 +78,7 @@ MonoBehaviour:
     <CanvasPrefab>k__BackingField: {fileID: 4674889592659861668, guid: b392e8d46911971e8b8f217b59a6b3d9, type: 3}
     <MainMenuPrefab>k__BackingField: {fileID: 4050470983777623250, guid: 69b909d3adf98d91db5976751b61b0a5, type: 3}
     <HUDPrefab>k__BackingField: {fileID: 2759347256078972060, guid: 74597063aea7e8a50a7019c2462432a2, type: 3}
+    <GameOverPagePrefab>k__BackingField: {fileID: 909243860409327485, guid: fc2bff64e0bfe3c64af43effc8077fc0, type: 3}
   <CameraDirectorPrefab>k__BackingField: {fileID: 4796567677478209745, guid: 2686f26e4e48040b69fa0242de03eda0, type: 3}
   <GameModes>k__BackingField:
     <GameModes>k__BackingField:
@@ -95,3 +96,4 @@ MonoBehaviour:
       <ShopPrefab>k__BackingField: {fileID: -2475622657787762968, guid: 72a1557f769faac23bf49723385b7770, type: 3}
       <ShopSlotPrefab>k__BackingField: {fileID: 4580263941864156537, guid: aa3410c4299f04dc8a76ce1d33a63d6a, type: 3}
       <SlotsSpacing>k__BackingField: 1.25
+      <SlotRotation>k__BackingField: -90

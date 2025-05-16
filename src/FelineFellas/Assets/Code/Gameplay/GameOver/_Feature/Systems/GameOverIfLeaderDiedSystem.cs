@@ -16,7 +16,7 @@ namespace FelineFellas
         public void Execute()
         {
             foreach (var _ in _deadLeaders)
-                GameStateMachine.PendState<MainMenuGameState>();
+                GameStateMachine.PendState<GameOverGameState>();
         }
     }
 }
