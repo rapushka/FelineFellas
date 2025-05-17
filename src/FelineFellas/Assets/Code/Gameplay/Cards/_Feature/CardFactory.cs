@@ -34,7 +34,7 @@ namespace FelineFellas
         {
             return Create(cardID, deck.WorldPosition())
                 .Chain(card => CardUtils.AddToDeck(card, deck))
-                .Add<CardFace, Face>(Face.FaceDown);
+                .Set<CardFace, Face>(Face.FaceDown);
         }
 
         public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates)
@@ -43,13 +43,13 @@ namespace FelineFellas
 
             return Create(cardID, cell.WorldPosition())
                 .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates))
-                .Add<CardFace, Face>(Face.FaceUp);
+                .Set<CardFace, Face>(Face.FaceUp);
         }
 
         public Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot)
             => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
                 .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot))
-                .Add<CardFace, Face>(Face.FaceUp);
+                .Set<CardFace, Face>(Face.FaceUp);
 
         private Entity<GameScope> Create(CardIDRef cardID, Vector2 position)
         {
@@ -75,6 +75,7 @@ namespace FelineFellas
                     .Add<CardTitle, string>(config.Title)
                     .Add<CardIcon, Sprite>(config.Icon)
                     .Add<Price, int>(config.Price)
+                    .Set<CardFace, Face>(Face.FaceDown)
                 ;
 
             if (isAction)
