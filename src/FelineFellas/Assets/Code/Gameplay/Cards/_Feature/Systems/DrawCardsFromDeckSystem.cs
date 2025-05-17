@@ -24,18 +24,19 @@ namespace FelineFellas
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
+        private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
+
         private static int HandSize => GameConfig.Cards.HandSize;
+
+        private bool HandIsCompleted => _cardsInHand.count >= HandSize;
 
         public void Execute()
         {
             foreach (var _ in _events)
             {
-                while (_cardsInHand.count < HandSize)
+                while (!HandIsCompleted && _cardsInDeck.Any())
                 {
-                    var isCardDrawn = _cardsInDeck.TryGetFirst(out var card);
-
-                    if (!isCardDrawn)
-                        break;
+                    var card = RandomService.PickRandom(_cardsInDeck);
 
                     card
                         .Remove<CardInDeck>()
