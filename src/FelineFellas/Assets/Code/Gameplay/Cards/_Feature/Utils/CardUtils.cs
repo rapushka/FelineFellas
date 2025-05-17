@@ -46,8 +46,7 @@ namespace FelineFellas
 
         public static Entity<GameScope> MarkUsed(Entity<GameScope> card)
             => RemoveFromHand(card)
-                .Is<Used>(true)
-                .Set<CardFace, Face>(Face.FaceDown);
+                .Is<Used>(true);
 
         public static Entity<GameScope> Discard(Entity<GameScope> card)
             => RemoveFromHand(card)
@@ -60,8 +59,7 @@ namespace FelineFellas
             => card
                 .Is<WillBeUsed>(false)
                 .RemoveSafely<InHandIndex>()
-                .Is<Interactable>(false)
-                .Set<CardFace, Face>(Face.FaceDown);
+                .Is<Interactable>(false);
 
         public static Entity<GameScope> PlaceCardInShop(Entity<GameScope> card, Entity<GameScope> slot)
         {
