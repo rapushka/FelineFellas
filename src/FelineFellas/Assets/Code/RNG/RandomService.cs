@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Entitas;
 using UnityRandom = UnityEngine.Random;
 
 // ReSharper disable PossibleMultipleEnumeration  - go fuck yourself
@@ -11,6 +12,7 @@ namespace FelineFellas
         float Range(float min, float max);
 
         T PickRandom<T>(IEnumerable<T> collection);
+        T PickRandom<T>(IGroup<T> collection) where T : class, IEntity;
 
         IWeighted PickRandom(IEnumerable<IWeighted> collection);
     }
@@ -26,6 +28,23 @@ namespace FelineFellas
 
             return collection.ElementAtOrDefault(index)
                 ?? throw new("Index out of bounds");
+        }
+
+        public T PickRandom<T>(IGroup<T> collection) where T : class, IEntity
+        {
+            var total = collection.count;
+            var index = UnityRandom.Range(0, total);
+
+            var counter = 0;
+            foreach (var entity in collection)
+            {
+                if (counter == index)
+                    return entity;
+
+                counter++;
+            }
+
+            throw new("Index out of bounds");
         }
 
         public IWeighted PickRandom(IEnumerable<IWeighted> collection)
