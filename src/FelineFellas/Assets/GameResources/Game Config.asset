@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5927c0f9670d4861b49d0fa9a59d68af, type: 3}
   m_Name: Game Config
   m_EditorClassIdentifier: 
+  _layout: {fileID: 3493468148955258963, guid: 7878ce8191009c5a3be41ed9f49f4716, type: 3}
   <Field>k__BackingField:
     <FieldSize>k__BackingField:
       <Width>k__BackingField: 7
@@ -30,25 +31,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 543075c8e4bae27078329748bcc8fd03, type: 2}
     - {fileID: 11400000, guid: 05bfccb3d63743a9bb4a2d3027b8ee35, type: 2}
     - {fileID: 11400000, guid: a968bcd4a29e482d581a6e308a6e38b5, type: 2}
-    <EnemyCardID>k__BackingField:
-      Value: Card/Unit/Rat
-    <EnemySpawnCoordinates>k__BackingField:
-    - _row: 2
-      _column: 2
-    - _row: 2
-      _column: 4
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
-      <DiscardPilePosition>k__BackingField: {x: 8.5, y: -5}
       <CardAnimationsSpeed>k__BackingField: 30
       <HoveredCardScaleUp>k__BackingField: 1.5
-      <DeckSpawnPosition>k__BackingField: {x: -8.5, y: -5}
       <DeckShuffleDuration>k__BackingField: 0.5
       <CardInHandScaleUp>k__BackingField: 1.5
       <MaxCardAngle>k__BackingField: 45
       <VerticalOffset>k__BackingField: -3.75
       <HandRadius>k__BackingField: 16.2
-      <HandCenter>k__BackingField: {x: 0, y: -4.57}
   <Loadouts>k__BackingField:
     <PlayerLoadout>k__BackingField: {fileID: 11400000, guid: c0e3019992949156e8017121ef8babab, type: 2}
     <EnemyLoadouts>k__BackingField:

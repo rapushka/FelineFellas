@@ -5,9 +5,9 @@ namespace FelineFellas
 {
     public interface ICardFactory : IService
     {
-        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards);
+        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side);
 
-        Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates);
+        Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates, Side side);
 
         Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot);
     }
@@ -23,18 +23,26 @@ namespace FelineFellas
         private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
             => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
 
-        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards)
+        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side)
         {
+            var position = side.Visit(
+                onPlayer: () => GameConfig.Layout.PlayerDeck,
+                onEnemy: () => GameConfig.Layout.EnemyDeck
+            );
+
             var deck = CreateEntity.Empty()
-                .Add<Name, string>("deck")
-                .Add<Deck>()
-                .Add<WorldPosition, Vector2>(CardsConfig.View.DeckSpawnPosition);
+                    .Add<Name, string>("deck")
+                    .Add<Deck>()
+                    .Add<WorldPosition, Vector2>(position)
+                    .Add<OnSide, Side>(side)
+                ;
 
             foreach (var (cardID, count) in cards)
             {
                 for (var i = 0; i < count; i++)
                 {
                     Create(cardID, deck.WorldPosition())
+                        .AssignToSide(side)
                         .Chain(c => CardUtils.AddToDeck(c, deck));
                 }
             }
@@ -42,11 +50,12 @@ namespace FelineFellas
             return deck;
         }
 
-        public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates)
+        public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates, Side side)
         {
             var cell = CellIndex.GetEntity(coordinates);
 
             return Create(cardID, cell.WorldPosition())
+                .AssignToSide(side)
                 .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates));
         }
 

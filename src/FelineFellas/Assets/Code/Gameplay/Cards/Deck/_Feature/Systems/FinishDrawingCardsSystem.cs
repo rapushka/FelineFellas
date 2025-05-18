@@ -20,7 +20,7 @@ namespace FelineFellas
 
         private readonly IGroup<Entity<GameScope>> _players
             = GroupBuilder<GameScope>
-                .With<Player>()
+                .With<PlayerActor>()
                 .And<HandSize>()
                 .Build();
 

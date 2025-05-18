@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
 
@@ -8,6 +10,18 @@ namespace FelineFellas
         public static bool Any<TScope>(this IGroup<Entity<TScope>> @this)
             where TScope : IScope
             => @this.count > 0;
+
+        public static bool Any<TScope>(this IGroup<Entity<TScope>> @this, Func<Entity<TScope>, bool> predicate)
+            where TScope : IScope
+        {
+            foreach (var entity in @this)
+            {
+                if (predicate.Invoke(entity))
+                    return true;
+            }
+
+            return false;
+        }
 
         public static bool TryGetFirst<TScope>(this IGroup<Entity<TScope>> @this, out Entity<TScope> result)
             where TScope : IScope
@@ -27,6 +41,16 @@ namespace FelineFellas
                 return entity;
 
             return null;
+        }
+
+        public static IEnumerable<Entity<TScope>> Where<TScope>(this IGroup<Entity<TScope>> @this, Func<Entity<TScope>, bool> predicate)
+            where TScope : IScope
+        {
+            foreach (var entity in @this)
+            {
+                if (predicate.Invoke(entity))
+                    yield return entity;
+            }
         }
     }
 }
