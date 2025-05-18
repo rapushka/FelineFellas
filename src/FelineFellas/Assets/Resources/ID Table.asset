@@ -43,10 +43,10 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<PlayerDeckOnStart>k__BackingField.Array.data[1].<CardID>k__BackingField.Value
-    - _objectPath: e8c8c63c153f028e9b71b86b9ae5e26c||11400000
+    - _objectPath: c0e3019992949156e8017121ef8babab||11400000
       _targetRefType: 0
       _apiVersion: 1
-      _propertyPath: <Deck>k__BackingField.Array.data[1].<CardID>k__BackingField.Value
+      _propertyPath: <Deck>k__BackingField.Array.data[2].<CardID>k__BackingField.Value
     - _objectPath: d85e558c1d3c04bee96ed7e7c3d3cf87||11400000
       _targetRefType: 0
       _apiVersion: 1
@@ -61,10 +61,10 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<PlayerDeckOnStart>k__BackingField.Array.data[4].<CardID>k__BackingField.Value
-    - _objectPath: e8c8c63c153f028e9b71b86b9ae5e26c||11400000
+    - _objectPath: c0e3019992949156e8017121ef8babab||11400000
       _targetRefType: 0
       _apiVersion: 1
-      _propertyPath: <Deck>k__BackingField.Array.data[4].<CardID>k__BackingField.Value
+      _propertyPath: <Deck>k__BackingField.Array.data[3].<CardID>k__BackingField.Value
   - _id: Card/Action/MoveUp
     _assetRefs:
     - _objectPath: cc8ec082bc2a90b1cb8dd0956db27dc8||11400000
@@ -79,10 +79,10 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<PlayerDeckOnStart>k__BackingField.Array.data[1].<CardID>k__BackingField.Value
-    - _objectPath: e8c8c63c153f028e9b71b86b9ae5e26c||11400000
+    - _objectPath: c0e3019992949156e8017121ef8babab||11400000
       _targetRefType: 0
       _apiVersion: 1
-      _propertyPath: <Deck>k__BackingField.Array.data[2].<CardID>k__BackingField.Value
+      _propertyPath: <Deck>k__BackingField.Array.data[4].<CardID>k__BackingField.Value
   - _id: Card/GlobalAction
     _assetRefs: []
   - _id: Card/GlobalAction/DoNothing
@@ -131,10 +131,10 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<PlayerDeckOnStart>k__BackingField.Array.data[3].<CardID>k__BackingField.Value
-    - _objectPath: e8c8c63c153f028e9b71b86b9ae5e26c||11400000
+    - _objectPath: c0e3019992949156e8017121ef8babab||11400000
       _targetRefType: 0
       _apiVersion: 1
-      _propertyPath: <Deck>k__BackingField.Array.data[3].<CardID>k__BackingField.Value
+      _propertyPath: <Deck>k__BackingField.Array.data[1].<CardID>k__BackingField.Value
   - _id: Card/Unit
     _assetRefs: []
   - _id: Card/Unit/Crook
@@ -163,7 +163,7 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<PlayerDeckOnStart>k__BackingField.Array.data[0].<CardID>k__BackingField.Value
-    - _objectPath: e8c8c63c153f028e9b71b86b9ae5e26c||11400000
+    - _objectPath: c0e3019992949156e8017121ef8babab||11400000
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Deck>k__BackingField.Array.data[0].<CardID>k__BackingField.Value
@@ -195,7 +195,7 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Cards>k__BackingField.<LeaderCardID>k__BackingField.Value
-    - _objectPath: e8c8c63c153f028e9b71b86b9ae5e26c||11400000
+    - _objectPath: c0e3019992949156e8017121ef8babab||11400000
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <UnitsOnField>k__BackingField.Array.data[0].<UnitID>k__BackingField.Value

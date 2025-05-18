@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ab68e26e2548b2a7d9889bea7aac48, type: 3}
+  m_Script: {fileID: 11500000, guid: a4e4aea8e1fe4e0481fdb70350bc5ce2, type: 3}
   m_Name: Player Loadout
   m_EditorClassIdentifier: 
   <HandSize>k__BackingField: 5
@@ -18,16 +18,16 @@ MonoBehaviour:
       Value: Card/Unit/Crook
     <Count>k__BackingField: 3
   - <CardID>k__BackingField:
-      Value: Card/Action/AttackClosestOpponent
-    <Count>k__BackingField: 5
-  - <CardID>k__BackingField:
-      Value: Card/Action/MoveUp
-    <Count>k__BackingField: 1
-  - <CardID>k__BackingField:
       Value: Card/GlobalAction/DoNothing
     <Count>k__BackingField: 1
   - <CardID>k__BackingField:
+      Value: Card/Action/AttackClosestOpponent
+    <Count>k__BackingField: 3
+  - <CardID>k__BackingField:
       Value: Card/Action/BackToBase
+    <Count>k__BackingField: 1
+  - <CardID>k__BackingField:
+      Value: Card/Action/MoveUp
     <Count>k__BackingField: 1
   <UnitsOnField>k__BackingField:
   - <UnitID>k__BackingField:

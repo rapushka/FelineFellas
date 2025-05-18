@@ -15,18 +15,11 @@ namespace FelineFellas
         {
             [field: SerializeField] public CardIDRef   UnitID      { get; private set; }
             [field: SerializeField] public Coordinates Coordinates { get; private set; }
-        }
 
-        [Serializable]
-        public class CardEntry
-        {
-            [field: SerializeField] public CardIDRef CardID { get; private set; }
-            [field: SerializeField] public int       Count  { get; private set; }
-
-            public void Deconstruct(out CardIDRef cardID, out int count)
+            public void Deconstruct(out CardIDRef unitID, out Coordinates coordinates)
             {
-                cardID = CardID;
-                count = Count;
+                unitID = UnitID;
+                coordinates = Coordinates;
             }
         }
     }

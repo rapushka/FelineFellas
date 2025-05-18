@@ -83,6 +83,12 @@ namespace FelineFellas
         {
             var cell = CellIndex.GetEntity(coordinates);
 
+#if DEBUG
+            // ReSharper disable once RedundantNameQualifier – to make this peace of code independant from surrounding
+            if (!card.Is<UnitCard>())
+                UnityEngine.Debug.LogError("Only Units can be placed on field!");
+#endif
+
             card
                 .Chain(RemoveCardFromPlacedCell)
                 .Set<TargetRotation, float>(0f)

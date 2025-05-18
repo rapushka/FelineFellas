@@ -7,8 +7,6 @@ namespace FelineFellas
         public CardsFeature()
             : base(nameof(CardsFeature))
         {
-            Add(new SpawnDeckWithCardsSystem());
-            Add(new SpawnPlayerLeaderSystem());
             Add(new SpawnEnemyUnitsSystem());
             Add(new StartWithPlayerTurnSystem());
 
