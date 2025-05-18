@@ -51,8 +51,7 @@ namespace FelineFellas
         private Entity<GameScope> CreateDeck(Entity<GameScope> actor, LoadoutConfig loadout)
         {
             var side = actor.Get<OnSide>().Value;
-            var deckID = CardFactory.CreateDeckWithCards(loadout.Deck)
-                .Add<OnSide, Side>(side)
+            var deckID = CardFactory.CreateDeckWithCards(loadout.Deck, actor)
                 .ID();
 
             actor.Add<OwnedDeck, EntityID>(deckID);

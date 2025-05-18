@@ -5,7 +5,7 @@ namespace FelineFellas
 {
     public interface ICardFactory : IService
     {
-        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards);
+        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Entity<GameScope> actor);
 
         Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates);
 
@@ -23,12 +23,21 @@ namespace FelineFellas
         private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
             => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
 
-        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards)
+        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Entity<GameScope> actor)
         {
+            var side = actor.Get<OnSide>().Value;
+
+            var position = side.Visit(
+                onPlayer: () => GameConfig.Layout.PlayerDeck,
+                onEnemy: () => GameConfig.Layout.EnemyDeck
+            );
+
             var deck = CreateEntity.Empty()
-                .Add<Name, string>("deck")
-                .Add<Deck>()
-                .Add<WorldPosition, Vector2>(GameConfig.Layout.PlayerDeck);
+                    .Add<Name, string>("deck")
+                    .Add<Deck>()
+                    .Add<WorldPosition, Vector2>(position)
+                    .Add<OnSide, Side>(side)
+                ;
 
             foreach (var (cardID, count) in cards)
             {

@@ -1,3 +1,4 @@
+using System;
 using Entitas.Generic;
 
 namespace FelineFellas
@@ -26,5 +27,24 @@ namespace FelineFellas
 
         public static bool OnSameSide(this Entity<GameScope> @this, Entity<GameScope> other)
             => @this.Get<OnSide>().Value == other.Get<OnSide>().Value;
+
+        public static T Visit<T>(
+            this Side @this,
+            Func<T> onPlayer,
+            Func<T> onEnemy,
+            Func<T> onUnknown = null
+        )
+        {
+            if (@this is Side.Unknown && onUnknown is not null)
+                return onUnknown.Invoke();
+
+            // ReSharper disable once SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault - kys
+            return @this switch
+            {
+                Side.Player => onPlayer.Invoke(),
+                Side.Enemy  => onEnemy.Invoke(),
+                _           => throw new("Unknown Side!"),
+            };
+        }
     }
 }
