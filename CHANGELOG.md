@@ -15,6 +15,8 @@
 - game over screen after Leader dies [#46](https://github.com/rapushka/FelineFellas/issues/46)
 - add entity debugger [#52](https://github.com/rapushka/FelineFellas/issues/52)
 - draw random cards [#29](https://github.com/rapushka/FelineFellas/issues/29)
+- in deck and in discard cards are face-down [#36](https://github.com/rapushka/FelineFellas/issues/36)
+- new placeholder art for card icons [#36](https://github.com/rapushka/FelineFellas/issues/36)
 
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
