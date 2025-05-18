@@ -7,7 +7,6 @@ namespace FelineFellas
         public CardsFeature()
             : base(nameof(CardsFeature))
         {
-            Add(new SpawnEnemyUnitsSystem());
             Add(new StartWithPlayerTurnSystem());
 
             Add(new TickEnemyTurnSystem());

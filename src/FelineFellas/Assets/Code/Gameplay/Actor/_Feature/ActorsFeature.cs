@@ -6,6 +6,7 @@ namespace FelineFellas
             : base(nameof(ActorFeature))
         {
             Add(new CreatePlayerActorSystem());
+            Add(new CreateEnemyActorSystem());
 
             Add(new UpdateMoneyViewSystem());
         }

@@ -2,7 +2,7 @@ using Entitas;
 
 namespace FelineFellas
 {
-    public class SpawnEnemyUnitsSystem : IInitializeSystem
+    public class CreateEnemyActorSystem : IInitializeSystem
     {
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
