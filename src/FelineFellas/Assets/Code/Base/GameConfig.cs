@@ -18,11 +18,15 @@ namespace FelineFellas
         GameModesConfig GameModes { get; }
 
         MoneyConfig Money { get; }
+
+        IGameplayLayoutProvider Layout { get; }
     }
 
     [CreateAssetMenu(menuName = "375/FelineFellas/GameConfig", order = 100)]
     public class GameConfig : ScriptableObject, IGameConfig
     {
+        [SerializeField] private GameplayLayoutProvider _layout;
+
         [field: NaughtyAttributes.BoxGroup(nameof(Field))]
         [field: SerializeField] public FieldConfig Field { get; private set; }
 
@@ -46,5 +50,7 @@ namespace FelineFellas
 
         [field: NaughtyAttributes.BoxGroup(nameof(Money))]
         [field: SerializeField] public MoneyConfig Money { get; private set; }
+
+        public IGameplayLayoutProvider Layout => _layout;
     }
 }

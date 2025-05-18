@@ -14,8 +14,6 @@ namespace FelineFellas
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
-        private static CardsConfig.ViewConfig ViewConfig => GameConfig.Cards.View;
-
         private readonly List<Entity<GameScope>> _buffer = new(32);
 
         public void Execute()
@@ -23,7 +21,7 @@ namespace FelineFellas
             foreach (var card in _discardedCards.GetEntities(_buffer))
             {
                 card
-                    .Set<TargetPosition, Vector2>(ViewConfig.DiscardPilePosition)
+                    .Set<TargetPosition, Vector2>(GameConfig.Layout.PlayerDiscard)
                     .Is<InDiscard>(true)
                     .Is<SendToDiscard>(false)
                     ;

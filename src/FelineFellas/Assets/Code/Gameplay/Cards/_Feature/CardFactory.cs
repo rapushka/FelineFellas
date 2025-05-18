@@ -28,7 +28,7 @@ namespace FelineFellas
             var deck = CreateEntity.Empty()
                 .Add<Name, string>("deck")
                 .Add<Deck>()
-                .Add<WorldPosition, Vector2>(CardsConfig.View.DeckSpawnPosition);
+                .Add<WorldPosition, Vector2>(GameConfig.Layout.PlayerDeck);
 
             foreach (var (cardID, count) in cards)
             {

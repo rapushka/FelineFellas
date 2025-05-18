@@ -12,7 +12,7 @@ namespace FelineFellas
                 .And<Dropped>()
                 .Build();
 
-        private static Entity<GameScope> Player => Contexts.Instance.Get<GameScope>().Unique.GetEntity<Player>();
+        private static Entity<GameScope> Player => Contexts.Instance.Get<GameScope>().Unique.GetEntity<PlayerActor>();
 
         public void Execute()
         {

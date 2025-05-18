@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _wallets
             = GroupBuilder<GameScope>
-                .With<Player>()
+                .With<PlayerActor>()
                 .And<Money>()
                 .Build();
 

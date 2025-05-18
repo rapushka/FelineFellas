@@ -1,4 +1,3 @@
-using System.Linq;
 using Entitas.Generic;
 
 namespace FelineFellas
@@ -19,32 +18,19 @@ namespace FelineFellas
         {
             var actor = Create(loadout, Side.Player)
                     .Add<Name, string>("player")
-                    .Add<Player>()
+                    .Add<PlayerActor>()
                     .Add<Money, int>(GameConfig.Money.MoneyOnStart)
                 ;
-
-            var deckID = actor.Get<OwnedDeck>().Value;
-            foreach (var unit in DeckUtils.GetAllCardsInDeck(deckID).Where(c => c.Is<UnitCard>()))
-                unit.Is<Fella>(!unit.Is<Leader>());
 
             return actor;
         }
 
         public Entity<GameScope> CreateEnemy(LoadoutConfig loadout)
         {
-            var actor = CreateEntity.Empty() // TODO: use common Create
-                    .Add<Actor>()
-                    .Add<HandSize, int>(loadout.HandSize)
-                    .Add<OnSide, Side>(Side.Enemy)
-                    // .Chain(a => CreateDeck(a, loadout)) TODO:
-                    .Chain(a => CreateCardsOnField(a, loadout))
+            var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
-                    .Add<Enemy>()
+                    .Add<EnemyActor>()
                 ;
-
-            // var deckID = actor.Get<OwnedDeck>().Value;
-            // foreach (var unit in DeckUtils.GetAllCardsInDeck(deckID).Where(c => c.Is<UnitCard>()))
-            //     unit.Is<EnemyUnit>(true);
 
             return actor;
         }
@@ -72,7 +58,12 @@ namespace FelineFellas
             actor.Add<OwnedDeck, EntityID>(deckID);
 
             foreach (var card in DeckUtils.GetAllCardsInDeck(deckID))
+            {
                 card.Add<OnSide, Side>(side);
+
+                if (card.Is<UnitCard>())
+                    card.AddSideFlag();
+            }
 
             return actor;
         }
