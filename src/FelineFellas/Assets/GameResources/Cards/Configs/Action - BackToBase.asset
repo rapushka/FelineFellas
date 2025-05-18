@@ -18,7 +18,7 @@ MonoBehaviour:
   <Usage>k__BackingField: 3
   <Price>k__BackingField: 3
   <Title>k__BackingField: Back to the Base
-  <Icon>k__BackingField: {fileID: 21300000, guid: a01087ce1455c7e4c8f2410c26afcfd2, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 12e0374c87d0a9a1393cb690a86fa3c8, type: 3}
   <ActionCardConfig>k__BackingField:
     <ActionType>k__BackingField: 3
     <Value>k__BackingField: 1

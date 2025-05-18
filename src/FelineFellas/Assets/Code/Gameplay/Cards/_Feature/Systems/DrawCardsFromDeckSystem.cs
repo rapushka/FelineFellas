@@ -37,11 +37,7 @@ namespace FelineFellas
                 while (!HandIsCompleted && _cardsInDeck.Any())
                 {
                     var card = RandomService.PickRandom(_cardsInDeck);
-
-                    card
-                        .Remove<CardInDeck>()
-                        .Add<InHandIndex, int>(_cardsInHand.count)
-                        ;
+                    CardUtils.DrawCardToHand(card, _cardsInHand.count);
                 }
             }
         }

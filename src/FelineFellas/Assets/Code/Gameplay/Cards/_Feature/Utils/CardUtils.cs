@@ -22,6 +22,7 @@ namespace FelineFellas
                 .Is<Draggable>(true)    // TODO: interactable only after target position is reached?
                 .Is<Interactable>(true) // TODO: interactable only after target position is reached?
                 .Set<TargetPosition, Vector2>(deck.WorldPosition())
+                .Set<CardFace, Face>(Face.FaceDown)
 
                 // cleanups
                 .Is<SendToDiscard>(false)
@@ -29,9 +30,19 @@ namespace FelineFellas
                 .Is<Used>(false)
                 .RemoveSafely<InHandIndex>();
 
+        public static void DrawCardToHand(Entity<GameScope> card, int index)
+        {
+            card
+                .Remove<CardInDeck>()
+                .Add<InHandIndex, int>(index)
+                .Set<CardFace, Face>(Face.FaceUp)
+                ;
+        }
+
         public static Entity<GameScope> MarkUsedAndDiscard(Entity<GameScope> card)
             => MarkUsed(card)
-                .Is<SendToDiscard>(true);
+                .Is<SendToDiscard>(true)
+                .Set<CardFace, Face>(Face.FaceDown);
 
         public static Entity<GameScope> MarkUsed(Entity<GameScope> card)
             => RemoveFromHand(card)
@@ -41,7 +52,8 @@ namespace FelineFellas
             => RemoveFromHand(card)
                 .Chain(RemoveFromShop)
                 .Is<SendToDiscard>(true)
-                .Set<TargetRotation, float>(RandomService.Range(-2f, 2f));
+                .Set<TargetRotation, float>(RandomService.Range(-2f, 2f))
+                .Set<CardFace, Face>(Face.FaceDown);
 
         public static Entity<GameScope> RemoveFromHand(Entity<GameScope> card)
             => card
@@ -56,6 +68,7 @@ namespace FelineFellas
                 .Set<Rotation, float>(ShopViewConfig.SlotRotation)
                 .Set<TargetPosition, Vector2>(slot.WorldPosition())
                 .Add<CardInShopSlot, EntityID>(slot.ID())
+                .Set<CardFace, Face>(Face.FaceUp)
                 ;
 
             slot
@@ -75,6 +88,7 @@ namespace FelineFellas
                 .Set<TargetRotation, float>(0f)
                 .Set<TargetPosition, Vector2>(cell.WorldPosition())
                 .Set<OnField, Coordinates>(cell.Get<CellCoordinates>().Value)
+                .Set<CardFace, Face>(Face.FaceUp)
                 ;
 
             cell
