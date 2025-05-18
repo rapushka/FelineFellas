@@ -17,7 +17,8 @@
 - draw random cards [#29](https://github.com/rapushka/FelineFellas/issues/29)
 - in deck and in discard cards are face-down [#36](https://github.com/rapushka/FelineFellas/issues/36)
 - new placeholder art for card icons [#36](https://github.com/rapushka/FelineFellas/issues/36)
-- Loadout config for Player and Enemy [#59](https://github.com/rapushka/FelineFellas/issues/59)
+- WIP: implement Enemy Actor [#17](https://github.com/rapushka/FelineFellas/issues/17)
+  - Loadout config for Player and Enemy [#59](https://github.com/rapushka/FelineFellas/issues/59)
 
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
