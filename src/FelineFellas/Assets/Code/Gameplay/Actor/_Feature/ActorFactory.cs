@@ -1,3 +1,4 @@
+using System.Linq;
 using Entitas.Generic;
 
 namespace FelineFellas
@@ -15,39 +16,54 @@ namespace FelineFellas
 
         public Entity<GameScope> CreatePlayer(LoadoutConfig loadout)
         {
-            var actor = Create(loadout)
+            var actor = Create(loadout, Side.Player)
                     .Add<Name, string>("player")
                     .Add<Player>()
                     .Add<Money, int>(GameConfig.Money.MoneyOnStart)
                 ;
 
+            var deckID = actor.Get<OwnedDeck>().Value;
+            foreach (var unit in DeckUtils.GetAllCardsInDeck(deckID).Where(c => c.Is<UnitCard>()))
+                unit.Is<Fella>(!unit.Is<Leader>());
+
             return actor;
         }
 
-        private Entity<GameScope> Create(LoadoutConfig loadout)
+        private Entity<GameScope> Create(LoadoutConfig loadout, Side side)
         {
-            return CreateEntity.Empty()
+            var actor = CreateEntity.Empty()
                     .Add<Actor>()
                     .Add<HandSize, int>(loadout.HandSize)
+                    .Add<OnSide, Side>(side)
                     .Chain(a => CreateDeck(a, loadout))
                     .Chain(a => CreateCardsOnField(a, loadout))
                 ;
+
+            return actor;
         }
 
         private Entity<GameScope> CreateDeck(Entity<GameScope> actor, LoadoutConfig loadout)
         {
             var deck = CardFactory.CreateDeckWithCards(loadout.Deck);
+            actor.Add<OwnedDeck, EntityID>(deck.ID());
+
+            var side = actor.Get<OnSide>().Value;
 
             foreach (var card in DeckUtils.GetAllCardsInDeck(deck.ID()))
-                card.Is<Fella>(card.Is<UnitCard>() && !card.Is<Leader>());
+                card.Add<OnSide, Side>(side);
 
             return actor;
         }
 
         private Entity<GameScope> CreateCardsOnField(Entity<GameScope> actor, LoadoutConfig loadout)
         {
+            var side = actor.Get<OnSide>().Value;
+
             foreach (var (id, coordinates) in loadout.UnitsOnField)
-                CardFactory.CreateCardOnCoordinates(id, coordinates);
+            {
+                CardFactory.CreateCardOnCoordinates(id, coordinates)
+                    .Add<OnSide, Side>(side);
+            }
 
             return actor;
         }
