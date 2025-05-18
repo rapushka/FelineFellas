@@ -7,6 +7,8 @@ namespace FelineFellas
         FieldConfig Field { get; }
         CardsConfig Cards { get; }
 
+        LoadoutsConfig Loadouts { get; }
+
         UiConfig UI { get; }
 
         TurnsConfig Turns { get; }
@@ -26,6 +28,9 @@ namespace FelineFellas
 
         [field: NaughtyAttributes.BoxGroup(nameof(Cards))]
         [field: SerializeField] public CardsConfig Cards { get; private set; }
+
+        [field: NaughtyAttributes.BoxGroup(nameof(Loadouts))]
+        [field: SerializeField] public LoadoutsConfig Loadouts { get; private set; }
 
         [field: NaughtyAttributes.BoxGroup(nameof(Turns))]
         [field: SerializeField] public TurnsConfig Turns { get; private set; }

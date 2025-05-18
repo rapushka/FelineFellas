@@ -22,19 +22,22 @@ namespace FelineFellas
                 .And<InHandIndex>()
                 .Build();
 
-        private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
+        private readonly IGroup<Entity<GameScope>> _players
+            = GroupBuilder<GameScope>
+                .With<Player>()
+                .And<HandSize>()
+                .Build();
 
         private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
-
-        private static int HandSize => GameConfig.Cards.HandSize;
-
-        private bool HandIsCompleted => _cardsInHand.count >= HandSize;
 
         public void Execute()
         {
             foreach (var _ in _events)
+            foreach (var player in _players)
             {
-                while (!HandIsCompleted && _cardsInDeck.Any())
+                var handSize = player.Get<HandSize>().Value;
+
+                while (_cardsInHand.count < handSize && _cardsInDeck.Any())
                 {
                     var card = RandomService.PickRandom(_cardsInDeck);
                     CardUtils.DrawCardToHand(card, _cardsInHand.count);

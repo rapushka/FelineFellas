@@ -19,6 +19,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<UnitCard>()
                 .And<OnField>()
+                .And<OnSide>()
                 .Build();
 
         private readonly List<Entity<GameScope>> _buffer = new(32);
@@ -33,19 +34,19 @@ namespace FelineFellas
                 float? closestDistance = null;
                 Entity<GameScope> closestUnit = null;
 
-                foreach (var unit in _units)
+                foreach (var otherUnit in _units)
                 {
-                    var onSameSide = targetUnit.Is<Fella>() == unit.Is<Fella>();
+                    var onSameSide = targetUnit.OnSameSide(otherUnit);
                     if (onSameSide)
                         continue;
 
-                    var otherUnitPosition = unit.Get<OnField>().Value;
+                    var otherUnitPosition = otherUnit.Get<OnField>().Value;
                     var distance = fromPosition.DistanceTo(otherUnitPosition);
 
                     if (closestDistance is null || closestDistance > distance)
                     {
                         closestDistance = distance;
-                        closestUnit = unit;
+                        closestUnit = otherUnit;
                     }
                 }
 

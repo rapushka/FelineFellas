@@ -7,8 +7,8 @@ namespace FelineFellas
         {
             Add(new InputFeature());
 
-            Add(new SidesFeature());
             Add(new GridFeature());
+            Add(new ActorFeature());
             Add(new CardsFeature());
             Add(new ShopFeature());
 

@@ -5,9 +5,8 @@ namespace FelineFellas
 {
     public interface ICardFactory : IService
     {
-        Entity<GameScope> CreateDeck();
+        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards);
 
-        Entity<GameScope> CreateCardInDeck(CardIDRef cardID, Entity<GameScope> deck);
         Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates);
 
         Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot);
@@ -24,17 +23,23 @@ namespace FelineFellas
         private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
             => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
 
-        public Entity<GameScope> CreateDeck()
-            => CreateEntity.Empty()
+        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards)
+        {
+            var deck = CreateEntity.Empty()
                 .Add<Name, string>("deck")
                 .Add<Deck>()
                 .Add<WorldPosition, Vector2>(CardsConfig.View.DeckSpawnPosition);
 
-        public Entity<GameScope> CreateCardInDeck(CardIDRef cardID, Entity<GameScope> deck)
-        {
-            return Create(cardID, deck.WorldPosition())
-                .Chain(card => CardUtils.AddToDeck(card, deck))
-                .Set<CardFace, Face>(Face.FaceDown);
+            foreach (var (cardID, count) in cards)
+            {
+                for (var i = 0; i < count; i++)
+                {
+                    Create(cardID, deck.WorldPosition())
+                        .Chain(c => CardUtils.AddToDeck(c, deck));
+                }
+            }
+
+            return deck;
         }
 
         public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates)
@@ -42,14 +47,12 @@ namespace FelineFellas
             var cell = CellIndex.GetEntity(coordinates);
 
             return Create(cardID, cell.WorldPosition())
-                .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates))
-                .Set<CardFace, Face>(Face.FaceUp);
+                .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates));
         }
 
         public Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot)
             => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
-                .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot))
-                .Set<CardFace, Face>(Face.FaceUp);
+                .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot));
 
         private Entity<GameScope> Create(CardIDRef cardID, Vector2 position)
         {
@@ -95,9 +98,10 @@ namespace FelineFellas
             var unitConfig = config.UnitCardConfig;
 
             card
-                .Add<MaxHealth, int>((int)unitConfig.MaxHealth)
-                .Add<Health, int>((int)unitConfig.MaxHealth)
-                .Add<Strength, int>((int)unitConfig.Strength)
+                .Add<MaxHealth, int>(unitConfig.MaxHealth)
+                .Add<Health, int>(unitConfig.MaxHealth)
+                .Add<Strength, int>(unitConfig.Strength)
+                .Is<Leader>(unitConfig.IsLeader)
                 ;
         }
 

@@ -26,5 +26,6 @@ MonoBehaviour:
     <AllowedTargets>k__BackingField: 0
     <Direction>k__BackingField: 0
   <UnitCardConfig>k__BackingField:
+    <IsLeader>k__BackingField: 1
     <MaxHealth>k__BackingField: 10
     <Strength>k__BackingField: 2
