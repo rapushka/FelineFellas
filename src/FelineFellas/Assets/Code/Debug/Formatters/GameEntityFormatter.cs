@@ -19,7 +19,7 @@ namespace FelineFellas
                 entity.ToString<OnField, Coordinates>(prefix: "on-field: "),
                 entity.Has<CardInShopSlot>() ? "in-shop" : string.Empty,
 
-                entity.ToString<Enemy>(),
+                entity.ToString<EnemyUnit>(),
                 entity.ToString<Fella>(),
                 entity.ToString<Leader>(),
 

@@ -10,9 +10,6 @@ namespace FelineFellas
     {
         [SerializeField] private CardConfig[] _configs;
 
-        [field: SerializeField] public CardIDRef     EnemyCardID           { get; private set; } // TODO: migrate to Loadout
-        [field: SerializeField] public Coordinates[] EnemySpawnCoordinates { get; private set; } // TODO: migrate to Loadout
-
         [field: SerializeField] public ViewConfig View { get; private set; }
 
         public CardConfig GetConfig(CardIDRef id) => _configs.Single(c => c.ID == id);

@@ -6,17 +6,14 @@ namespace FelineFellas
     {
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
-        private static ICardFactory CardFactory => ServiceLocator.Resolve<ICardFactory>();
+        private static IActorFactory ActorFactory => ServiceLocator.Resolve<IActorFactory>();
+
+        private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
 
         public void Initialize()
         {
-            foreach (var coordinate in GameConfig.Cards.EnemySpawnCoordinates)
-            {
-                CardFactory.CreateCardOnCoordinates(GameConfig.Cards.EnemyCardID, coordinate)
-                    .Add<OnSide, Side>(Side.Enemy)
-                    .Add<Enemy>()
-                    ;
-            }
+            var enemyLoadout = RandomService.PickRandom(GameConfig.Loadouts.EnemyLoadouts);
+            ActorFactory.CreateEnemy(enemyLoadout);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace FelineFellas
     public interface IActorFactory : IService
     {
         Entity<GameScope> CreatePlayer(LoadoutConfig loadout);
+        Entity<GameScope> CreateEnemy(LoadoutConfig loadout);
     }
 
     public class ActorFactory : IActorFactory
@@ -29,6 +30,25 @@ namespace FelineFellas
             return actor;
         }
 
+        public Entity<GameScope> CreateEnemy(LoadoutConfig loadout)
+        {
+            var actor = CreateEntity.Empty() // TODO: use common Create
+                    .Add<Actor>()
+                    .Add<HandSize, int>(loadout.HandSize)
+                    .Add<OnSide, Side>(Side.Enemy)
+                    // .Chain(a => CreateDeck(a, loadout)) TODO:
+                    .Chain(a => CreateCardsOnField(a, loadout))
+                    .Add<Name, string>("enemy")
+                    .Add<Enemy>()
+                ;
+
+            // var deckID = actor.Get<OwnedDeck>().Value;
+            // foreach (var unit in DeckUtils.GetAllCardsInDeck(deckID).Where(c => c.Is<UnitCard>()))
+            //     unit.Is<EnemyUnit>(true);
+
+            return actor;
+        }
+
         private Entity<GameScope> Create(LoadoutConfig loadout, Side side)
         {
             var actor = CreateEntity.Empty()
@@ -44,12 +64,14 @@ namespace FelineFellas
 
         private Entity<GameScope> CreateDeck(Entity<GameScope> actor, LoadoutConfig loadout)
         {
-            var deck = CardFactory.CreateDeckWithCards(loadout.Deck);
-            actor.Add<OwnedDeck, EntityID>(deck.ID());
-
             var side = actor.Get<OnSide>().Value;
+            var deckID = CardFactory.CreateDeckWithCards(loadout.Deck)
+                .Add<OnSide, Side>(side)
+                .ID();
 
-            foreach (var card in DeckUtils.GetAllCardsInDeck(deck.ID()))
+            actor.Add<OwnedDeck, EntityID>(deckID);
+
+            foreach (var card in DeckUtils.GetAllCardsInDeck(deckID))
                 card.Add<OnSide, Side>(side);
 
             return actor;
@@ -62,7 +84,8 @@ namespace FelineFellas
             foreach (var (id, coordinates) in loadout.UnitsOnField)
             {
                 CardFactory.CreateCardOnCoordinates(id, coordinates)
-                    .Add<OnSide, Side>(side);
+                    .Add<OnSide, Side>(side)
+                    .AddSideFlag();
             }
 
             return actor;

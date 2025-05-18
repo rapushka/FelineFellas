@@ -42,15 +42,15 @@ namespace FelineFellas
 
                 var canUseOnEnemy = card.Is<CanUseOnEnemy>();
                 var canUseOnFella = card.Is<CanUseOnFella>();
-                var canUseOnLead = card.Is<CanUseOnLeader>();
+                var canUseOnLeader = card.Is<CanUseOnLeader>();
 
-                if (unit.Is<Leader>() && !canUseOnLead)
+                if (unit.Is<Leader>() && !canUseOnLeader)
                     continue;
 
                 if (unit.Is<Fella>() && !canUseOnFella)
                     continue;
 
-                if (unit.Is<Enemy>() && !canUseOnEnemy)
+                if (unit.Is<EnemyUnit>() && !canUseOnEnemy)
                     continue;
 
                 card
