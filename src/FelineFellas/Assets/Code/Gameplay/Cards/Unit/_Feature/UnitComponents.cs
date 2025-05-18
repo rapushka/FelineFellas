@@ -6,9 +6,13 @@ namespace FelineFellas
 
     public sealed class OnSide : ValueComponent<Side>, IInScope<GameScope> { }
 
+    public sealed class PlayerCard : FlagComponent, IInScope<GameScope> { }
+
     public sealed class Fella : FlagComponent, IInScope<GameScope> { }
 
     public sealed class Leader : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class EnemyCard : FlagComponent, IInScope<GameScope> { }
 
     public sealed class EnemyUnit : FlagComponent, IInScope<GameScope> { }
 

@@ -24,10 +24,14 @@ namespace FelineFellas
         public T PickRandom<T>(IEnumerable<T> collection)
         {
             var total = collection.Count();
+
+            if (total == 0)
+                throw new("Collection is empty");
+
             var index = UnityRandom.Range(0, total);
 
             return collection.ElementAtOrDefault(index)
-                ?? throw new("Index out of bounds");
+                ?? throw new($"Index {index} is out of bounds");
         }
 
         public T PickRandom<T>(IGroup<T> collection) where T : class, IEntity

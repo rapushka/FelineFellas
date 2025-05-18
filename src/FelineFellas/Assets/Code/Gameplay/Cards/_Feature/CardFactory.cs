@@ -5,9 +5,9 @@ namespace FelineFellas
 {
     public interface ICardFactory : IService
     {
-        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Entity<GameScope> actor);
+        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side);
 
-        Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates);
+        Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates, Side side);
 
         Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot);
     }
@@ -23,10 +23,8 @@ namespace FelineFellas
         private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
             => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
 
-        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Entity<GameScope> actor)
+        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side)
         {
-            var side = actor.Get<OnSide>().Value;
-
             var position = side.Visit(
                 onPlayer: () => GameConfig.Layout.PlayerDeck,
                 onEnemy: () => GameConfig.Layout.EnemyDeck
@@ -44,6 +42,7 @@ namespace FelineFellas
                 for (var i = 0; i < count; i++)
                 {
                     Create(cardID, deck.WorldPosition())
+                        .AssignToSide(side)
                         .Chain(c => CardUtils.AddToDeck(c, deck));
                 }
             }
@@ -51,11 +50,12 @@ namespace FelineFellas
             return deck;
         }
 
-        public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates)
+        public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates, Side side)
         {
             var cell = CellIndex.GetEntity(coordinates);
 
             return Create(cardID, cell.WorldPosition())
+                .AssignToSide(side)
                 .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates));
         }
 

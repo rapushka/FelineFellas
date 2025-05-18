@@ -51,18 +51,10 @@ namespace FelineFellas
         private Entity<GameScope> CreateDeck(Entity<GameScope> actor, LoadoutConfig loadout)
         {
             var side = actor.Get<OnSide>().Value;
-            var deckID = CardFactory.CreateDeckWithCards(loadout.Deck, actor)
+            var deckID = CardFactory.CreateDeckWithCards(loadout.Deck, side)
                 .ID();
 
             actor.Add<OwnedDeck, EntityID>(deckID);
-
-            foreach (var card in DeckUtils.GetAllCardsInDeck(deckID))
-            {
-                card.Add<OnSide, Side>(side);
-
-                if (card.Is<UnitCard>())
-                    card.AddSideFlag();
-            }
 
             return actor;
         }
@@ -72,11 +64,7 @@ namespace FelineFellas
             var side = actor.Get<OnSide>().Value;
 
             foreach (var (id, coordinates) in loadout.UnitsOnField)
-            {
-                CardFactory.CreateCardOnCoordinates(id, coordinates)
-                    .Add<OnSide, Side>(side)
-                    .AddSideFlag();
-            }
+                CardFactory.CreateCardOnCoordinates(id, coordinates, side);
 
             return actor;
         }

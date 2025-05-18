@@ -12,17 +12,28 @@ namespace FelineFellas
 
     public static class SideExtensions
     {
-        public static Entity<GameScope> AddSideFlag(this Entity<GameScope> unit)
+        public static Entity<GameScope> AssignToSide(this Entity<GameScope> card, Side side)
         {
-            var side = unit.Get<OnSide>().Value;
+            card.Set<OnSide, Side>(side);
+            var isUnit = card.Is<UnitCard>();
 
-            if (side is Side.Player && !unit.Is<Leader>())
-                unit.Add<Fella>();
+            if (side is Side.Player && !card.Is<Leader>())
+            {
+                card
+                    .Add<PlayerCard>()
+                    .Is<Fella>(isUnit)
+                    ;
+            }
 
             if (side is Side.Enemy)
-                unit.Add<EnemyUnit>();
+            {
+                card
+                    .Add<EnemyCard>()
+                    .Is<EnemyUnit>(isUnit)
+                    ;
+            }
 
-            return unit;
+            return card;
         }
 
         public static bool OnSameSide(this Entity<GameScope> @this, Entity<GameScope> other)
