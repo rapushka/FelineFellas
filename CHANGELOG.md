@@ -19,7 +19,7 @@
 - new placeholder art for card icons [#36](https://github.com/rapushka/FelineFellas/issues/36)
 - **WIP:** implement Enemy Actor [#17](https://github.com/rapushka/FelineFellas/issues/17)
   - Loadout config for Player and Enemy [#59](https://github.com/rapushka/FelineFellas/issues/59)
-  - Spawn Enemy Deck [$60](https://github.com/rapushka/FelineFellas/issues/60)
+  - Spawn Enemy Deck [#60](https://github.com/rapushka/FelineFellas/issues/60)
 
 # v0.0.2
 - use unit cards [#4](https://github.com/rapushka/FelineFellas/pull/10)
