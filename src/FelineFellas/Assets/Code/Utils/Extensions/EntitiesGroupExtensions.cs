@@ -52,5 +52,19 @@ namespace FelineFellas
                     yield return entity;
             }
         }
+
+        public static int Count<TScope>(this IGroup<Entity<TScope>> @this, Func<Entity<TScope>, bool> predicate)
+            where TScope : IScope
+        {
+            var counter = 0;
+
+            foreach (var entity in @this)
+            {
+                if (predicate.Invoke(entity))
+                    counter++;
+            }
+
+            return counter;
+        }
     }
 }

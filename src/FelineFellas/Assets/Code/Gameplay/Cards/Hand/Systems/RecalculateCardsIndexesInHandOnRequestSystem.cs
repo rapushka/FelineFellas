@@ -16,14 +16,20 @@ namespace FelineFellas
                 .And<InHandIndex>()
                 .Build();
 
+        private readonly IGroup<Entity<GameScope>> _actors
+            = GroupBuilder<GameScope>
+                .With<Actor>()
+                .And<OnSide>()
+                .Build();
+
         public void Execute()
         {
-            var counter = 0;
-
             foreach (var request in _requests)
-            foreach (var card in _leftCards)
+            foreach (var actor in _actors)
             {
-                card.Set<InHandIndex, int>(counter++);
+                var counter = 0;
+                foreach (var card in _leftCards.Where(actor.OnSameSide))
+                    card.Set<InHandIndex, int>(counter++);
 
                 request.Is<Destroy>(true);
             }

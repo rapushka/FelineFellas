@@ -27,6 +27,9 @@ namespace FelineFellas
             foreach (var deck in _decks.GetEntities(_decksBuffer))
             foreach (var card in _discardedCards.GetEntities(_cardsBuffer))
             {
+                if (!deck.OnSameSide(card))
+                    continue;
+
                 CardUtils.AddToDeck(card, deck);
                 deck.Is<NeedsShuffle>(false);
             }

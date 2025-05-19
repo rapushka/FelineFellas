@@ -6,12 +6,9 @@ namespace FelineFellas
 {
     public class ArrangeCardsInHandSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _cardsInHand
+        private readonly IGroup<Entity<GameScope>> _actors
             = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<InHandIndex>()
-                .And<WorldPosition>()
-                .Without<Dragging>()
+                .With<Actor>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
@@ -20,15 +17,36 @@ namespace FelineFellas
 
         public void Execute()
         {
-            var handCenter = GameConfig.Layout.PlayerHand;
-            var cardCount = _cardsInHand.count;
+            foreach (var actor in _actors)
+                ArrangeCardsForActor(actor);
+        }
+
+        private void ArrangeCardsForActor(Entity<GameScope> actor)
+        {
+            var side = actor.Get<OnSide>().Value;
+
+            var handCenter = side.Visit(
+                onPlayer: () => GameConfig.Layout.PlayerHand,
+                onEnemy: () => GameConfig.Layout.EnemyHand
+            );
+            var additionalAngle = side.Visit(
+                onPlayer: () => 0f,
+                onEnemy: () => 180f
+            );
+            var offsetDirection = side.Visit(
+                onPlayer: () => 1f,
+                onEnemy: () => -1f
+            );
+
+            var cardsInHand = ActorUtils.GetCardsInHandOfActor(actor);
+            var cardCount = cardsInHand.count;
 
             if (cardCount == 1)
             {
-                var singleCard = _cardsInHand.GetSingleEntity();
+                var singleCard = cardsInHand.GetSingleEntity();
 
                 singleCard.Set<TargetPosition, Vector2>(handCenter);
-                singleCard.Set<TargetRotation, float>(0);
+                singleCard.Set<TargetRotation, float>(0 + additionalAngle);
                 return;
             }
 
@@ -36,24 +54,24 @@ namespace FelineFellas
             var angleStep = totalAngle / (cardCount - 1);
             var startAngle = -totalAngle / 2f;
 
-            foreach (var card in _cardsInHand)
+            foreach (var card in cardsInHand)
             {
                 var index = card.Get<InHandIndex>().Value;
 
                 var currentAngle = startAngle + index * angleStep;
-                var radAngle = currentAngle.ToRadians();
+                var radAngle = (currentAngle + additionalAngle).ToRadians();
 
                 var handRadius = ViewConfig.HandRadius;
                 var targetPosition = new Vector2(
                     x: Mathf.Sin(radAngle) * handRadius,
-                    y: Mathf.Abs(currentAngle) * 0.01f * ViewConfig.VerticalOffset
+                    y: Mathf.Abs(currentAngle) * 0.01f * ViewConfig.VerticalOffset * offsetDirection
                     // z: -Mathf.Cos(radAngle) * handRadius + handRadius
                 );
 
                 targetPosition += handCenter;
 
                 card.Set<TargetPosition, Vector2>(targetPosition);
-                card.Set<TargetRotation, float>(-currentAngle);
+                card.Set<TargetRotation, float>(-currentAngle + additionalAngle);
             }
         }
     }
