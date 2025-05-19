@@ -6,7 +6,8 @@ namespace FelineFellas
             : base(nameof(CardsDrawFeature))
         {
             Add(new StartDrawingCardsIfNeedsOnTurnStartedSystem());
-            Add(new StopDrawingCardsIfNoCardsInDiscardSystem());
+            Add(new StopDrawingCardsIfNoCardsInDiscardSystem<PlayerCard>());
+            Add(new StopDrawingCardsIfNoCardsInDiscardSystem<EnemyCard>());
             Add(new UpdateDeckNeedsShuffleSystem());
             Add(new SendDrawCardsOnTurnStartSystem());
 

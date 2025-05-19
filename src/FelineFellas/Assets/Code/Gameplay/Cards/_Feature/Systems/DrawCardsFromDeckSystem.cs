@@ -16,12 +16,6 @@ namespace FelineFellas
                 .And<CardInDeck>()
                 .Build();
 
-        private readonly IGroup<Entity<GameScope>> _cardsInHand
-            = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<InHandIndex>()
-                .Build();
-
         private readonly IGroup<Entity<GameScope>> _actors
             = GroupBuilder<GameScope>
                 .With<Actor>()
@@ -35,12 +29,10 @@ namespace FelineFellas
             foreach (var _ in _events)
             foreach (var actor in _actors)
             {
-                var handSize = actor.Get<HandSize>().Value;
-
-                while (_cardsInHand.count < handSize && _cardsInDeck.Any(OnSameSide))
+                while (!ActorUtils.IsActorHandFull(actor))
                 {
                     var card = RandomService.PickRandom(_cardsInDeck.Where(OnSameSide));
-                    CardUtils.DrawCardToHand(card, _cardsInHand.count);
+                    CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHandOfActor(actor).count);
                 }
 
                 continue;
