@@ -22,6 +22,7 @@ namespace FelineFellas
         {
             foreach (var field in _fields)
             {
+                var fieldID = field.ID();
                 var center = field.Get<WorldPosition>().Value;
 
                 var size = FieldConfig.FieldSize;
@@ -32,7 +33,8 @@ namespace FelineFellas
                 for (var row = 0; row < size.Height; row++)
                 {
                     var position = (new Vector2(column, row) - halfSizes) * spacings;
-                    FieldFactory.CreateCell(center + position, new(row, column));
+                    FieldFactory.CreateCell(center + position, new(row, column))
+                        .Add<ChildOf, EntityID>(fieldID);
                 }
             }
         }

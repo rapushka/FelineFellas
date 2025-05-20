@@ -13,14 +13,23 @@ namespace FelineFellas
                 .And<Buy>()
                 .Build();
 
+        private readonly IGroup<Entity<GameScope>> _players
+            = GroupBuilder<GameScope>
+                .With<Actor>()
+                .And<PlayerActor>()
+                .Build();
+
         private readonly List<Entity<GameScope>> _buffer = new(16);
 
         public void Execute()
         {
             foreach (var slot in _slots.GetEntities(_buffer))
+            foreach (var player in _players)
             {
                 var card = slot.Get<PlacedCard>().Value.GetEntity();
-                CardUtils.Discard(card);
+                CardUtils.Discard(card)
+                    .Add<OnSide, Side>(Side.Player)
+                    .Add<ChildOf, EntityID>(player.ID());
             }
         }
     }

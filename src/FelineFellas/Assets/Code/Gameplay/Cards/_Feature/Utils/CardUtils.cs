@@ -19,10 +19,11 @@ namespace FelineFellas
                 .Set<CardInDeck, EntityID>(deck.ID())
                 .Set<TargetRotation, float>(0f)
                 .Set<TargetScale, float>(1f)
-                .Is<Draggable>(true)    // TODO: interactable only after target position is reached?
-                .Is<Interactable>(true) // TODO: interactable only after target position is reached?
+                .Is<Draggable>(false)
+                .Is<Interactable>(false)
                 .Set<TargetPosition, Vector2>(deck.WorldPosition())
                 .Set<CardFace, Face>(Face.FaceDown)
+                .Set<ChildOf, EntityID>(deck.ID())
 
                 // cleanups
                 .Is<SendToDiscard>(false)
@@ -30,14 +31,13 @@ namespace FelineFellas
                 .Is<Used>(false)
                 .RemoveSafely<InHandIndex>();
 
-        public static void DrawCardToHand(Entity<GameScope> card, int index)
-        {
-            card
+        public static Entity<GameScope> DrawCardToHand(Entity<GameScope> card, int index)
+            => card
                 .Remove<CardInDeck>()
                 .Add<InHandIndex, int>(index)
                 .Set<CardFace, Face>(Face.FaceUp)
-                ;
-        }
+                .Is<Draggable>(true)
+                .Is<Interactable>(true);
 
         public static Entity<GameScope> MarkUsedAndDiscard(Entity<GameScope> card)
             => MarkUsed(card)
@@ -59,16 +59,19 @@ namespace FelineFellas
             => card
                 .Is<WillBeUsed>(false)
                 .RemoveSafely<InHandIndex>()
-                .Is<Interactable>(false);
+                .Is<Interactable>(false)
+                .Is<Draggable>(false);
 
         public static Entity<GameScope> PlaceCardInShop(Entity<GameScope> card, Entity<GameScope> slot)
         {
+            var slotID = slot.ID();
             card
                 .Chain(RemoveCardFromPlacedCell)
                 .Set<Rotation, float>(ShopViewConfig.SlotRotation)
                 .Set<TargetPosition, Vector2>(slot.WorldPosition())
-                .Add<CardInShopSlot, EntityID>(slot.ID())
+                .Add<CardInShopSlot, EntityID>(slotID)
                 .Set<CardFace, Face>(Face.FaceUp)
+                .Set<ChildOf, EntityID>(slotID)
                 ;
 
             slot
@@ -95,6 +98,9 @@ namespace FelineFellas
                 .Set<TargetPosition, Vector2>(cell.WorldPosition())
                 .Set<OnField, Coordinates>(cell.Get<CellCoordinates>().Value)
                 .Set<CardFace, Face>(Face.FaceUp)
+                .Is<Interactable>(false)
+                .Is<Draggable>(false)
+                .Set<ChildOf, EntityID>(cell.ID())
                 ;
 
             cell
