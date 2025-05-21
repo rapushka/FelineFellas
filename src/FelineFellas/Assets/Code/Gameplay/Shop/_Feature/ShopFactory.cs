@@ -29,11 +29,14 @@ namespace FelineFellas
             var spacing = ViewConfig.SlotsSpacing;
             var startY = -((totalSlots - 1) * spacing) / 2f;
 
+            var shopID = shop.ID();
+
             for (var i = 0; i < totalSlots; i++)
             {
                 var y = startY + i * spacing;
                 CreateSlot(new Vector2(0, y) + shopPosition)
-                    .Add<ShopSlot, EntityID>(shop.ID());
+                    .Add<ShopSlot, EntityID>(shopID)
+                    .Add<ChildOf, EntityID>(shopID);
             }
 
             return shop;

@@ -2,6 +2,8 @@ namespace FelineFellas
 {
     public class GameplayGameState : IGameState, IExitState, IUpdatableState
     {
+        private readonly ParenthoodDebugger _debugger = new();
+
         private static IEcsRunner EcsRunner => ServiceLocator.Resolve<IEcsRunner>();
 
         private static IInputService InputService => ServiceLocator.Resolve<IInputService>();
@@ -19,6 +21,8 @@ namespace FelineFellas
             UiMediator.Pages.OpenGameplay();
 
             EcsRunner.StartGame();
+
+            _debugger.Initialize();
         }
 
         public void OnUpdate()
@@ -29,6 +33,8 @@ namespace FelineFellas
             EcsRunner.OnUpdate();
 
             GameStateMachine.CheckPendingState();
+
+            _debugger.OnUpdate();
         }
 
         public void OnExit()

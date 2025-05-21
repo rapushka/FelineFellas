@@ -7,6 +7,7 @@ namespace FelineFellas
         {
             Add(new InputFeature());
 
+            Add(new LevelFeature());
             Add(new GridFeature());
             Add(new ActorFeature());
             Add(new CardsFeature());
@@ -20,6 +21,7 @@ namespace FelineFellas
             Add(new UpdateSortingOrderForCardsInHandSystem());
 
             Add(new BoilerplateFeature());
+            Add(new DestroyWithChildrenSystem());
             Add(new DestroyEntitiesSystem());
         }
     }

@@ -52,6 +52,7 @@ namespace FelineFellas
         {
             var side = actor.Get<OnSide>().Value;
             var deckID = CardFactory.CreateDeckWithCards(loadout.Deck, side)
+                .Add<ChildOf, EntityID>(actor.ID())
                 .ID();
 
             actor.Add<OwnedDeck, EntityID>(deckID);

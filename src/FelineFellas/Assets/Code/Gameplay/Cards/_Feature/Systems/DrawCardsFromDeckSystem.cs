@@ -29,10 +29,13 @@ namespace FelineFellas
             foreach (var _ in _events)
             foreach (var actor in _actors)
             {
-                while (!ActorUtils.IsActorHandFull(actor))
+                var actorID = actor.ID();
+
+                while (!ActorUtils.IsActorHandFull(actor) && _cardsInDeck.Any(OnSameSide))
                 {
                     var card = RandomService.PickRandom(_cardsInDeck.Where(OnSameSide));
-                    CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHandOfActor(actor).count);
+                    CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHandOfActor(actor).count)
+                        .Set<ChildOf, EntityID>(actorID);
                 }
 
                 continue;

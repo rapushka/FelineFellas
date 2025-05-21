@@ -1,9 +1,15 @@
 using Entitas;
+using Entitas.Generic;
 
 namespace FelineFellas
 {
     public sealed class SpawnFieldSystem : IInitializeSystem
     {
+        private readonly IGroup<Entity<GameScope>> _levels
+            = GroupBuilder<GameScope>
+                .With<Level>()
+                .Build();
+
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
         private static IFieldFactory FieldFactory => ServiceLocator.Resolve<IFieldFactory>();
@@ -12,7 +18,11 @@ namespace FelineFellas
 
         public void Initialize()
         {
-            FieldFactory.CreateField(FieldConfig.View.FieldCenter);
+            foreach (var level in _levels)
+            {
+                FieldFactory.CreateField(FieldConfig.View.FieldCenter)
+                    .Add<ChildOf, EntityID>(level.ID());
+            }
         }
     }
 }
