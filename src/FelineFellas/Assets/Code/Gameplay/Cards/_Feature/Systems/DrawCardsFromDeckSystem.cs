@@ -31,7 +31,7 @@ namespace FelineFellas
             {
                 var actorID = actor.ID();
 
-                while (!ActorUtils.IsActorHandFull(actor))
+                while (!ActorUtils.IsActorHandFull(actor) && _cardsInDeck.Any(OnSameSide))
                 {
                     var card = RandomService.PickRandom(_cardsInDeck.Where(OnSameSide));
                     CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHandOfActor(actor).count)
