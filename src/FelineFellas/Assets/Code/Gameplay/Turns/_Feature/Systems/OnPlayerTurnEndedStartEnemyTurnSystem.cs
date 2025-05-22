@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<EndTurnEvent>()
+                .With<EndPlayerTurnEvent>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();

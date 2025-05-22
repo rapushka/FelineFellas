@@ -20,8 +20,14 @@ namespace FelineFellas
         {
             foreach (var card in _discardedCards.GetEntities(_buffer))
             {
+                var side = card.Get<OnSide>().Value;
+                var targetPosition = side.Visit(
+                    onPlayer: () => GameConfig.Layout.PlayerDiscard,
+                    onEnemy: () => GameConfig.Layout.EnemyDiscard
+                );
+
                 card
-                    .Set<TargetPosition, Vector2>(GameConfig.Layout.PlayerDiscard)
+                    .Set<TargetPosition, Vector2>(targetPosition)
                     .Is<InDiscard>(true)
                     .Is<SendToDiscard>(false)
                     ;

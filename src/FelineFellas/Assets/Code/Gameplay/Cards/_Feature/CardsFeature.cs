@@ -10,6 +10,7 @@ namespace FelineFellas
             Add(new StartWithPlayerTurnSystem());
 
             Add(new TickEnemyTurnSystem());
+            Add(new TickCardsDiscardDelaySystem());
 
             // # on turn started
             Add(new CardsDrawFeature());
@@ -17,7 +18,8 @@ namespace FelineFellas
             // # on turn ended
             if (GameMode.DiscardHandOnEndTurn)
             {
-                Add(new DiscardAllCardsOnTurnEndedSystem());
+                Add(new DiscardAllPlayerCardsOnTurnEndedSystem());
+                Add(new DiscardAllEnemyCardsOnEnemyTurnEndedSystem());
             }
 
             Add(new OnPlayerTurnEndedStartEnemyTurnSystem());

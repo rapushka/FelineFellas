@@ -39,6 +39,8 @@ namespace FelineFellas
             [field: Header("Deck")]
             [field: SerializeField] public float DeckShuffleDuration { get; private set; } = 0.3f;
 
+            [field: SerializeField] public float CardsDiscardDuration { get; private set; } = 0.3f;
+
             [field: Header("Hand")]
             [field: SerializeField] public float CardInHandScaleUp { get; private set; } = 1.5f;
 

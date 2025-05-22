@@ -28,8 +28,8 @@ namespace FelineFellas
             {
                 var card = slot.Get<PlacedCard>().Value.GetEntity();
                 CardUtils.Discard(card)
-                    .Add<OnSide, Side>(Side.Player)
-                    .Add<ChildOf, EntityID>(player.ID());
+                    .Set<OnSide, Side>(Side.Player)
+                    .Set<ChildOf, EntityID>(player.ID());
             }
         }
     }

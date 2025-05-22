@@ -44,7 +44,7 @@ namespace FelineFellas
         public void EndTurn()
         {
             CreateEntity.OneFrame()
-                .Add<EndTurnEvent>()
+                .Add<EndPlayerTurnEvent>()
                 ;
         }
     }
