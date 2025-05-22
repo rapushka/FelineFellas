@@ -7,7 +7,7 @@ namespace FelineFellas
         public void Initialize()
         {
             CreateEntity.OneFrame()
-                .Add<StartTurnEvent>();
+                .Add<StartPlayerTurnEvent>();
         }
     }
 }

@@ -12,6 +12,10 @@ namespace FelineFellas
 
         private static ITimeService TimeService => ServiceLocator.Resolve<ITimeService>();
 
+        private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
+
+        private static CardsConfig.ViewConfig ViewConfig => GameConfig.Cards.View;
+
         public void Execute()
         {
             foreach (var turn in _turns)
@@ -20,17 +24,17 @@ namespace FelineFellas
                 timeLeft -= TimeService.AnimationDelta;
                 turn.Set<EnemyTurn, float>(timeLeft);
 
-                if (timeLeft <= 0f)
-                {
-                    turn
-                        .Add<Destroy>()
-                        .Add<EnemyTurnEnded>()
-                        ;
+                if (!(timeLeft <= 0f))
+                    continue;
 
-                    CreateEntity.OneFrame()
-                        .Add<StartTurnEvent>()
-                        ;
-                }
+                turn
+                    .Add<Destroy>()
+                    .Add<EnemyTurnEnded>()
+                    ;
+
+                CreateEntity.Empty()
+                    .Add<DelayBeforeStartTurn, float>(ViewConfig.CardsDiscardDuration)
+                    ;
             }
         }
     }

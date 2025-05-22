@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<StartTurnEvent>()
+                .With<StartPlayerTurnEvent>()
                 .Build();
 
         public void Execute()

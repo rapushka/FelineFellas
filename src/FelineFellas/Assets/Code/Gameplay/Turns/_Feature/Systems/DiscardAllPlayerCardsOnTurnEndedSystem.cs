@@ -4,11 +4,11 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class DiscardAllCardsOnTurnEndedSystem : IExecuteSystem
+    public sealed class DiscardAllPlayerCardsOnTurnEndedSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<EndTurnEvent>()
+                .With<EndPlayerTurnEvent>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _cardsInHand

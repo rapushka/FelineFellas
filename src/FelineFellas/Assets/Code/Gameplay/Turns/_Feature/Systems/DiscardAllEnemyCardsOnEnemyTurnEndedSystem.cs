@@ -4,7 +4,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class OnEnemyTurnEndedDiscardAllEnemyCardsSystem : IExecuteSystem
+    public sealed class DiscardAllEnemyCardsOnEnemyTurnEndedSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
