@@ -22,7 +22,10 @@ namespace FelineFellas
 
                 if (timeLeft <= 0f)
                 {
-                    turn.Add<Destroy>();
+                    turn
+                        .Add<Destroy>()
+                        .Add<EnemyTurnEnded>()
+                        ;
 
                     CreateEntity.OneFrame()
                         .Add<StartTurnEvent>()

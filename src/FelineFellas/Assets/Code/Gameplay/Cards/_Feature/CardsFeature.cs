@@ -18,6 +18,7 @@ namespace FelineFellas
             if (GameMode.DiscardHandOnEndTurn)
             {
                 Add(new DiscardAllCardsOnTurnEndedSystem());
+                Add(new OnEnemyTurnEndedDiscardAllEnemyCardsSystem());
             }
 
             Add(new OnPlayerTurnEndedStartEnemyTurnSystem());

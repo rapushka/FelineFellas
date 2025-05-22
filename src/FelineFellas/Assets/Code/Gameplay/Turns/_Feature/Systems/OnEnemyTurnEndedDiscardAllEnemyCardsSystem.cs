@@ -4,18 +4,18 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class DiscardAllCardsOnTurnEndedSystem : IExecuteSystem
+    public sealed class OnEnemyTurnEndedDiscardAllEnemyCardsSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<EndTurnEvent>()
+                .With<EnemyTurnEnded>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _cardsInHand
             = GroupBuilder<GameScope>
                 .With<Card>()
                 .And<InHandIndex>()
-                .And<PlayerCard>()
+                .And<EnemyCard>()
                 .Build();
 
         private readonly List<Entity<GameScope>> _buffer = new(16);
