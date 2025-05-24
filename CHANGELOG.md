@@ -6,6 +6,7 @@
 - rewrite turns direction [#70](https://github.com/rapushka/FelineFellas/issues/70)
 - bugfix
   - cards purchased from shop [#75](https://github.com/rapushka/FelineFellas/issues/75)
+  - reset card's targets when it discarded [#79](https://github.com/rapushka/FelineFellas/issues/79)
 
 # v0.0.3
 - add health for unit cards [#26](https://github.com/rapushka/FelineFellas/issues/26)
