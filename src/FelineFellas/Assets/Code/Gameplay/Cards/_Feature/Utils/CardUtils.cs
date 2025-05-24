@@ -69,7 +69,9 @@ namespace FelineFellas
                 onEnemy: () => RandomService.Range(178f, 182f)
             );
 
-            return RemoveFromHand(card)
+            return card
+                    .Chain(RemoveFromHand)
+                    .Chain(RemoveCardFromPlacedCell)
                     .Is<SendToDiscard>(true)
                     .Set<TargetRotation, float>(randomRotation)
                     .Set<CardFace, Face>(Face.FaceDown)
@@ -139,7 +141,8 @@ namespace FelineFellas
 
         private static Entity<GameScope> RemoveCardFromPlacedCell(Entity<GameScope> card)
         {
-            if (!card.TryGet<OnField, Coordinates>(out var coordinates))
+            var cardIsOnField = card.TryGet<OnField, Coordinates>(out var coordinates);
+            if (!cardIsOnField)
                 return card;
 
             var cell = CellIndex.GetEntity(coordinates);
@@ -147,6 +150,8 @@ namespace FelineFellas
                 .Remove<PlacedCard>()
                 .Is<Empty>(true)
                 ;
+
+            card.Remove<OnField>();
 
             return card;
         }
