@@ -10,7 +10,6 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<TurnMediator>()
                 .Or<OnPlayerTurnStartedState>()
-                .Or<InDrawCardsState>()
                 .Or<OnPlayerTurnEndedState>()
                 .Or<OnEnemyTurnStartedState>()
                 .Or<InEnemyTurnState>()
@@ -30,7 +29,6 @@ namespace FelineFellas
             {
                 var transmitted
                         = StartWait<OnPlayerTurnStartedState>(turnMediator, Timings.PlayerTurnStartedDuration)
-                        || StartWait<InDrawCardsState>(turnMediator, Timings.DrawCardsDuration)
                         || StartWait<OnPlayerTurnEndedState>(turnMediator, Timings.PlayerTurnEndedDuration)
                         || StartWait<OnEnemyTurnStartedState>(turnMediator, Timings.EnemyTurnStartedDuration)
                         || StartWait<InEnemyTurnState>(turnMediator, Timings.EnemyTurnDuration)
