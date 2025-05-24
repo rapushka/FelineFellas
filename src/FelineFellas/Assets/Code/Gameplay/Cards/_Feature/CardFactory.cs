@@ -30,11 +30,17 @@ namespace FelineFellas
                 onEnemy: () => GameConfig.Layout.EnemyDeck
             );
 
+            var rotation = side.Visit(
+                onPlayer: () => 0f,
+                onEnemy: () => 180f
+            );
+
             var deck = CreateEntity.Empty()
                     .Add<Name, string>("deck")
                     .Add<Deck>()
                     .Add<WorldPosition, Vector2>(position)
                     .Add<OnSide, Side>(side)
+                    .Add<Rotation, float>(rotation)
                 ;
 
             foreach (var (cardID, count) in cards)
@@ -43,7 +49,9 @@ namespace FelineFellas
                 {
                     Create(cardID, deck.WorldPosition())
                         .AssignToSide(side)
-                        .Chain(c => CardUtils.AddToDeck(c, deck));
+                        .Chain(c => CardUtils.AddToDeck(c, deck))
+                        .Set<Rotation, float>(deck.Get<Rotation, float>())
+                        ;
                 }
             }
 

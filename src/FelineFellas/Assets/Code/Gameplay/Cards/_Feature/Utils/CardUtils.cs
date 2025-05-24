@@ -17,7 +17,7 @@ namespace FelineFellas
         public static Entity<GameScope> AddToDeck(Entity<GameScope> card, Entity<GameScope> deck)
             => card
                 .Set<CardInDeck, EntityID>(deck.ID())
-                .Set<TargetRotation, float>(0f)
+                .Set<TargetRotation, float>(deck.Get<Rotation, float>())
                 .Set<TargetScale, float>(1f)
                 .Is<Draggable>(false)
                 .Is<Interactable>(false)
@@ -48,12 +48,32 @@ namespace FelineFellas
             => RemoveFromHand(card)
                 .Is<Used>(true);
 
+        public static Entity<GameScope> Purchase(Entity<GameScope> card, EntityID playerID)
+        {
+            card.Pop<CardInShopSlot, EntityID>().GetEntity()
+                .Remove<PlacedCard>()
+                .Is<Empty>(true)
+                ;
+
+            return card
+                    .AssignToSide(Side.Player)
+                    .Chain(Discard)
+                    .Set<ChildOf, EntityID>(playerID)
+                ;
+        }
+
         public static Entity<GameScope> Discard(Entity<GameScope> card)
-            => RemoveFromHand(card)
-                .Chain(RemoveFromShop)
+        {
+            var randomRotation = card.Get<OnSide>().Value.Visit(
+                onPlayer: () => RandomService.Range(-2f, 2f),
+                onEnemy: () => RandomService.Range(178f, 182f)
+            );
+
+            return RemoveFromHand(card)
                 .Is<SendToDiscard>(true)
-                .Set<TargetRotation, float>(RandomService.Range(-2f, 2f))
+                .Set<TargetRotation, float>(randomRotation)
                 .Set<CardFace, Face>(Face.FaceDown);
+        }
 
         public static Entity<GameScope> RemoveFromHand(Entity<GameScope> card)
             => card
@@ -118,19 +138,6 @@ namespace FelineFellas
 
             var cell = CellIndex.GetEntity(coordinates);
             cell
-                .Remove<PlacedCard>()
-                .Is<Empty>(true)
-                ;
-
-            return card;
-        }
-
-        private static Entity<GameScope> RemoveFromShop(Entity<GameScope> card)
-        {
-            if (!card.TryGet<CardInShopSlot, EntityID>(out var slotID))
-                return card;
-
-            slotID.GetEntity()
                 .Remove<PlacedCard>()
                 .Is<Empty>(true)
                 ;

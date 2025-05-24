@@ -25,6 +25,10 @@ namespace FelineFellas
 
                 CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHand(actor).count)
                     .Set<ChildOf, EntityID>(actorID);
+
+                CreateEntity.Empty()
+                    .Add<RecalculateInHandIndexes>()
+                    ;
             }
         }
     }
