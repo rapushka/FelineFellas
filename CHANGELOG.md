@@ -2,6 +2,8 @@
 - **WIP:** implement Enemy Actor [#17](https://github.com/rapushka/FelineFellas/issues/17)
   - draw cards for enemy either [#61](https://github.com/rapushka/FelineFellas/issues/61)
   - discard enemy's cards [#62](https://github.com/rapushka/FelineFellas/issues/62)
+  - shuffle deck for enemy [#70](https://github.com/rapushka/FelineFellas/issues/70)
+- rewrite turns direction [#70](https://github.com/rapushka/FelineFellas/issues/70)
 
 # v0.0.3
 - add health for unit cards [#26](https://github.com/rapushka/FelineFellas/issues/26)
