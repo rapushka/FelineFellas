@@ -3,16 +3,11 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class StartDrawingCardsIfNeedsOnTurnStartedSystem : IExecuteSystem
+    public sealed class CheckIfActorShouldDrawCardsSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<StartPlayerTurnEvent>()
-                .Build();
-
-        private readonly IGroup<Entity<GameScope>> _decks
-            = GroupBuilder<GameScope>
-                .With<Deck>()
+                .With<InDrawCardsState>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _actors
@@ -24,14 +19,13 @@ namespace FelineFellas
         public void Execute()
         {
             foreach (var _ in _events)
-            foreach (var deck in _decks)
             foreach (var actor in _actors)
             {
-                if (!actor.OnSameSide(deck))
-                    return;
-
-                var handIsFull = ActorUtils.IsActorHandFull(actor);
-                deck.Is<DrawingCards>(!handIsFull);
+                var isActorHandFull = ActorUtils.HasFullHand(actor);
+                actor
+                    .Is<HasFullHand>(isActorHandFull)
+                    .Is<DrawingCardsActor>(!isActorHandFull)
+                    ;
             }
         }
     }

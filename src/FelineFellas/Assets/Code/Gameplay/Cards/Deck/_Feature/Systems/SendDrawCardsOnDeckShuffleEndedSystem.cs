@@ -9,7 +9,6 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _decks
             = GroupBuilder<GameScope>
                 .With<Deck>()
-                .And<DrawingCards>()
                 .And<ShufflingDeckTimer>()
                 .Build();
 
@@ -27,10 +26,6 @@ namespace FelineFellas
                 deck
                     .Remove<ShufflingDeckTimer>()
                     .Is<NeedsShuffle>(false)
-                    ;
-
-                CreateEntity.OneFrame()
-                    .Add<DrawCardsEvent>()
                     ;
             }
         }

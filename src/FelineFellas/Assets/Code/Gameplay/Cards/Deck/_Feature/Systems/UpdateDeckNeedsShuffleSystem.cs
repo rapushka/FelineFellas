@@ -1,3 +1,4 @@
+using System.Linq;
 using Entitas;
 using Entitas.Generic;
 
@@ -5,18 +6,23 @@ namespace FelineFellas
 {
     public sealed class UpdateDeckNeedsShuffleSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _decks
+        private readonly IGroup<Entity<GameScope>> _actors
             = GroupBuilder<GameScope>
-                .With<Deck>()
-                .And<DrawingCards>()
+                .With<Actor>()
+                .And<DrawingCardsActor>()
+                .And<OwnedDeck>()
+                .Without<WaitingForDeckShuffle>()
                 .Build();
 
         public void Execute()
         {
-            foreach (var deck in _decks)
+            foreach (var actor in _actors)
             {
-                var cardsLeftInDeck = DeckUtils.GetAllCardsInDeck(deck.ID()).Count;
-                deck.Is<NeedsShuffle>(cardsLeftInDeck == 0);
+                var deckID = actor.Get<OwnedDeck>().Value;
+                var deck = deckID.GetEntity();
+
+                var deckIsEmpty = !DeckUtils.GetAllCardsInDeck(deckID).Any();
+                deck.Is<NeedsShuffle>(deckIsEmpty);
             }
         }
     }

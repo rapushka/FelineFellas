@@ -6,9 +6,6 @@ namespace FelineFellas
     {
         private static IIdentifiesService Identifies => ServiceLocator.Resolve<IIdentifiesService>();
 
-        public static Entity<GameScope> OneFrame()
-            => Empty().Add<Destroy>();
-
         public static Entity<GameScope> Empty()
             => Contexts.Instance.Get<GameScope>().CreateEntity()
                 .Add<ID, EntityID>(new(Identifies.Next()));

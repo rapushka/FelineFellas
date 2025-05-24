@@ -19,7 +19,7 @@ MonoBehaviour:
     <Count>k__BackingField: 3
   - <CardID>k__BackingField:
       Value: Card/GlobalAction/DoNothing
-    <Count>k__BackingField: 1
+    <Count>k__BackingField: 4
   - <CardID>k__BackingField:
       Value: Card/Action/AttackClosestOpponent
     <Count>k__BackingField: 3

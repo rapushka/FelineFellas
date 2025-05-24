@@ -13,4 +13,10 @@ namespace FelineFellas
 
     /// Actor -> Deck
     public sealed class OwnedDeck : ValueComponent<EntityID>, IInScope<GameScope> { }
+
+    public sealed class HasFullHand : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class DrawingCardsActor : FlagComponent, IInScope<GameScope> { } // TODO: RENAME TO SIMPLY DrawingCards
+
+    public sealed class WaitingForDeckShuffle : FlagComponent, IInScope<GameScope> { }
 }

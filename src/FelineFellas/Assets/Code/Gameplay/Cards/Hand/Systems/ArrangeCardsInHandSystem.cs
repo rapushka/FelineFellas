@@ -38,7 +38,7 @@ namespace FelineFellas
                 onEnemy: () => -1f
             );
 
-            var cardsInHand = ActorUtils.GetCardsInHandOfActor(actor);
+            var cardsInHand = ActorUtils.GetCardsInHand(actor);
             var cardCount = cardsInHand.count;
 
             if (cardCount == 1)

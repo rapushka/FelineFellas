@@ -8,7 +8,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<EndPlayerTurnEvent>()
+                .With<OnPlayerTurnEndedState>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _cardsInHand

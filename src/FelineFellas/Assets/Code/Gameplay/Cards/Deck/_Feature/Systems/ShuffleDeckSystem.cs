@@ -9,7 +9,6 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _decks
             = GroupBuilder<GameScope>
                 .With<Deck>()
-                .And<DrawingCards>()
                 .And<NeedsShuffle>()
                 .Build();
 
