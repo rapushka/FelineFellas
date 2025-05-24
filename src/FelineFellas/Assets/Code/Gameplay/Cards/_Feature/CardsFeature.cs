@@ -7,11 +7,6 @@ namespace FelineFellas
         public CardsFeature()
             : base(nameof(CardsFeature))
         {
-            Add(new StartWithPlayerTurnSystem());
-
-            Add(new TickEnemyTurnSystem());
-            Add(new TickCardsDiscardDelaySystem());
-
             // # on turn started
             Add(new CardsDrawFeature());
 
@@ -21,8 +16,6 @@ namespace FelineFellas
                 Add(new DiscardAllPlayerCardsOnTurnEndedSystem());
                 Add(new DiscardAllEnemyCardsOnEnemyTurnEndedSystem());
             }
-
-            Add(new OnPlayerTurnEndedStartEnemyTurnSystem());
 
             Add(new ResetCardWillBeUsed());
             Add(new CheckGlobalCardUseSystem());

@@ -29,7 +29,7 @@ namespace FelineFellas
                     .Is<NeedsShuffle>(false)
                     ;
 
-                CreateEntity.OneFrame()
+                CreateEntity.Empty()
                     .Add<DrawCardsEvent>()
                     ;
             }

@@ -7,14 +7,14 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<StartPlayerTurnEvent>()
+                .With<OnPlayerTurnStartedState>()
                 .Build();
 
         public void Execute()
         {
             foreach (var _ in _events)
             {
-                CreateEntity.OneFrame()
+                CreateEntity.Empty()
                     .Add<DrawCardsEvent>()
                     ;
             }

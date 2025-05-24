@@ -26,20 +26,24 @@ namespace FelineFellas
 
         public void Execute()
         {
-            foreach (var _ in _events)
-            foreach (var actor in _actors)
+            foreach (var eventEntity in _events)
             {
-                var actorID = actor.ID();
-
-                while (!ActorUtils.IsActorHandFull(actor) && _cardsInDeck.Any(OnSameSide))
+                foreach (var actor in _actors)
                 {
-                    var card = RandomService.PickRandom(_cardsInDeck.Where(OnSameSide));
-                    CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHandOfActor(actor).count)
-                        .Set<ChildOf, EntityID>(actorID);
+                    var actorID = actor.ID();
+
+                    while (!ActorUtils.IsActorHandFull(actor) && _cardsInDeck.Any(OnSameSide))
+                    {
+                        var card = RandomService.PickRandom(_cardsInDeck.Where(OnSameSide));
+                        CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHandOfActor(actor).count)
+                            .Set<ChildOf, EntityID>(actorID);
+                    }
+
+                    continue;
+                    bool OnSameSide(Entity<GameScope> card) => actor.OnSameSide(card);
                 }
 
-                continue;
-                bool OnSameSide(Entity<GameScope> card) => actor.OnSameSide(card);
+                eventEntity.Is<Destroy>(true);
             }
         }
     }

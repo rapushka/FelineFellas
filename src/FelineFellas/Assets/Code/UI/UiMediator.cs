@@ -1,3 +1,5 @@
+using Entitas.Generic;
+
 namespace FelineFellas
 {
     public interface IUiMediator : IService
@@ -20,6 +22,9 @@ namespace FelineFellas
 
         public IPagesService Pages => PagesService;
 
+        private static Entity<GameScope> TurnMediator
+            => Contexts.Instance.Get<GameScope>().Unique.GetEntity<TurnMediator>();
+
         public void StartGame(IGameMode gameMode)
         {
             GameModeService.SetGameMode(gameMode);
@@ -31,10 +36,7 @@ namespace FelineFellas
             GameStateMachine.ToState<MainMenuGameState>();
         }
 
-        public void GameOver()
-        {
-
-        }
+        public void GameOver() { }
 
         public void ToMainMenu()
         {
@@ -43,9 +45,7 @@ namespace FelineFellas
 
         public void EndTurn()
         {
-            CreateEntity.OneFrame()
-                .Add<EndPlayerTurnEvent>()
-                ;
+            TurnMediator.Add<ToNextTurnState>();
         }
     }
 }
