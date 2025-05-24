@@ -20,6 +20,7 @@ namespace FelineFellas
 
             Add(new ResetSortingOrderSystem());
             Add(new UpdateSortingOrderForCardsInHandSystem());
+            Add(new UpdateSortingOrderForDraggingCardSystem());
 
             Add(new BoilerplateFeature());
             Add(new DestroyWithChildrenSystem());
