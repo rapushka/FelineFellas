@@ -16,10 +16,26 @@ namespace FelineFellas
         {
             foreach (var card in _cards)
             {
-                const int lowestIndex = (int)SortGroup.CardInHand;
-
                 var cardIndex = card.Get<InHandIndex>().Value;
-                card.Set<SpriteSortingIndex, int>(lowestIndex + cardIndex);
+                card.SetSorting(SortGroup.CardInHand, cardIndex);
+            }
+        }
+    }
+
+    public sealed class UpdateSortingOrderForDraggingCardSystem : IExecuteSystem
+    {
+        private readonly IGroup<Entity<GameScope>> _cards
+            = GroupBuilder<GameScope>
+                .With<Card>()
+                .And<SpriteSortingGroup>()
+                .And<Dragging>()
+                .Build();
+
+        public void Execute()
+        {
+            foreach (var card in _cards)
+            {
+                card.SetSorting(SortGroup.DraggingCard);
             }
         }
     }
