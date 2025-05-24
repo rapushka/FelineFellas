@@ -10,12 +10,6 @@ namespace FelineFellas
                 .With<RecalculateInHandIndexes>()
                 .Build();
 
-        private readonly IGroup<Entity<GameScope>> _leftCards
-            = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<InHandIndex>()
-                .Build();
-
         private readonly IGroup<Entity<GameScope>> _actors
             = GroupBuilder<GameScope>
                 .With<Actor>()
@@ -28,7 +22,7 @@ namespace FelineFellas
             foreach (var actor in _actors)
             {
                 var counter = 0;
-                foreach (var card in _leftCards.Where(actor.OnSameSide))
+                foreach (var card in ActorUtils.GetCardsInHand(actor))
                     card.Set<InHandIndex, int>(counter++);
 
                 request.Is<Destroy>(true);

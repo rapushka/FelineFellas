@@ -27,9 +27,7 @@ namespace FelineFellas
             foreach (var player in _players)
             {
                 var card = slot.Get<PlacedCard>().Value.GetEntity();
-                CardUtils.Discard(card)
-                    .Set<OnSide, Side>(Side.Player)
-                    .Set<ChildOf, EntityID>(player.ID());
+                CardUtils.Purchase(card, player.ID());
             }
         }
     }
