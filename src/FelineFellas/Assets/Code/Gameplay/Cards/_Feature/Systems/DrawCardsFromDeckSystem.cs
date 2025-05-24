@@ -21,13 +21,10 @@ namespace FelineFellas
             {
                 var actorID = actor.ID();
 
-                while (ActorUtils.HasAnyCardInDiscard(actor))
-                {
-                    var card = RandomService.PickRandom(ActorUtils.GetCardsInDeck(actor));
+                var card = RandomService.PickRandom(ActorUtils.GetCardsInDeck(actor));
 
-                    CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHand(actor).count)
-                        .Set<ChildOf, EntityID>(actorID);
-                }
+                CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHand(actor).count)
+                    .Set<ChildOf, EntityID>(actorID);
             }
         }
     }

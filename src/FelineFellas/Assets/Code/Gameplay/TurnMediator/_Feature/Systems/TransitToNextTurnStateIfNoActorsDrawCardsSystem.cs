@@ -14,15 +14,15 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _actorsThatDrawCards
             = GroupBuilder<GameScope>
                 .With<Actor>()
-                .Without<DrawingCardsActor>()
+                .And<DrawingCardsActor>()
                 .Build();
 
         public void Execute()
         {
             foreach (var mediator in _turnMediators)
             {
-                var allActorsHaveFullHand = !_actorsThatDrawCards.Any();
-                mediator.Is<ToNextTurnState>(allActorsHaveFullHand);
+                var anyActorDrawsCards = _actorsThatDrawCards.Any();
+                mediator.Is<ToNextTurnState>(!anyActorDrawsCards);
             }
         }
     }
