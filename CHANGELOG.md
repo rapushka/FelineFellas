@@ -4,6 +4,8 @@
   - discard enemy's cards [#62](https://github.com/rapushka/FelineFellas/issues/62)
   - shuffle deck for enemy [#70](https://github.com/rapushka/FelineFellas/issues/70)
 - rewrite turns direction [#70](https://github.com/rapushka/FelineFellas/issues/70)
+- bugfix
+  - cards purchased from shop [#75](https://github.com/rapushka/FelineFellas/issues/75)
 
 # v0.0.3
 - add health for unit cards [#26](https://github.com/rapushka/FelineFellas/issues/26)
