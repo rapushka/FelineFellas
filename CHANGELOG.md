@@ -4,6 +4,7 @@
   - discard enemy's cards [#62](https://github.com/rapushka/FelineFellas/issues/62)
   - shuffle deck for enemy [#70](https://github.com/rapushka/FelineFellas/issues/70)
 - rewrite turns direction [#70](https://github.com/rapushka/FelineFellas/issues/70)
+- sorting order for cards in all states [#77](https://github.com/rapushka/FelineFellas/issues/77)
 - bugfix
   - cards purchased from shop [#75](https://github.com/rapushka/FelineFellas/issues/75)
   - reset card's targets when it discarded [#79](https://github.com/rapushka/FelineFellas/issues/79)
