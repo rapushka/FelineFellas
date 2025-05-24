@@ -70,9 +70,10 @@ namespace FelineFellas
             );
 
             return RemoveFromHand(card)
-                .Is<SendToDiscard>(true)
-                .Set<TargetRotation, float>(randomRotation)
-                .Set<CardFace, Face>(Face.FaceDown);
+                    .Is<SendToDiscard>(true)
+                    .Set<TargetRotation, float>(randomRotation)
+                    .Set<CardFace, Face>(Face.FaceDown)
+                ;
         }
 
         public static Entity<GameScope> RemoveFromHand(Entity<GameScope> card)
@@ -130,6 +131,11 @@ namespace FelineFellas
 
             return card;
         }
+
+        public static Entity<GameScope> CleanupUsedCard(Entity<GameScope> card)
+            => card.RemoveSafely<SelectedTarget>()
+                .RemoveSafely<UseTarget>()
+                .Is<WillBeUsed>(false);
 
         private static Entity<GameScope> RemoveCardFromPlacedCell(Entity<GameScope> card)
         {
