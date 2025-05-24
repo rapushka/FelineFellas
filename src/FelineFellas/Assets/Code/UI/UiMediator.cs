@@ -45,7 +45,8 @@ namespace FelineFellas
 
         public void EndTurn()
         {
-            TurnMediator.Add<ToNextTurnState>();
+            if (TurnMediator.Is<InPlayerTurnState>())
+                TurnMediator.Add<ToNextTurnState>();
         }
     }
 }

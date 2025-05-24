@@ -11,6 +11,7 @@ namespace FelineFellas
     {
         float Range(float min, float max);
 
+        T PickRandom<T>(ICollection<T> collection);
         T PickRandom<T>(IEnumerable<T> collection);
         T PickRandom<T>(IGroup<T> collection) where T : class, IEntity;
 
@@ -20,6 +21,19 @@ namespace FelineFellas
     public class RandomService : IRandomService
     {
         public float Range(float min, float max) => UnityRandom.Range(min, max);
+
+        public T PickRandom<T>(ICollection<T> collection)
+        {
+            var total = collection.Count;
+
+            if (total == 0)
+                throw new("Collection is empty");
+
+            var index = UnityRandom.Range(0, total);
+
+            return collection.ElementAtOrDefault(index)
+                ?? throw new($"Index {index} is out of bounds");
+        }
 
         public T PickRandom<T>(IEnumerable<T> collection)
         {
