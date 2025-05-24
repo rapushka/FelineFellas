@@ -1,5 +1,5 @@
 # v0.0.4
-- **WIP:** implement Enemy Actor [#17](https://github.com/rapushka/FelineFellas/issues/17)
+- implement Enemy Actor's Hand [#17](https://github.com/rapushka/FelineFellas/issues/17)
   - draw cards for enemy either [#61](https://github.com/rapushka/FelineFellas/issues/61)
   - discard enemy's cards [#62](https://github.com/rapushka/FelineFellas/issues/62)
   - shuffle deck for enemy [#70](https://github.com/rapushka/FelineFellas/issues/70)
