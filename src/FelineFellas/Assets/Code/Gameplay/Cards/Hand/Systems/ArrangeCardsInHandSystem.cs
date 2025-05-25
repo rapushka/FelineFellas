@@ -54,7 +54,7 @@ namespace FelineFellas
             var angleStep = totalAngle / (cardCount - 1);
             var startAngle = -totalAngle / 2f;
 
-            foreach (var card in cardsInHand)
+            foreach (var card in cardsInHand.Where(c => !c.Is<Dragging>()))
             {
                 var index = card.Get<InHandIndex>().Value;
 
