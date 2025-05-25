@@ -141,7 +141,8 @@ namespace FelineFellas
         public static Entity<GameScope> CleanupUsedCard(Entity<GameScope> card)
             => card.RemoveSafely<SelectedTarget>()
                 .RemoveSafely<UseTarget>()
-                .Is<WillBeUsed>(false);
+                .Is<WillBeUsed>(false)
+                .Is<CanNotPlay>(false);
 
         private static Entity<GameScope> RemoveCardFromPlacedCell(Entity<GameScope> card)
         {

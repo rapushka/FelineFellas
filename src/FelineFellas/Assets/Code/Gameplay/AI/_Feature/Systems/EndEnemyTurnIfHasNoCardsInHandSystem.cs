@@ -22,8 +22,9 @@ namespace FelineFellas
             foreach (var enemy in _enemies)
             {
                 var cardsInHand = ActorUtils.GetCardsInHand(enemy);
+                var playableCards = cardsInHand.Count(c => !c.Is<CanNotPlay>());
 
-                if (cardsInHand.count == 0)
+                if (playableCards == 0)
                     mediator.Is<ToNextTurnState>(true);
             }
         }
