@@ -5,6 +5,7 @@
   - shuffle deck for enemy [#70](https://github.com/rapushka/FelineFellas/issues/70)
 - rewrite turns direction [#70](https://github.com/rapushka/FelineFellas/issues/70)
 - sorting order for cards in all states [#77](https://github.com/rapushka/FelineFellas/issues/77)
+- implement action cards usage limit [#50](https://github.com/rapushka/FelineFellas/issues/50)
 - bugfix
   - cards purchased from shop [#75](https://github.com/rapushka/FelineFellas/issues/75)
   - reset card's targets when it discarded [#79](https://github.com/rapushka/FelineFellas/issues/79)
