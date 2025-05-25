@@ -9,7 +9,7 @@
   - cards purchased from shop [#75](https://github.com/rapushka/FelineFellas/issues/75)
   - reset card's targets when it discarded [#79](https://github.com/rapushka/FelineFellas/issues/79)
   - fix Back to Base card [#73](https://github.com/rapushka/FelineFellas/issues/73)
-  - cards arne't twitching anymore [#74](https://github.com/rapushka/FelineFellas/issues/74)
+  - cards aren't twitching anymore [#74](https://github.com/rapushka/FelineFellas/issues/74)
 
 # v0.0.3
 - add health for unit cards [#26](https://github.com/rapushka/FelineFellas/issues/26)
