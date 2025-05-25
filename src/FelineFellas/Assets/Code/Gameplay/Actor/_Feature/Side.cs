@@ -17,11 +17,11 @@ namespace FelineFellas
             card.Set<OnSide, Side>(side);
             var isUnit = card.Is<UnitCard>();
 
-            if (side is Side.Player && !card.Is<Leader>())
+            if (side is Side.Player)
             {
                 card
                     .Add<PlayerCard>()
-                    .Is<Fella>(isUnit)
+                    .Is<Fella>(isUnit && !card.Is<Leader>())
                     ;
             }
 
