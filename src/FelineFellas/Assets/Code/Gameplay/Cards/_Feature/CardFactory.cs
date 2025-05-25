@@ -96,6 +96,7 @@ namespace FelineFellas
                     .Add<CardIcon, Sprite>(config.Icon)
                     .Add<Price, int>(config.Price)
                     .Set<CardFace, Face>(Face.FaceDown)
+                    .Add<Priority, float>(config.EnemyAi.Priority)
                 ;
 
             if (isAction)

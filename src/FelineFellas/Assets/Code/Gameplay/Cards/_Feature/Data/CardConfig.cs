@@ -30,6 +30,10 @@ namespace FelineFellas
         [field: Naughty.HorizontalLine(color: Naughty.EColor.Blue)]
         [field: SerializeField] public UnitCardConfig UnitCardConfig { get; private set; }
 
+        [field: Naughty.BoxGroup("Enemy AI")]
+        [field: Naughty.HorizontalLine(color: Naughty.EColor.Red)]
+        [field: SerializeField] public CardEnemyAiConfig EnemyAi { get; private set; }
+
         // Manually Color Coded For Editor
         [Serializable]
         [JetBrains.Annotations.UsedImplicitly]
