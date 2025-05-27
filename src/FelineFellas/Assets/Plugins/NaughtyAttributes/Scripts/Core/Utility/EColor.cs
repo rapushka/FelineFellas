@@ -15,7 +15,8 @@ namespace NaughtyAttributes
         Green,
         Blue,
         Indigo,
-        Violet
+        Violet,
+        Cyan,
     }
 
     public static class EColorExtensions
@@ -48,6 +49,8 @@ namespace NaughtyAttributes
                     return new Color32(75, 0, 130, 255);
                 case EColor.Violet:
                     return new Color32(128, 0, 255, 255);
+                case EColor.Cyan:
+                    return new Color32(0, 255, 255, 255);
                 default:
                     return new Color32(0, 0, 0, 255);
             }

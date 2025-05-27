@@ -12,7 +12,6 @@ namespace FelineFellas
                 .Or<OnPlayerTurnStartedState>()
                 .Or<OnPlayerTurnEndedState>()
                 .Or<OnEnemyTurnStartedState>()
-                .Or<InEnemyTurnState>()
                 .Or<OnEnemyTurnEndedState>()
                 .Without<ChangeStateAfter>()
                 .Build();
@@ -28,11 +27,10 @@ namespace FelineFellas
             foreach (var turnMediator in _turnMediators.GetEntities(_buffer))
             {
                 var transmitted
-                        = StartWait<OnPlayerTurnStartedState>(turnMediator, Timings.PlayerTurnStartedDuration)
-                        || StartWait<OnPlayerTurnEndedState>(turnMediator, Timings.PlayerTurnEndedDuration)
-                        || StartWait<OnEnemyTurnStartedState>(turnMediator, Timings.EnemyTurnStartedDuration)
-                        || StartWait<InEnemyTurnState>(turnMediator, Timings.EnemyTurnDuration)
-                        || StartWait<OnEnemyTurnEndedState>(turnMediator, Timings.EnemyTurnEndedDuration)
+                        = StartWait<OnPlayerTurnStartedState>(turnMediator, Timings.TmpStartTurnDuration)
+                        || StartWait<OnPlayerTurnEndedState>(turnMediator, Timings.TmpEndTurnDuration)
+                        || StartWait<OnEnemyTurnStartedState>(turnMediator, Timings.TmpStartTurnDuration)
+                        || StartWait<OnEnemyTurnEndedState>(turnMediator, Timings.TmpEndTurnDuration)
                     ;
 
                 if (!transmitted)

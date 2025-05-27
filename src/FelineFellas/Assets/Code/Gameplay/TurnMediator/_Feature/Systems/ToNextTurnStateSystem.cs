@@ -48,7 +48,7 @@ namespace FelineFellas
                 ;
 
 #if DEBUG
-            // UnityEngine.Debug.Log($"[Turn State] transition: {typeof(TFrom).Name} -> {typeof(TTo).Name}");
+            UnityEngine.Debug.Log($"[Turn State] transition: {typeof(TFrom).Name} -> {typeof(TTo).Name}");
 #endif
             return true;
         }

@@ -10,7 +10,9 @@ namespace FelineFellas
             Add(new TurnMediatorFeature());
             Add(new LevelFeature());
             Add(new GridFeature());
+
             Add(new ActorFeature());
+
             Add(new CardsFeature());
             Add(new ShopFeature());
 
