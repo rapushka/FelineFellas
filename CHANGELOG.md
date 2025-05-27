@@ -1,3 +1,6 @@
+# v0.0.5
+- implement Enemy's "AI" - now enemy plays all cards in their hand [#87](https://github.com/rapushka/FelineFellas/issues/87)
+
 # v0.0.4
 - implement Enemy Actor's Hand [#17](https://github.com/rapushka/FelineFellas/issues/17)
   - draw cards for enemy either [#61](https://github.com/rapushka/FelineFellas/issues/61)
