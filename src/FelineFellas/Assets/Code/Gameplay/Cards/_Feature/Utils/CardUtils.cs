@@ -24,7 +24,7 @@ namespace FelineFellas
                 .Set<TargetPosition, Vector2>(deck.WorldPosition())
                 .Set<CardFace, Face>(Face.FaceDown)
                 .Set<ChildOf, EntityID>(deck.ID())
-                .SetSorting(SortGroup.CardInDeck)
+                .SetSorting(RenderOrder.CardInDeck)
 
                 // cleanups
                 .Is<SendToDiscard>(false)
@@ -76,7 +76,7 @@ namespace FelineFellas
                     .Is<SendToDiscard>(true)
                     .Set<TargetRotation, float>(randomRotation)
                     .Set<CardFace, Face>(Face.FaceDown)
-                    .SetSorting(SortGroup.CardInDiscard)
+                    .SetSorting(RenderOrder.CardInDiscard)
                 ;
         }
 
@@ -97,7 +97,7 @@ namespace FelineFellas
                 .Add<CardInShopSlot, EntityID>(slotID)
                 .Set<CardFace, Face>(Face.FaceUp)
                 .Set<ChildOf, EntityID>(slotID)
-                .SetSorting(SortGroup.CardInShop)
+                .SetSorting(RenderOrder.CardInShop)
                 ;
 
             slot
@@ -127,7 +127,7 @@ namespace FelineFellas
                 .Is<Interactable>(false)
                 .Is<Draggable>(false)
                 .Set<ChildOf, EntityID>(cell.ID())
-                .SetSorting(SortGroup.CardOnField)
+                .SetSorting(RenderOrder.CardOnField)
                 ;
 
             cell

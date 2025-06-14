@@ -57,5 +57,24 @@ namespace FelineFellas
                 _           => throw new("Unknown Side!"),
             };
         }
+
+        public static T Visit<T>(
+            this Side @this,
+            T onPlayer,
+            T onEnemy,
+            Func<T> onUnknown = null
+        )
+        {
+            if (@this is Side.Unknown && onUnknown is not null)
+                return onUnknown.Invoke();
+
+            // ReSharper disable once SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault - kys
+            return @this switch
+            {
+                Side.Player => onPlayer,
+                Side.Enemy  => onEnemy,
+                _           => throw new("Unknown Side!"),
+            };
+        }
     }
 }

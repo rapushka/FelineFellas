@@ -42,7 +42,7 @@ namespace FelineFellas
                     .Add<HandSize, int>(loadout.HandSize)
                     .Add<OnSide, Side>(side)
                     .Chain(a => CreateDeck(a, loadout))
-                    .Chain(a => CreateCardsOnField(a, loadout))
+                    .Chain(a => CreateLeadOnDeck(a, loadout))
                 ;
 
             return actor;
@@ -60,12 +60,10 @@ namespace FelineFellas
             return actor;
         }
 
-        private Entity<GameScope> CreateCardsOnField(Entity<GameScope> actor, LoadoutConfig loadout)
+        private Entity<GameScope> CreateLeadOnDeck(Entity<GameScope> actor, LoadoutConfig loadout)
         {
-            var side = actor.Get<OnSide>().Value;
-
-            foreach (var (id, coordinates) in loadout.UnitsOnField)
-                CardFactory.CreateCardOnCoordinates(id, coordinates, side);
+            var deck = actor.Get<OwnedDeck>().Value.GetEntity();
+            CardFactory.CreateLeadOnDeck(loadout.Lead, deck);
 
             return actor;
         }

@@ -3,25 +3,22 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class SpawnFieldSystem : IInitializeSystem
+    public sealed class SpawnFieldSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _levels
+        private readonly IGroup<Entity<GameScope>> _stages
             = GroupBuilder<GameScope>
-                .With<Level>()
+                .With<Stage>()
+                .And<EnteringStage>()
                 .Build();
-
-        private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
         private static IFieldFactory FieldFactory => ServiceLocator.Resolve<IFieldFactory>();
 
-        private static FieldConfig FieldConfig => GameConfig.Field;
-
-        public void Initialize()
+        public void Execute()
         {
-            foreach (var level in _levels)
+            foreach (var stage in _stages)
             {
-                FieldFactory.CreateField(FieldConfig.View.FieldCenter)
-                    .Add<ChildOf, EntityID>(level.ID());
+                FieldFactory.CreateField()
+                    .Add<ChildOf, EntityID>(stage.ID());
             }
         }
     }

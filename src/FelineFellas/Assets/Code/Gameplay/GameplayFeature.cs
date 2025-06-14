@@ -8,10 +8,12 @@ namespace FelineFellas
             Add(new InputFeature());
 
             Add(new TurnMediatorFeature());
-            Add(new LevelFeature());
-            Add(new GridFeature());
 
-            Add(new ActorFeature());
+            Add(new PlayerActorFeature());
+            Add(new StageFeature());
+
+            Add(new EnemyActorFeature());
+            Add(new FieldFeature());
 
             Add(new CardsFeature());
             Add(new ShopFeature());

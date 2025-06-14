@@ -1,11 +1,10 @@
 namespace FelineFellas
 {
-    public sealed class ActorFeature : Feature
+    public sealed class EnemyActorFeature : Feature
     {
-        public ActorFeature()
-            : base(nameof(ActorFeature))
+        public EnemyActorFeature()
+            : base(nameof(EnemyActorFeature))
         {
-            Add(new CreatePlayerActorSystem());
             Add(new CreateEnemyActorSystem());
 
             Add(new UpdateMoneyViewSystem());
