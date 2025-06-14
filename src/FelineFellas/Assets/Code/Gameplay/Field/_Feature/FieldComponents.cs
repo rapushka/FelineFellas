@@ -11,9 +11,12 @@ namespace FelineFellas
     public sealed class Empty : FlagComponent, IInScope<GameScope> { }
 
     public sealed class CellCoordinates : PrimaryIndexComponent<Coordinates>, IInScope<GameScope> { }
+    public sealed class CellIndex : IndexComponent<int>, IInScope<GameScope> { }
 
     public sealed class Row : FlagComponent, IInScope<GameScope> { }
+
     public sealed class PlayerRow : FlagComponent, IInScope<GameScope> { }
+
     public sealed class EnemyRow : FlagComponent, IInScope<GameScope> { }
 
     // Cell -> Card
