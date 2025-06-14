@@ -22,9 +22,9 @@ MonoBehaviour:
       <FieldPrefab>k__BackingField: {fileID: 9218016523593889491, guid: ab82c67ad48c107e0b755d2961ba708e, type: 3}
       <RowPrefab>k__BackingField: {fileID: 9218016523593889491, guid: 170e4d55eb9288f098c0503d2fe77200, type: 3}
       <CellPrefab>k__BackingField: {fileID: 1912514074254275705, guid: 27a1e2121a26350c885d8da55bb60294, type: 3}
-      <FieldCenter>k__BackingField: {x: 0, y: 1}
+      <FieldCenter>k__BackingField: {x: 0, y: 0}
       <Spacings>k__BackingField: {x: 1.5, y: 0}
-      <DistanceBetweenRows>k__BackingField: 2.06
+      <DistanceBetweenRows>k__BackingField: 1.2
   <Cards>k__BackingField:
     _configs:
     - {fileID: 11400000, guid: 46b7ed398741f07d9b73986fc4683e27, type: 2}
