@@ -14,6 +14,8 @@ namespace FelineFellas
 
         [field: SerializeField] public int Price { get; private set; }
 
+        [field: SerializeField] public bool CanUseOnlyOnOurRow { get; private set; } = true;
+
         [field: Naughty.BoxGroup("View")]
         [field: SerializeField] public string Title { get; private set; }
 

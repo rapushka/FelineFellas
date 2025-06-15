@@ -15,9 +15,6 @@ namespace FelineFellas
                 entity.GetOrDefault<ID>()?.Value.ID.ToString() ?? "_",
                 $"{entity.GetName()} |",
 
-                entity.Has<PlayerRow>() ? "player" : EmptyString,
-                entity.Has<EnemyRow>() ? "enemy" : EmptyString,
-
                 entity.Has<CardInDeck>() ? "in-deck" : EmptyString,
                 entity.Has<InHandIndex>() ? "in-hand" : EmptyString,
                 entity.Has<InDiscard>() ? "in-discard" : EmptyString,

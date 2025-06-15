@@ -39,7 +39,8 @@ namespace FelineFellas
                 {
                     var position = (new Vector2(i, 0) - halfSizes) * spacings;
                     FieldFactory.CreateCell(center + position, i)
-                        .Add<ChildOf, EntityID>(rowID);
+                        .Add<ChildOf, EntityID>(rowID)
+                        .Add<OnSide, Side>(row.Get<OnSide>().Value);
                 }
             }
         }

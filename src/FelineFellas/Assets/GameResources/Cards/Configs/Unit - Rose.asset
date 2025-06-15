@@ -17,6 +17,7 @@ MonoBehaviour:
   <Rarity>k__BackingField: -1
   <Usage>k__BackingField: 2
   <Price>k__BackingField: 0
+  <CanUseOnlyOnOurRow>k__BackingField: 1
   <Title>k__BackingField: Rose
   <Icon>k__BackingField: {fileID: 21300000, guid: a557eafe7d4f4356388dbbf9f5cfa3d7, type: 3}
   <ActionCardConfig>k__BackingField:

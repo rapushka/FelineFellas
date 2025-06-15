@@ -17,6 +17,7 @@ MonoBehaviour:
   <Rarity>k__BackingField: 1
   <Usage>k__BackingField: 3
   <Price>k__BackingField: 5
+  <CanUseOnlyOnOurRow>k__BackingField: 1
   <Title>k__BackingField: Attack Closest Opponent
   <Icon>k__BackingField: {fileID: 21300000, guid: 0dd4baa5f07d2ee63943f68322df80ce, type: 3}
   <ActionCardConfig>k__BackingField:

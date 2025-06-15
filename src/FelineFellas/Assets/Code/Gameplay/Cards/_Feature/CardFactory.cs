@@ -99,6 +99,7 @@ namespace FelineFellas
                     .Add<Price, int>(config.Price)
                     .Set<CardFace, Face>(Face.FaceDown)
                     .Add<Priority, float>(config.EnemyAi.Priority)
+                    .Is<CanUseOnlyOnOurRow>(config.CanUseOnlyOnOurRow)
                 ;
 
             if (isAction)
