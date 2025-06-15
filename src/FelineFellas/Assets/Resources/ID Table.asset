@@ -185,6 +185,10 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <UnitsOnField>k__BackingField.Array.data[1].<UnitID>k__BackingField.Value
+    - _objectPath: d85e558c1d3c04bee96ed7e7c3d3cf87||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Lead>k__BackingField.Value
   - _id: Card/Unit/Rose
     _assetRefs:
     - _objectPath: a968bcd4a29e482d581a6e308a6e38b5||11400000
@@ -199,3 +203,7 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <UnitsOnField>k__BackingField.Array.data[0].<UnitID>k__BackingField.Value
+    - _objectPath: c0e3019992949156e8017121ef8babab||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Lead>k__BackingField.Value

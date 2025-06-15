@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _levels
             = GroupBuilder<GameScope>
-                .With<Level>()
+                .With<Stage>()
                 .Build();
 
         private static IShopFactory ShopFactory => ServiceLocator.Resolve<IShopFactory>();

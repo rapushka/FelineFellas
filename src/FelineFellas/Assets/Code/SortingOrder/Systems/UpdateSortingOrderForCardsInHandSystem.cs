@@ -17,7 +17,7 @@ namespace FelineFellas
             foreach (var card in _cards)
             {
                 var cardIndex = card.Get<InHandIndex>().Value;
-                card.SetSorting(SortGroup.CardInHand, cardIndex);
+                card.SetSorting(RenderOrder.CardInHand, cardIndex);
             }
         }
     }
@@ -35,7 +35,7 @@ namespace FelineFellas
         {
             foreach (var card in _cards)
             {
-                card.SetSorting(SortGroup.DraggingCard);
+                card.SetSorting(RenderOrder.DraggingCard);
             }
         }
     }

@@ -22,9 +22,8 @@ namespace FelineFellas
             foreach (var card in _droppedCards.GetEntities(_buffer))
             {
                 var cell = card.Get<UseTarget>().Value.GetEntity();
-                var coordinates = cell.Get<CellCoordinates>().Value;
 
-                CardUtils.PlaceCardOnGrid(card, coordinates)
+                CardUtils.PlaceCardOnField(card, cell)
                     .Chain(CardUtils.MarkUsed)
                     ;
             }

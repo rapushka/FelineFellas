@@ -15,7 +15,7 @@ namespace FelineFellas
             foreach (var entity in _entities)
             {
                 var sortingGroup = entity.Get<SpriteSortingGroup>().Value;
-                entity.Set<SpriteSortingIndex, int>((int)sortingGroup);
+                entity.Set<RenderOrderIndex, int>((int)sortingGroup);
             }
         }
     }

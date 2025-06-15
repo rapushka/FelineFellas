@@ -5,9 +5,10 @@ namespace FelineFellas
 {
     public interface IFieldFactory : IService
     {
-        Entity<GameScope> CreateField(Vector2 position);
+        Entity<GameScope> CreateField();
+        Entity<GameScope> CreateRow(Side side, Entity<GameScope> field);
 
-        Entity<GameScope> CreateCell(Vector2 position, Coordinates coordinates);
+        Entity<GameScope> CreateCell(Vector2 position, int index);
     }
 
     public class FieldFactory : IFieldFactory
@@ -18,10 +19,11 @@ namespace FelineFellas
 
         private static FieldConfig FieldConfig => GameConfig.Field;
 
-        public Entity<GameScope> CreateField(Vector2 position)
-        {
-            var entity = ViewFactory.CreateInWorld(FieldConfig.View.FieldPrefab, position).Entity;
+        private static FieldConfig.ViewConfig ViewConfig => FieldConfig.View;
 
+        public Entity<GameScope> CreateField()
+        {
+            var entity = ViewFactory.CreateInWorld(ViewConfig.FieldPrefab, ViewConfig.FieldCenter).Entity;
             var sizes = FieldConfig.FieldSize;
             var borders = new Borders(
                 min: new(0, 0),
@@ -35,16 +37,41 @@ namespace FelineFellas
                 ;
         }
 
-        public Entity<GameScope> CreateCell(Vector2 position, Coordinates coordinates)
+        public Entity<GameScope> CreateRow(Side side, Entity<GameScope> field)
         {
-            var entity = ViewFactory.CreateInWorld(FieldConfig.View.CellPrefab, position).Entity;
+            var position = CalculateRowCenter();
+            var entity = ViewFactory.CreateInWorld(ViewConfig.FieldPrefab, position).Entity;
+
+            return entity
+                    .Add<Name, string>("row")
+                    .Add<Row>()
+                    .Add<OnSide, Side>(side)
+                    .Is<PlayerRow>(side is Side.Player)
+                    .Is<EnemyRow>(side is Side.Enemy)
+                ;
+
+            Vector2 CalculateRowCenter()
+            {
+                var sign = side.Visit(
+                    onPlayer: -1,
+                    onEnemy: 1
+                );
+                var yDistance = FieldConfig.View.DistanceBetweenRows;
+                var fieldCenter = field.WorldPosition();
+                return fieldCenter.Add(y: yDistance * sign);
+            }
+        }
+
+        public Entity<GameScope> CreateCell(Vector2 position, int index)
+        {
+            var entity = ViewFactory.CreateInWorld(ViewConfig.CellPrefab, position).Entity;
             return entity
                     .Add<Name, string>("cell")
                     .Add<Cell>()
                     .Add<Interactable>()
                     .Add<Empty>()
-                    .Add<SpriteSortingGroup, SortGroup>(SortGroup.Grid)
-                    .Add<CellCoordinates, Coordinates>(coordinates)
+                    .Add<SpriteSortingGroup, RenderOrder>(RenderOrder.Grid)
+                    .Add<CellIndex, int>(index)
                 ;
         }
     }

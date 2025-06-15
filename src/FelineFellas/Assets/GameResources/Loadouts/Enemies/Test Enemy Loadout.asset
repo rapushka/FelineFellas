@@ -17,14 +17,5 @@ MonoBehaviour:
   - <CardID>k__BackingField:
       Value: Card/Action/AttackClosestOpponent
     <Count>k__BackingField: 10
-  <UnitsOnField>k__BackingField:
-  - <UnitID>k__BackingField:
-      Value: Card/Unit/Rat
-    <Coordinates>k__BackingField:
-      _row: 2
-      _column: 2
-  - <UnitID>k__BackingField:
-      Value: Card/Unit/Rat
-    <Coordinates>k__BackingField:
-      _row: 2
-      _column: 4
+  <Lead>k__BackingField:
+    Value: Card/Unit/Rat

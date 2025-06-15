@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side);
 
-        Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates, Side side);
+        Entity<GameScope> CreateLeadOnDeck(CardIDRef cardID, Entity<GameScope> deck);
 
         Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot);
     }
@@ -19,9 +19,6 @@ namespace FelineFellas
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
         private static CardsConfig CardsConfig => GameConfig.Cards;
-
-        private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
-            => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
 
         public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side)
         {
@@ -58,13 +55,18 @@ namespace FelineFellas
             return deck;
         }
 
-        public Entity<GameScope> CreateCardOnCoordinates(CardIDRef cardID, Coordinates coordinates, Side side)
+        public Entity<GameScope> CreateLeadOnDeck(CardIDRef cardID, Entity<GameScope> deck)
         {
-            var cell = CellIndex.GetEntity(coordinates);
+            var side = deck.Get<OnSide>().Value;
 
-            return Create(cardID, cell.WorldPosition())
-                .AssignToSide(side)
-                .Chain(card => CardUtils.PlaceCardOnGrid(card, coordinates));
+            return Create(cardID, deck.WorldPosition())
+                    .AssignToSide(side)
+                    .Chain(card => CardUtils.AddToDeck(card, deck))
+                    .Set<CardFace, Face>(Face.FaceUp)
+                    .Remove<CardInDeck>()
+                    .Add<LeadOnDeck, EntityID>(deck.ID())
+                    .SetSorting(RenderOrder.LeadOnDeck)
+                ;
         }
 
         public Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot)
@@ -84,7 +86,7 @@ namespace FelineFellas
             var card = view.Entity
                     .Add<Name, string>("card")
                     .Add<Card, CardIDRef>(config.ID)
-                    .Add<SpriteSortingGroup, SortGroup>(SortGroup.CardInHand)
+                    .Add<SpriteSortingGroup, RenderOrder>(RenderOrder.CardInHand)
                     .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)
                     .Add<Rotation, float>(0f)
                     .Add<Scale, float>(1f)
@@ -97,6 +99,7 @@ namespace FelineFellas
                     .Add<Price, int>(config.Price)
                     .Set<CardFace, Face>(Face.FaceDown)
                     .Add<Priority, float>(config.EnemyAi.Priority)
+                    .Is<CanUseOnlyOnOurRow>(config.CanUseOnlyOnOurRow)
                 ;
 
             if (isAction)

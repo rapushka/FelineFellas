@@ -29,9 +29,5 @@ MonoBehaviour:
   - <CardID>k__BackingField:
       Value: Card/Action/MoveUp
     <Count>k__BackingField: 1
-  <UnitsOnField>k__BackingField:
-  - <UnitID>k__BackingField:
-      Value: Card/Unit/Rose
-    <Coordinates>k__BackingField:
-      _row: 0
-      _column: 3
+  <Lead>k__BackingField:
+    Value: Card/Unit/Rose

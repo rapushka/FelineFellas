@@ -18,7 +18,7 @@ namespace FelineFellas
                 .And<WorldPosition>()
                 .Build();
 
-        private readonly IGroup<Entity<GameScope>> _draggedCard
+        private readonly IGroup<Entity<GameScope>> _draggedCards
             = GroupBuilder<GameScope>
                 .With<Card>()
                 .And<UnitCard>()
@@ -27,12 +27,14 @@ namespace FelineFellas
 
         public void Execute()
         {
+            foreach (var card in _draggedCards)
             foreach (var cell in _cells)
             foreach (var cursor in _inputs)
-            foreach (var card in _draggedCard)
             {
-                var cellCollider = cell.Get<Collider>().Value;
+                if (card.Is<CanUseOnlyOnOurRow>() && !card.OnSameSide(cell))
+                    continue;
 
+                var cellCollider = cell.Get<Collider>().Value;
                 var cursorOnUnit = cellCollider.OverlapPoint(cursor.WorldPosition());
 
                 if (cursorOnUnit)

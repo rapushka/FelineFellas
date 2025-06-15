@@ -5,9 +5,9 @@ namespace FelineFellas
 {
     public class CreateEnemyActorSystem : IInitializeSystem
     {
-        private readonly IGroup<Entity<GameScope>> _levels
+        private readonly IGroup<Entity<GameScope>> _stages
             = GroupBuilder<GameScope>
-                .With<Level>()
+                .With<Stage>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
@@ -18,11 +18,11 @@ namespace FelineFellas
 
         public void Initialize()
         {
-            foreach (var level in _levels)
+            foreach (var stage in _stages)
             {
                 var enemyLoadout = RandomService.PickRandom(GameConfig.Loadouts.EnemyLoadouts);
                 ActorFactory.CreateEnemy(enemyLoadout)
-                    .Add<ChildOf, EntityID>(level.ID());
+                    .Add<ChildOf, EntityID>(stage.ID());
             }
         }
     }
