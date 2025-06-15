@@ -24,7 +24,6 @@ namespace FelineFellas
 
             Contexts.Instance.Get<GameScope>().GetPrimaryIndex<ID, EntityID>().Initialize();
             Contexts.Instance.Get<GameScope>().GetIndex<CardInDeck, EntityID>().Initialize();
-            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<OnField, Coordinates>().Initialize();
             Contexts.Instance.Get<GameScope>().GetIndex<ChildOf, EntityID>().Initialize();
 
 #if DEBUG

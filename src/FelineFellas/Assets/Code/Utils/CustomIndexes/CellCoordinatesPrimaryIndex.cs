@@ -82,5 +82,15 @@ namespace FelineFellas
 
             return gameIndex.GetEntity(new(onSide, cellIndex));
         }
+
+        public static GameEntity GetCardOnFieldOrDefault(this GameContext context, Side onSide, int cellIndex)
+        {
+            var cell = context.GetCellOrDefault(onSide, cellIndex);
+            return cell is null
+                ? null
+                : cell.TryGet<PlacedCard>(out var cardID)
+                    ? cardID.Value.GetEntity()
+                    : null;
+        }
     }
 }

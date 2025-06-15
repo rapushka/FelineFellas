@@ -38,7 +38,7 @@ namespace FelineFellas
                 for (var i = 0; i < width; i++)
                 {
                     var position = (new Vector2(i, 0) - halfSizes) * spacings;
-                    FieldFactory.CreateCell(center + position, new(0, i)) // TODO: how to deal with coordinates?
+                    FieldFactory.CreateCell(center + position, i)
                         .Add<ChildOf, EntityID>(rowID);
                 }
             }

@@ -1,20 +1,17 @@
-using Entitas.Generic;
 using UnityEngine;
+using GameEntity = Entitas.Generic.Entity<FelineFellas.GameScope>;
 
 namespace FelineFellas
 {
     public static class CardUtils
     {
-        private static PrimaryEntityIndex<GameScope, CellCoordinates, Coordinates> CellIndex
-            => Contexts.Instance.Get<GameScope>().GetPrimaryIndex<CellCoordinates, Coordinates>();
-
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
         private static MoneyConfig.ShopViewConfig ShopViewConfig => GameConfig.Money.ShopView;
 
         private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
 
-        public static Entity<GameScope> AddToDeck(Entity<GameScope> card, Entity<GameScope> deck)
+        public static GameEntity AddToDeck(GameEntity card, GameEntity deck)
             => card
                 .Set<CardInDeck, EntityID>(deck.ID())
                 .Set<TargetRotation, float>(deck.Get<Rotation, float>())
@@ -32,7 +29,7 @@ namespace FelineFellas
                 .Is<Used>(false)
                 .RemoveSafely<InHandIndex>();
 
-        public static Entity<GameScope> DrawCardToHand(Entity<GameScope> card, int index)
+        public static GameEntity DrawCardToHand(GameEntity card, int index)
             => card
                 .Remove<CardInDeck>()
                 .Add<InHandIndex, int>(index)
@@ -40,16 +37,16 @@ namespace FelineFellas
                 .Is<Draggable>(true)
                 .Is<Interactable>(true);
 
-        public static Entity<GameScope> MarkUsedAndDiscard(Entity<GameScope> card)
+        public static GameEntity MarkUsedAndDiscard(GameEntity card)
             => MarkUsed(card)
                 .Is<SendToDiscard>(true)
                 .Set<CardFace, Face>(Face.FaceDown);
 
-        public static Entity<GameScope> MarkUsed(Entity<GameScope> card)
+        public static GameEntity MarkUsed(GameEntity card)
             => RemoveFromHand(card)
                 .Is<Used>(true);
 
-        public static Entity<GameScope> Purchase(Entity<GameScope> card, EntityID playerID)
+        public static GameEntity Purchase(GameEntity card, EntityID playerID)
         {
             card.Pop<CardInShopSlot, EntityID>().GetEntity()
                 .Remove<PlacedCard>()
@@ -63,7 +60,7 @@ namespace FelineFellas
                 ;
         }
 
-        public static Entity<GameScope> Discard(Entity<GameScope> card)
+        public static GameEntity Discard(GameEntity card)
         {
             var randomRotation = card.Get<OnSide>().Value.Visit(
                 onPlayer: () => RandomService.Range(-2f, 2f),
@@ -80,14 +77,14 @@ namespace FelineFellas
                 ;
         }
 
-        public static Entity<GameScope> RemoveFromHand(Entity<GameScope> card)
+        public static GameEntity RemoveFromHand(GameEntity card)
             => card
                 .Is<WillBeUsed>(false)
                 .RemoveSafely<InHandIndex>()
                 .Is<Interactable>(false)
                 .Is<Draggable>(false);
 
-        public static Entity<GameScope> PlaceCardInShop(Entity<GameScope> card, Entity<GameScope> slot)
+        public static GameEntity PlaceCardInShop(GameEntity card, GameEntity slot)
         {
             var slotID = slot.ID();
             card
@@ -108,25 +105,25 @@ namespace FelineFellas
             return card;
         }
 
-        public static Entity<GameScope> PlaceCardOnGrid(Entity<GameScope> card, Coordinates coordinates)
+        public static GameEntity PlaceCardOnField(GameEntity card, GameEntity cell)
         {
-            var cell = CellIndex.GetEntity(coordinates);
-
 #if DEBUG
             // ReSharper disable once RedundantNameQualifier – to make this peace of code independant from surrounding
             if (!card.Is<UnitCard>())
                 UnityEngine.Debug.LogError("Only Units can be placed on field!");
 #endif
 
+            var cellID = cell.ID();
+
             card
                 .Chain(RemoveCardFromPlacedCell)
                 .Set<TargetRotation, float>(0f)
                 .Set<TargetPosition, Vector2>(cell.WorldPosition())
-                .Set<OnField, Coordinates>(cell.Get<CellCoordinates>().Value)
                 .Set<CardFace, Face>(Face.FaceUp)
                 .Is<Interactable>(false)
                 .Is<Draggable>(false)
-                .Set<ChildOf, EntityID>(cell.ID())
+                .Is<OnField>(true)
+                .Set<ChildOf, EntityID>(cellID)
                 .SetSorting(RenderOrder.CardOnField)
                 ;
 
@@ -138,27 +135,24 @@ namespace FelineFellas
             return card;
         }
 
-        public static Entity<GameScope> CleanupUsedCard(Entity<GameScope> card)
+        public static GameEntity CleanupUsedCard(GameEntity card)
             => card.RemoveSafely<SelectedTarget>()
                 .RemoveSafely<UseTarget>()
                 .Is<WillBeUsed>(false)
                 .Is<CanNotPlay>(false);
 
-        private static Entity<GameScope> RemoveCardFromPlacedCell(Entity<GameScope> card)
+        private static GameEntity RemoveCardFromPlacedCell(GameEntity card)
         {
-            var cardIsOnField = card.TryGet<OnField, Coordinates>(out var coordinates);
-            if (!cardIsOnField)
+            if (!card.Is<OnField>())
                 return card;
 
-            var cell = CellIndex.GetEntity(coordinates);
+            var cell = card.Get<ChildOf>().Value.GetEntity();
             cell
                 .Remove<PlacedCard>()
                 .Is<Empty>(true)
                 ;
 
-            card.Remove<OnField>();
-
-            return card;
+            return card.Remove<OnField>();
         }
     }
 }

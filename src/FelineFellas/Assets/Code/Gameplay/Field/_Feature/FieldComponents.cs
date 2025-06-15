@@ -10,7 +10,6 @@ namespace FelineFellas
 
     public sealed class Empty : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class CellCoordinates : PrimaryIndexComponent<Coordinates>, IInScope<GameScope> { }
     public sealed class CellIndex : IndexComponent<int>, IInScope<GameScope> { }
 
     public sealed class Row : FlagComponent, IInScope<GameScope> { }
@@ -23,5 +22,6 @@ namespace FelineFellas
     // ShopSlot -> Card
     public sealed class PlacedCard : ValueComponent<EntityID>, IInScope<GameScope> { }
 
-    public sealed class OnField : PrimaryIndexComponent<Coordinates>, IInScope<GameScope> { }
+    // if Card's on field then its parent is Cell
+    public sealed class OnField : FlagComponent, IInScope<GameScope> { }
 }

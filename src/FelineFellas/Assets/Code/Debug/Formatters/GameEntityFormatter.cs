@@ -6,6 +6,8 @@ namespace FelineFellas
 {
     public class GameEntityFormatter : EntityStringBuilderFormatter<GameScope>
     {
+        private const string EmptyString = "";
+
         protected override void BuildName(ref StringBuilder stringBuilder, in Entity<GameScope> entity)
         {
             var buffer = new[]
@@ -13,14 +15,15 @@ namespace FelineFellas
                 entity.GetOrDefault<ID>()?.Value.ID.ToString() ?? "_",
                 $"{entity.GetName()} |",
 
-                entity.Has<PlayerRow>() ? "player" : string.Empty,
-                entity.Has<EnemyRow>() ? "enemy" : string.Empty,
+                entity.Has<PlayerRow>() ? "player" : EmptyString,
+                entity.Has<EnemyRow>() ? "enemy" : EmptyString,
 
-                entity.Has<CardInDeck>() ? "in-deck" : string.Empty,
-                entity.Has<InHandIndex>() ? "in-hand" : string.Empty,
-                entity.Has<InDiscard>() ? "in-discard" : string.Empty,
-                entity.ToString<OnField, Coordinates>(prefix: "on-field: "),
-                entity.Has<CardInShopSlot>() ? "in-shop" : string.Empty,
+                entity.Has<CardInDeck>() ? "in-deck" : EmptyString,
+                entity.Has<InHandIndex>() ? "in-hand" : EmptyString,
+                entity.Has<InDiscard>() ? "in-discard" : EmptyString,
+                ToStringCardOnField(entity),
+                entity.ToString<OnSide, Side>(prefix: "on-side:"),
+                entity.Has<CardInShopSlot>() ? "in-shop" : EmptyString,
 
                 entity.ToString<EnemyUnit>(),
                 entity.ToString<Fella>(),
@@ -40,7 +43,17 @@ namespace FelineFellas
                 && entity.TryGet<MaxHealth, int>(out var maxHealth))
                 return $"HP: {health:### ###}/{maxHealth:### ###}";
 
-            return string.Empty;
+            return EmptyString;
+        }
+
+        private static string ToStringCardOnField(in Entity<GameScope> entity)
+        {
+            if (!entity.Is<OnField>())
+                return EmptyString;
+
+            var cell = entity.Get<ChildOf>().Value.GetEntity();
+            var cellIndex = cell.Get<CellIndex>().Value;
+            return $"on-field: [{cellIndex}]";
         }
     }
 }
