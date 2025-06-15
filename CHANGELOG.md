@@ -1,3 +1,6 @@
+# v0.0.6
+- Field Rework: Instead of a grid, there are now two rows (one for the player's units and one for the enemy's) [#94](https://github.com/rapushka/FelineFellas/issues/94)
+
 # v0.0.5
 - implement Enemy's "AI" - now enemy plays all cards in their hand [#87](https://github.com/rapushka/FelineFellas/issues/87)
 
