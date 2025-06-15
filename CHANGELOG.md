@@ -1,5 +1,6 @@
 # v0.0.6
 - Field Rework: Instead of a grid, there are now two rows (one for the player's units and one for the enemy's) [#94](https://github.com/rapushka/FelineFellas/issues/94)
+- put Leaders on field before stage starts [#96]](https://github.com/rapushka/FelineFellas/issues/96)
 - fix HUD layout [#78](https://github.com/rapushka/FelineFellas/issues/78)
 
 # v0.0.5
