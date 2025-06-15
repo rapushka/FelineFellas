@@ -12,5 +12,5 @@ namespace FelineFellas
     public sealed class CardInDeck : IndexComponent<EntityID>, IInScope<GameScope> { }
 
     // card -> deck
-    public sealed class LeadOnDeck : IndexComponent<EntityID>, IInScope<GameScope> { }
+    public sealed class LayingOnDeck : IndexComponent<EntityID>, IInScope<GameScope> { }
 }

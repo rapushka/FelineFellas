@@ -8,6 +8,8 @@ namespace FelineFellas
             Add(new SpawnFieldSystem());
             Add(new SpawnRowsSystem());
             Add(new SpawnCellsSystem());
+
+            Add(new PutLeadsOnFieldSystem());
         }
     }
 }
