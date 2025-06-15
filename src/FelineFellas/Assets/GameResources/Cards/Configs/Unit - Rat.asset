@@ -27,7 +27,7 @@ MonoBehaviour:
     <AllowedTargets>k__BackingField: 0
     <Direction>k__BackingField: 0
   <UnitCardConfig>k__BackingField:
-    <IsLeader>k__BackingField: 0
+    <IsLeader>k__BackingField: 1
     <MaxHealth>k__BackingField: 2
     <Strength>k__BackingField: 1
   <EnemyAi>k__BackingField:

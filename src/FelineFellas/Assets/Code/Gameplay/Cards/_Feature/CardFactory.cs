@@ -64,7 +64,7 @@ namespace FelineFellas
                     .Chain(card => CardUtils.AddToDeck(card, deck))
                     .Set<CardFace, Face>(Face.FaceUp)
                     .Remove<CardInDeck>()
-                    .Add<LeadOnDeck, EntityID>(deck.ID())
+                    .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
                 ;
         }
