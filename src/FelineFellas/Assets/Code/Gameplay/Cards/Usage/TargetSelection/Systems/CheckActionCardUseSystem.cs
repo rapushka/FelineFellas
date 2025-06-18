@@ -8,7 +8,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<ActionCard>()
+                .And<OrderCard>()
                 .And<Dragging>()
                 .Build();
 
@@ -40,9 +40,9 @@ namespace FelineFellas
                 if (!cursorOnCell)
                     continue;
 
-                var canUseOnEnemy = card.Is<CanUseOnEnemy>();
-                var canUseOnFella = card.Is<CanUseOnFella>();
-                var canUseOnLeader = card.Is<CanUseOnLeader>();
+                var canUseOnEnemy = card.Is<CanSelectEnemy>();
+                var canUseOnFella = card.Is<CanSelectFella>();
+                var canUseOnLeader = card.Is<CanSelectLeader>();
 
                 if (unit.Is<Leader>() && !canUseOnLeader)
                     continue;

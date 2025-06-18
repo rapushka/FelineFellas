@@ -136,7 +136,7 @@ namespace FelineFellas
         }
 
         public static GameEntity CleanupUsedCard(GameEntity card)
-            => card.RemoveSafely<SelectedTarget>()
+            => card.RemoveSafely<TargetObject>()
                 .RemoveSafely<UseTarget>()
                 .Is<WillBeUsed>(false)
                 .Is<CanNotPlay>(false);

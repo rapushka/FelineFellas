@@ -8,7 +8,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _cards
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<ActionCard>()
+                .And<OrderCard>()
                 .And<Used>()
                 .Build();
 

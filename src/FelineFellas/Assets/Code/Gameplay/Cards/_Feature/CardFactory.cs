@@ -18,6 +18,8 @@ namespace FelineFellas
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
+        private static IAbilityFactory AbilityFactory => ServiceLocator.Resolve<IAbilityFactory>();
+
         private static CardsConfig CardsConfig => GameConfig.Cards;
 
         public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side)
@@ -59,6 +61,11 @@ namespace FelineFellas
         {
             var side = deck.Get<OnSide>().Value;
 
+            var rotation = side.Visit(
+                onPlayer: () => 0f,
+                onEnemy: () => 180f
+            );
+
             return Create(cardID, deck.WorldPosition())
                     .AssignToSide(side)
                     .Chain(card => CardUtils.AddToDeck(card, deck))
@@ -66,6 +73,7 @@ namespace FelineFellas
                     .Remove<CardInDeck>()
                     .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
+                    .Set<Rotation, float>(rotation)
                 ;
         }
 
@@ -77,9 +85,9 @@ namespace FelineFellas
         {
             var config = CardsConfig.GetConfig(cardID);
 
-            var isGlobal = config.Usage is CardConfig.UsageType.Global;
-            var isUnit = config.Usage is CardConfig.UsageType.Unit;
-            var isAction = config.Usage is CardConfig.UsageType.Action;
+            var isGlobal = config.Card is CardConfig.CardType.Event;
+            var isUnit = config.Card is CardConfig.CardType.Unit;
+            var isAction = config.Card is CardConfig.CardType.Order;
 
             var view = ViewFactory.CreateInWorld(CardsConfig.View.ViewPrefab, position);
 
@@ -92,7 +100,7 @@ namespace FelineFellas
                     .Add<Scale, float>(1f)
                     .Is<GlobalCard>(isGlobal)
                     .Is<UnitCard>(isUnit)
-                    .Is<ActionCard>(isAction)
+                    .Is<OrderCard>(isAction)
                     .Is<OneShotCard>(isGlobal || isAction)
                     .Add<CardTitle, string>(config.Title)
                     .Add<CardIcon, Sprite>(config.Icon)
@@ -128,36 +136,18 @@ namespace FelineFellas
 
         private void SetupActionCard(Entity<GameScope> card, CardConfig config)
         {
-            var actionCardConfig = config.ActionCardConfig;
-            var actionValue = actionCardConfig.Value;
+            var orderConfig = config.OrderCardConfig;
+            var targetSubject = orderConfig.TargetSubject;
+            var canUseOnFella = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Fella);
+            var canUseOnLead = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Lead);
+            var canUseOnEnemy = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Enemy);
 
-            var isMove = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Move;
-            var isAttack = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.Attack;
-            var isSendToDiscard = actionCardConfig.ActionType is ActionCardConfig.ActionCardType.SendToDiscard;
-
-            var selectTargetAsDirection = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.Direction;
-            var targetClosestOpponent = actionCardConfig.TargetSelection is ActionCardConfig.TargetSelectionType.ClosestOpponent;
-
-            var canUseOnFella = actionCardConfig.AllowedTargets.HasFlag(ActionCardConfig.AllowedTargetType.Fella);
-            var canUseOnLead = actionCardConfig.AllowedTargets.HasFlag(ActionCardConfig.AllowedTargetType.Lead);
-            var canUseOnEnemy = actionCardConfig.AllowedTargets.HasFlag(ActionCardConfig.AllowedTargetType.Enemy);
-
-            card
-                .Add<ActionValue, float>(actionValue)
-                .Is<AbilityMove>(isMove)
-                .Is<AbilityAttack>(isAttack)
-                .Is<AbilitySendToDiscard>(isSendToDiscard)
-                .Is<CanUseOnFella>(canUseOnFella)
-                .Is<CanUseOnLeader>(canUseOnLead)
-                .Is<CanUseOnEnemy>(canUseOnEnemy)
-                .Is<TargetSelectClosestOpponent>(targetClosestOpponent)
+            AbilityFactory.Create(orderConfig.Ability)
+                .SetParent(card)
+                .Is<CanSelectFella>(canUseOnFella)
+                .Is<CanSelectLeader>(canUseOnLead)
+                .Is<CanSelectEnemy>(canUseOnEnemy)
                 ;
-
-            if (selectTargetAsDirection)
-            {
-                var direction = actionCardConfig.Direction.ToCoordinates();
-                card.Add<TargetSelectNeighbor, Coordinates>(direction.Multiply((int)actionValue));
-            }
         }
     }
 }

@@ -10,17 +10,17 @@ namespace FelineFellas
                 .With<Card>()
                 .And<Used>()
                 .And<AbilityAttack>()
-                .And<SelectedTarget>()
+                .And<TargetObject>()
                 .Build();
 
         public void Execute()
         {
             foreach (var card in _cards)
             {
-                var multiplier = card.Get<ActionValue>().Value;
+                var multiplier = card.Get<AbilityAttack>().Value;
 
                 var attacker = card.Get<UseTarget>().Value.GetEntity();
-                var target = card.Get<SelectedTarget>().Value.GetEntity();
+                var target = card.Get<TargetObject>().Value.GetEntity();
 
                 var strength = attacker.Get<Strength>().Value;
 
