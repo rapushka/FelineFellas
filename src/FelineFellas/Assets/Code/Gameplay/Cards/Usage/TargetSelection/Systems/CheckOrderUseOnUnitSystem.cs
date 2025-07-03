@@ -51,9 +51,9 @@ namespace FelineFellas
             var canUseOnFella = card.Is<CanTargetSubjectFella>();
             var canUseOnLeader = card.Is<CanTargetSubjectLeader>();
 
-            return (!unit.Is<Leader>() || canUseOnLeader)
-                && (!unit.Is<Fella>() || canUseOnFella)
-                && (!unit.Is<EnemyUnit>() || canUseOnEnemy);
+            return unit.Is<Leader>() && canUseOnLeader
+                || unit.Is<Fella>() && canUseOnFella
+                || unit.Is<EnemyUnit>() && canUseOnEnemy;
         }
 
         private static bool IsCursorOnUnit(Entity<InputScope> input, Entity<GameScope> unit)

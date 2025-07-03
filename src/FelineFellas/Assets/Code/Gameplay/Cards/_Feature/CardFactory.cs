@@ -140,11 +140,13 @@ namespace FelineFellas
             var canUseOnLead = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Lead);
             var canUseOnEnemy = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Enemy);
 
-            CreateAbilityForCard(card, orderConfig.Ability)
-                .Is<CanTargetSubjectFella>(canUseOnFella)
+            card
+                .Is<CanTargetSubjectFella>(canUseOnFella) // TODO: does Ability need these?
                 .Is<CanTargetSubjectLeader>(canUseOnLead)
                 .Is<CanTargetSubjectEnemy>(canUseOnEnemy)
                 ;
+
+            CreateAbilityForCard(card, orderConfig.Ability);
 
             return card;
         }
@@ -161,6 +163,7 @@ namespace FelineFellas
                 ;
         }
 
+        // ReSharper disable once UnusedMethodReturnValue.Local - why so greedy?
         private GameEntity CreateAbilityForCard(GameEntity card, AbilityConfig abilityConfig)
         {
             return AbilityFactory.Create(card.ID(), abilityConfig)

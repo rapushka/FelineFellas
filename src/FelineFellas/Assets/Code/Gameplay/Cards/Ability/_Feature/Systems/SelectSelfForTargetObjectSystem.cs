@@ -16,7 +16,7 @@ namespace FelineFellas
         {
             foreach (var ability in _abilities)
             {
-                var sender = ability.Get<TargetObject>().Value;
+                var sender = ability.Get<TargetSubject>().Value;
                 ability.Set<TargetObject, EntityID>(sender);
             }
         }
