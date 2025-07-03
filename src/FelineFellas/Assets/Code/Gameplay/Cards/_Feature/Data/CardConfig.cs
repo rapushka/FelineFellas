@@ -22,7 +22,12 @@ namespace FelineFellas
         [field: Naughty.BoxGroup("View")]
         [field: SerializeField] public Sprite Icon { get; private set; }
 
-        [field: Naughty.BoxGroup("Action")]
+        [field: Naughty.BoxGroup("EVent")]
+        [field: Naughty.ShowIf(nameof(Card), CardType.Event)]
+        [field: Naughty.HorizontalLine(color: Naughty.EColor.Green)]
+        [field: SerializeField] public EventCardConfig EventCardConfig { get; private set; }
+
+        [field: Naughty.BoxGroup("Order")]
         [field: Naughty.ShowIf(nameof(Card), CardType.Order)]
         [field: Naughty.HorizontalLine(color: Naughty.EColor.Yellow)]
         [field: SerializeField] public OrderCardConfig OrderCardConfig { get; private set; }

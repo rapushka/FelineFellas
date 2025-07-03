@@ -3,21 +3,21 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class UseSendToDiscardAbilitySystem : IExecuteSystem
+    public sealed class SelectSelfForTargetObjectSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _abilities
             = GroupBuilder<GameScope>
                 .With<AbilityUse>()
-                .And<TargetObject>()
-                .And<AbilitySendToDiscard>()
+                .And<TargetObjectAsSelf>()
+                .And<TargetSubject>()
                 .Build();
 
         public void Execute()
         {
             foreach (var ability in _abilities)
             {
-                var target = ability.Get<TargetObject>().Value.GetEntity();
-                CardUtils.Discard(target);
+                var sender = ability.Get<TargetObject>().Value;
+                ability.Set<TargetObject, EntityID>(sender);
             }
         }
     }

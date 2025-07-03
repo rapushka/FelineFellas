@@ -1,15 +1,15 @@
-using Entitas.Generic;
 using UnityEngine;
+using GameEntity = Entitas.Generic.Entity<FelineFellas.GameScope>;
 
 namespace FelineFellas
 {
     public interface ICardFactory : IService
     {
-        Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side);
+        GameEntity CreateDeckWithCards(CardEntry[] cards, Side side);
 
-        Entity<GameScope> CreateLeadOnDeck(CardIDRef cardID, Entity<GameScope> deck);
+        GameEntity CreateLeadOnDeck(CardIDRef cardID, GameEntity deck);
 
-        Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot);
+        GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot);
     }
 
     public class CardFactory : ICardFactory
@@ -22,7 +22,7 @@ namespace FelineFellas
 
         private static CardsConfig CardsConfig => GameConfig.Cards;
 
-        public Entity<GameScope> CreateDeckWithCards(CardEntry[] cards, Side side)
+        public GameEntity CreateDeckWithCards(CardEntry[] cards, Side side)
         {
             var position = side.Visit(
                 onPlayer: () => GameConfig.Layout.PlayerDeck,
@@ -57,7 +57,7 @@ namespace FelineFellas
             return deck;
         }
 
-        public Entity<GameScope> CreateLeadOnDeck(CardIDRef cardID, Entity<GameScope> deck)
+        public GameEntity CreateLeadOnDeck(CardIDRef cardID, GameEntity deck)
         {
             var side = deck.Get<OnSide>().Value;
 
@@ -77,15 +77,15 @@ namespace FelineFellas
                 ;
         }
 
-        public Entity<GameScope> CreateCardInShop(CardIDRef cardID, Entity<GameScope> shopSlot)
+        public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot)
             => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
                 .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot));
 
-        private Entity<GameScope> Create(CardIDRef cardID, Vector2 position)
+        private GameEntity Create(CardIDRef cardID, Vector2 position)
         {
             var config = CardsConfig.GetConfig(cardID);
 
-            var isGlobal = config.Card is CardConfig.CardType.Event;
+            var isEvent = config.Card is CardConfig.CardType.Event;
             var isUnit = config.Card is CardConfig.CardType.Unit;
             var isAction = config.Card is CardConfig.CardType.Order;
 
@@ -98,23 +98,20 @@ namespace FelineFellas
                     .Add<AnimationsSpeed, float>(CardsConfig.View.CardAnimationsSpeed)
                     .Add<Rotation, float>(0f)
                     .Add<Scale, float>(1f)
-                    .Is<GlobalCard>(isGlobal)
+                    .Is<EventCard>(isEvent)
                     .Is<UnitCard>(isUnit)
                     .Is<OrderCard>(isAction)
-                    .Is<OneShotCard>(isGlobal || isAction)
+                    .Is<DiscardAfterUse>(isEvent || isAction)
                     .Add<CardTitle, string>(config.Title)
                     .Add<CardIcon, Sprite>(config.Icon)
                     .Add<Price, int>(config.Price)
                     .Set<CardFace, Face>(Face.FaceDown)
                     .Add<Priority, float>(config.EnemyAi.Priority)
                     .Is<CanUseOnlyOnOurRow>(config.CanUseOnlyOnOurRow)
+                    .Chain(e => SetupEventCard(e, config), @if: isEvent)
+                    .Chain(e => SetupActionCard(e, config), @if: isAction)
+                    .Chain(e => SetupUnitCard(e, config), @if: isUnit)
                 ;
-
-            if (isAction)
-                SetupActionCard(card, config);
-
-            if (isUnit)
-                SetupUnitCard(card, config);
 
             var viewMediator = view.GetComponent<CardViewMediator>();
             viewMediator.Initialize(card);
@@ -122,19 +119,20 @@ namespace FelineFellas
             return card;
         }
 
-        private void SetupUnitCard(Entity<GameScope> card, CardConfig config)
+        private GameEntity SetupEventCard(GameEntity card, CardConfig config)
         {
-            var unitConfig = config.UnitCardConfig;
+            var eventConfig = config.EventCardConfig;
+            CreateAbilityForCard(card, eventConfig.Ability)
+                ;
 
             card
-                .Add<MaxHealth, int>(unitConfig.MaxHealth)
-                .Add<Health, int>(unitConfig.MaxHealth)
-                .Add<Strength, int>(unitConfig.Strength)
-                .Is<Leader>(unitConfig.IsLeader)
+                .Is<TargetGlobal>(eventConfig.IsGlobal)
                 ;
+
+            return card;
         }
 
-        private void SetupActionCard(Entity<GameScope> card, CardConfig config)
+        private GameEntity SetupActionCard(GameEntity card, CardConfig config)
         {
             var orderConfig = config.OrderCardConfig;
             var targetSubject = orderConfig.TargetSubject;
@@ -142,12 +140,32 @@ namespace FelineFellas
             var canUseOnLead = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Lead);
             var canUseOnEnemy = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Enemy);
 
-            AbilityFactory.Create(card.ID(), orderConfig.Ability)
-                .SetParent(card)
+            CreateAbilityForCard(card, orderConfig.Ability)
                 .Is<CanTargetSubjectFella>(canUseOnFella)
                 .Is<CanTargetSubjectLeader>(canUseOnLead)
                 .Is<CanTargetSubjectEnemy>(canUseOnEnemy)
-                .Add<TriggerOnUse>()
+                ;
+
+            return card;
+        }
+
+        private GameEntity SetupUnitCard(GameEntity card, CardConfig config)
+        {
+            var unitConfig = config.UnitCardConfig;
+
+            return card
+                    .Add<MaxHealth, int>(unitConfig.MaxHealth)
+                    .Add<Health, int>(unitConfig.MaxHealth)
+                    .Add<Strength, int>(unitConfig.Strength)
+                    .Is<Leader>(unitConfig.IsLeader)
+                ;
+        }
+
+        private GameEntity CreateAbilityForCard(GameEntity card, AbilityConfig abilityConfig)
+        {
+            return AbilityFactory.Create(card.ID(), abilityConfig)
+                    .SetParent(card)
+                    .Add<TriggerOnUse>()
                 ;
         }
     }

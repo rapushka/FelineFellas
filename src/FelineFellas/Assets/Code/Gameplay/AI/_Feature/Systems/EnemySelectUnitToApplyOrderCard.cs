@@ -3,7 +3,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public class SelectUnitToApplyActionCard : IExecuteSystem
+    public class EnemySelectUnitToApplyOrderCard : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _enemies
             = GroupBuilder<GameScope>
@@ -48,7 +48,7 @@ namespace FelineFellas
                 card
                     .Is<Dropped>(true)
                     .Is<WillBeUsed>(true)
-                    .Set<UseTarget, EntityID>(useTarget.ID())
+                    .Set<DropCardOn, EntityID>(useTarget.ID())
                     ;
             }
         }

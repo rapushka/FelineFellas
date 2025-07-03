@@ -3,7 +3,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class CheckActionCardUseSystem : IExecuteSystem
+    public sealed class CheckOrderUseOnUnitSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
@@ -32,32 +32,35 @@ namespace FelineFellas
             foreach (var input in _inputs)
             foreach (var card in _draggedCard)
             {
-                var cursorPosition = input.Get<WorldPosition>().Value;
-                var unitCollider = unit.Get<Collider>().Value;
-
-                var cursorOnCell = unitCollider.OverlapPoint(cursorPosition);
-
-                if (!cursorOnCell)
+                if (!CanUseOnUnitType(card, unit))
                     continue;
 
-                var canUseOnEnemy = card.Is<CanTargetSubjectEnemy>();
-                var canUseOnFella = card.Is<CanTargetSubjectFella>();
-                var canUseOnLeader = card.Is<CanTargetSubjectLeader>();
-
-                if (unit.Is<Leader>() && !canUseOnLeader)
-                    continue;
-
-                if (unit.Is<Fella>() && !canUseOnFella)
-                    continue;
-
-                if (unit.Is<EnemyUnit>() && !canUseOnEnemy)
+                if (!IsCursorOnUnit(input, unit))
                     continue;
 
                 card
                     .Is<WillBeUsed>(true)
-                    .Add<UseTarget, EntityID>(unit.ID())
+                    .Add<DropCardOn, EntityID>(unit.ID())
                     ;
             }
+        }
+
+        private static bool CanUseOnUnitType(Entity<GameScope> card, Entity<GameScope> unit)
+        {
+            var canUseOnEnemy = card.Is<CanTargetSubjectEnemy>();
+            var canUseOnFella = card.Is<CanTargetSubjectFella>();
+            var canUseOnLeader = card.Is<CanTargetSubjectLeader>();
+
+            return (!unit.Is<Leader>() || canUseOnLeader)
+                && (!unit.Is<Fella>() || canUseOnFella)
+                && (!unit.Is<EnemyUnit>() || canUseOnEnemy);
+        }
+
+        private static bool IsCursorOnUnit(Entity<InputScope> input, Entity<GameScope> unit)
+        {
+            var cursorPosition = input.Get<WorldPosition>().Value;
+            var unitCollider = unit.Get<Collider>().Value;
+            return unitCollider.OverlapPoint(cursorPosition);
         }
     }
 }

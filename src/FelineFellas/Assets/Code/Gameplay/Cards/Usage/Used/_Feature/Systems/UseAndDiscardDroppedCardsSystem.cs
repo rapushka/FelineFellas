@@ -4,13 +4,13 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class UseDroppedOneShotCardsIfCanSystem : IExecuteSystem
+    public sealed class UseAndDiscardDroppedCardsSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _droppedCards
             = GroupBuilder<GameScope>
                 .With<Card>()
                 .And<WillBeUsed>()
-                .And<OneShotCard>()
+                .And<DiscardAfterUse>()
                 .And<Dropped>()
                 .Build();
 

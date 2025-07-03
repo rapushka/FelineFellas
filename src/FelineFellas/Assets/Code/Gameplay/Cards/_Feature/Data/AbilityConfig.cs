@@ -6,11 +6,10 @@ namespace FelineFellas
     [Serializable]
     public class AbilityConfig
     {
-        [field: SerializeField] public AbilityType Type { get; private set; }
+        [field: SerializeField] public AbilityTypeID TypeID { get; private set; }
 
-        [field: NaughtyAttributes.ShowIf(nameof(HasTargetObject))]
         [field: NaughtyAttributes.AllowNesting]
-        [field: SerializeField] public TargetObjectSelectionType TargetObject { get; private set; }
+        [field: SerializeField] public TargetObjectTypeID TargetObject { get; private set; }
 
         [field: NaughtyAttributes.ShowIf(nameof(HasValue))]
         [field: NaughtyAttributes.AllowNesting]
@@ -25,35 +24,13 @@ namespace FelineFellas
         [field: SerializeField] public Belonging TargetObjectBelonging { get; private set; }
 
         private bool HasValue()
-            => Type is AbilityType.Attack;
-
-        private bool HasTargetObject()
-            => Type is AbilityType.Move or AbilityType.Attack;
+            => TypeID is AbilityTypeID.Attack;
 
         private bool HasDirection()
-            => TargetObject is TargetObjectSelectionType.FreeCell;
+            => TargetObject is TargetObjectTypeID.FreeCell;
 
         private bool HasBelonging()
-            => TargetObject is TargetObjectSelectionType.FreeCell;
-
-        [Serializable]
-        [JetBrains.Annotations.UsedImplicitly]
-        public enum AbilityType
-        {
-            Unknown = 0,
-            Move = 1,
-            Attack = 2,
-            SendToDiscard = 3,
-        }
-
-        [Serializable]
-        [JetBrains.Annotations.UsedImplicitly]
-        public enum TargetObjectSelectionType
-        {
-            Unknown = 0,
-            Opponent = 2,
-            FreeCell = 3,
-        }
+            => TargetObject is TargetObjectTypeID.FreeCell;
 
         [Serializable]
         [JetBrains.Annotations.UsedImplicitly]

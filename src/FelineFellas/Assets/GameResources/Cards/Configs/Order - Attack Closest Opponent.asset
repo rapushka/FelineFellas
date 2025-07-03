@@ -20,10 +20,18 @@ MonoBehaviour:
   <CanUseOnlyOnOurRow>k__BackingField: 1
   <Title>k__BackingField: Attack Closest Opponent
   <Icon>k__BackingField: {fileID: 21300000, guid: 0dd4baa5f07d2ee63943f68322df80ce, type: 3}
+  <EventCardConfig>k__BackingField:
+    <Ability>k__BackingField:
+      <TypeID>k__BackingField: 0
+      <TargetObject>k__BackingField: 0
+      <Value>k__BackingField: 0
+      <Direction>k__BackingField: 0
+      <TargetObjectBelonging>k__BackingField: 0
+    <IsGlobal>k__BackingField: 0
   <OrderCardConfig>k__BackingField:
     <TargetSubject>k__BackingField: 3
     <Ability>k__BackingField:
-      <Type>k__BackingField: 2
+      <TypeID>k__BackingField: 0
       <TargetObject>k__BackingField: 2
       <Value>k__BackingField: 1
       <Direction>k__BackingField: 0

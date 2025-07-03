@@ -20,7 +20,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<GlobalCard>()
+                .And<TargetGlobal>()
                 .And<Dragging>()
                 .Build();
 

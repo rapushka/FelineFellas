@@ -9,7 +9,7 @@ namespace FelineFellas
             Add(new TickDelayBeforeCardPlaySystem());
 
             Add(new FindCardWithMostPrioritySystem());
-            Add(new SelectUnitToApplyActionCard());
+            Add(new EnemySelectUnitToApplyOrderCard());
 
             Add(new EndEnemyTurnIfHasNoCardsInHandSystem());
 

@@ -8,7 +8,8 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<Dragging>()
+                // TODO: needed?
+                // .And<Dragging>()
                 .Build();
 
         public void Execute()
@@ -17,7 +18,7 @@ namespace FelineFellas
             {
                 card
                     .Is<WillBeUsed>(false)
-                    .RemoveSafely<UseTarget>()
+                    .RemoveSafely<DropCardOn>()
                     ;
             }
         }

@@ -41,7 +41,7 @@ namespace FelineFellas
                 {
                     card
                         .Is<WillBeUsed>(true)
-                        .Add<UseTarget, EntityID>(cell.ID())
+                        .Add<DropCardOn, EntityID>(cell.ID())
                         ;
                 }
             }

@@ -17,12 +17,9 @@ namespace FelineFellas
                 Add(new DiscardAllEnemyCardsOnEnemyTurnEndedSystem());
             }
 
-            Add(new ResetCardWillBeUsed());
-            Add(new CheckGlobalCardUseSystem());
-            Add(new CheckUnitCardUseSystem());
-            Add(new CheckActionCardUseSystem());
+            Add(new CardWillBeUsedFeature());
 
-            Add(new UseDroppedOneShotCardsIfCanSystem());
+            Add(new UseAndDiscardDroppedCardsSystem());
             Add(new UseCardAbilitiesFeature());
             Add(new PlaceUnitCardsSystems());
 

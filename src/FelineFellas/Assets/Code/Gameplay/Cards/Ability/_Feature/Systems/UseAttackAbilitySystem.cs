@@ -10,7 +10,7 @@ namespace FelineFellas
                 .With<Card>()
                 .And<Used>()
                 .And<AbilityAttack>()
-                .And<TargetObject>()
+                .And<TargetSubject>()
                 .Build();
 
         public void Execute()
@@ -19,10 +19,12 @@ namespace FelineFellas
             {
                 var multiplier = card.Get<AbilityAttack>().Value;
 
-                var attacker = card.Get<UseTarget>().Value.GetEntity();
+                // TODO: use TargetSubject instead of DropCardOn
+                // var sender = card.Get<DropCardOn>().Value.GetEntity();
+                var sender = card.Get<TargetSubject>().Value.GetEntity();
                 var target = card.Get<TargetObject>().Value.GetEntity();
 
-                var strength = attacker.Get<Strength>().Value;
+                var strength = sender.Get<Strength>().Value;
 
                 target.Decrement<Health>((int)(strength * multiplier));
             }

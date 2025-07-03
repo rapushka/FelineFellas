@@ -20,11 +20,19 @@ MonoBehaviour:
   <CanUseOnlyOnOurRow>k__BackingField: 1
   <Title>k__BackingField: Back to the Base
   <Icon>k__BackingField: {fileID: 21300000, guid: 12e0374c87d0a9a1393cb690a86fa3c8, type: 3}
+  <EventCardConfig>k__BackingField:
+    <Ability>k__BackingField:
+      <TypeID>k__BackingField: 0
+      <TargetObject>k__BackingField: 0
+      <Value>k__BackingField: 0
+      <Direction>k__BackingField: 0
+      <TargetObjectBelonging>k__BackingField: 0
+    <IsGlobal>k__BackingField: 0
   <OrderCardConfig>k__BackingField:
     <TargetSubject>k__BackingField: 1
     <Ability>k__BackingField:
-      <Type>k__BackingField: 3
-      <TargetObject>k__BackingField: 0
+      <TypeID>k__BackingField: 3
+      <TargetObject>k__BackingField: 4
       <Value>k__BackingField: 0
       <Direction>k__BackingField: 0
       <TargetObjectBelonging>k__BackingField: 0

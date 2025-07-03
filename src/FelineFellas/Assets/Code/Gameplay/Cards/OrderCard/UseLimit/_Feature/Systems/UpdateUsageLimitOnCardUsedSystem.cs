@@ -5,19 +5,17 @@ namespace FelineFellas
 {
     public sealed class UpdateUsageLimitOnCardUsedSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _cards
+        private readonly IGroup<Entity<GameScope>> _abilities
             = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<OrderCard>()
-                .And<Used>()
+                .With<AbilityUse>()
+                .And<TargetSubject>()
                 .Build();
 
         public void Execute()
         {
-            foreach (var card in _cards)
+            foreach (var ability in _abilities)
             {
-                var targetUnit = card.Get<UseTarget>().Value.GetEntity();
-
+                var targetUnit = ability.Get<TargetSubject>().Value.GetEntity();
                 targetUnit.Is<UseLimitReached>(true);
             }
         }
