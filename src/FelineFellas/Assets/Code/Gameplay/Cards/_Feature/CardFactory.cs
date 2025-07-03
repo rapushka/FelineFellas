@@ -142,11 +142,12 @@ namespace FelineFellas
             var canUseOnLead = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Lead);
             var canUseOnEnemy = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Enemy);
 
-            AbilityFactory.Create(orderConfig.Ability)
+            AbilityFactory.Create(card.ID(), orderConfig.Ability)
                 .SetParent(card)
-                .Is<CanSelectFella>(canUseOnFella)
-                .Is<CanSelectLeader>(canUseOnLead)
-                .Is<CanSelectEnemy>(canUseOnEnemy)
+                .Is<CanTargetSubjectFella>(canUseOnFella)
+                .Is<CanTargetSubjectLeader>(canUseOnLead)
+                .Is<CanTargetSubjectEnemy>(canUseOnEnemy)
+                .Add<TriggerOnUse>()
                 ;
         }
     }

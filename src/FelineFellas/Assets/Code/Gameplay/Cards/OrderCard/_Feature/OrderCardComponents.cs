@@ -6,9 +6,9 @@ namespace FelineFellas
 
     // As Target Subject. Used only for Order Cards
 
-    public sealed class CanSelectFella : FlagComponent, IInScope<GameScope> { }
+    public sealed class CanTargetSubjectFella : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class CanSelectLeader : FlagComponent, IInScope<GameScope> { }
+    public sealed class CanTargetSubjectLeader : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class CanSelectEnemy : FlagComponent, IInScope<GameScope> { }
+    public sealed class CanTargetSubjectEnemy : FlagComponent, IInScope<GameScope> { }
 }

@@ -40,9 +40,9 @@ namespace FelineFellas
                 if (!cursorOnCell)
                     continue;
 
-                var canUseOnEnemy = card.Is<CanSelectEnemy>();
-                var canUseOnFella = card.Is<CanSelectFella>();
-                var canUseOnLeader = card.Is<CanSelectLeader>();
+                var canUseOnEnemy = card.Is<CanTargetSubjectEnemy>();
+                var canUseOnFella = card.Is<CanTargetSubjectFella>();
+                var canUseOnLeader = card.Is<CanTargetSubjectLeader>();
 
                 if (unit.Is<Leader>() && !canUseOnLeader)
                     continue;

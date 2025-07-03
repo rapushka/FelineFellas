@@ -4,12 +4,12 @@ namespace FelineFellas
 {
     public interface IAbilityFactory : IService
     {
-        Entity<GameScope> Create(AbilityConfig config);
+        Entity<GameScope> Create(EntityID cardID, AbilityConfig config);
     }
 
     public class AbilityFactory : IAbilityFactory
     {
-        public Entity<GameScope> Create(AbilityConfig config)
+        public Entity<GameScope> Create(EntityID cardID, AbilityConfig config)
         {
             var isMove = config.Type is AbilityConfig.AbilityType.Move;
             var isAttack = config.Type is AbilityConfig.AbilityType.Attack;
@@ -20,7 +20,7 @@ namespace FelineFellas
 
             return CreateEntity.Empty()
                     .Add<Name, string>("ability")
-                    .Add<Ability>()
+                    .Add<AbilityOf, EntityID>(cardID)
                     .Is<AbilityMove>(isMove)
                     .Add<AbilityAttack, float>(config.Value, @if: isAttack)
                     .Is<AbilitySendToDiscard>(isSendToDiscard)

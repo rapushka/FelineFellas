@@ -2,7 +2,8 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class Ability : FlagComponent, IInScope<GameScope> { }
+    /// Ability -> Card
+    public sealed class AbilityOf : ValueComponent<EntityID>, IInScope<GameScope> { }
 
     public sealed class Using : FlagComponent, IInScope<GameScope> { }
 
@@ -25,4 +26,7 @@ namespace FelineFellas
 
     /// Receiver
     public sealed class TargetObject : ValueComponent<EntityID>, IInScope<GameScope> { }
+
+    // Triggers
+    public sealed class TriggerOnUse : FlagComponent, IInScope<GameScope> { }
 }
