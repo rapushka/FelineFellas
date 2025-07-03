@@ -9,9 +9,9 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _droppedCards
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<WillBeUsed>()
                 .And<UnitCard>()
                 .And<DropCardOn>()
+                .And<WillBeUsed>()
                 .And<Dropped>()
                 .Build();
 

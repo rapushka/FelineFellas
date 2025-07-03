@@ -8,8 +8,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _draggedCard
             = GroupBuilder<GameScope>
                 .With<Card>()
-                // TODO: needed?
-                // .And<Dragging>()
+                .And<Dragging>()
                 .Build();
 
         public void Execute()
