@@ -152,7 +152,9 @@ namespace FelineFellas
                 .Is<Empty>(true)
                 ;
 
-            return card.Remove<OnField>();
+            return card
+                    .Remove<OnField>()
+                ;
         }
     }
 }

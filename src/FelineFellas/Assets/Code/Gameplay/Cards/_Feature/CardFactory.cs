@@ -136,6 +136,7 @@ namespace FelineFellas
         {
             var orderConfig = config.OrderCardConfig;
             var targetSubject = orderConfig.TargetSubject;
+
             var canUseOnFella = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Fella);
             var canUseOnLead = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Lead);
             var canUseOnEnemy = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Enemy);

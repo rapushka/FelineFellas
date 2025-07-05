@@ -2,7 +2,7 @@ using Entitas;
 
 namespace FelineFellas
 {
-    public sealed class RequestClosestOpponentSystem : IExecuteSystem
+    public sealed class CalculateOpponentSystem : IExecuteSystem
     {
         // private readonly IGroup<Entity<GameScope>> _cards
         //     = GroupBuilder<GameScope>

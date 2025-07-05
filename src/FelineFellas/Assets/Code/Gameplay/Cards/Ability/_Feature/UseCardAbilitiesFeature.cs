@@ -5,14 +5,15 @@ namespace FelineFellas
         public UseCardAbilitiesFeature()
             : base(nameof(UseCardAbilitiesFeature))
         {
-            Add(new RequestClosestOpponentSystem());
+            Add(new CalculateOpponentSystem());
 
             Add(new UseAbilityOnDroppedCardSystem());
 
             Add(new SelectSelfForTargetObjectSystem());
+            Add(new SelectFreeCellForTargetObjectSystem());
 
             Add(new UseAttackAbilitySystem());
-            Add(new UseDirectionalMoveUnitAbilitySystem());
+            Add(new UseMoveUnitAbilitySystem());
             Add(new UseSendToDiscardAbilitySystem());
 
             Add(new UpdateUsageLimitOnCardUsedSystem());

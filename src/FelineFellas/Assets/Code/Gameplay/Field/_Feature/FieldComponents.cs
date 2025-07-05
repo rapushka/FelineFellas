@@ -4,19 +4,19 @@ namespace FelineFellas
 {
     public sealed class Field : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class FieldBorders : ValueComponent<Borders>, IInScope<GameScope> { } // TODO: REMOVE?
-
     public sealed class Cell : FlagComponent, IInScope<GameScope> { }
 
     public sealed class Empty : FlagComponent, IInScope<GameScope> { }
 
     public sealed class CellIndex : IndexComponent<int>, IInScope<GameScope> { }
 
+#region Row
     public sealed class Row : FlagComponent, IInScope<GameScope> { }
 
     public sealed class PlayerRow : FlagComponent, IInScope<GameScope> { }
 
     public sealed class EnemyRow : FlagComponent, IInScope<GameScope> { }
+#endregion
 
     // Cell -> Card
     // ShopSlot -> Card

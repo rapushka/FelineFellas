@@ -31,7 +31,7 @@ MonoBehaviour:
   <OrderCardConfig>k__BackingField:
     <TargetSubject>k__BackingField: 3
     <Ability>k__BackingField:
-      <TypeID>k__BackingField: 0
+      <TypeID>k__BackingField: 2
       <TargetObject>k__BackingField: 2
       <Value>k__BackingField: 1
       <Direction>k__BackingField: 0
