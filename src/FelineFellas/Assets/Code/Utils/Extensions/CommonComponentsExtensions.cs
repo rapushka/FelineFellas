@@ -22,5 +22,13 @@ namespace FelineFellas
 
             return card.Get<ChildOf>().Value;
         }
+
+        public static (Side side, int index) GetCellCoordinates(this Entity<GameScope> cell)
+        {
+            var side = cell.Get<OnSide>().Value;
+            var index = cell.Get<CellIndex>().Value;
+
+            return (side, index);
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace FelineFellas
 
                 ToStringHealth(entity),
 
-                entity.ToString<Card, CardIDRef>(),
+                entity.ToString<CardTitle, string>(),
             };
 
             stringBuilder.AppendJoin(separator: "  ", buffer.Where(s => !s.IsEmpty()));
