@@ -1,3 +1,6 @@
+# v0.0.7
+- Abilities (finally) reworked - https://github.com/rapushka/FelineFellas/issues/99
+
 # v0.0.6
 - Field Rework: Instead of a grid, there are now two rows (one for the player's units and one for the enemy's) - https://github.com/rapushka/FelineFellas/issues/94
 - put Leaders on field before stage starts - https://github.com/rapushka/FelineFellas/issues/96
