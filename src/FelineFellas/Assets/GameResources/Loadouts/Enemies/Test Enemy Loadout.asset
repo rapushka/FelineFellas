@@ -17,5 +17,8 @@ MonoBehaviour:
   - <CardID>k__BackingField:
       Value: Card/Order/AttackOpponent
     <Count>k__BackingField: 10
+  - <CardID>k__BackingField:
+      Value: Card/Order/MoveLeft
+    <Count>k__BackingField: 10
   <Lead>k__BackingField:
     Value: Card/Unit/Rat

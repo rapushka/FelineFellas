@@ -1,3 +1,4 @@
+using System;
 using Entitas.Generic;
 
 namespace FelineFellas
@@ -6,10 +7,16 @@ namespace FelineFellas
     {
         private static ScopeContext<GameScope> Context => Contexts.Instance.Get<GameScope>();
 
+        public static Entity<GameScope> GetOpposingCell(Entity<GameScope> cell)
+        {
+            var (side, index) = cell.GetCellCoordinates();
+
+            return GetCellOrDefault(side.Flip(), index) ?? throw new("TODO: How to deal if no opposing cell?");
+        }
+
         public static Entity<GameScope> GetNeighborCell(Entity<GameScope> cell, CellDirection direction)
         {
-            var side = cell.Get<OnSide>().Value;
-            var index = cell.Get<CellIndex>().Value;
+            var (side, index) = cell.GetCellCoordinates();
 
             var step = direction.Visit(
                 onLeft: () => -1,
@@ -19,10 +26,10 @@ namespace FelineFellas
             return GetCellOrDefault(side, index + step);
         }
 
+#region Closest Free Cell
         public static Entity<GameScope> GetClosestFreeCell(Entity<GameScope> cell, CellDirection direction)
         {
-            var side = cell.Get<OnSide>().Value;
-            var index = cell.Get<CellIndex>().Value;
+            var (side, index) = cell.GetCellCoordinates();
 
             return GetClosestFreeCellInDirection(side, index, direction);
         }
@@ -57,8 +64,20 @@ namespace FelineFellas
 
             return null;
         }
+#endregion
 
-        private static Entity<GameScope> GetCellOrDefault(Side side, int index)
+        public static int GetDirection(Entity<GameScope> fromCell, Entity<GameScope> toCell)
+        {
+            if (!fromCell.OnSameSide(toCell))
+                throw new("Can't Find Direction for Opposing Cells");
+
+            var toIndex = toCell.Get<CellIndex>().Value;
+            var fromIndex = fromCell.Get<CellIndex>().Value;
+
+            return Math.Sign(toIndex - fromIndex);
+        }
+
+        public static Entity<GameScope> GetCellOrDefault(Side side, int index)
             => Context.GetCellOrDefault(side, index);
     }
 }
