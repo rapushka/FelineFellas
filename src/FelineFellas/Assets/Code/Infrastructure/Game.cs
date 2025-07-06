@@ -25,6 +25,11 @@ namespace FelineFellas
             ServiceLocator.Register<IPagesService>(new PagesService());
             ServiceLocator.Register<IGameModeService>(new GameModeService());
             ServiceLocator.Register<IRandomService>(new RandomService());
+#if DEBUG
+            ServiceLocator.Register<IDebugService>(new DebugService());
+#else
+            ServiceLocator.Register<IDebugService>(new DebugMock());
+#endif
 
             // Factories
             ServiceLocator.Register<IViewFactory>(new ViewFactory());
