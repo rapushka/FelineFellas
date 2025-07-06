@@ -15,7 +15,7 @@ MonoBehaviour:
   <HandSize>k__BackingField: 3
   <Deck>k__BackingField:
   - <CardID>k__BackingField:
-      Value: Card/Action/AttackClosestOpponent
+      Value: Card/Order/AttackOpponent
     <Count>k__BackingField: 10
   <Lead>k__BackingField:
     Value: Card/Unit/Rat

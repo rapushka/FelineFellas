@@ -9,7 +9,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _slots
             = GroupBuilder<GameScope>
                 .With<ShopSlot>()
-                .And<Empty>()
+                .And<Free>()
                 .Build();
 
         private readonly List<Entity<GameScope>> _buffer = new(16);

@@ -12,5 +12,15 @@ namespace FelineFellas
 
         public static Vector2 WorldPosition(this Entity<InputScope> @this)
             => @this.Get<WorldPosition>().Value;
+
+        public static EntityID GetContainingCellID(this Entity<GameScope> card)
+        {
+#if DEBUG
+            if (!card.Is<OnField>())
+                Debug.LogError("Can't Get Cell if Card isn't on Field!");
+#endif
+
+            return card.Get<ChildOf>().Value;
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace FelineFellas
             {
                 card
                     .Is<WillBeUsed>(false)
-                    .RemoveSafely<UseTarget>()
+                    .RemoveSafely<DropCardOn>()
                     ;
             }
         }

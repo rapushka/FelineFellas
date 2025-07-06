@@ -45,7 +45,7 @@ namespace FelineFellas
 
                 enemy
                     .Set<CardToPlay, EntityID>(topPriorityCard.ID())
-                    .Is<WillPlayActionCard>(topPriorityCard.Is<ActionCard>())
+                    .Is<WillPlayActionCard>(topPriorityCard.Is<OrderCard>())
                     ;
             }
         }

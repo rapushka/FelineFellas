@@ -50,7 +50,7 @@ namespace FelineFellas
         {
             card.Pop<CardInShopSlot, EntityID>().GetEntity()
                 .Remove<PlacedCard>()
-                .Is<Empty>(true)
+                .Is<Free>(true)
                 ;
 
             return card
@@ -98,7 +98,7 @@ namespace FelineFellas
                 ;
 
             slot
-                .Is<Empty>(false)
+                .Is<Free>(false)
                 .Set<PlacedCard, EntityID>(card.ID())
                 ;
 
@@ -128,7 +128,7 @@ namespace FelineFellas
                 ;
 
             cell
-                .Is<Empty>(false)
+                .Is<Free>(false)
                 .Set<PlacedCard, EntityID>(card.ID())
                 ;
 
@@ -136,8 +136,8 @@ namespace FelineFellas
         }
 
         public static GameEntity CleanupUsedCard(GameEntity card)
-            => card.RemoveSafely<SelectedTarget>()
-                .RemoveSafely<UseTarget>()
+            => card.RemoveSafely<TargetSubject>()
+                .RemoveSafely<DropCardOn>()
                 .Is<WillBeUsed>(false)
                 .Is<CanNotPlay>(false);
 
@@ -149,10 +149,12 @@ namespace FelineFellas
             var cell = card.Get<ChildOf>().Value.GetEntity();
             cell
                 .Remove<PlacedCard>()
-                .Is<Empty>(true)
+                .Is<Free>(true)
                 ;
 
-            return card.Remove<OnField>();
+            return card
+                    .Remove<OnField>()
+                ;
         }
     }
 }

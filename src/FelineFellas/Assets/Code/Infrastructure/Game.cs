@@ -32,6 +32,7 @@ namespace FelineFellas
             ServiceLocator.Register<ICardFactory>(new CardFactory());
             ServiceLocator.Register<IShopFactory>(new ShopFactory());
             ServiceLocator.Register<IActorFactory>(new ActorFactory());
+            ServiceLocator.Register<IAbilityFactory>(new AbilityFactory());
         }
 
         public void Run()

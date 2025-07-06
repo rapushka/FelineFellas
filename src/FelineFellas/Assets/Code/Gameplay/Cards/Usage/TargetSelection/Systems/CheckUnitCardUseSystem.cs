@@ -9,7 +9,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<Cell>()
                 .And<Collider>()
-                .And<Empty>()
+                .And<Free>()
                 .Build();
 
         private readonly IGroup<Entity<InputScope>> _inputs
@@ -41,7 +41,7 @@ namespace FelineFellas
                 {
                     card
                         .Is<WillBeUsed>(true)
-                        .Add<UseTarget, EntityID>(cell.ID())
+                        .Add<DropCardOn, EntityID>(cell.ID())
                         ;
                 }
             }

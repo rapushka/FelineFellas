@@ -15,17 +15,19 @@ MonoBehaviour:
   <ID>k__BackingField:
     Value: Card/Unit/Rat
   <Rarity>k__BackingField: -1
-  <Usage>k__BackingField: 2
+  <Card>k__BackingField: 2
   <Price>k__BackingField: 1
   <CanUseOnlyOnOurRow>k__BackingField: 1
   <Title>k__BackingField: Rat
   <Icon>k__BackingField: {fileID: 21300000, guid: a0a2103d69ce78943ae4dd8ecd0cef63, type: 3}
-  <ActionCardConfig>k__BackingField:
-    <ActionType>k__BackingField: 0
-    <Value>k__BackingField: 0
-    <TargetSelection>k__BackingField: 0
-    <AllowedTargets>k__BackingField: 0
-    <Direction>k__BackingField: 0
+  <OrderCardConfig>k__BackingField:
+    <TargetSubject>k__BackingField: 0
+    <Ability>k__BackingField:
+      <Type>k__BackingField: 0
+      <TargetObject>k__BackingField: 0
+      <Value>k__BackingField: 0
+      <Direction>k__BackingField: 0
+      <TargetObjectBelonging>k__BackingField: 0
   <UnitCardConfig>k__BackingField:
     <IsLeader>k__BackingField: 1
     <MaxHealth>k__BackingField: 2

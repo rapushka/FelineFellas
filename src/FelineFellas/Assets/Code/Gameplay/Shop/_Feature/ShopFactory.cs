@@ -45,7 +45,7 @@ namespace FelineFellas
         private Entity<GameScope> CreateSlot(Vector2 position)
             => ViewFactory.CreateInWorld(ViewConfig.ShopSlotPrefab, position).Entity
                 .Add<Name, string>("shop slot")
-                .Add<Empty>()
+                .Add<Free>()
                 .Is<CanBuy>(false);
     }
 }

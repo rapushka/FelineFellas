@@ -1,6 +1,5 @@
 using Entitas;
 using Entitas.Generic;
-using UnityEngine;
 
 namespace FelineFellas
 {

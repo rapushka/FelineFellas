@@ -24,16 +24,10 @@ namespace FelineFellas
         public Entity<GameScope> CreateField()
         {
             var entity = ViewFactory.CreateInWorld(ViewConfig.FieldPrefab, ViewConfig.FieldCenter).Entity;
-            var sizes = FieldConfig.FieldSize;
-            var borders = new Borders(
-                min: new(0, 0),
-                max: new(sizes.Height - 1, sizes.Width - 1)
-            );
 
             return entity
                     .Add<Name, string>("field")
                     .Add<Field>()
-                    .Add<FieldBorders, Borders>(borders)
                 ;
         }
 
@@ -69,7 +63,7 @@ namespace FelineFellas
                     .Add<Name, string>("cell")
                     .Add<Cell>()
                     .Add<Interactable>()
-                    .Add<Empty>()
+                    .Add<Free>()
                     .Add<SpriteSortingGroup, RenderOrder>(RenderOrder.Grid)
                     .Add<CellIndex, int>(index)
                 ;

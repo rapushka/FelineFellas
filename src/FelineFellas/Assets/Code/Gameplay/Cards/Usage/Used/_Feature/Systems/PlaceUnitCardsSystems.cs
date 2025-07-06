@@ -9,9 +9,9 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _droppedCards
             = GroupBuilder<GameScope>
                 .With<Card>()
-                .And<WillBeUsed>()
                 .And<UnitCard>()
-                .And<UseTarget>()
+                .And<DropCardOn>()
+                .And<WillBeUsed>()
                 .And<Dropped>()
                 .Build();
 
@@ -21,7 +21,7 @@ namespace FelineFellas
         {
             foreach (var card in _droppedCards.GetEntities(_buffer))
             {
-                var cell = card.Get<UseTarget>().Value.GetEntity();
+                var cell = card.Get<DropCardOn>().Value.GetEntity();
 
                 CardUtils.PlaceCardOnField(card, cell)
                     .Chain(CardUtils.MarkUsed)
