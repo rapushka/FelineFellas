@@ -22,7 +22,7 @@ namespace FelineFellas
             Add(new SelfEventSystem<GameScope, Money>(contexts));
             Add(new SelfFlagEventSystem<GameScope, Interactable>(contexts));
             Add(new SelfEventSystem<GameScope, CardFace>(contexts));
-            Add(new SelfFlagEventSystem<GameScope, UseLimitReached>(contexts));
+            Add(new SelfFlagEventSystem<GameScope, OutOfStamina>(contexts));
         }
     }
 }

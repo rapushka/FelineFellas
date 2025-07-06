@@ -32,10 +32,11 @@ namespace FelineFellas
             foreach (var input in _inputs)
             foreach (var card in _draggedCard)
             {
-                if (!CanUseOnUnitType(card, unit))
-                    continue;
-
-                if (!IsCursorOnUnit(input, unit))
+                var canUse = card.OnSameSide(unit)
+                    && !unit.Is<OutOfStamina>()
+                    && IsUnitTypeAllowed(card, unit)
+                    && IsCursorOnUnit(input, unit);
+                if (!canUse)
                     continue;
 
                 card
@@ -45,7 +46,7 @@ namespace FelineFellas
             }
         }
 
-        private static bool CanUseOnUnitType(Entity<GameScope> card, Entity<GameScope> unit)
+        private static bool IsUnitTypeAllowed(Entity<GameScope> card, Entity<GameScope> unit)
         {
             var canUseOnEnemy = card.Is<CanTargetSubjectEnemy>();
             var canUseOnFella = card.Is<CanTargetSubjectFella>();

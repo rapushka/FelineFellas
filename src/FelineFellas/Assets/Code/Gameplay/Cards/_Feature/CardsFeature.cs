@@ -28,8 +28,8 @@ namespace FelineFellas
             Add(new RecalculateCardsIndexesInHandOnRequestSystem());
             Add(new CleanupCardsInDiscardSystem());
 
-            Add(new ResetUsageLimitOnTurnEnded<OnPlayerTurnEndedState, PlayerCard>());
-            Add(new ResetUsageLimitOnTurnEnded<OnEnemyTurnEndedState, EnemyCard>());
+            Add(new ResetStaminaOnTurnEnded<OnPlayerTurnEndedState, PlayerCard>());
+            Add(new ResetStaminaOnTurnEnded<OnEnemyTurnEndedState, EnemyCard>());
 
             // The Order is intended to make dead entity exist 1 frame longer to handle its death if needed
             Add(new DestroyDeadEntitiesSystem());

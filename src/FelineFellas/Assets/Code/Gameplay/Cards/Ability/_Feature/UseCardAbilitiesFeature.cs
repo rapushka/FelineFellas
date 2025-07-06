@@ -16,7 +16,7 @@ namespace FelineFellas
             Add(new UseMoveUnitAbilitySystem());
             Add(new UseSendToDiscardAbilitySystem());
 
-            Add(new UpdateUsageLimitOnCardUsedSystem());
+            Add(new UpdateStaminaOnCardUsedSystem());
 
             Add(new DestroyAbilityUsagesSystem());
         }

@@ -4,7 +4,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class ResetUsageLimitOnTurnEnded<TTurnEndEven, TSideCard> : IExecuteSystem
+    public sealed class ResetStaminaOnTurnEnded<TTurnEndEven, TSideCard> : IExecuteSystem
         where TTurnEndEven : FlagComponent, IInScope<GameScope>, new()
         where TSideCard : FlagComponent, IInScope<GameScope>, new()
     {
@@ -15,7 +15,7 @@ namespace FelineFellas
 
         private readonly IGroup<Entity<GameScope>> _cards
             = GroupBuilder<GameScope>
-                .With<UseLimitReached>()
+                .With<OutOfStamina>()
                 .And<TSideCard>()
                 .Build();
 
@@ -26,7 +26,7 @@ namespace FelineFellas
             foreach (var _ in _event)
             foreach (var card in _cards.GetEntities(_buffer))
             {
-                card.Is<UseLimitReached>(false);
+                card.Is<OutOfStamina>(false);
             }
         }
     }

@@ -19,7 +19,7 @@ namespace FelineFellas
                 .And<UnitCard>()
                 .And<OnField>()
                 .And<EnemyCard>()
-                .Without<UseLimitReached>()
+                .Without<OutOfStamina>()
                 .Build();
 
         public void Execute()

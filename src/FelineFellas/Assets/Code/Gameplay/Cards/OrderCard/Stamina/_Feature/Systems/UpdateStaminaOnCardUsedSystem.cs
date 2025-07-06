@@ -3,7 +3,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class UpdateUsageLimitOnCardUsedSystem : IExecuteSystem
+    public sealed class UpdateStaminaOnCardUsedSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _abilities
             = GroupBuilder<GameScope>
@@ -16,7 +16,7 @@ namespace FelineFellas
             foreach (var ability in _abilities)
             {
                 var targetUnit = ability.Get<TargetSubject>().Value.GetEntity();
-                targetUnit.Is<UseLimitReached>(true);
+                targetUnit.Is<OutOfStamina>(true);
             }
         }
     }
