@@ -1,5 +1,6 @@
 # v0.0.7
 - Abilities (finally) reworked - https://github.com/rapushka/FelineFellas/issues/99
+- Implement new Opponent Targeting - https://github.com/rapushka/FelineFellas/issues/101
 
 # v0.0.6
 - Field Rework: Instead of a grid, there are now two rows (one for the player's units and one for the enemy's) - https://github.com/rapushka/FelineFellas/issues/94
