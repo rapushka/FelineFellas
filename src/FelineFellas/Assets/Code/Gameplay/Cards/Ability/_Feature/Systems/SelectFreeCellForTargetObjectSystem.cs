@@ -22,7 +22,7 @@ namespace FelineFellas
                 var direction = ability.Get<TargetObjectAsFreeCell>().Value;
                 var targetCell = FieldUtils.GetNeighborCell(cell, direction);
 
-                if (targetCell is null)
+                if (targetCell is null || !targetCell.Is<Free>())
                     continue;
 
                 ability.Set<TargetObject, EntityID>(targetCell.ID());

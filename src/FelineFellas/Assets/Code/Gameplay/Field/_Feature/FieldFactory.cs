@@ -63,7 +63,7 @@ namespace FelineFellas
                     .Add<Name, string>("cell")
                     .Add<Cell>()
                     .Add<Interactable>()
-                    .Add<Empty>()
+                    .Add<Free>()
                     .Add<SpriteSortingGroup, RenderOrder>(RenderOrder.Grid)
                     .Add<CellIndex, int>(index)
                 ;

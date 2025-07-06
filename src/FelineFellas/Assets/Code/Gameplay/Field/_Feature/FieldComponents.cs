@@ -6,7 +6,8 @@ namespace FelineFellas
 
     public sealed class Cell : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class Empty : FlagComponent, IInScope<GameScope> { }
+    /// Used for Free Cells
+    public sealed class Free : FlagComponent, IInScope<GameScope> { }
 
     public sealed class CellIndex : IndexComponent<int>, IInScope<GameScope> { }
 

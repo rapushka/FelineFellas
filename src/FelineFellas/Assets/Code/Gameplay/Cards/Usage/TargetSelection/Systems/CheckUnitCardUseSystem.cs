@@ -9,7 +9,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<Cell>()
                 .And<Collider>()
-                .And<Empty>()
+                .And<Free>()
                 .Build();
 
         private readonly IGroup<Entity<InputScope>> _inputs

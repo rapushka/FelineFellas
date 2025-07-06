@@ -50,7 +50,7 @@ namespace FelineFellas
         {
             card.Pop<CardInShopSlot, EntityID>().GetEntity()
                 .Remove<PlacedCard>()
-                .Is<Empty>(true)
+                .Is<Free>(true)
                 ;
 
             return card
@@ -98,7 +98,7 @@ namespace FelineFellas
                 ;
 
             slot
-                .Is<Empty>(false)
+                .Is<Free>(false)
                 .Set<PlacedCard, EntityID>(card.ID())
                 ;
 
@@ -128,7 +128,7 @@ namespace FelineFellas
                 ;
 
             cell
-                .Is<Empty>(false)
+                .Is<Free>(false)
                 .Set<PlacedCard, EntityID>(card.ID())
                 ;
 
@@ -149,7 +149,7 @@ namespace FelineFellas
             var cell = card.Get<ChildOf>().Value.GetEntity();
             cell
                 .Remove<PlacedCard>()
-                .Is<Empty>(true)
+                .Is<Free>(true)
                 ;
 
             return card
