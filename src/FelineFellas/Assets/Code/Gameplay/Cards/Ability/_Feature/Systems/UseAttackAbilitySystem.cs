@@ -5,24 +5,22 @@ namespace FelineFellas
 {
     public sealed class UseAttackAbilitySystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _cards
+        private readonly IGroup<Entity<GameScope>> _abilities
             = GroupBuilder<GameScope>
-                .With<Card>()
-                .And<Used>()
+                .With<AbilityUse>()
                 .And<AbilityAttack>()
                 .And<TargetSubject>()
+                .And<TargetObject>()
                 .Build();
 
         public void Execute()
         {
-            foreach (var card in _cards)
+            foreach (var ability in _abilities)
             {
-                var multiplier = card.Get<AbilityAttack>().Value;
+                var multiplier = ability.Get<AbilityAttack>().Value;
 
-                // TODO: use TargetSubject instead of DropCardOn
-                // var sender = card.Get<DropCardOn>().Value.GetEntity();
-                var sender = card.Get<TargetSubject>().Value.GetEntity();
-                var target = card.Get<TargetObject>().Value.GetEntity();
+                var sender = ability.Get<TargetSubject>().Value.GetEntity();
+                var target = ability.Get<TargetObject>().Value.GetEntity();
 
                 var strength = sender.Get<Strength>().Value;
 

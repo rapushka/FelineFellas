@@ -76,5 +76,13 @@ namespace FelineFellas
                 _           => throw new("Unknown Side!"),
             };
         }
+
+        public static Side Flip(this Side @this)
+        {
+            return @this.Visit(
+                onPlayer: Side.Enemy,
+                onEnemy: Side.Player
+            );
+        }
     }
 }

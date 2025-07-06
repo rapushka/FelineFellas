@@ -5,10 +5,10 @@ namespace FelineFellas
         public UseCardAbilitiesFeature()
             : base(nameof(UseCardAbilitiesFeature))
         {
-            Add(new CalculateOpponentSystem());
-
             Add(new UseAbilityOnDroppedCardSystem());
 
+            Add(new SelectOpponentForTargetObjectSystem());
+            Add(new SelectOpponentForTargetObjectSystem_TMP()); // TODO: REMOVE ME
             Add(new SelectSelfForTargetObjectSystem());
             Add(new SelectFreeCellForTargetObjectSystem());
 

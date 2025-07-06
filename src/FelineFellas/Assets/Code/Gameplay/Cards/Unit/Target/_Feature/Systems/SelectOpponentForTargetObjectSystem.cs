@@ -1,8 +1,37 @@
 using Entitas;
+using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class CalculateOpponentSystem : IExecuteSystem
+    /// this is a placeholder, the Opponent system is not yet implemented
+    // ReSharper disable once InconsistentNaming - i know!
+    public sealed class SelectOpponentForTargetObjectSystem_TMP : IExecuteSystem
+    {
+        private readonly IGroup<Entity<GameScope>> _abilities
+            = GroupBuilder<GameScope>
+                .With<AbilityUse>()
+                .And<TargetObjectAsOpponent>()
+                .And<TargetSubject>()
+                .Build();
+
+        private readonly IGroup<Entity<GameScope>> _units
+            = GroupBuilder<GameScope>
+                .With<UnitCard>()
+                .Build();
+
+        public void Execute()
+        {
+            foreach (var ability in _abilities)
+            {
+                var sender = ability.Get<TargetSubject>().Value.GetEntity();
+                var firstOpponent = _units.First(u => !u.OnSameSide(sender));
+
+                ability.Set<TargetObject, EntityID>(firstOpponent.ID());
+            }
+        }
+    }
+
+    public sealed class SelectOpponentForTargetObjectSystem : IExecuteSystem
     {
         // private readonly IGroup<Entity<GameScope>> _cards
         //     = GroupBuilder<GameScope>
