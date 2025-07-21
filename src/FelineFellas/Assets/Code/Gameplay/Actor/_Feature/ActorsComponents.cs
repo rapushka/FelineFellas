@@ -16,7 +16,7 @@ namespace FelineFellas
 
     public sealed class HasFullHand : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class DrawingCardsActor : FlagComponent, IInScope<GameScope> { } // TODO: RENAME TO SIMPLY DrawingCards
+    public sealed class DrawingCards : FlagComponent, IInScope<GameScope> { }
 
     public sealed class WaitingForDeckShuffle : FlagComponent, IInScope<GameScope> { }
 }
