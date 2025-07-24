@@ -8,18 +8,24 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _maps
             = GroupBuilder<GameScope>
                 .With<Map>()
-                .And<InitializingMap>()
+                .And<Initializing>()
                 .Build();
+
+        private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
         public void Execute()
         {
             foreach (var map in _maps)
             {
-                CreateEntity.Empty()
-                    .Add<Name, string>("stage")
-                    .Is<Stage>(true)
-                    .SetParent(map)
-                    ;
+                for (var i = 0; i < GameConfig.Map.NumberOfUsualEnemies; i++)
+                {
+                    CreateEntity.Empty()
+                        .Add<Name, string>("stage")
+                        .Is<Stage>(true)
+                        .Add<Initializing>()
+                        .SetParent(map)
+                        ;
+                }
             }
         }
     }

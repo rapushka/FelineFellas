@@ -5,7 +5,7 @@ namespace FelineFellas
     public interface IActorFactory : IService
     {
         Entity<GameScope> CreatePlayer(LoadoutConfig loadout);
-        Entity<GameScope> CreateEnemy(LoadoutConfig loadout);
+        Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout);
     }
 
     public class ActorFactory : IActorFactory
@@ -25,10 +25,11 @@ namespace FelineFellas
             return actor;
         }
 
-        public Entity<GameScope> CreateEnemy(LoadoutConfig loadout)
+        public Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout)
         {
             var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
+                    .Add<EnemyOnMap>()
                 ;
 
             return actor;

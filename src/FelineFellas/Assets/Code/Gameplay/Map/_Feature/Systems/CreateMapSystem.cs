@@ -9,7 +9,7 @@ namespace FelineFellas
             CreateEntity.Empty()
                 .Add<Name, string>("map")
                 .Add<Map>()
-                .Add<InitializingMap>()
+                .Add<Initializing>()
                 ;
         }
     }
