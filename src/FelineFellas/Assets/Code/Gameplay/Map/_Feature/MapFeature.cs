@@ -6,6 +6,7 @@ namespace FelineFellas
             : base(nameof(MapFeature))
         {
             Add(new CreateMapSystem());
+            Add(new FinishMapInitializationSystem());
         }
     }
 }

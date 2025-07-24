@@ -3,7 +3,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public class CreateEnemyActorSystem : IInitializeSystem
+    public class CreateEnemyActorsSystem : IInitializeSystem
     {
         private readonly IGroup<Entity<GameScope>> _stages
             = GroupBuilder<GameScope>

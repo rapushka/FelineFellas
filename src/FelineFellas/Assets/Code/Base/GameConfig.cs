@@ -20,6 +20,8 @@ namespace FelineFellas
         MoneyConfig Money { get; }
 
         IGameplayLayoutProvider Layout { get; }
+
+        MapConfig Map { get; }
     }
 
     [CreateAssetMenu(menuName = "375/FelineFellas/GameConfig", order = 100)]
@@ -50,6 +52,9 @@ namespace FelineFellas
 
         [field: NaughtyAttributes.BoxGroup(nameof(Money))]
         [field: SerializeField] public MoneyConfig Money { get; private set; }
+
+        [field: NaughtyAttributes.BoxGroup(nameof(Map))]
+        [field: SerializeField] public MapConfig Map { get; private set; }
 
         public IGameplayLayoutProvider Layout => _layout;
     }

@@ -8,7 +8,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _enemies
             = GroupBuilder<GameScope>
-                .With<EnemyActor>()
+                .With<ActiveEnemyActor>()
                 .And<TryPlayCard>()
                 .Build();
 

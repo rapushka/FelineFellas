@@ -7,7 +7,9 @@ namespace FelineFellas
 
     public sealed class PlayerActor : FlagComponent, IInScope<GameScope>, IUnique { }
 
-    public sealed class EnemyActor : FlagComponent, IInScope<GameScope>, IUnique { }
+    public sealed class ActiveEnemyActor : FlagComponent, IInScope<GameScope>, IUnique { }
+
+    public sealed class EnemyOnMap : FlagComponent, IInScope<GameScope> { }
 
     public sealed class HandSize : ValueComponent<int>, IInScope<GameScope> { }
 

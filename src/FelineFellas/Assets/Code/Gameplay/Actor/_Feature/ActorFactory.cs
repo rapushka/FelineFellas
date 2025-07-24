@@ -29,7 +29,6 @@ namespace FelineFellas
         {
             var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
-                    .Add<EnemyActor>()
                 ;
 
             return actor;
