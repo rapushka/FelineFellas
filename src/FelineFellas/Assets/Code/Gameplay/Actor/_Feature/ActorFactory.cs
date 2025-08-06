@@ -5,7 +5,7 @@ namespace FelineFellas
     public interface IActorFactory : IService
     {
         Entity<GameScope> CreatePlayer(LoadoutConfig loadout);
-        Entity<GameScope> CreateEnemy(LoadoutConfig loadout);
+        Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID);
     }
 
     public class ActorFactory : IActorFactory
@@ -20,16 +20,19 @@ namespace FelineFellas
                     .Add<Name, string>("player")
                     .Add<PlayerActor>()
                     .Add<Money, int>(GameConfig.Money.MoneyOnStart)
+                    .Chain(a => CreateDeck(a, loadout))
+                    .Chain(a => CreateLeadOnDeck(a, loadout))
                 ;
 
             return actor;
         }
 
-        public Entity<GameScope> CreateEnemy(LoadoutConfig loadout)
+        public Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID)
         {
             var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
-                    .Add<EnemyActor>()
+                    .Add<EnemyActorOnStage, EntityID>(stageID)
+                    .Chain(a => CreateLeadOnMap(a, loadout))
                 ;
 
             return actor;
@@ -41,8 +44,6 @@ namespace FelineFellas
                     .Add<Actor>()
                     .Add<HandSize, int>(loadout.HandSize)
                     .Add<OnSide, Side>(side)
-                    .Chain(a => CreateDeck(a, loadout))
-                    .Chain(a => CreateLeadOnDeck(a, loadout))
                 ;
 
             return actor;
@@ -64,6 +65,16 @@ namespace FelineFellas
         {
             var deck = actor.Get<OwnedDeck>().Value.GetEntity();
             CardFactory.CreateLeadOnDeck(loadout.Lead, deck);
+
+            return actor;
+        }
+
+        private Entity<GameScope> CreateLeadOnMap(Entity<GameScope> actor, LoadoutConfig loadout)
+        {
+            var stage = actor.Get<EnemyActorOnStage>().Value;
+            CardFactory.CreateEnemyLeadOnMap(loadout.Lead, stage)
+                .SetParent(actor)
+                ;
 
             return actor;
         }

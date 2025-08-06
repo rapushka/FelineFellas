@@ -7,6 +7,9 @@ namespace FelineFellas
         {
             Add(new InputFeature());
 
+            Add(new InitializationFeature());
+
+            Add(new MapFeature());
             Add(new TurnMediatorFeature());
 
             Add(new PlayerActorFeature());

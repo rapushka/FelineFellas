@@ -76,3 +76,8 @@ MonoBehaviour:
       <ShopSlotPrefab>k__BackingField: {fileID: 4580263941864156537, guid: aa3410c4299f04dc8a76ce1d33a63d6a, type: 3}
       <SlotsSpacing>k__BackingField: 1.25
       <SlotRotation>k__BackingField: -90
+  <Map>k__BackingField:
+    <NumberOfUsualEnemies>k__BackingField: 4
+    <View>k__BackingField:
+      <SpacingBetweenEnemies>k__BackingField: 2
+      <FirstEnemyX>k__BackingField: 5

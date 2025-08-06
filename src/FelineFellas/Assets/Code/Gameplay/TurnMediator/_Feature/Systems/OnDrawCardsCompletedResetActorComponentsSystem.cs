@@ -24,7 +24,7 @@ namespace FelineFellas
             {
                 actor
                     .Is<HasFullHand>(false)
-                    .Is<DrawingCardsActor>(false)
+                    .Is<DrawingCards>(false)
                     ;
 
                 var deck = actor.Get<OwnedDeck>().Value.GetEntity();

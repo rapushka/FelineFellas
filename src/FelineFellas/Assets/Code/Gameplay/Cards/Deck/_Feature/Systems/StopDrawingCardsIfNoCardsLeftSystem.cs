@@ -9,7 +9,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _actors
             = GroupBuilder<GameScope>
                 .With<Actor>()
-                .And<DrawingCardsActor>()
+                .And<DrawingCards>()
                 .Without<WaitingForDeckShuffle>()
                 .Build();
 
@@ -23,7 +23,7 @@ namespace FelineFellas
                 var anyCardInDiscard = ActorUtils.HasAnyCardInDiscard(actor);
 
                 if (!anyCardInDeck && !anyCardInDiscard)
-                    actor.Is<DrawingCardsActor>(false);
+                    actor.Is<DrawingCards>(false);
             }
         }
     }

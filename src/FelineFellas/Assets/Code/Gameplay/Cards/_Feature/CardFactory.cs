@@ -9,6 +9,8 @@ namespace FelineFellas
 
         GameEntity CreateLeadOnDeck(CardIDRef cardID, GameEntity deck);
 
+        GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID);
+
         GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot);
     }
 
@@ -77,6 +79,20 @@ namespace FelineFellas
                 ;
         }
 
+        public GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID)
+        {
+            return Create(cardID, new())
+                    .AssignToSide(Side.Enemy)
+                    // .Chain(card => CardUtils.AddToDeck(card, deck))
+                    .Set<CardFace, Face>(Face.FaceUp)
+                    .RemoveSafely<CardInDeck>()
+                    // .Add<LayingOnDeck, EntityID>(deck.ID())
+                    .SetSorting(RenderOrder.LeadOnDeck)
+                    .Set<Rotation, float>(0f)
+                    .Add<EnemyLeadOnMap, EntityID>(stageID)
+                ;
+        }
+
         public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot)
             => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
                 .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot));
@@ -111,6 +127,7 @@ namespace FelineFellas
                     .Chain(e => SetupEventCard(e, config), @if: isEvent)
                     .Chain(e => SetupActionCard(e, config), @if: isAction)
                     .Chain(e => SetupUnitCard(e, config), @if: isUnit)
+                    .Is<Initializing>(true)
                 ;
 
             var viewMediator = view.GetComponent<CardViewMediator>();

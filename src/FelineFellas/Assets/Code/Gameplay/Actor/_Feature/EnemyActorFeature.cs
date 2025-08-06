@@ -5,8 +5,9 @@ namespace FelineFellas
         public EnemyActorFeature()
             : base(nameof(EnemyActorFeature))
         {
-            Add(new CreateEnemyActorSystem());
+            Add(new CreateEnemyActorsSystem());
 
+            Add(new ArrangeStagesOnEnemyInitializationSystem());
             Add(new UpdateMoneyViewSystem());
             Add(new EnemyAiFeature());
         }

@@ -5,7 +5,7 @@ namespace FelineFellas
         public StageFeature()
             : base(nameof(StageFeature))
         {
-            Add(new CreateStageSystem());
+            Add(new CreateStagesOnMapCreatedSystem());
             Add(new CompleteStageLoadingSystem());
         }
     }

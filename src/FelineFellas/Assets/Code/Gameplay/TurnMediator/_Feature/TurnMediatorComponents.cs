@@ -8,7 +8,7 @@ namespace FelineFellas
 
     public sealed class ChangeStateAfter : ValueComponent<float>, IInScope<GameScope> { }
 
-    // # States
+#region States
     public sealed class OnPlayerTurnStartedState : FlagComponent, IInScope<GameScope> { }
 
     public sealed class InDrawCardsState : FlagComponent, IInScope<GameScope> { }
@@ -22,4 +22,5 @@ namespace FelineFellas
     public sealed class InEnemyTurnState : FlagComponent, IInScope<GameScope> { }
 
     public sealed class OnEnemyTurnEndedState : FlagComponent, IInScope<GameScope> { }
+#endregion
 }

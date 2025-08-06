@@ -7,7 +7,13 @@ namespace FelineFellas
 
     public sealed class PlayerActor : FlagComponent, IInScope<GameScope>, IUnique { }
 
-    public sealed class EnemyActor : FlagComponent, IInScope<GameScope>, IUnique { }
+    public sealed class ActiveEnemyActor : FlagComponent, IInScope<GameScope>, IUnique { }
+
+    /// Enemy Actor -> Stages
+    public sealed class EnemyActorOnStage : ValueComponent<EntityID>, IInScope<GameScope> { }
+
+    /// Enemy Lead -> Stage
+    public sealed class EnemyLeadOnMap : ValueComponent<EntityID>, IInScope<GameScope> { }
 
     public sealed class HandSize : ValueComponent<int>, IInScope<GameScope> { }
 
@@ -16,7 +22,7 @@ namespace FelineFellas
 
     public sealed class HasFullHand : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class DrawingCardsActor : FlagComponent, IInScope<GameScope> { } // TODO: RENAME TO SIMPLY DrawingCards
+    public sealed class DrawingCards : FlagComponent, IInScope<GameScope> { }
 
     public sealed class WaitingForDeckShuffle : FlagComponent, IInScope<GameScope> { }
 }

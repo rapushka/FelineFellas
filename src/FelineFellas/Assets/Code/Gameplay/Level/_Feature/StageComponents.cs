@@ -2,7 +2,8 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class Stage : FlagComponent, IInScope<GameScope> { }
+    /// value = level number
+    public sealed class Stage : ValueComponent<int>, IInScope<GameScope> { }
 
     public sealed class EnteringStage : FlagComponent, IInScope<GameScope> { }
 }

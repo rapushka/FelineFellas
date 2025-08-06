@@ -3,11 +3,12 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public class CreateEnemyActorSystem : IInitializeSystem
+    public class CreateEnemyActorsSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _stages
             = GroupBuilder<GameScope>
                 .With<Stage>()
+                .And<Initializing>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
@@ -16,13 +17,15 @@ namespace FelineFellas
 
         private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
 
-        public void Initialize()
+        public void Execute()
         {
             foreach (var stage in _stages)
             {
                 var enemyLoadout = RandomService.PickRandom(GameConfig.Loadouts.EnemyLoadouts);
-                ActorFactory.CreateEnemy(enemyLoadout)
-                    .Add<ChildOf, EntityID>(stage.ID());
+                var stageID = stage.ID();
+
+                ActorFactory.CreateEnemyOnMap(enemyLoadout, stageID)
+                    .Add<ChildOf, EntityID>(stageID);
             }
         }
     }

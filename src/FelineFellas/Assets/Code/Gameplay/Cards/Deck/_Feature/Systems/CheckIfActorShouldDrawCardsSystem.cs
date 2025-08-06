@@ -24,7 +24,7 @@ namespace FelineFellas
                 var isActorHandFull = ActorUtils.HasFullHand(actor);
                 actor
                     .Is<HasFullHand>(isActorHandFull)
-                    .Is<DrawingCardsActor>(!isActorHandFull)
+                    .Is<DrawingCards>(!isActorHandFull)
                     ;
             }
         }

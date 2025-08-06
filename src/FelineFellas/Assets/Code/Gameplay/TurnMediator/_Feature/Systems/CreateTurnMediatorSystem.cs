@@ -9,7 +9,6 @@ namespace FelineFellas
             CreateEntity.Empty()
                 .Add<Name, string>("Turn Mediator")
                 .Add<TurnMediator>()
-                .Add<OnPlayerTurnStartedState>()
                 ;
         }
     }
