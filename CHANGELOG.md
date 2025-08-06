@@ -1,5 +1,8 @@
+# v0.0.9
+- spawn arranged enemies on map - https://github.com/rapushka/FelineFellas/issues/103
+
 # v0.0.8
-- start game with map - https://github.com/rapushka/FelineFellas/issues/103
+- (WIP) start game with map - https://github.com/rapushka/FelineFellas/issues/103
 
 # v0.0.7
 - Abilities (finally) reworked - https://github.com/rapushka/FelineFellas/issues/99
