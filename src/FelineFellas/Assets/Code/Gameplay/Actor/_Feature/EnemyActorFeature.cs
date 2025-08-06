@@ -7,6 +7,7 @@ namespace FelineFellas
         {
             Add(new CreateEnemyActorsSystem());
 
+            Add(new ArrangeStagesOnEnemyInitializationSystem());
             Add(new UpdateMoneyViewSystem());
             Add(new EnemyAiFeature());
         }
