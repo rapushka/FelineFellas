@@ -5,7 +5,7 @@ namespace FelineFellas
     public interface IActorFactory : IService
     {
         Entity<GameScope> CreatePlayer(LoadoutConfig loadout);
-        Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout);
+        Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID);
     }
 
     public class ActorFactory : IActorFactory
@@ -27,11 +27,11 @@ namespace FelineFellas
             return actor;
         }
 
-        public Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout)
+        public Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID)
         {
             var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
-                    .Add<EnemyOnMap>()
+                    .Add<EnemyActorOnStage, EntityID>(stageID)
                     .Chain(a => CreateLeadOnMap(a, loadout))
                 ;
 
@@ -71,7 +71,8 @@ namespace FelineFellas
 
         private Entity<GameScope> CreateLeadOnMap(Entity<GameScope> actor, LoadoutConfig loadout)
         {
-            CardFactory.CreateEnemyLeadOnMap(loadout.Lead)
+            var stage = actor.Get<EnemyActorOnStage>().Value;
+            CardFactory.CreateEnemyLeadOnMap(loadout.Lead, stage)
                 .SetParent(actor)
                 ;
 

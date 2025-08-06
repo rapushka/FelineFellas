@@ -9,7 +9,7 @@ namespace FelineFellas
 
         GameEntity CreateLeadOnDeck(CardIDRef cardID, GameEntity deck);
 
-        GameEntity CreateEnemyLeadOnMap(CardIDRef cardID);
+        GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID);
 
         GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot);
     }
@@ -79,7 +79,7 @@ namespace FelineFellas
                 ;
         }
 
-        public GameEntity CreateEnemyLeadOnMap(CardIDRef cardID)
+        public GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID)
         {
             return Create(cardID, new())
                     .AssignToSide(Side.Enemy)
@@ -89,6 +89,7 @@ namespace FelineFellas
                     // .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
                     .Set<Rotation, float>(0f)
+                    .Add<EnemyLeadOnMap, EntityID>(stageID)
                 ;
         }
 

@@ -22,8 +22,10 @@ namespace FelineFellas
             foreach (var stage in _stages)
             {
                 var enemyLoadout = RandomService.PickRandom(GameConfig.Loadouts.EnemyLoadouts);
-                ActorFactory.CreateEnemyOnMap(enemyLoadout)
-                    .Add<ChildOf, EntityID>(stage.ID());
+                var stageID = stage.ID();
+
+                ActorFactory.CreateEnemyOnMap(enemyLoadout, stageID)
+                    .Add<ChildOf, EntityID>(stageID);
             }
         }
     }

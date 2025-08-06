@@ -9,7 +9,11 @@ namespace FelineFellas
 
     public sealed class ActiveEnemyActor : FlagComponent, IInScope<GameScope>, IUnique { }
 
-    public sealed class EnemyOnMap : FlagComponent, IInScope<GameScope> { }
+    /// Enemy Actor -> Stages
+    public sealed class EnemyActorOnStage : ValueComponent<EntityID>, IInScope<GameScope> { }
+
+    /// Enemy Lead -> Stage
+    public sealed class EnemyLeadOnMap : ValueComponent<EntityID>, IInScope<GameScope> { }
 
     public sealed class HandSize : ValueComponent<int>, IInScope<GameScope> { }
 

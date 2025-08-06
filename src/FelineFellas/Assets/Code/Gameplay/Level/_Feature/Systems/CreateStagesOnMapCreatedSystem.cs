@@ -21,7 +21,7 @@ namespace FelineFellas
                 {
                     CreateEntity.Empty()
                         .Add<Name, string>("stage")
-                        .Is<Stage>(true)
+                        .Add<Stage, int>(i + 1)
                         .Add<Initializing>()
                         .SetParent(map)
                         ;
