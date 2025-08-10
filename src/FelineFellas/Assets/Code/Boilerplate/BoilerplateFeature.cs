@@ -23,6 +23,7 @@ namespace FelineFellas
             Add(new SelfFlagEventSystem<GameScope, Interactable>(contexts));
             Add(new SelfEventSystem<GameScope, CardFace>(contexts));
             Add(new SelfFlagEventSystem<GameScope, OutOfStamina>(contexts));
+            Add(new SelfEventSystem<GameScope, Visible>(contexts));
         }
     }
 }

@@ -7,8 +7,12 @@ namespace FelineFellas
         {
             Add(new CreateEnemyActorsSystem());
 
+            Add(new StartFightOnClickSystem());
+            Add(new OnStartFightHideAllEnemiesSystem());
+            Add(new OnStartFightHideMapUiSystem());
+
             Add(new ArrangeStagesOnEnemyInitializationSystem());
-            Add(new UpdateMoneyViewSystem());
+            Add(new UpdateMoneyViewSystem()); // TODO: what this is doing here?
             Add(new EnemyAiFeature());
         }
     }

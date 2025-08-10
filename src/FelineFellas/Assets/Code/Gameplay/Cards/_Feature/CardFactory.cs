@@ -128,6 +128,7 @@ namespace FelineFellas
                     .Chain(e => SetupActionCard(e, config), @if: isAction)
                     .Chain(e => SetupUnitCard(e, config), @if: isUnit)
                     .Is<Initializing>(true)
+                    .Add<Visible, bool>(true)
                 ;
 
             var viewMediator = view.GetComponent<CardViewMediator>();

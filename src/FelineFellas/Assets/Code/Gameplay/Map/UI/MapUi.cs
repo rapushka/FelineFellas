@@ -23,7 +23,9 @@ namespace FelineFellas
 
         public void Show()
         {
-            var nextEnemyLead = MapUtils.GetNextEnemyLead();
+            var nextEnemyLead = MapUtils.GetNextEnemyLead()
+                .Add<NextEnemy>();
+
             var enemyWorldPosition = nextEnemyLead.WorldPosition();
             var enemyScreenPosition = CamerasService.WorldToScreen(enemyWorldPosition);
 
@@ -37,6 +39,11 @@ namespace FelineFellas
             _root.SetActive(false);
         }
 
-        private void OnFightButtonClicked() { }
+        private void OnFightButtonClicked()
+        {
+            CreateEntity.Empty()
+                .Add<StartFightWithNextEnemyLead>()
+                ;
+        }
     }
 }
