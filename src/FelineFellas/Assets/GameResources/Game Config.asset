@@ -79,5 +79,5 @@ MonoBehaviour:
   <Map>k__BackingField:
     <NumberOfUsualEnemies>k__BackingField: 4
     <View>k__BackingField:
-      <SpacingBetweenEnemies>k__BackingField: 2
+      <SpacingBetweenEnemies>k__BackingField: 1.5
       <FirstEnemyX>k__BackingField: 5
