@@ -16,7 +16,7 @@ namespace FelineFellas
         public void Cleanup()
         {
             foreach (var entity in _entities.GetEntities(_buffer))
-                entity.Is<Initializing>(false);
+                entity.Remove<Initializing>();
         }
     }
 }
