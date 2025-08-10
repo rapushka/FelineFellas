@@ -10,7 +10,7 @@ namespace FelineFellas
 
         Vector2 ScreenToWorld(Vector2 screenPosition);
 
-        Vector2 WorldToUI(Vector2 worldPosition);
+        Vector2 WorldToScreen(Vector2 worldPosition);
     }
 
     public class CamerasService : ICamerasService
@@ -34,6 +34,6 @@ namespace FelineFellas
 
         public Vector2 ScreenToWorld(Vector2 screenPosition) => MainCamera.ScreenToWorldPoint(screenPosition);
 
-        public Vector2 WorldToUI(Vector2 worldPosition) => UICamera.WorldToScreenPoint(worldPosition);
+        public Vector2 WorldToScreen(Vector2 worldPosition) => MainCamera.WorldToScreenPoint(worldPosition);
     }
 }

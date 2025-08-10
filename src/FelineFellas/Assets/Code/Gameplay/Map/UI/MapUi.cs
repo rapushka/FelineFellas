@@ -24,8 +24,8 @@ namespace FelineFellas
         public void Show()
         {
             var nextEnemyLead = MapUtils.GetNextEnemyLead();
-            var enemyWorldPosition = nextEnemyLead.Get<View>().Value.transform.position;
-            var enemyScreenPosition = CamerasService.WorldToUI(enemyWorldPosition);
+            var enemyWorldPosition = nextEnemyLead.WorldPosition();
+            var enemyScreenPosition = CamerasService.WorldToScreen(enemyWorldPosition);
 
             _currentStageViewRoot.anchoredPosition = enemyScreenPosition;
 

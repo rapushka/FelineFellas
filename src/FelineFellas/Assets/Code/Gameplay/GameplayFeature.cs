@@ -7,8 +7,6 @@ namespace FelineFellas
         {
             Add(new InputFeature());
 
-            Add(new InitializationFeature());
-
             Add(new MapFeature());
             Add(new TurnMediatorFeature());
 
@@ -30,6 +28,8 @@ namespace FelineFellas
             Add(new UpdateSortingOrderForDraggingCardSystem());
 
             Add(new BoilerplateFeature());
+
+            Add(new InitializationFeature());
             Add(new DestroyWithChildrenSystem());
             Add(new DestroyEntitiesSystem());
         }
