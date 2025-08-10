@@ -14,6 +14,8 @@ namespace FelineFellas
 
         public MoneyView MoneyView => _moneyView;
 
+        public MapUi MapUi => _mapUi;
+
         protected override void Initialize()
         {
             _mapUi.Initialize();

@@ -8,9 +8,9 @@ namespace FelineFellas
 
         private void OnDestroy() => Dispose();
 
-        public void Show() => gameObject.SetActive(true);
+        public virtual void Show() => gameObject.SetActive(true);
 
-        public void Hide() => gameObject.SetActive(false);
+        public virtual void Hide() => gameObject.SetActive(false);
 
         protected abstract void Initialize();
 

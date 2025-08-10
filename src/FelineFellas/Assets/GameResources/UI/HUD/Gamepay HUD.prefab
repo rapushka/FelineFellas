@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fightButton: {fileID: 6593265578163771656}
+  _currentStageViewRoot: {fileID: 2304400080046644927}
   _root: {fileID: 2433014004321976135}
 --- !u!1 &2824726210002748643
 GameObject:

@@ -6,7 +6,10 @@ namespace FelineFellas
     public class MapUi : MonoBehaviour
     {
         [SerializeField] private Button _fightButton;
+        [SerializeField] private RectTransform _currentStageViewRoot;
         [SerializeField] private GameObject _root;
+
+        private static ICamerasService CamerasService => ServiceLocator.Resolve<ICamerasService>();
 
         public void Initialize()
         {
@@ -20,7 +23,11 @@ namespace FelineFellas
 
         public void Show()
         {
-            // TODO: get the position of current enemy and place Fight Button on it
+            var nextEnemyLead = MapUtils.GetNextEnemyLead();
+            var enemyWorldPosition = nextEnemyLead.Get<View>().Value.transform.position;
+            var enemyScreenPosition = CamerasService.WorldToUI(enemyWorldPosition);
+
+            _currentStageViewRoot.anchoredPosition = enemyScreenPosition;
 
             _root.SetActive(true);
         }
