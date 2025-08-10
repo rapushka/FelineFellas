@@ -1,5 +1,6 @@
 # v0.0.9
 - spawn arranged enemies on map - https://github.com/rapushka/FelineFellas/issues/103
+- display "Fight" button under the current enemy - https://github.com/rapushka/FelineFellas/issues/107
 
 # v0.0.8
 - (WIP) start game with map - https://github.com/rapushka/FelineFellas/issues/103
