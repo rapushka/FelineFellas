@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
 using GameEntity = Entitas.Generic.Entity<FelineFellas.GameScope>;
@@ -12,6 +13,26 @@ namespace FelineFellas
             => @this.FindWithMin((e) => e.Get<TComponent, int>());
 
         public static GameEntity FindWithMin(this IGroup<GameEntity> @this, Func<GameEntity, int> selector)
+        {
+            var minValue = 0;
+            GameEntity entityWithMin = null;
+
+            foreach (var entity in @this)
+            {
+                var value = selector(entity);
+
+                if (entityWithMin == null
+                    || minValue > value)
+                {
+                    entityWithMin = entity;
+                    minValue = value;
+                }
+            }
+
+            return entityWithMin;
+        }
+
+        public static GameEntity FindWithMin(this IEnumerable<GameEntity> @this, Func<GameEntity, int> selector)
         {
             var minValue = 0;
             GameEntity entityWithMin = null;
