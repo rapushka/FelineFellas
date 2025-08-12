@@ -6,13 +6,13 @@ namespace FelineFellas
             : base(nameof(EnemyActorFeature))
         {
             Add(new CreateEnemyActorsSystem());
+            Add(new CreateDeckForCurrentEnemySystem());
 
             Add(new StartFightOnClickSystem());
             Add(new OnStartFightHideAllEnemiesSystem());
             Add(new OnStartFightHideMapUiSystem());
 
             Add(new ArrangeStagesOnEnemyInitializationSystem());
-            Add(new UpdateMoneyViewSystem()); // TODO: what this is doing here?
             Add(new EnemyAiFeature());
         }
     }

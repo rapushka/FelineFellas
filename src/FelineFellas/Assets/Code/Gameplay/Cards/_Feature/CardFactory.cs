@@ -11,6 +11,8 @@ namespace FelineFellas
 
         GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID);
 
+        GameEntity CreateDeckForEnemy(GameEntity enemyActor, GameEntity enemyLead);
+
         GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot);
     }
 
@@ -23,6 +25,8 @@ namespace FelineFellas
         private static IAbilityFactory AbilityFactory => ServiceLocator.Resolve<IAbilityFactory>();
 
         private static CardsConfig CardsConfig => GameConfig.Cards;
+
+        private static IActorFactory ActorFactory => ServiceLocator.Resolve<IActorFactory>();
 
         public GameEntity CreateDeckWithCards(CardEntry[] cards, Side side)
         {
@@ -91,6 +95,20 @@ namespace FelineFellas
                     .Set<Rotation, float>(0f)
                     .Add<EnemyLeadOnMap, EntityID>(stageID)
                 ;
+        }
+
+        public GameEntity CreateDeckForEnemy(GameEntity enemyActor, GameEntity enemyLead)
+        {
+            var loadout = enemyActor.Get<EnemyLoadout>().Value;
+            enemyActor
+                .Chain(a => ActorFactory.CreateDeck(a, loadout))
+                ;
+
+            var deckID = enemyActor.Get<OwnedDeck>().Value;
+
+            return enemyLead
+                .Chain(card => CardUtils.AddToDeck(card, deckID.GetEntity()))
+                .Add<LayingOnDeck, EntityID>(deckID);
         }
 
         public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot)

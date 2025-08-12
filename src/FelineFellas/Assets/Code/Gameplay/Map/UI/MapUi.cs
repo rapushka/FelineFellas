@@ -23,8 +23,7 @@ namespace FelineFellas
 
         public void Show()
         {
-            var nextEnemyLead = MapUtils.GetNextEnemyLead()
-                .Add<NextEnemy>();
+            var nextEnemyLead = MapUtils.GetNextEnemyLead();
 
             var enemyWorldPosition = nextEnemyLead.WorldPosition();
             var enemyScreenPosition = CamerasService.WorldToScreen(enemyWorldPosition);

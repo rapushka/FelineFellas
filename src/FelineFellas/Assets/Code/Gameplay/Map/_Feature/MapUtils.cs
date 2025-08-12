@@ -17,7 +17,8 @@ namespace FelineFellas
                 .Where(EnemyIsNotDefeated)
                 .FindWithMin(StageNumber);
 
-            return currentEnemy;
+            return currentEnemy
+                .Add<NextEnemyLead>();
 
             bool EnemyIsNotDefeated(GameEntity enemy)
             {

@@ -6,8 +6,8 @@ namespace FelineFellas
 
     public sealed class StartFightWithNextEnemyLead : FlagComponent, IInScope<GameScope> { }
 
-    /// Event -> Enemy
+    /// Event -> Enemy Lead
     public sealed class StartFightEvent : ValueComponent<EntityID>, IInScope<GameScope> { }
 
-    public sealed class NextEnemy : FlagComponent, IInScope<GameScope> { }
+    public sealed class NextEnemyLead : FlagComponent, IInScope<GameScope> { }
 }
