@@ -19,6 +19,9 @@ namespace FelineFellas
                 var actor = deck.Parent();     // TODO: MAKE BOUND BETWEEN LEAD AND ACTOR
 
                 actor.Add<ActiveActor>();
+
+                var stage = actor.Parent();
+                stage.Add<EnteringStage>();
             }
         }
     }
