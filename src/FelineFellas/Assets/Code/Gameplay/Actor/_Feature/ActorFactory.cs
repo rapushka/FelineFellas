@@ -24,6 +24,7 @@ namespace FelineFellas
                     .Add<Money, int>(GameConfig.Money.MoneyOnStart)
                     .Chain(a => CreateDeck(a, loadout))
                     .Chain(a => CreateLeadOnDeck(a, loadout))
+                    .Add<ActiveActor>()
                 ;
 
             return actor;

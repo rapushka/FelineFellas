@@ -7,6 +7,7 @@ namespace FelineFellas
         {
             Add(new CreateEnemyActorsSystem());
             Add(new CreateDeckForCurrentEnemySystem());
+            Add(new ActivateNextEnemy());
 
             Add(new StartFightOnClickSystem());
             Add(new OnStartFightHideAllEnemiesSystem());

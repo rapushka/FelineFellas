@@ -13,7 +13,7 @@ namespace FelineFellas
 
         private readonly IGroup<Entity<GameScope>> _actors
             = GroupBuilder<GameScope>
-                .With<Actor>()
+                .With<ActiveActor>()
                 .Build();
 
         private readonly IGroup<Entity<GameScope>> _fields
