@@ -19,6 +19,8 @@ namespace FelineFellas
                 var enemyLead = e.Get<StartFightEvent>().Value.GetEntity();
                 var enemyActor = enemyLead.Parent();
 
+                enemyActor.AssertIs<Actor>();
+
                 CardFactory.CreateDeckForEnemy(enemyActor, enemyLead);
             }
         }
