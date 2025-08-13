@@ -3,7 +3,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class StartPlayerTurnOnFightStartSystem : IInitializeSystem
+    public sealed class StartPlayerTurnOnFightStartSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
@@ -15,14 +15,14 @@ namespace FelineFellas
                 .With<TurnMediator>()
                 .Build();
 
-        public void Initialize()
+        public void Execute()
         {
-            foreach (var _ in _events)
+            foreach (var e in _events)
             foreach (var mediator in _mediators)
             {
-                mediator
-                    .Add<OnPlayerTurnStartedState>()
-                    ;
+                mediator.Add<OnPlayerTurnStartedState>();
+
+                e.Add<Destroy>();
             }
         }
     }

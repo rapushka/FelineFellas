@@ -1,11 +1,13 @@
-using Entitas.Generic;
+using GameEntity = Entitas.Generic.Entity<FelineFellas.GameScope>;
 
 namespace FelineFellas
 {
     public interface IActorFactory : IService
     {
-        Entity<GameScope> CreatePlayer(LoadoutConfig loadout);
-        Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID);
+        GameEntity CreatePlayer(LoadoutConfig loadout);
+        GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID);
+
+        GameEntity CreateDeck(GameEntity actor, LoadoutConfig loadout);
     }
 
     public class ActorFactory : IActorFactory
@@ -14,7 +16,7 @@ namespace FelineFellas
 
         private static ICardFactory CardFactory => ServiceLocator.Resolve<ICardFactory>();
 
-        public Entity<GameScope> CreatePlayer(LoadoutConfig loadout)
+        public GameEntity CreatePlayer(LoadoutConfig loadout)
         {
             var actor = Create(loadout, Side.Player)
                     .Add<Name, string>("player")
@@ -22,23 +24,25 @@ namespace FelineFellas
                     .Add<Money, int>(GameConfig.Money.MoneyOnStart)
                     .Chain(a => CreateDeck(a, loadout))
                     .Chain(a => CreateLeadOnDeck(a, loadout))
+                    .Add<ActiveActor>()
                 ;
 
             return actor;
         }
 
-        public Entity<GameScope> CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID)
+        public GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID)
         {
             var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
-                    .Add<EnemyActorOnStage, EntityID>(stageID)
+                    .Add<EnemyActor, EntityID>(stageID)
                     .Chain(a => CreateLeadOnMap(a, loadout))
+                    .Add<EnemyLoadout, LoadoutConfig>(loadout)
                 ;
 
             return actor;
         }
 
-        private Entity<GameScope> Create(LoadoutConfig loadout, Side side)
+        private GameEntity Create(LoadoutConfig loadout, Side side)
         {
             var actor = CreateEntity.Empty()
                     .Add<Actor>()
@@ -49,7 +53,7 @@ namespace FelineFellas
             return actor;
         }
 
-        private Entity<GameScope> CreateDeck(Entity<GameScope> actor, LoadoutConfig loadout)
+        public GameEntity CreateDeck(GameEntity actor, LoadoutConfig loadout)
         {
             var side = actor.Get<OnSide>().Value;
             var deckID = CardFactory.CreateDeckWithCards(loadout.Deck, side)
@@ -61,7 +65,7 @@ namespace FelineFellas
             return actor;
         }
 
-        private Entity<GameScope> CreateLeadOnDeck(Entity<GameScope> actor, LoadoutConfig loadout)
+        private GameEntity CreateLeadOnDeck(GameEntity actor, LoadoutConfig loadout)
         {
             var deck = actor.Get<OwnedDeck>().Value.GetEntity();
             CardFactory.CreateLeadOnDeck(loadout.Lead, deck);
@@ -69,9 +73,9 @@ namespace FelineFellas
             return actor;
         }
 
-        private Entity<GameScope> CreateLeadOnMap(Entity<GameScope> actor, LoadoutConfig loadout)
+        private GameEntity CreateLeadOnMap(GameEntity actor, LoadoutConfig loadout)
         {
-            var stage = actor.Get<EnemyActorOnStage>().Value;
+            var stage = actor.Get<EnemyActor>().Value;
             CardFactory.CreateEnemyLeadOnMap(loadout.Lead, stage)
                 .SetParent(actor)
                 ;

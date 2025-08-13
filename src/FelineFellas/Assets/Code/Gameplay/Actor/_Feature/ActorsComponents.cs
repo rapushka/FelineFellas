@@ -5,12 +5,14 @@ namespace FelineFellas
     /// both Player & Enemy
     public sealed class Actor : FlagComponent, IInScope<GameScope> { }
 
+    public sealed class ActiveActor : FlagComponent, IInScope<GameScope> { }
+
     public sealed class PlayerActor : FlagComponent, IInScope<GameScope>, IUnique { }
 
-    public sealed class ActiveEnemyActor : FlagComponent, IInScope<GameScope>, IUnique { }
+    /// Enemy Actor -> Stage
+    public sealed class EnemyActor : ValueComponent<EntityID>, IInScope<GameScope> { }
 
-    /// Enemy Actor -> Stages
-    public sealed class EnemyActorOnStage : ValueComponent<EntityID>, IInScope<GameScope> { }
+    public sealed class EnemyLoadout : ValueComponent<LoadoutConfig>, IInScope<GameScope> { }
 
     /// Enemy Lead -> Stage
     public sealed class EnemyLeadOnMap : ValueComponent<EntityID>, IInScope<GameScope> { }

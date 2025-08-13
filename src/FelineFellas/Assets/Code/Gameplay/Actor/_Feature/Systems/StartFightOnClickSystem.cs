@@ -12,7 +12,7 @@ namespace FelineFellas
 
         private readonly IGroup<Entity<GameScope>> _nextEnemies
             = GroupBuilder<GameScope>
-                .With<NextEnemy>()
+                .With<NextEnemyLead>()
                 .Build();
 
         public void Execute()

@@ -13,7 +13,7 @@ namespace FelineFellas
 
         private readonly IGroup<Entity<GameScope>> _actorsThatDrawCards
             = GroupBuilder<GameScope>
-                .With<Actor>()
+                .With<ActiveActor>()
                 .And<DrawingCards>()
                 .Build();
 
