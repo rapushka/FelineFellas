@@ -34,7 +34,7 @@ namespace FelineFellas
         {
             var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
-                    .Add<EnemyActorOnStage, EntityID>(stageID)
+                    .Add<EnemyActor, EntityID>(stageID)
                     .Chain(a => CreateLeadOnMap(a, loadout))
                     .Add<EnemyLoadout, LoadoutConfig>(loadout)
                 ;
@@ -75,7 +75,7 @@ namespace FelineFellas
 
         private GameEntity CreateLeadOnMap(GameEntity actor, LoadoutConfig loadout)
         {
-            var stage = actor.Get<EnemyActorOnStage>().Value;
+            var stage = actor.Get<EnemyActor>().Value;
             CardFactory.CreateEnemyLeadOnMap(loadout.Lead, stage)
                 .SetParent(actor)
                 ;
