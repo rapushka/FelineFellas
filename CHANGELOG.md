@@ -1,3 +1,6 @@
+# v0.0.10
+- on Fight Button click - start fight with the "selected" enemy - https://github.com/rapushka/FelineFellas/issues/109
+
 # v0.0.9
 - spawn arranged enemies on map - https://github.com/rapushka/FelineFellas/issues/103
 - display "Fight" button under the current enemy - https://github.com/rapushka/FelineFellas/issues/107
