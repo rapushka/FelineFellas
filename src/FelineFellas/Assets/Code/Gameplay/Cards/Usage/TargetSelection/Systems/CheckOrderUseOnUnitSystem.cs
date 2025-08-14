@@ -18,6 +18,8 @@ namespace FelineFellas
                 .And<UnitCard>()
                 .And<OnField>()
                 .And<Collider>()
+                .Without<OutOfStamina>()
+                .Without<Defeated>()
                 .Build();
 
         private readonly IGroup<Entity<InputScope>> _inputs
@@ -33,7 +35,6 @@ namespace FelineFellas
             foreach (var card in _draggedCard)
             {
                 var canUse = card.OnSameSide(unit)
-                    && !unit.Is<OutOfStamina>()
                     && IsUnitTypeAllowed(card, unit)
                     && IsCursorOnUnit(input, unit);
                 if (!canUse)
