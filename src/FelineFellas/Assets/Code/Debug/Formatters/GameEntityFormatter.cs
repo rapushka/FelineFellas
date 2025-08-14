@@ -48,8 +48,8 @@ namespace FelineFellas
             if (!entity.Is<OnField>())
                 return EmptyString;
 
-            var cell = entity.Get<ChildOf>().Value.GetEntity();
-            var cellIndex = cell.Get<CellIndex>().Value;
+            var cell = entity.Parent();
+            var cellIndex = cell.GetOrDefault<CellIndex>()?.Value.ToString() ?? "NaN";
             return $"on-field: [{cellIndex}]";
         }
     }
