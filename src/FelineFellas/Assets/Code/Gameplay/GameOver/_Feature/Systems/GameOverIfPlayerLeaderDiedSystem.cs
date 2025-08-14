@@ -3,7 +3,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class GameOverIfLeaderDiedSystem : IExecuteSystem
+    public sealed class GameOverIfPlayerLeaderDiedSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _deadLeaders
             = GroupBuilder<GameScope>

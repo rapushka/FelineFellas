@@ -8,6 +8,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _entities
             = GroupBuilder<GameScope>
                 .With<Dead>()
+                .Without<Defeated>()
                 .Build();
 
         public void Execute()

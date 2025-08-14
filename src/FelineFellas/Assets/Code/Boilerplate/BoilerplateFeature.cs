@@ -24,6 +24,7 @@ namespace FelineFellas
             Add(new SelfEventSystem<GameScope, CardFace>(contexts));
             Add(new SelfFlagEventSystem<GameScope, OutOfStamina>(contexts));
             Add(new SelfEventSystem<GameScope, Visible>(contexts));
+            Add(new SelfFlagEventSystem<GameScope, Defeated>(contexts));
         }
     }
 }
