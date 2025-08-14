@@ -5,7 +5,7 @@ namespace FelineFellas
 {
     public class EnemySelectUnitToApplyOrderCard : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _enemies
+        private readonly IGroup<Entity<GameScope>> _enemyActors
             = GroupBuilder<GameScope>
                 .With<EnemyActor>()
                 .And<ActiveActor>()
@@ -21,11 +21,12 @@ namespace FelineFellas
                 .And<OnField>()
                 .And<EnemyCard>()
                 .Without<OutOfStamina>()
+                .Without<Defeated>()
                 .Build();
 
         public void Execute()
         {
-            foreach (var enemy in _enemies)
+            foreach (var enemy in _enemyActors)
             {
                 Entity<GameScope> useTarget = null;
 
