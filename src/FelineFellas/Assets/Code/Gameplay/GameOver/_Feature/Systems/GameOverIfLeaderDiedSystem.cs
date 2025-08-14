@@ -8,6 +8,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _deadLeaders
             = GroupBuilder<GameScope>
                 .With<Leader>()
+                .And<PlayerCard>()
                 .And<Dead>()
                 .Build();
 
