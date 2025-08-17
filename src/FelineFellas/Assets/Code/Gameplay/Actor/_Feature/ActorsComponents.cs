@@ -5,8 +5,6 @@ namespace FelineFellas
     /// both Player & Enemy
     public sealed class Actor : FlagComponent, IInScope<GameScope> { }
 
-    public sealed class ActorHierarchy : ValueComponent<ActorHierarchyData>, IInScope<GameScope> { }
-
     public sealed class ActiveActor : FlagComponent, IInScope<GameScope> { }
 
     public sealed class PlayerActor : FlagComponent, IInScope<GameScope>, IUnique { }

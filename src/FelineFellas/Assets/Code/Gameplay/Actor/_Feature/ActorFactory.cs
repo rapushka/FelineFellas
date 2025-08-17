@@ -48,7 +48,6 @@ namespace FelineFellas
                     .Add<Actor>()
                     .Add<HandSize, int>(loadout.HandSize)
                     .Add<OnSide, Side>(side)
-                    .AddHierarchyFromActor()
                 ;
 
             return actor;
