@@ -36,21 +36,19 @@ namespace FelineFellas
             deck.AssertIs<Deck>();
 
             return card
+                    // cleanups
+                    .Chain(RemoveFromHand)
+                    .Chain(RemoveCardFromPlacedCell)
+                    .Chain(RemoveFromDiscard)
+
+                    // state
                     .Set<CardInDeck, EntityID>(deck.ID())
                     .Set<TargetRotation, float>(deck.Get<Rotation, float>())
                     .Set<TargetScale, float>(1f)
-                    .Is<Draggable>(false)
-                    .Is<Interactable>(false)
                     .Set<TargetPosition, Vector2>(deck.WorldPosition())
                     .Set<CardFace, Face>(Face.FaceDown)
                     .SetSorting(RenderOrder.CardInDeck)
                     .SetParent(deck)
-
-                    // cleanups
-                    .Is<SendToDiscard>(false)
-                    .Is<InDiscard>(false)
-                    .Is<Used>(false)
-                    .RemoveSafely<InHandIndex>()
                 ;
         }
 
@@ -108,6 +106,12 @@ namespace FelineFellas
                 .RemoveSafely<InHandIndex>()
                 .Is<Interactable>(false)
                 .Is<Draggable>(false);
+
+        public static GameEntity RemoveFromDiscard(GameEntity card)
+            => card
+                .Is<SendToDiscard>(false)
+                .Is<InDiscard>(false)
+                .Is<Used>(false);
 
         public static GameEntity PlaceCardInShop(GameEntity card, GameEntity slot)
         {
@@ -172,10 +176,13 @@ namespace FelineFellas
                 return card;
 
             var cell = card.Get<ChildOf>().Value.GetEntity();
-            cell
-                .Remove<PlacedCard>()
-                .Is<Free>(true)
-                ;
+            if (cell.IsValid())
+            {
+                cell
+                    .Remove<PlacedCard>()
+                    .Is<Free>(true)
+                    ;
+            }
 
             return card
                     .Remove<OnField>()
