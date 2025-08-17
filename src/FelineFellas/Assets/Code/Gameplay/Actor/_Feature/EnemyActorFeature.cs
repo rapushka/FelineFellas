@@ -13,7 +13,10 @@ namespace FelineFellas
             Add(new OnStartFightHideAllEnemiesSystem());
             Add(new OnStartFightHideMapUiSystem());
 
-            Add(new ArrangeStagesOnEnemyInitializationSystem());
+            Add(new RequestArrangeStagesOnEnemyInitializationSystem());
+            Add(new RequestArrangeStagesOnStageCompletedSystem());
+            Add(new ArrangeStagesSystem());
+
             Add(new EnemyAiFeature());
         }
     }

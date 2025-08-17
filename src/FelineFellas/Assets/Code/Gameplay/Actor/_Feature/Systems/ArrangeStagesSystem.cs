@@ -4,12 +4,16 @@ using UnityEngine;
 
 namespace FelineFellas
 {
-    public sealed class ArrangeStagesOnEnemyInitializationSystem : IExecuteSystem
+    public sealed class ArrangeStagesSystem : IExecuteSystem
     {
+        private readonly IGroup<Entity<GameScope>> _events
+            = GroupBuilder<GameScope>
+                .With<ArrangeStagesEvent>()
+                .Build();
+
         private readonly IGroup<Entity<GameScope>> _enemies
             = GroupBuilder<GameScope>
                 .With<LeadOnStage>()
-                .And<Initializing>()
                 .Without<PlayerCard>()
                 .Build();
 
@@ -19,6 +23,7 @@ namespace FelineFellas
 
         public void Execute()
         {
+            foreach (var e in _events)
             foreach (var enemyLead in _enemies)
             {
                 var stageID = enemyLead.Get<LeadOnStage>().Value;
@@ -30,6 +35,8 @@ namespace FelineFellas
                         y: 0f
                     )
                 );
+
+                e.Is<Destroy>(true);
             }
         }
     }

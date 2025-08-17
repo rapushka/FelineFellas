@@ -13,6 +13,7 @@ namespace FelineFellas
             Add(new DestroyFieldOnStageCompletedSystem());
             Add(new DestroyDefeatedActorOnStageCompletedSystem());
             Add(new ShowMapOnStageOnStageCompletedSystem());
+            Add(new ShowOtherEnemyLeadersOnStageCompletedSystem());
             Add(new OnStageCompletedEventProcessedSystem());
         }
     }

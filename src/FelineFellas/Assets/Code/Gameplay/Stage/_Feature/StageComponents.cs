@@ -12,4 +12,6 @@ namespace FelineFellas
     public sealed class CompletedStage : FlagComponent, IInScope<GameScope> { }
 
     public sealed class StageCompletedEvent : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class ArrangeStagesEvent : FlagComponent, IInScope<GameScope> { }
 }
