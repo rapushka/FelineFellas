@@ -27,10 +27,9 @@ namespace FelineFellas
             foreach (var actor in _playerActors)
             {
                 var deck = actor.GetOwnedDeck();
+
                 foreach (var card in _playerCards)
-                {
                     CardUtils.SendToDeck(card, deck);
-                }
             }
         }
     }

@@ -12,17 +12,16 @@ namespace FelineFellas
 
         private readonly IGroup<Entity<GameScope>> _defeatedEnemy
             = GroupBuilder<GameScope>
-                .With<Leader>()
-                .And<EnemyCard>()
-                .And<Defeated>()
+                .With<EnemyActor>()
+                .And<ActiveActor>()
                 .Build();
 
         public void Execute()
         {
             foreach (var _ in _events)
-            foreach (var unused in _defeatedEnemy) // TODO: use
+            foreach (var enemyActor in _defeatedEnemy)
             {
-                // TODO:
+                enemyActor.Is<Destroy>(true);
             }
         }
     }
