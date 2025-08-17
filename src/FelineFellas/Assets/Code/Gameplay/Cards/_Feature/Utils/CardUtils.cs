@@ -40,6 +40,7 @@ namespace FelineFellas
                     .Chain(RemoveFromHand)
                     .Chain(RemoveCardFromPlacedCell)
                     .Chain(RemoveFromDiscard)
+                    .Is<OutOfStamina>(false)
 
                     // state
                     .Set<CardInDeck, EntityID>(deck.ID())

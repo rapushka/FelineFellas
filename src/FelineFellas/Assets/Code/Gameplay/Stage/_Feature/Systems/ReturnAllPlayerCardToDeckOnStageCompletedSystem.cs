@@ -29,7 +29,12 @@ namespace FelineFellas
                 var deck = actor.GetOwnedDeck();
 
                 foreach (var card in _playerCards)
+                {
                     CardUtils.SendToDeck(card, deck);
+
+                    if (card.Is<Leader>())
+                        card.Set<CardFace, Face>(Face.FaceUp);
+                }
             }
         }
     }
