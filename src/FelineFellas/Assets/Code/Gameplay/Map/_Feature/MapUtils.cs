@@ -21,10 +21,7 @@ namespace FelineFellas
                 .Add<NextEnemyLead>();
 
             bool EnemyIsNotDefeated(GameEntity enemy)
-            {
-                var stage = enemy.Get<EnemyLeadOnMap>().Value.GetEntity();
-                return !stage.Is<CompletedStage>();
-            }
+                => !enemy.Is<Defeated>();
 
             int StageNumber(GameEntity enemy)
             {

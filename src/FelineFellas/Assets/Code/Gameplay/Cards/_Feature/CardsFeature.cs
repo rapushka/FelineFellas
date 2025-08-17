@@ -31,11 +31,12 @@ namespace FelineFellas
             Add(new ResetStaminaOnTurnEnded<OnPlayerTurnEndedState, PlayerCard>());
             Add(new ResetStaminaOnTurnEnded<OnEnemyTurnEndedState, EnemyCard>());
 
-            // The Order is intended to make dead entity exist 1 frame longer to handle its death if needed
-            Add(new MarkUnitsWithZeroHpDeadSystem());
+            // At first destroy dead units, and only then mark new units dead
+            // to make dead entity exist 1 frame longer to handle its death if needed
             Add(new GameOverIfPlayerLeaderDiedSystem());
             Add(new DefeatEnemyLeaderOnDeathSystem());
             Add(new DestroyDeadEntitiesSystem());
+            Add(new MarkUnitsWithZeroHpDeadSystem());
 
             // View
             Add(new ArrangeCardsInHandSystem());

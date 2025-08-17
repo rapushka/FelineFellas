@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Entitas;
 using Entitas.Generic;
 
@@ -10,12 +11,22 @@ namespace FelineFellas
                 .With<Leader>()
                 .And<EnemyCard>()
                 .And<Dead>()
+                .Without<Defeated>()
                 .Build();
+
+        private readonly List<Entity<GameScope>> _buffer = new(2);
 
         public void Execute()
         {
-            foreach (var leader in _deadLeaders)
+            foreach (var leader in _deadLeaders.GetEntities(_buffer))
+            {
                 leader.Is<Defeated>(true);
+
+                var stage = leader.Get<EnemyLeadOnMap>().Value.GetEntity();
+                stage.Is<CompletedStage>(true);
+
+                CreateEntity.Empty().Add<StageCompletedEvent>();
+            }
         }
     }
 }
