@@ -10,6 +10,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<LeadOnStage>()
                 .And<Initializing>()
+                .Without<PlayerCard>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
@@ -18,12 +19,12 @@ namespace FelineFellas
 
         public void Execute()
         {
-            foreach (var enemy in _enemies)
+            foreach (var enemyLead in _enemies)
             {
-                var stageID = enemy.Get<LeadOnStage>().Value;
+                var stageID = enemyLead.Get<LeadOnStage>().Value;
                 var stageNumber = stageID.Number;
 
-                enemy.Set<WorldPosition, Vector2>(
+                enemyLead.Set<WorldPosition, Vector2>(
                     new(
                         x: stageNumber * Config.SpacingBetweenEnemies - Config.FirstEnemyX,
                         y: 0f
