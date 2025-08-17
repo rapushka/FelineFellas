@@ -20,7 +20,7 @@ namespace FelineFellas
         public void Execute()
         {
             foreach (var _ in _events)
-            foreach (var enemy in _defeatedEnemy)
+            foreach (var unused in _defeatedEnemy) // TODO: use
             {
                 // TODO:
             }
