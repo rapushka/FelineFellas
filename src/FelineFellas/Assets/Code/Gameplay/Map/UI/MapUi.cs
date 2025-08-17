@@ -25,6 +25,12 @@ namespace FelineFellas
         {
             var nextEnemyLead = MapUtils.GetNextEnemyLead();
 
+            if (nextEnemyLead == null)
+            {
+                Debug.Log("TODO: all Enemies are defeated!");
+                return;
+            }
+
             var enemyWorldPosition = nextEnemyLead.WorldPosition();
             var enemyScreenPosition = CamerasService.WorldToScreen(enemyWorldPosition);
 
