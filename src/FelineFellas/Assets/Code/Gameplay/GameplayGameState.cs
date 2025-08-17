@@ -32,9 +32,10 @@ namespace FelineFellas
             InputService.OnUpdate(deltaTime);
             EcsRunner.OnUpdate();
 
-            GameStateMachine.CheckPendingState();
-
             DebugService.OnUpdate();
+            EcsRunner.OnAfterUpdate();
+
+            GameStateMachine.CheckPendingState();
         }
 
         public void OnExit()

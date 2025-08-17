@@ -43,8 +43,8 @@ namespace FelineFellas
                     .Is<Interactable>(false)
                     .Set<TargetPosition, Vector2>(deck.WorldPosition())
                     .Set<CardFace, Face>(Face.FaceDown)
-                    .Set<ChildOf, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.CardInDeck)
+                    .SetParent(deck)
 
                     // cleanups
                     .Is<SendToDiscard>(false)

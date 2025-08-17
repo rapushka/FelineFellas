@@ -9,6 +9,7 @@ namespace FelineFellas
         void StartGame();
 
         void OnUpdate();
+        void OnAfterUpdate();
 
         void EndGame();
     }
@@ -48,14 +49,9 @@ namespace FelineFellas
             _feature.Initialize();
         }
 
-        public void OnUpdate()
-        {
-            if (_feature is null)
-                return;
+        public void OnUpdate() => _feature?.Execute();
 
-            _feature.Execute();
-            _feature.Cleanup();
-        }
+        public void OnAfterUpdate() => _feature?.Cleanup();
 
         public void EndGame()
         {
