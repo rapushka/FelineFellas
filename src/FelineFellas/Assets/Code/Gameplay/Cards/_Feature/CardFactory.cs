@@ -35,7 +35,7 @@ namespace FelineFellas
 
             return Create(cardID, deck.WorldPosition())
                     .AssignToSide(side)
-                    .Chain(card => CardUtils.AddToDeck(card, deck))
+                    .Chain(card => CardUtils.SendToDeck(card, deck))
                     .Set<CardFace, Face>(Face.FaceUp)
                     .Remove<CardInDeck>()
                     .Add<LayingOnDeck, EntityID>(deck.ID())

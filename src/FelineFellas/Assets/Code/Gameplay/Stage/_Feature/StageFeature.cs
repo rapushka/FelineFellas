@@ -8,7 +8,8 @@ namespace FelineFellas
             Add(new CreateStagesOnMapCreatedSystem());
             Add(new CompleteStageLoadingSystem());
 
-            Add(new ReparentEnemyLeadToStageOnStageCompletedSystem());
+            Add(new ReturnAllPlayerCardToDeckOnStageCompletedSystem());
+            Add(new ReparentEnemyLeadOnStageCompletedSystem());
             Add(new DestroyFieldOnStageCompletedSystem());
             Add(new DestroyDefeatedActorOnStageCompletedSystem());
             Add(new ShowMapOnStageOnStageCompletedSystem());

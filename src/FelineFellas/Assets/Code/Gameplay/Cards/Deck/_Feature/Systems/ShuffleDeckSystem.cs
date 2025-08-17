@@ -29,7 +29,7 @@ namespace FelineFellas
                 if (!deck.OnSameSide(card))
                     continue;
 
-                CardUtils.AddToDeck(card, deck);
+                CardUtils.SendToDeck(card, deck);
                 deck.Is<NeedsShuffle>(false);
             }
         }

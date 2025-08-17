@@ -26,7 +26,7 @@ namespace FelineFellas
             var deck = enemyActor.GetOwnedDeck();
 
             return enemyLead
-                .Chain(card => CardUtils.AddToDeck(card, deck))
+                .Chain(card => CardUtils.SendToDeck(card, deck))
                 .Add<LayingOnDeck, EntityID>(deck.ID());
         }
 
@@ -69,7 +69,7 @@ namespace FelineFellas
                 {
                     CardFactory.Create(cardID, deck.WorldPosition())
                         .AssignToSide(side)
-                        .Chain(c => CardUtils.AddToDeck(c, deck))
+                        .Chain(c => CardUtils.SendToDeck(c, deck))
                         .Set<Rotation, float>(deck.Get<Rotation, float>())
                         .Add<CardOnStage, StageID>(stageID)
                         ;

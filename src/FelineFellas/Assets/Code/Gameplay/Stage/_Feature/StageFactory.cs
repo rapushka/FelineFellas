@@ -12,6 +12,7 @@ namespace FelineFellas
     {
         public Entity<GameScope> CreateMockForPlayer()
             => CreateInternal(-1)
+                .Set<Name, string>("player stage")
                 .Add<PlayerStage>();
 
         public Entity<GameScope> Create(int number, EntityID mapID)
