@@ -39,6 +39,7 @@ namespace FelineFellas
             ServiceLocator.Register<IActorFactory>(new ActorFactory());
             ServiceLocator.Register<IAbilityFactory>(new AbilityFactory());
             ServiceLocator.Register<IDeckFactory>(new DeckFactory());
+            ServiceLocator.Register<IStageFactory>(new StageFactory());
         }
 
         public void Run()

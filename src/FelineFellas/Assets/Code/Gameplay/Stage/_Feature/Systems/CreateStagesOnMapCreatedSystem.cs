@@ -13,19 +13,14 @@ namespace FelineFellas
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();
 
+        private static IStageFactory StageFactory => ServiceLocator.Resolve<IStageFactory>();
+
         public void Execute()
         {
             foreach (var map in _maps)
             {
                 for (var i = 0; i < GameConfig.Map.NumberOfUsualEnemies; i++)
-                {
-                    CreateEntity.Empty()
-                        .Add<Name, string>("stage")
-                        .Add<Stage, StageID>(new(i + 1))
-                        .Add<Initializing>()
-                        .SetParent(map)
-                        ;
-                }
+                    StageFactory.Create(i + 1, map.ID());
             }
         }
     }

@@ -28,6 +28,12 @@ namespace FelineFellas
             Contexts.Instance.Get<GameScope>().GetIndex<AbilityTemplate, EntityID>().Initialize();
             Contexts.Instance.Get<GameScope>().GetIndex<AbilityUse, EntityID>().Initialize();
 
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<Stage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<ActorOnStage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<LeadOnStage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<DeckOnStage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetIndex<CardOnStage, StageID>().Initialize();
+
 #if DEBUG
             Entity<GameScope>.Formatter = new GameEntityFormatter();
 #endif

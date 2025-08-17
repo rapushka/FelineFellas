@@ -22,7 +22,7 @@ namespace FelineFellas
             {
                 foreach (var lead in _defeatedEnemyLeads)
                 {
-                    var stage = lead.Get<EnemyLeadOnStage>().Value.GetEntity();
+                    var stage = StageUtils.GetStage(lead);
                     lead.SetParent(stage);
                 }
             }

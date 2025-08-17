@@ -7,7 +7,7 @@ namespace FelineFellas
     {
         GameEntity CreateLeadOnDeck(CardIDRef cardID, GameEntity deck);
 
-        GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID);
+        GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, StageID stageEntityID);
 
         GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot);
 
@@ -41,10 +41,11 @@ namespace FelineFellas
                     .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
                     .Set<Rotation, float>(rotation)
+                    .CopyStage<LeadOnStage>(from: deck)
                 ;
         }
 
-        public GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID)
+        public GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, StageID stageID)
         {
             return Create(cardID, new())
                     .AssignToSide(Side.Enemy)
@@ -54,11 +55,11 @@ namespace FelineFellas
                     // .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
                     .Set<Rotation, float>(0f)
-                    .Add<EnemyLeadOnStage, EntityID>(stageID)
+                    .Add<LeadOnStage, StageID>(stageID)
                 ;
         }
 
-        public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot)
+        public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot) // TODO: link to current stage?
             => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
                 .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot));
 

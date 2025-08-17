@@ -4,7 +4,7 @@ namespace FelineFellas
 {
     public interface IActorFactory : IService
     {
-        GameEntity CreatePlayer(LoadoutConfig loadout);
+        GameEntity CreatePlayer(LoadoutConfig loadout, StageID mockStageID);
         GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID);
     }
 
@@ -16,12 +16,13 @@ namespace FelineFellas
 
         private static IDeckFactory DeckFactory => ServiceLocator.Resolve<IDeckFactory>();
 
-        public GameEntity CreatePlayer(LoadoutConfig loadout)
+        public GameEntity CreatePlayer(LoadoutConfig loadout, StageID mockStageID)
         {
             var actor = Create(loadout, Side.Player)
                     .Add<Name, string>("player")
                     .Add<PlayerActor>()
                     .Add<Money, int>(GameConfig.Money.MoneyOnStart)
+                    .Add<ActorOnStage, StageID>(mockStageID)
                     .Chain(a => DeckFactory.Create(a, loadout))
                     .Chain(a => CreateLeadOnDeck(a, loadout))
                     .Add<ActiveActor>()
@@ -30,11 +31,15 @@ namespace FelineFellas
             return actor;
         }
 
-        public GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID)
+        public GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageEntityID)
         {
+            var stage = stageEntityID.GetEntity();
+            var stageID = stage.Get<Stage, StageID>();
+
             var actor = Create(loadout, Side.Enemy)
                     .Add<Name, string>("enemy")
-                    .Add<EnemyActor, EntityID>(stageID)
+                    .Add<EnemyActor>()
+                    .Add<ActorOnStage, StageID>(stageID)
                     .Chain(a => CreateLeadOnMap(a, loadout))
                     .Add<EnemyLoadout, LoadoutConfig>(loadout)
                 ;
@@ -55,7 +60,8 @@ namespace FelineFellas
 
         private GameEntity CreateLeadOnDeck(GameEntity actor, LoadoutConfig loadout)
         {
-            var deck = actor.Get<OwnedDeck>().Value.GetEntity();
+            var deck = actor.GetOwnedDeck();
+
             CardFactory.CreateLeadOnDeck(loadout.Lead, deck);
 
             return actor;
@@ -63,7 +69,7 @@ namespace FelineFellas
 
         private GameEntity CreateLeadOnMap(GameEntity actor, LoadoutConfig loadout)
         {
-            var stage = actor.Get<EnemyActor>().Value;
+            var stage = actor.Get<ActorOnStage>().Value;
             CardFactory.CreateEnemyLeadOnMap(loadout.Lead, stage)
                 .SetParent(actor)
                 ;

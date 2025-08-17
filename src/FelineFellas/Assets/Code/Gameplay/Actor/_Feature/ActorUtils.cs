@@ -32,7 +32,7 @@ namespace FelineFellas
 
         public static HashSet<Entity<GameScope>> GetCardsInDeck(Entity<GameScope> actor)
         {
-            var deckID = actor.Get<OwnedDeck>().Value;
+            var deckID = actor.GetOwnedDeck().ID();
             return DeckUtils.GetAllCardsInDeck(deckID);
         }
 

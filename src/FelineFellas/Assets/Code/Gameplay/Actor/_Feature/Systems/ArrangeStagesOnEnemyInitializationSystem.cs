@@ -8,7 +8,7 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _enemies
             = GroupBuilder<GameScope>
-                .With<EnemyLeadOnStage>()
+                .With<LeadOnStage>()
                 .And<Initializing>()
                 .Build();
 
@@ -20,8 +20,8 @@ namespace FelineFellas
         {
             foreach (var enemy in _enemies)
             {
-                var stage = enemy.Get<EnemyLeadOnStage>().Value.GetEntity();
-                var stageNumber = stage.Get<Stage>().Value;
+                var stageID = enemy.Get<LeadOnStage>().Value;
+                var stageNumber = stageID.Number;
 
                 enemy.Set<WorldPosition, Vector2>(
                     new(

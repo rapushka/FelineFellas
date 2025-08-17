@@ -23,27 +23,27 @@ namespace FelineFellas
                 .Chain(a => Create(a, loadout))
                 ;
 
-            var deckID = enemyActor.Get<OwnedDeck>().Value;
+            var deck = enemyActor.GetOwnedDeck();
 
             return enemyLead
-                .Chain(card => CardUtils.AddToDeck(card, deckID.GetEntity()))
-                .Add<LayingOnDeck, EntityID>(deckID);
+                .Chain(card => CardUtils.AddToDeck(card, deck))
+                .Add<LayingOnDeck, EntityID>(deck.ID());
         }
 
         public GameEntity Create(GameEntity actor, LoadoutConfig loadout)
         {
-            var side = actor.Get<OnSide>().Value;
-            var deckID = CreateDeckWithCards(loadout.Deck, side)
+            CreateDeckWithCards(loadout.Deck, actor)
                 .Add<ChildOf, EntityID>(actor.ID())
-                .ID();
-
-            actor.Add<OwnedDeck, EntityID>(deckID);
+                ;
 
             return actor;
         }
 
-        private GameEntity CreateDeckWithCards(CardEntry[] cards, Side side)
+        private GameEntity CreateDeckWithCards(CardEntry[] cards, GameEntity actor)
         {
+            var stageID = StageUtils.GetStageID(actor);
+            var side = actor.Get<OnSide>().Value;
+
             var position = side.Visit(
                 onPlayer: () => GameConfig.Layout.PlayerDeck,
                 onEnemy: () => GameConfig.Layout.EnemyDeck
@@ -60,6 +60,7 @@ namespace FelineFellas
                     .Add<WorldPosition, Vector2>(position)
                     .Add<OnSide, Side>(side)
                     .Add<Rotation, float>(rotation)
+                    .Add<DeckOnStage, StageID>(stageID)
                 ;
 
             foreach (var (cardID, count) in cards)
@@ -70,6 +71,7 @@ namespace FelineFellas
                         .AssignToSide(side)
                         .Chain(c => CardUtils.AddToDeck(c, deck))
                         .Set<Rotation, float>(deck.Get<Rotation, float>())
+                        .Add<CardOnStage, StageID>(stageID)
                         ;
                 }
             }

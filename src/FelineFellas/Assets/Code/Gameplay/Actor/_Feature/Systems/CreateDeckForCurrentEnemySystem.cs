@@ -17,9 +17,7 @@ namespace FelineFellas
             foreach (var e in _events)
             {
                 var enemyLead = e.Get<StartFightEvent>().Value.GetEntity();
-                var enemyActor = enemyLead.Parent();
-
-                enemyActor.AssertIs<Actor>();
+                var enemyActor = StageUtils.GetActorForLead(enemyLead);
 
                 DeckFactory.CreateForEnemy(enemyActor, enemyLead);
             }

@@ -10,7 +10,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<ActiveActor>()
                 .And<DrawingCards>()
-                .And<OwnedDeck>()
+                .And<DeckOnStage>()
                 .Without<WaitingForDeckShuffle>()
                 .Build();
 
@@ -18,8 +18,8 @@ namespace FelineFellas
         {
             foreach (var actor in _actors)
             {
-                var deckID = actor.Get<OwnedDeck>().Value;
-                var deck = deckID.GetEntity();
+                var deck = actor.GetOwnedDeck();
+                var deckID = deck.ID();
 
                 var deckIsEmpty = !DeckUtils.GetAllCardsInDeck(deckID).Any();
                 deck.Is<NeedsShuffle>(deckIsEmpty);

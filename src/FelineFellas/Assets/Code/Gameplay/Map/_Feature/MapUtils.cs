@@ -8,7 +8,8 @@ namespace FelineFellas
     {
         private static readonly IGroup<GameEntity> EnemiesOnMap
             = GroupBuilder<GameScope>
-                .With<EnemyLeadOnStage>()
+                .With<LeadOnStage>()
+                .Without<PlayerCard>()
                 .Without<Defeated>()
                 .Build();
 
@@ -22,8 +23,7 @@ namespace FelineFellas
 
             int StageNumber(GameEntity enemy)
             {
-                var stage = enemy.Get<EnemyLeadOnStage>().Value.GetEntity();
-                var stageNumber = stage.Get<Stage>().Value;
+                var stageNumber = StageUtils.GetStageID(enemy).Number;
                 return stageNumber;
             }
         }

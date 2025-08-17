@@ -1,6 +1,8 @@
+using System;
+
 namespace FelineFellas
 {
-    public struct StageID
+    public readonly struct StageID : IEquatable<StageID>
     {
         /// starts with 1
         public int Number { get; }

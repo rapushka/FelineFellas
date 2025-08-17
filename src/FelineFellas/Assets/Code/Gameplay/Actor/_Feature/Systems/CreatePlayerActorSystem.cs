@@ -7,9 +7,14 @@ namespace FelineFellas
         private static IGameConfig   GameConfig   => ServiceLocator.Resolve<IGameConfig>();
         private static IActorFactory ActorFactory => ServiceLocator.Resolve<IActorFactory>();
 
+        private static IStageFactory StageFactory => ServiceLocator.Resolve<IStageFactory>();
+
         public void Initialize()
         {
-            ActorFactory.CreatePlayer(GameConfig.Loadouts.PlayerLoadout);
+            var mockStage = StageFactory.CreateMockForPlayer();
+            var stageID = mockStage.Get<Stage>().Value;
+            ActorFactory.CreatePlayer(GameConfig.Loadouts.PlayerLoadout, stageID)
+                .SetParent(mockStage);
         }
     }
 }

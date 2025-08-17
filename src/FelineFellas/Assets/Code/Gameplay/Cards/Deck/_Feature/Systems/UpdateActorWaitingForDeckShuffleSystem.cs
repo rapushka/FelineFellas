@@ -10,7 +10,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<ActiveActor>()
                 .And<DrawingCards>()
-                .And<OwnedDeck>()
+                .And<DeckOnStage>()
                 .Build();
 
         private readonly List<Entity<GameScope>> _buffer = new(4);
@@ -19,7 +19,7 @@ namespace FelineFellas
         {
             foreach (var actor in _actors.GetEntities(_buffer))
             {
-                var deck = actor.Get<OwnedDeck>().Value.GetEntity();
+                var deck = actor.GetOwnedDeck();
                 var deckIsShuffling = deck.Is<NeedsShuffle>() || deck.Has<ShufflingDeckTimer>();
 
                 actor.Is<WaitingForDeckShuffle>(deckIsShuffling);
