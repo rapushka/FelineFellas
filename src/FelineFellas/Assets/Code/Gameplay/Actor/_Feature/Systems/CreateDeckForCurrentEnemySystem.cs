@@ -10,18 +10,16 @@ namespace FelineFellas
                 .With<StartFightEvent>()
                 .Build();
 
-        private static ICardFactory CardFactory => ServiceLocator.Resolve<ICardFactory>();
+        private static IDeckFactory DeckFactory => ServiceLocator.Resolve<IDeckFactory>();
 
         public void Execute()
         {
             foreach (var e in _events)
             {
                 var enemyLead = e.Get<StartFightEvent>().Value.GetEntity();
-                var enemyActor = enemyLead.Parent();
+                var enemyActor = StageUtils.GetActorForLead(enemyLead);
 
-                enemyActor.AssertIs<Actor>();
-
-                CardFactory.CreateDeckForEnemy(enemyActor, enemyLead);
+                DeckFactory.CreateForEnemy(enemyActor, enemyLead);
             }
         }
     }

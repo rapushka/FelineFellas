@@ -3,26 +3,26 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class OnStartFightHideAllEnemiesSystem : IExecuteSystem
+    public sealed class ShowOtherEnemyLeadersOnStageCompletedSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _events
             = GroupBuilder<GameScope>
-                .With<StartFightEvent>()
+                .With<StageCompletedEvent>()
                 .Build();
 
-        private readonly IGroup<Entity<GameScope>> _otherEnemies
+        private readonly IGroup<Entity<GameScope>> _enemies
             = GroupBuilder<GameScope>
                 .With<LeadOnStage>()
-                .Without<NextEnemyLead>()
-                .Without<PlayerCard>()
+                .And<EnemyCard>()
+                .And<Visible>()
                 .Build();
 
         public void Execute()
         {
             foreach (var _ in _events)
-            foreach (var enemy in _otherEnemies)
+            foreach (var leader in _enemies)
             {
-                enemy.Set<Visible, bool>(false);
+                leader.Set<Visible, bool>(true);
             }
         }
     }

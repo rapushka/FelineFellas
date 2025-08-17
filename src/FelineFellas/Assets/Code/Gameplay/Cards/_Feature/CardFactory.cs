@@ -5,15 +5,13 @@ namespace FelineFellas
 {
     public interface ICardFactory : IService
     {
-        GameEntity CreateDeckWithCards(CardEntry[] cards, Side side);
-
         GameEntity CreateLeadOnDeck(CardIDRef cardID, GameEntity deck);
 
-        GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID);
-
-        GameEntity CreateDeckForEnemy(GameEntity enemyActor, GameEntity enemyLead);
+        GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, StageID stageEntityID);
 
         GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot);
+
+        GameEntity Create(CardIDRef cardID, Vector2 position);
     }
 
     public class CardFactory : ICardFactory
@@ -26,43 +24,6 @@ namespace FelineFellas
 
         private static CardsConfig CardsConfig => GameConfig.Cards;
 
-        private static IActorFactory ActorFactory => ServiceLocator.Resolve<IActorFactory>();
-
-        public GameEntity CreateDeckWithCards(CardEntry[] cards, Side side)
-        {
-            var position = side.Visit(
-                onPlayer: () => GameConfig.Layout.PlayerDeck,
-                onEnemy: () => GameConfig.Layout.EnemyDeck
-            );
-
-            var rotation = side.Visit(
-                onPlayer: () => 0f,
-                onEnemy: () => 180f
-            );
-
-            var deck = CreateEntity.Empty()
-                    .Add<Name, string>("deck")
-                    .Add<Deck>()
-                    .Add<WorldPosition, Vector2>(position)
-                    .Add<OnSide, Side>(side)
-                    .Add<Rotation, float>(rotation)
-                ;
-
-            foreach (var (cardID, count) in cards)
-            {
-                for (var i = 0; i < count; i++)
-                {
-                    Create(cardID, deck.WorldPosition())
-                        .AssignToSide(side)
-                        .Chain(c => CardUtils.AddToDeck(c, deck))
-                        .Set<Rotation, float>(deck.Get<Rotation, float>())
-                        ;
-                }
-            }
-
-            return deck;
-        }
-
         public GameEntity CreateLeadOnDeck(CardIDRef cardID, GameEntity deck)
         {
             var side = deck.Get<OnSide>().Value;
@@ -74,16 +35,17 @@ namespace FelineFellas
 
             return Create(cardID, deck.WorldPosition())
                     .AssignToSide(side)
-                    .Chain(card => CardUtils.AddToDeck(card, deck))
+                    .Chain(card => CardUtils.SendToDeck(card, deck))
                     .Set<CardFace, Face>(Face.FaceUp)
                     .Remove<CardInDeck>()
                     .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
                     .Set<Rotation, float>(rotation)
+                    .CopyStage<LeadOnStage>(from: deck)
                 ;
         }
 
-        public GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, EntityID stageID)
+        public GameEntity CreateEnemyLeadOnMap(CardIDRef cardID, StageID stageID)
         {
             return Create(cardID, new())
                     .AssignToSide(Side.Enemy)
@@ -93,29 +55,15 @@ namespace FelineFellas
                     // .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
                     .Set<Rotation, float>(0f)
-                    .Add<EnemyLeadOnMap, EntityID>(stageID)
+                    .Add<LeadOnStage, StageID>(stageID)
                 ;
         }
 
-        public GameEntity CreateDeckForEnemy(GameEntity enemyActor, GameEntity enemyLead)
-        {
-            var loadout = enemyActor.Get<EnemyLoadout>().Value;
-            enemyActor
-                .Chain(a => ActorFactory.CreateDeck(a, loadout))
-                ;
-
-            var deckID = enemyActor.Get<OwnedDeck>().Value;
-
-            return enemyLead
-                .Chain(card => CardUtils.AddToDeck(card, deckID.GetEntity()))
-                .Add<LayingOnDeck, EntityID>(deckID);
-        }
-
-        public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot)
+        public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot) // TODO: link to current stage?
             => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
                 .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot));
 
-        private GameEntity Create(CardIDRef cardID, Vector2 position)
+        public GameEntity Create(CardIDRef cardID, Vector2 position)
         {
             var config = CardsConfig.GetConfig(cardID);
 
@@ -178,7 +126,7 @@ namespace FelineFellas
             var canUseOnEnemy = targetSubject.HasFlag(OrderCardConfig.AllowedTargetSubjectType.Enemy);
 
             card
-                .Is<CanTargetSubjectFella>(canUseOnFella) // TODO: does Ability need these?
+                .Is<CanTargetSubjectFella>(canUseOnFella) // TODO: does Order need these?
                 .Is<CanTargetSubjectLeader>(canUseOnLead)
                 .Is<CanTargetSubjectEnemy>(canUseOnEnemy)
                 ;

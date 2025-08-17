@@ -27,8 +27,7 @@ namespace FelineFellas
                     .Is<DrawingCards>(false)
                     ;
 
-                var deck = actor.Get<OwnedDeck>().Value.GetEntity();
-                deck
+                actor.GetOwnedDeck()
                     .Is<NeedsShuffle>(false)
                     .RemoveSafely<ShufflingDeckTimer>()
                     ;

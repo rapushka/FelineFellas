@@ -9,6 +9,7 @@ namespace FelineFellas
         void StartGame();
 
         void OnUpdate();
+        void OnAfterUpdate();
 
         void EndGame();
     }
@@ -28,6 +29,12 @@ namespace FelineFellas
             Contexts.Instance.Get<GameScope>().GetIndex<AbilityTemplate, EntityID>().Initialize();
             Contexts.Instance.Get<GameScope>().GetIndex<AbilityUse, EntityID>().Initialize();
 
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<Stage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<ActorOnStage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<LeadOnStage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetPrimaryIndex<DeckOnStage, StageID>().Initialize();
+            Contexts.Instance.Get<GameScope>().GetIndex<CardOnStage, StageID>().Initialize();
+
 #if DEBUG
             Entity<GameScope>.Formatter = new GameEntityFormatter();
 #endif
@@ -42,14 +49,9 @@ namespace FelineFellas
             _feature.Initialize();
         }
 
-        public void OnUpdate()
-        {
-            if (_feature is null)
-                return;
+        public void OnUpdate() => _feature?.Execute();
 
-            _feature.Execute();
-            _feature.Cleanup();
-        }
+        public void OnAfterUpdate() => _feature?.Cleanup();
 
         public void EndGame()
         {

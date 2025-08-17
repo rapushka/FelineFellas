@@ -9,5 +9,8 @@ namespace FelineFellas
 
         public static Entity<GameScope> SetParent(this Entity<GameScope> @this, Entity<GameScope> newParent)
             => @this.Set<ChildOf, EntityID>(newParent.ID());
+
+        public static Entity<GameScope> SetParent(this Entity<GameScope> @this, EntityID parentID)
+            => @this.Set<ChildOf, EntityID>(parentID);
     }
 }

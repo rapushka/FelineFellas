@@ -9,6 +9,7 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<Stage>()
                 .And<Initializing>()
+                .Without<PlayerStage>()
                 .Build();
 
         private static IGameConfig GameConfig => ServiceLocator.Resolve<IGameConfig>();

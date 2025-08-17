@@ -9,18 +9,17 @@ namespace FelineFellas
 
     public sealed class PlayerActor : FlagComponent, IInScope<GameScope>, IUnique { }
 
-    /// Enemy Actor -> Stage
-    public sealed class EnemyActor : ValueComponent<EntityID>, IInScope<GameScope> { }
+    public sealed class EnemyActor : FlagComponent, IInScope<GameScope> { }
+
+    public sealed class ActorOnStage : PrimaryIndexComponent<StageID>, IInScope<GameScope> { }
+
+    public sealed class LeadOnStage : PrimaryIndexComponent<StageID>, IInScope<GameScope> { }
+
+    public sealed class DeckOnStage : PrimaryIndexComponent<StageID>, IInScope<GameScope> { }
 
     public sealed class EnemyLoadout : ValueComponent<LoadoutConfig>, IInScope<GameScope> { }
 
-    /// Enemy Lead -> Stage
-    public sealed class EnemyLeadOnMap : ValueComponent<EntityID>, IInScope<GameScope> { }
-
     public sealed class HandSize : ValueComponent<int>, IInScope<GameScope> { }
-
-    /// Actor -> Deck
-    public sealed class OwnedDeck : ValueComponent<EntityID>, IInScope<GameScope> { }
 
     public sealed class HasFullHand : FlagComponent, IInScope<GameScope> { }
 

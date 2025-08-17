@@ -11,23 +11,47 @@ namespace FelineFellas
 
         private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
 
-        public static GameEntity AddToDeck(GameEntity card, GameEntity deck)
-            => card
-                .Set<CardInDeck, EntityID>(deck.ID())
-                .Set<TargetRotation, float>(deck.Get<Rotation, float>())
-                .Set<TargetScale, float>(1f)
-                .Is<Draggable>(false)
-                .Is<Interactable>(false)
-                .Set<TargetPosition, Vector2>(deck.WorldPosition())
-                .Set<CardFace, Face>(Face.FaceDown)
-                .Set<ChildOf, EntityID>(deck.ID())
-                .SetSorting(RenderOrder.CardInDeck)
+        public static GameEntity Defeat(GameEntity lead)
+        {
+            lead.AssertIs<Leader>();
 
-                // cleanups
-                .Is<SendToDiscard>(false)
-                .Is<InDiscard>(false)
-                .Is<Used>(false)
-                .RemoveSafely<InHandIndex>();
+            return lead
+                    .Is<Interactable>(false)
+                    .Set<CardFace, Face>(Face.FaceUp)
+                    .Chain(RemoveFromHand)
+                    .Chain(RemoveCardFromPlacedCell)
+                    .RemoveSafely<LayingOnDeck>()
+                    .RemoveSafely<Leader>()
+                    .RemoveSafely<NextEnemyLead>()
+                    .RemoveSafely<Priority>()
+                    .RemoveSafely<Price>()
+                    .RemoveSafely<Strength>()
+                    .RemoveSafely<UnitCard>()
+                ;
+        }
+
+        public static GameEntity SendToDeck(GameEntity card, GameEntity deck)
+        {
+            card.AssertIs<Card>();
+            deck.AssertIs<Deck>();
+
+            return card
+                    // cleanups
+                    .Chain(RemoveFromHand)
+                    .Chain(RemoveCardFromPlacedCell)
+                    .Chain(RemoveFromDiscard)
+                    .Is<OutOfStamina>(false)
+
+                    // state
+                    .Set<CardInDeck, EntityID>(deck.ID())
+                    .Set<TargetRotation, float>(deck.Get<Rotation, float>())
+                    .Set<TargetScale, float>(1f)
+                    .Set<TargetPosition, Vector2>(deck.WorldPosition())
+                    .Set<CardFace, Face>(Face.FaceDown)
+                    .SetSorting(RenderOrder.CardInDeck)
+                    .SetParent(deck)
+                ;
+        }
 
         public static GameEntity DrawCardToHand(GameEntity card, int index)
             => card
@@ -83,6 +107,12 @@ namespace FelineFellas
                 .RemoveSafely<InHandIndex>()
                 .Is<Interactable>(false)
                 .Is<Draggable>(false);
+
+        public static GameEntity RemoveFromDiscard(GameEntity card)
+            => card
+                .Is<SendToDiscard>(false)
+                .Is<InDiscard>(false)
+                .Is<Used>(false);
 
         public static GameEntity PlaceCardInShop(GameEntity card, GameEntity slot)
         {
@@ -147,10 +177,13 @@ namespace FelineFellas
                 return card;
 
             var cell = card.Get<ChildOf>().Value.GetEntity();
-            cell
-                .Remove<PlacedCard>()
-                .Is<Free>(true)
-                ;
+            if (cell.IsValid())
+            {
+                cell
+                    .Remove<PlacedCard>()
+                    .Is<Free>(true)
+                    ;
+            }
 
             return card
                     .Remove<OnField>()
