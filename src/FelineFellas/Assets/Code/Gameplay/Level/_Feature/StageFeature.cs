@@ -7,6 +7,12 @@ namespace FelineFellas
         {
             Add(new CreateStagesOnMapCreatedSystem());
             Add(new CompleteStageLoadingSystem());
+
+            Add(new ReparentEnemyLeadToStageOnStageCompletedSystem());
+            Add(new DestroyFieldOnStageCompletedSystem());
+            Add(new DestroyDefeatedActorOnStageCompletedSystem());
+            Add(new ShowMapOnStageOnStageCompletedSystem());
+            Add(new OnStageCompletedEventProcessedSystem());
         }
     }
 }

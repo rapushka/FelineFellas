@@ -15,7 +15,7 @@ namespace FelineFellas
     public sealed class EnemyLoadout : ValueComponent<LoadoutConfig>, IInScope<GameScope> { }
 
     /// Enemy Lead -> Stage
-    public sealed class EnemyLeadOnMap : ValueComponent<EntityID>, IInScope<GameScope> { }
+    public sealed class EnemyLeadOnStage : ValueComponent<EntityID>, IInScope<GameScope> { }
 
     public sealed class HandSize : ValueComponent<int>, IInScope<GameScope> { }
 

@@ -22,7 +22,7 @@ namespace FelineFellas
             {
                 leader.Is<Defeated>(true);
 
-                var stage = leader.Get<EnemyLeadOnMap>().Value.GetEntity();
+                var stage = leader.Get<EnemyLeadOnStage>().Value.GetEntity();
                 stage.Is<CompletedStage>(true);
 
                 CreateEntity.Empty().Add<StageCompletedEvent>();

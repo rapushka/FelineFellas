@@ -93,7 +93,7 @@ namespace FelineFellas
                     // .Add<LayingOnDeck, EntityID>(deck.ID())
                     .SetSorting(RenderOrder.LeadOnDeck)
                     .Set<Rotation, float>(0f)
-                    .Add<EnemyLeadOnMap, EntityID>(stageID)
+                    .Add<EnemyLeadOnStage, EntityID>(stageID)
                 ;
         }
 

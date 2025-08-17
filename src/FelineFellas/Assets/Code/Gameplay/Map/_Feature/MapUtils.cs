@@ -8,24 +8,21 @@ namespace FelineFellas
     {
         private static readonly IGroup<GameEntity> EnemiesOnMap
             = GroupBuilder<GameScope>
-                .With<EnemyLeadOnMap>()
+                .With<EnemyLeadOnStage>()
+                .Without<Defeated>()
                 .Build();
 
         public static GameEntity GetNextEnemyLead()
         {
             var currentEnemy = EnemiesOnMap
-                .Where(EnemyIsNotDefeated)
                 .FindWithMin(StageNumber);
 
             return currentEnemy
                 .Add<NextEnemyLead>();
 
-            bool EnemyIsNotDefeated(GameEntity enemy)
-                => !enemy.Is<Defeated>();
-
             int StageNumber(GameEntity enemy)
             {
-                var stage = enemy.Get<EnemyLeadOnMap>().Value.GetEntity();
+                var stage = enemy.Get<EnemyLeadOnStage>().Value.GetEntity();
                 var stageNumber = stage.Get<Stage>().Value;
                 return stageNumber;
             }
