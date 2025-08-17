@@ -4,6 +4,7 @@
 - Defeat enemy's lead - https://github.com/rapushka/FelineFellas/issues/118
 - on enemy defeated - go back to map - https://github.com/rapushka/FelineFellas/issues/119
 - player can start fight with next enemies - https://github.com/rapushka/FelineFellas/issues/120
+- bugfix: deck shufling workd again - https://github.com/rapushka/FelineFellas/issues/123
 
 # v0.0.9
 - spawn arranged enemies on map - https://github.com/rapushka/FelineFellas/issues/103
