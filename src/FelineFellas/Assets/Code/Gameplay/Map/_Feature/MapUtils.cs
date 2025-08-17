@@ -19,7 +19,8 @@ namespace FelineFellas
                 .FindWithMin(StageNumber);
 
             return currentEnemy
-                .Add<NextEnemyLead>();
+                    ?.Add<NextEnemyLead>()
+                ;
 
             int StageNumber(GameEntity enemy)
             {

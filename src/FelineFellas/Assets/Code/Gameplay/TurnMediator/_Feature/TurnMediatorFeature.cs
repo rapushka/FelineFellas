@@ -11,6 +11,8 @@ namespace FelineFellas
             Add(new StartPlayerTurnOnFightStartSystem());
 
             Add(new StartTimerIfInTemporaryStateSystem());
+
+            Add(new ResetTurnMediatorAfterStageCompletedSystem());
         }
     }
 }
