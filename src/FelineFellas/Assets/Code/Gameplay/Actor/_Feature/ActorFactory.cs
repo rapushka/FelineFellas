@@ -6,8 +6,6 @@ namespace FelineFellas
     {
         GameEntity CreatePlayer(LoadoutConfig loadout);
         GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID);
-
-        GameEntity CreateDeck(GameEntity actor, LoadoutConfig loadout);
     }
 
     public class ActorFactory : IActorFactory
@@ -16,13 +14,15 @@ namespace FelineFellas
 
         private static ICardFactory CardFactory => ServiceLocator.Resolve<ICardFactory>();
 
+        private static IDeckFactory DeckFactory => ServiceLocator.Resolve<IDeckFactory>();
+
         public GameEntity CreatePlayer(LoadoutConfig loadout)
         {
             var actor = Create(loadout, Side.Player)
                     .Add<Name, string>("player")
                     .Add<PlayerActor>()
                     .Add<Money, int>(GameConfig.Money.MoneyOnStart)
-                    .Chain(a => CreateDeck(a, loadout))
+                    .Chain(a => DeckFactory.Create(a, loadout))
                     .Chain(a => CreateLeadOnDeck(a, loadout))
                     .Add<ActiveActor>()
                 ;
@@ -48,19 +48,8 @@ namespace FelineFellas
                     .Add<Actor>()
                     .Add<HandSize, int>(loadout.HandSize)
                     .Add<OnSide, Side>(side)
+                // .AddHierarchyFromActor() TODO
                 ;
-
-            return actor;
-        }
-
-        public GameEntity CreateDeck(GameEntity actor, LoadoutConfig loadout)
-        {
-            var side = actor.Get<OnSide>().Value;
-            var deckID = CardFactory.CreateDeckWithCards(loadout.Deck, side)
-                .Add<ChildOf, EntityID>(actor.ID())
-                .ID();
-
-            actor.Add<OwnedDeck, EntityID>(deckID);
 
             return actor;
         }
