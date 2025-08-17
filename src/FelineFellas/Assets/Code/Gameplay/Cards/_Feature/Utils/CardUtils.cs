@@ -137,11 +137,7 @@ namespace FelineFellas
 
         public static GameEntity PlaceCardOnField(GameEntity card, GameEntity cell)
         {
-#if DEBUG
-            // ReSharper disable once RedundantNameQualifier – to make this peace of code independant from surrounding
-            if (!card.Is<UnitCard>())
-                UnityEngine.Debug.LogError("Only Units can be placed on field!");
-#endif
+            card.AssertIs<UnitCard>();
 
             var cellID = cell.ID();
 
@@ -155,6 +151,7 @@ namespace FelineFellas
                 .Is<OnField>(true)
                 .Set<ChildOf, EntityID>(cellID)
                 .SetSorting(RenderOrder.CardOnField)
+                .RemoveSafely<CardInDeck>()
                 ;
 
             cell

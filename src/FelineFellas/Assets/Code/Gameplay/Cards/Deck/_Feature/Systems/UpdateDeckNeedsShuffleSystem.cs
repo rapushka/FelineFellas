@@ -1,4 +1,3 @@
-using System.Linq;
 using Entitas;
 using Entitas.Generic;
 
@@ -10,7 +9,6 @@ namespace FelineFellas
             = GroupBuilder<GameScope>
                 .With<ActiveActor>()
                 .And<DrawingCards>()
-                .And<DeckOnStage>()
                 .Without<WaitingForDeckShuffle>()
                 .Build();
 
@@ -19,9 +17,8 @@ namespace FelineFellas
             foreach (var actor in _actors)
             {
                 var deck = actor.GetOwnedDeck();
-                var deckID = deck.ID();
 
-                var deckIsEmpty = !DeckUtils.GetAllCardsInDeck(deckID).Any();
+                var deckIsEmpty = !ActorUtils.HasAnyCardInDeck(actor);
                 deck.Is<NeedsShuffle>(deckIsEmpty);
             }
         }

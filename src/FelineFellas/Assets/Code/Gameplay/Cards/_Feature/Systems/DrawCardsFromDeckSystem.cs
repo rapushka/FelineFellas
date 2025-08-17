@@ -7,10 +7,13 @@ namespace FelineFellas
     {
         private readonly IGroup<Entity<GameScope>> _actors
             = GroupBuilder<GameScope>
-                .With<ActiveActor>()
+                .With<Actor>()
+                .And<ActiveActor>()
                 .And<DrawingCards>()
                 .And<HandSize>()
+                .Without<NeedsShuffle>()
                 .Without<WaitingForDeckShuffle>()
+                .Without<ShufflingDeckTimer>()
                 .Build();
 
         private static IRandomService RandomService => ServiceLocator.Resolve<IRandomService>();
@@ -21,7 +24,11 @@ namespace FelineFellas
             {
                 var actorID = actor.ID();
 
-                var card = RandomService.PickRandom(ActorUtils.GetCardsInDeck(actor));
+                var cardsInDeck = ActorUtils.GetCardsInDeck(actor);
+                if (cardsInDeck.Count == 0)
+                    continue;
+
+                var card = RandomService.PickRandom(cardsInDeck);
 
                 CardUtils.DrawCardToHand(card, ActorUtils.GetCardsInHand(actor).count)
                     .Set<ChildOf, EntityID>(actorID);
