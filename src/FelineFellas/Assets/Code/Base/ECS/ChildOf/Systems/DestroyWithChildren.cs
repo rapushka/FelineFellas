@@ -20,9 +20,15 @@ namespace FelineFellas
         public void Cleanup()
         {
             foreach (var parent in _destroyedParents.GetEntities(_buffer))
+                DestroyChildren(parent);
+        }
+
+        private void DestroyChildren(Entity<GameScope> parent)
+        {
             foreach (var child in Index.GetEntities(parent.ID()))
             {
                 child.Is<Destroy>(true);
+                DestroyChildren(child);
             }
         }
     }
