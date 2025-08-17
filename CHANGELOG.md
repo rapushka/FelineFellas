@@ -2,6 +2,7 @@
 - on Fight Button click - start fight with the "selected" enemy - https://github.com/rapushka/FelineFellas/issues/109
 - bugfix: when player kills enemy's lead - it's not game over anymore! - https://github.com/rapushka/FelineFellas/issues/116
 - Defeat enemy's lead - https://github.com/rapushka/FelineFellas/issues/118
+- on enemy defeated - go back to map - https://github.com/rapushka/FelineFellas/issues/119
 
 # v0.0.9
 - spawn arranged enemies on map - https://github.com/rapushka/FelineFellas/issues/103
