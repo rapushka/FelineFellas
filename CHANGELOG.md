@@ -1,3 +1,6 @@
+# v0.0.11
+- announce Player/Enemy turn - https://github.com/rapushka/FelineFellas/issues/91
+
 # v0.0.10
 - on Fight Button click - start fight with the "selected" enemy - https://github.com/rapushka/FelineFellas/issues/109
 - bugfix: when player kills enemy's lead - it's not game over anymore! - https://github.com/rapushka/FelineFellas/issues/116
