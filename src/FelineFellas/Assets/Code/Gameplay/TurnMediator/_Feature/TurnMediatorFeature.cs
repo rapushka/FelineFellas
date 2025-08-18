@@ -13,6 +13,9 @@ namespace FelineFellas
             Add(new StartTimerIfInTemporaryStateSystem());
 
             Add(new ResetTurnMediatorAfterStageCompletedSystem());
+
+            Add(new AnnounceCurrentTurnUiSystem());
+            Add(new CleanupTurnMediatorInitSystem());
         }
     }
 }

@@ -8,6 +8,8 @@ namespace FelineFellas
 
     public sealed class ChangeStateAfter : ValueComponent<float>, IInScope<GameScope> { }
 
+    public sealed class InitTurnState : FlagComponent, IInScope<GameScope> { }
+
 #region States
     public sealed class OnPlayerTurnStartedState : FlagComponent, IInScope<GameScope> { }
 
