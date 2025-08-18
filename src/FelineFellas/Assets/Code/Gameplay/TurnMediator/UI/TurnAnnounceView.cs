@@ -19,7 +19,6 @@ namespace FelineFellas
 
         private void Show(string text)
         {
-            Debug.Log(text);
             _tween?.Kill();
             _labelRoot.transform.SetScale(0f);
 
@@ -27,11 +26,12 @@ namespace FelineFellas
 
             _tween = DOTween.Sequence()
                 .Append(
-                    _labelRoot.transform.DOScale(1f, 0.3f)
+                    _labelRoot.transform.DOScale(1f, 0.5f)
                         .SetEase(Ease.OutBack)
                 )
+                .AppendInterval(0.5f)
                 .Append(
-                    _labelRoot.transform.DOScale(0f, 0.3f)
+                    _labelRoot.transform.DOScale(0f, 0.25f)
                         .SetEase(Ease.InOutSine)
                 );
         }

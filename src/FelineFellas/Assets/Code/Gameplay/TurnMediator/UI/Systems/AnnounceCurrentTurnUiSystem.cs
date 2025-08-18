@@ -8,7 +8,7 @@ namespace FelineFellas
         private readonly IGroup<Entity<GameScope>> _turnMediators
             = GroupBuilder<GameScope>
                 .With<TurnMediator>()
-                .And<ToNextTurnState>()
+                .And<InitTurnState>()
                 .Or<OnPlayerTurnStartedState>()
                 .Or<OnEnemyTurnStartedState>()
                 .Build();

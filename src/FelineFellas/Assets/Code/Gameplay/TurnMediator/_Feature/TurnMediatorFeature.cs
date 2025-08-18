@@ -15,6 +15,7 @@ namespace FelineFellas
             Add(new ResetTurnMediatorAfterStageCompletedSystem());
 
             Add(new AnnounceCurrentTurnUiSystem());
+            Add(new CleanupTurnMediatorInitSystem());
         }
     }
 }

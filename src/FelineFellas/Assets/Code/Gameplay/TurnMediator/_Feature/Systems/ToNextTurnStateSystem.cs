@@ -18,7 +18,10 @@ namespace FelineFellas
         {
             foreach (var turnMediator in _turnMediators.GetEntities(_buffer))
             {
-                turnMediator.Remove<ToNextTurnState>();
+                turnMediator
+                    .Remove<ToNextTurnState>()
+                    .Add<InitTurnState>()
+                    ;
 
                 var transmitted
                         = Transmit<OnPlayerTurnStartedState, InDrawCardsState>(turnMediator)

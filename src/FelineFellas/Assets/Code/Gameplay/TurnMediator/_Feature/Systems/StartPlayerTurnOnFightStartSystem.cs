@@ -20,7 +20,10 @@ namespace FelineFellas
             foreach (var e in _events)
             foreach (var mediator in _mediators)
             {
-                mediator.Add<OnPlayerTurnStartedState>();
+                mediator
+                    .Add<OnPlayerTurnStartedState>()
+                    .Add<InitTurnState>()
+                    ;
 
                 e.Add<Destroy>();
             }
