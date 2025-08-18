@@ -13,5 +13,11 @@ namespace FelineFellas
                 z: z ?? oldValue.z
             );
         }
+
+        public static Transform SetScale(this Transform @this, float value)
+        {
+            @this.localScale = Vector3.one * value;
+            return @this;
+        }
     }
 }

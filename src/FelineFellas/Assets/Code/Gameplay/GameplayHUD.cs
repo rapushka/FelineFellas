@@ -9,6 +9,7 @@ namespace FelineFellas
         [SerializeField] private Button _pauseButton;
         [SerializeField] private MoneyView _moneyView;
         [SerializeField] private MapUi _mapUi;
+        [SerializeField] private TurnAnnounceView _turnAnnounce;
 
         private static IUiMediator UiMediator => ServiceLocator.Resolve<IUiMediator>();
 
@@ -16,9 +17,12 @@ namespace FelineFellas
 
         public MapUi MapUi => _mapUi;
 
+        public TurnAnnounceView TurnAnnounce => _turnAnnounce;
+
         protected override void Initialize()
         {
             _mapUi.Initialize();
+            _turnAnnounce.Initialize();
 
             _endTurnButton.onClick.AddListener(EndTurn);
             _pauseButton.onClick.AddListener(BackToMainMenu);
