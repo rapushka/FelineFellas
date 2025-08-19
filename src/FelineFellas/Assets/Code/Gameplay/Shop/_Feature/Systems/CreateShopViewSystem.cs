@@ -3,9 +3,9 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class CreateShopViewSystem : IInitializeSystem
+    public sealed class CreateShopViewSystem : IExecuteSystem
     {
-        private readonly IGroup<Entity<GameScope>> _levels
+        private readonly IGroup<Entity<GameScope>> _stages
             = GroupBuilder<GameScope>
                 .With<Stage>()
                 .And<EnteringStage>()
@@ -13,12 +13,12 @@ namespace FelineFellas
 
         private static IShopFactory ShopFactory => ServiceLocator.Resolve<IShopFactory>();
 
-        public void Initialize()
+        public void Execute()
         {
-            foreach (var level in _levels)
+            foreach (var stage in _stages)
             {
                 ShopFactory.Create()
-                    .Add<ChildOf, EntityID>(level.ID());
+                    .Add<ChildOf, EntityID>(stage.ID());
             }
         }
     }

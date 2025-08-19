@@ -59,7 +59,7 @@ namespace FelineFellas
                 ;
         }
 
-        public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot) // TODO: link to current stage?
+        public GameEntity CreateCardInShop(CardIDRef cardID, GameEntity shopSlot)
             => Create(cardID, shopSlot.WorldPosition().Add(x: 2f))
                 .Chain(card => CardUtils.PlaceCardInShop(card, shopSlot));
 
