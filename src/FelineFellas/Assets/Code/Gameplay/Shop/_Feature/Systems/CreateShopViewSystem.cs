@@ -3,7 +3,7 @@ using Entitas.Generic;
 
 namespace FelineFellas
 {
-    public sealed class CreateShopViewSystem : IInitializeSystem
+    public sealed class CreateShopViewSystem : IExecuteSystem
     {
         private readonly IGroup<Entity<GameScope>> _levels
             = GroupBuilder<GameScope>
@@ -13,7 +13,7 @@ namespace FelineFellas
 
         private static IShopFactory ShopFactory => ServiceLocator.Resolve<IShopFactory>();
 
-        public void Initialize()
+        public void Execute()
         {
             foreach (var level in _levels)
             {
