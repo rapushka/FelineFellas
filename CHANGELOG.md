@@ -1,5 +1,7 @@
 # v0.0.11
 - announce Player/Enemy turn - https://github.com/rapushka/FelineFellas/issues/91
+- bugfix:
+  - shops appear at stages (again) - https://github.com/rapushka/FelineFellas/issues/124
 
 # v0.0.10
 - on Fight Button click - start fight with the "selected" enemy - https://github.com/rapushka/FelineFellas/issues/109
