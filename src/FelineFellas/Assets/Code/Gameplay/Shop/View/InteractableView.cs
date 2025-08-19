@@ -9,11 +9,13 @@ namespace FelineFellas
         [SerializeField] private Color _defaultColor = Color.white;
         [SerializeField] private Color _disabledColor = Color.gray;
 
-        public override void OnValueChanged(Entity<GameScope> entity, Interactable component)
-        {
-            _spriteRenderer.color = entity.Is<Interactable>()
+        protected override void OnRegistered(Entity<GameScope> entity) => UpdateView(entity);
+
+        public override void OnValueChanged(Entity<GameScope> entity, Interactable component) => UpdateView(entity);
+
+        private void UpdateView(Entity<GameScope> entity)
+            => _spriteRenderer.color = entity.Is<Interactable>()
                 ? _defaultColor
                 : _disabledColor;
-        }
     }
 }
