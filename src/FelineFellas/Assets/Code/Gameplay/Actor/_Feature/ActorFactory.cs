@@ -6,6 +6,7 @@ namespace FelineFellas
     {
         GameEntity CreatePlayer(LoadoutConfig loadout, StageID mockStageID);
         GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageID);
+        GameEntity CreateEnemyBossOnMap(LoadoutConfig loadout, EntityID stageID);
     }
 
     public class ActorFactory : IActorFactory
@@ -30,6 +31,9 @@ namespace FelineFellas
 
             return actor;
         }
+
+        public GameEntity CreateEnemyBossOnMap(LoadoutConfig loadout, EntityID stageEntityID)
+            => CreateEnemyOnMap(loadout, stageEntityID);
 
         public GameEntity CreateEnemyOnMap(LoadoutConfig loadout, EntityID stageEntityID)
         {

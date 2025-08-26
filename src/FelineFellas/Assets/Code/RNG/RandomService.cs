@@ -32,7 +32,7 @@ namespace FelineFellas
             var index = UnityRandom.Range(0, total);
 
             return collection.ElementAtOrDefault(index)
-                ?? throw new($"Index {index} is out of bounds");
+                ?? throw new($"Random Item at index {index} is null!");
         }
 
         public T PickRandom<T>(IEnumerable<T> collection)

@@ -56,6 +56,10 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Deck>k__BackingField.Array.data[0].<CardID>k__BackingField.Value
+    - _objectPath: 8fdc825141159ce24a34f842a021985e||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Deck>k__BackingField.Array.data[0].<CardID>k__BackingField.Value
   - _id: Card/Order/BackToBase
     _assetRefs:
     - _objectPath: 3baca524f7cc59efba2f365bbc39327e||11400000
@@ -112,6 +116,14 @@ MonoBehaviour:
       _targetRefType: 0
       _apiVersion: 1
       _propertyPath: <Lead>k__BackingField.Value
+    - _objectPath: 8fdc825141159ce24a34f842a021985e||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Lead>k__BackingField.Value
+    - _objectPath: 8fdc825141159ce24a34f842a021985e||11400000
+      _targetRefType: 0
+      _apiVersion: 1
+      _propertyPath: <Deck>k__BackingField.Array.data[1].<CardID>k__BackingField.Value
   - _id: Card/Unit/Rose
     _assetRefs:
     - _objectPath: a968bcd4a29e482d581a6e308a6e38b5||11400000

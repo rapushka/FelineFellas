@@ -6,6 +6,7 @@ namespace FelineFellas
             : base(nameof(EnemyActorFeature))
         {
             Add(new CreateEnemyActorsSystem());
+            Add(new CreateEnemyBossActorsSystem());
             Add(new CreateDeckForCurrentEnemySystem());
             Add(new ActivateNextEnemy());
 

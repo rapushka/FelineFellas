@@ -8,6 +8,7 @@ namespace FelineFellas
     {
         [field: SerializeField] public LoadoutConfig PlayerLoadout { get; private set; }
 
-        [field: SerializeField] public LoadoutConfig[] EnemyLoadouts { get; private set; }
+        [field: SerializeField] public LoadoutConfig[] EnemyLoadouts     { get; private set; }
+        [field: SerializeField] public LoadoutConfig[] EnemyBossLoadouts { get; private set; }
     }
 }

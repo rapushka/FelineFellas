@@ -19,8 +19,14 @@ namespace FelineFellas
         {
             foreach (var map in _maps)
             {
-                for (var i = 0; i < GameConfig.Map.NumberOfUsualEnemies; i++)
-                    StageFactory.Create(i + 1, map.ID());
+                var usualStageCount = GameConfig.Map.NumberOfUsualEnemies;
+                var mapID = map.ID();
+
+                for (var i = 0; i < usualStageCount; i++)
+                    StageFactory.Create(i + 1, mapID);
+
+                StageFactory.Create(usualStageCount + 1, mapID)
+                    .Add<FinalStage>();
             }
         }
     }

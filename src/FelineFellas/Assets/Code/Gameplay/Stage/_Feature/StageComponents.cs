@@ -14,4 +14,7 @@ namespace FelineFellas
     public sealed class StageCompletedEvent : FlagComponent, IInScope<GameScope> { }
 
     public sealed class ArrangeStagesEvent : FlagComponent, IInScope<GameScope> { }
+
+    /// Means Final Stage of the street
+    public sealed class FinalStage : FlagComponent, IInScope<GameScope> { }
 }
