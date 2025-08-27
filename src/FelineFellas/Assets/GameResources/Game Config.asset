@@ -34,6 +34,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 10bb57fc94897ab7fb77de6fa8660e85, type: 2}
     - {fileID: 11400000, guid: 543075c8e4bae27078329748bcc8fd03, type: 2}
     - {fileID: 11400000, guid: 05bfccb3d63743a9bb4a2d3027b8ee35, type: 2}
+    - {fileID: 11400000, guid: 4566d501d929a56b3b884b1d7c7985de, type: 2}
     - {fileID: 11400000, guid: a968bcd4a29e482d581a6e308a6e38b5, type: 2}
     <View>k__BackingField:
       <ViewPrefab>k__BackingField: {fileID: 6034909662983089511, guid: 0d71fcacffd2f4568b32637a238b08fb, type: 3}
